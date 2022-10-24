@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div>
+	주문내역 없으면
+	
+	
+	주문내역 있으면
+	<ul>
+		<li>
+			상품사진
+			배송지
+		 	배송상태
+		 	금액
+		 	<button th:onclick="refund()">환불</button>
+		 	
+		</li>
+	</ul>
+</div>
+</body>
+</html>
