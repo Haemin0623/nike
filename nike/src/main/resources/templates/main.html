@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div> <!--메인 영상-->	
+	<a th:href="@{product_detail(product_detail_no=${product_detail.productdetail.no})}">
+		<video muted autoplay loop>
+			<source src="videos/?????.mp4" type="video/mp4">
+		</video>
+	</a>
+</div>
+<div> <!--설명-->
+	<strong> JOIN FORCES</strong>
+	<h1> 지금의 나이기 에어포스 1의 중심에는 지난 40년간 문화를 이끌고 변화를 만들어낸 커뮤니티가 있습니다.</h1>
+	<h1>한국 댄스 씬을 바꾸고 있는 댄서들과 그들의 커뮤니티가 만들어가는 미래를 에어 포스 1과 함께해 보세요.</h1>
+	<button th:onclick="@{product_detail(product_detail_no=${product_detail.productdetail.no})}">구매하기</button>
+</body>
+</html>
