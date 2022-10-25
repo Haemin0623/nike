@@ -3,14 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<style type="text/css">
+		.err { color: red; font-weight: bold; }
+	</style>
 </head>
 <body>
 <div>
 	<div>사진</div>
 	<div>간단한정보 이메일정도</div>
-	<a>프로필(정보 다 나오는 거 + 수정 여기서) profile</a>
-	<a>위시리스트 wishList</a>
-	<a>장바구니 cartList</a>
+	<a class="btn btn-info" th:href="@{/account/profile.do(email=${member.email})}">프로필(정보 다 나오는 거 + 수정 여기서) profile</a>
+	<a href="@{/account/wishList.do(email=${member.email})}">위시리스트 wishList</a>
+	<a href="@{/account/cartList.do(email=${member.email})}">장바구니 cartList</a>
 	<a>주문내역 orders</a>
 	<a>리뷰내역 reviews</a>
 	<a>배송지 관리 address</a>

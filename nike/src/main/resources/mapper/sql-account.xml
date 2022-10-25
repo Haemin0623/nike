@@ -2,5 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.AccountMapper">
-
+	<update id="deleteMember" parameterType="string">
+		update member set member_del='Y' where email=#{email}
+	</update>
+<!-- 	wishList -->
+	<select id="selectWish" parameterType="string" resultType="wish">
+		select * from wish where email=#{email}
+	</select>
+	<select id="selectThum" parameterType="integer" resultMap="string">
+		select product_photo from product_photo where product_no=#{product_no} and batch=1
+	</select>
+	<select id="selectProduct" parameterType="integer" resultType="product">
+		select * from product where product_no=#{product_no}
+	</select>
+<!-- 	cartList -->
+	<select id="selectCart" parameterType="string" resultType="cart">
+		select * from cart where email=#{email}
+	</select>
 </mapper>

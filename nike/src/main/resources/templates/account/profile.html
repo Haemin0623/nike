@@ -3,18 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	<style type="text/css">
+		.err { color: red; font-weight: bold; }
+	</style>
+<script type="text/javascript">
+	function member_del(email) {
+		var cf = confirm("정말로 삭제하시겠습니까?");
+		if (cf) {
+			location.href="deleteMember.do?email="+email;
+		} else alert("삭제가 취소되었습니다.");
+	}
+</script>
 </head>
 <body>
 <div> 정보 보여주고 수정가능한건 수정되도록
 	<div>사진 및 사진 수정</div>
-	<div>email</div>
-	<div>password + 확인 (나이키는 수정 팝업창)</div>
-	<div>name</div>
-	<div>member_gender</div>
-	<div>birthday</div>
-	<div>member_tel (나이키는 수정 팝업창)</div>
-	<div>reg_date</div>
-	<div>계정삭제함수</div>
+	<div th:if="${#lists.sixe(list) > 0" th:each="member:${list}">
+		<div>member.email</div>
+		<div>member.password + 확인 (나이키는 수정 팝업창)</div>
+		<div>member.name</div>
+		<div>member.member_gender</div>
+		<div>member.birthday</div>
+		<div>member.member_tel (나이키는 수정 팝업창)</div>
+		<div>member.reg_date</div>
+		<div>
+			<button th:onclick="member_del([[${member.email}]])" class="btn btn-danger">
+				계정삭제함수
+			</button>
+		</div>
+	</div>
 </div>
 </body>
 </html>

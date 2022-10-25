@@ -6,13 +6,18 @@
 </head>
 <body>
 <div>
-	wish 없으면
+	<div th:if="${#lists.size(wish)} == 0">
+		 현재 위시리스트가 비어있습니다.
+	</div>
 	
-	
-	있으면
-	<ul>
+	<ul th:if="${#lists.size(wish)} != 0" th:each="wishList:${product}">
 		<li>
-			product_no로 상품사진 불러오기 / 사진누르면 상품상세로이동
+			[[${wishList.product_name}]]
+			[[${wishList.price}]]
+			<a href="상품상세 주소 넣기!!!!!!!!!!">  사진누르면 상품상세로 이동 넣기
+				<img alt="상품 상세 페이지로 이동합니다." src="상품사진위치+이름넣기"> [[${thumbnail}]] 썸네일 사진
+				
+			</a>
 		</li>
 	</ul>
 </div>
