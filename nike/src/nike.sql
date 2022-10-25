@@ -36,8 +36,8 @@ drop table category cascade constraints;
 
 create table category (
 	category_no	number(4)	not null	primary key,
-	large		number(4)	not null,
-	small		number(4)	not null
+	large		varchar2(20)	not null,
+	small		varchar2(20)	not null
 );
 
 
