@@ -46,11 +46,11 @@ drop table product cascade constraints;
 
 create table product (
 	product_no		number(4)		not	null	primary key,
-	product_name	varchar2(50)	not	null,	
+	product_name	varchar2(100)	not	null,	
 	category_no		number(4)		not	null,
 	price			number(10)		not	null,	
 	detail			varchar2(2000)	not	null,	
-	gender			char(1)			not	null,
+	gender			char(1)			not	null,	-- M / F / U
 
 	constraint fk_product_category_no foreign key(category_no) references category(category_no)	
 );
