@@ -13,7 +13,7 @@ insert into address values (4, 'soo@in.com', '우리집', 021234567, '댕댕시 
 insert into address values (5, 'soo@in.com', '너네집', 0312341234, '끼얏도 호우시 하이구 바이로14', '끼얏도 호우시 끼호동', 34437, '123동 12호');
 insert into address values (6, 'chang@ryul.com', '회사', 0311432132, '중앙도 정보시 처리구 학원로56번길 24', '중앙도 정보시 학원동', 85337, '5호');
 insert into address values (7, 'chang@ryul.com', '회안사', 0312344567, '너무도 많아시 못하구 겠어로54', '너무도 많아시 못함동', 15217, '12동 101호');
-insert into address values (8, 'sun@ny.com', '기본', 0311236543, '해민도 수인시 창률구 선희로88', '해민도 수인시 창선동', 21337, '10호');
+insert into address values (8, 'sun@ny.com', '기본', 0311236543, '해민도 수인시 창률구 선희로88', '해민도 수인시 창률동 선희아파트', 21337, '10호');
 
 -- 분류
 insert into category values (1, '상의', '티셔츠');

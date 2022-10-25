@@ -209,8 +209,8 @@ create table store (
 	store_no	number(4)		not null	primary key,
 	store_name	varchar2(50)	not	null,	
 	store_addr	varchar2(300)	not	null,	
-	store_close	varchar2(10)	not	null,	
-	store_open	varchar2(10)	not	null,	
+	store_close	varchar2(30)	not	null,	
+	store_open	varchar2(30)	not	null,	
 	store_tel	number(15)		not	null	
 );
 
