@@ -1,8 +1,11 @@
 package com.ch.nike.dto;
 
+import org.apache.ibatis.type.Alias;
+
 import lombok.Data;
 
 @Data
+@Alias("Address")
 public class Address {
 	private int addr_no;
 	private String email;

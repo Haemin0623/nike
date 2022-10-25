@@ -1,8 +1,11 @@
 package com.ch.nike.dto;
 
+import org.apache.ibatis.type.Alias;
+
 import lombok.Data;
 
 @Data
+@Alias("Store")
 public class Store {
 	private int store_no;
 	private String store_name;

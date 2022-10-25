@@ -2,9 +2,12 @@ package com.ch.nike.dto;
 
 import java.sql.Date;
 
+import org.apache.ibatis.type.Alias;
+
 import lombok.Data;
 
 @Data
+@Alias("Notice")
 public class Notice {
 
 	private int notice_no;

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.nike.mapper.ProductMapper">
+	<select id="list" resultType="product"> <!-- 신발 리스트 -->
+		select productName from product p, category c, productPhoto h where p.categoryNo =c.categoryNo and 
+		p.productNo=h.productNo and large='신발'
+	</select>
+</mapper>

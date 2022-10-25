@@ -2,8 +2,11 @@ package com.ch.nike.dto;
 
 import java.sql.Date;
 
+import org.apache.ibatis.type.Alias;
+
 import lombok.Data;
 @Data
+@Alias("QnA")
 public class QnA {
 	private int qna_no;
 	private String email;
