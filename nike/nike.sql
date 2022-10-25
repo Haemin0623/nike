@@ -111,6 +111,8 @@ create table cart (
 	email			varchar2(50)	not	null,
 	product_no		number(4)		not	null,
 	cart_quantity	number(4)		not	null,
+	cart_size		varchar2(20)    not	null,
+	cart_color		varchar2(20)    not	null,
 
 	constraint fk_cart_email foreign key(email) references member(email),
 	constraint fk_cart_product_no foreign key(product_no) references product(product_no)
