@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 @Alias("ProductDetail")
 public class ProductDetail {
-	private int product_detail_no;
-	private int product_no;
-	private String product_size;
+	private int productDetailNo;
+	private int productNo;
+	private String productSize;
 	private String color;
 	private int stock;
 

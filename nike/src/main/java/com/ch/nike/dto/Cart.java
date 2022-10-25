@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 @Alias("Cart")
 public class Cart {
-	private int cart_no;
+	private int cartNo;
 	private String email;
-	private int product_no;
-	private int cart_quantity;
+	private int productNo;
+	private int cartQuantity;
 }

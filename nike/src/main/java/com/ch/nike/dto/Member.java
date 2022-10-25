@@ -12,9 +12,9 @@ public class Member {
 	private String email;
 	private String name;
 	private String password;
-	private String member_gender;
+	private String memberGender;
 	private Date date;
-	private int member_tel;
-	private Date reg_date;
-	private String member_del;
+	private int memberTel;
+	private Date regDate;
+	private String memberDel;
 }

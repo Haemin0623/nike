@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 @Alias("Wish")
 public class Wish {
-	private int wish_no;
-	private int product_no;
+	private int wishNo;
+	private int productNo;
 	private String email;
 
 }

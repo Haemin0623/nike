@@ -10,11 +10,11 @@ import lombok.Data;
 @Alias("Notice")
 public class Notice {
 
-	private int notice_no;
-	private String notice_type;
-	private String notice_subject;
+	private int noticeNo;
+	private String noticeType;
+	private String noticeSubject;
 	private String content;
-	private Date reg_date;
-	private int read_count;
+	private Date regDate;
+	private int readCount;
 	private String del;
 }

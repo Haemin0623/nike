@@ -7,8 +7,8 @@ import lombok.Data;
 @Data
 @Alias("Refund")
 public class Refund {
-	private int refund_no;
-	private int order_deatil_no;
+	private int refundNo;
+	private int orderDeatilNo;
 	private String reason;
-	private String refund_photo;
+	private String refundPhoto;
 }

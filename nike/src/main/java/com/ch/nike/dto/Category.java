@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @Alias("Category")
 public class Category {
-	private int category_no;
+	private int categoryNo;
 	private int large;
 	private int small;
 

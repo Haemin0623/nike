@@ -7,11 +7,11 @@ import lombok.Data;
 @Data
 @Alias("Review")
 public class Review {
-	private int review_no;
-	private int product_no;
+	private int reviewNo;
+	private int productNo;
 	private String email;
 	private String content;
 	private int star;
-	private String review_date;
-	private String review_del;
+	private String reviewDate;
+	private String reviewDel;
 }

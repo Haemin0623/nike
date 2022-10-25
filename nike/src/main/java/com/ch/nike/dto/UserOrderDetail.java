@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 @Alias("UserOrderDetail")
 public class UserOrderDetail {
-	private int order_deatil_no;
-	private int order_no;
-	private int product_no;
-	private int order_quantity;
-	private String refund_chk;
+	private int orderDeatilNo;
+	private int orderNo;
+	private int productNo;
+	private int orderQuantity;
+	private String refundChk;
 }

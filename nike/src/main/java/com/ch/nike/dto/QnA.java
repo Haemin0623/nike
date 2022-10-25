@@ -8,12 +8,12 @@ import lombok.Data;
 @Data
 @Alias("QnA")
 public class QnA {
-	private int qna_no;
+	private int qnaNo;
 	private String email;
-	private int product_no;
-	private String qna_type;		/* 배송, 결제, 상품 ,기타 */
-	private String notice_subject;
+	private int productNo;
+	private String qnaType;		/* 배송, 결제, 상품 ,기타 */
+	private String noticeSubject;
 	private String content;
-	private Date reg_date;
-	private String qna_del;
+	private Date regDate;
+	private String qnaDel;
 }

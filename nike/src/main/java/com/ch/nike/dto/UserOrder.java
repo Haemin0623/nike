@@ -9,9 +9,9 @@ import lombok.Data;
 @Data
 @Alias("UserOrder")
 public class UserOrder {
-	private int order_no;
+	private int orderNo;
 	private String email;
-	private Date order_date;	
-	private int addr_no;
+	private Date orderDate;	
+	private int addrNo;
 	private String status;
 }

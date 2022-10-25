@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 @Alias("Address")
 public class Address {
-	private int addr_no;
+	private int addrNo;
 	private String email;
-	private String addr_name;
+	private String addrName;
 	private int tel;
 	private String roadaddress;
 	private String jibunaddress;
