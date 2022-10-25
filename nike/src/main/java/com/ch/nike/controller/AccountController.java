@@ -30,8 +30,8 @@ public class AccountController {
 	@RequestMapping("/account/wishList.do")
 	public String wishList(String email, Model model) {
 		Wish wish = as.selectWish(email);
-		ProductPhoto thumbnail = as.selectThum(wish.getProduct_no());
-		Product product = as.selectProduct(wish.getProduct_no());
+		ProductPhoto thumbnail = as.selectThum(wish.getProductNo());
+		Product product = as.selectProduct(wish.getProductNo());
 		model.addAttribute("wish", wish);
 		model.addAttribute("product", product);
 		model.addAttribute("thumbnail", thumbnail);
@@ -40,8 +40,8 @@ public class AccountController {
 	@RequestMapping("/account/cartList.do")
 	public String cartList(String email, Model model) {
 		Cart cart = as.selectCart(email);
-		ProductPhoto thumbnail = as.selectThum(cart.getProduct_no());
-		Product product = as.selectProduct(cart.getProduct_no());
+		ProductPhoto thumbnail = as.selectThum(cart.getProductNo());
+		Product product = as.selectProduct(cart.getProductNo());
 		model.addAttribute("cart", cart);
 		model.addAttribute("product", product);
 		model.addAttribute("thumbnail", thumbnail);
