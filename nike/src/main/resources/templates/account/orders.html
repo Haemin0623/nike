@@ -6,17 +6,14 @@
 </head>
 <body>
 <div>
-	주문내역 없으면
-	
-	
-	주문내역 있으면
-	<ul>
-		<li>
-			order_date
+<div th:if="${#lists.size(orders)} == 0">
+	 주문내역 없음
+</div>
+<div th:if="${#lists.size(orders)} != 0" th:each="orders:${orderList}">	
+	주문 날짜 : [[${orders.order_date}]]
+	배송지 : [[${  }]]
 			product_no로 상품사진 불러오기
 		 	<a> 주문상세 </a>
-		</li>
-	</ul>
 </div>
 </body>
 </html>

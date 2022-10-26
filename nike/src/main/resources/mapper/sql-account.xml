@@ -6,17 +6,26 @@
 		update member set member_del='Y' where email=#{email}
 	</update>
 <!-- 	wishList -->
-	<select id="selectWish" parameterType="string" resultType="wish">
+	<select id="selectWish" parameterType="string" resultType="list">
 		select * from wish where email=#{email}
 	</select>
-	<select id="selectThum" parameterType="integer" resultMap="string">
-		select product_photo from product_photo where product_no=#{product_no} and batch=1
-	</select>
-	<select id="selectProduct" parameterType="integer" resultType="product">
-		select * from product where product_no=#{product_no}
-	</select>
 <!-- 	cartList -->
-	<select id="selectCart" parameterType="string" resultType="cart">
+	<select id="selectCart" parameterType="string" resultType="list">
 		select * from cart where email=#{email}
 	</select>
+<!-- 	product_no로 product + thumbnail 구하기 -->
+	<select id="selectProThum" parameterType="integer" resultType="product">
+		select p.*, pp.product_photo from product p, (select * from product_photo where product_no=#{product_no} and batch=1) pp where p.product_no=pp.product_no
+	</select>
+	
+<!-- 	orders  테이블 전체 조인 oracle 패키지의 sql-emp.xml 참고-->
+
+	<select id="selectUserOrder" parameterType="string" resultType="list">
+		select * from user_order where email=#{email}
+	</select>
+	<select id="selectOrderDeatail" parameterType="integer" resultType="user_order_detail">
+		select * from 
+	</select>
+	
+	
 </mapper>

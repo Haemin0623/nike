@@ -5,21 +5,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div>
-	<div th:if="${#lists.size(cart)} == 0">
-		 현재 위시리스트가 비어있습니다.
-	</div>
-	
-	<ul th:if="${#lists.size(cart)} != 0" th:each="wishList:${product}">
-		<li>
-			[[${wishList.product_name}]]
-			[[${wishList.price}]]
-			<a href="상품상세 주소 넣기!!!!!!!!!!">  사진누르면 상품상세로 이동 넣기
-				<img alt="상품 상세 페이지로 이동합니다." src="상품사진위치+이름넣기"> [[${thumbnail}]] 썸네일 사진
-				
-			</a>
-		</li>
-	</ul>
+<div th:if="${#lists.size(cart)} == 0">
+	 현재 장바구니가 비어있습니다.
 </div>
+<div th:if="${#lists.size(cart)} != 0" th:each="cartList:${list}">
+	<label>
+		<input type="checkbox" name="cart" th:value="${cartList.product_name}">
+		<a href="상품상세 주소 넣기!!!!!!!!!!">  사진누르면 상품상세로 이동 넣기
+			<img alt="상품 상세 페이지로 이동합니다." src="상품사진위치+이름넣기"> [[${cartList.thumbnail}]] 썸네일 사진
+		</a>
+		[[${cartList.product_name}]]
+		[[${cartList.price}]]
+		[[${cartList.cart_size}]]
+		[[${cartList.cart_color}]]
+		[[${cartList.cart_quanity}]]
+	</label>
+			
+</div>
+총 가격 계산하는거 필요
 </body>
 </html>

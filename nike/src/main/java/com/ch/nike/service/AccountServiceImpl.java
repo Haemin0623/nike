@@ -1,11 +1,15 @@
 package com.ch.nike.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ch.nike.dto.Address;
 import com.ch.nike.dto.Cart;
 import com.ch.nike.dto.Product;
-import com.ch.nike.dto.ProductPhoto;
+import com.ch.nike.dto.UserOrder;
+import com.ch.nike.dto.UserOrderDetail;
 import com.ch.nike.dto.Wish;
 import com.ch.nike.mapper.AccountMapper;
 
@@ -18,20 +22,28 @@ public class AccountServiceImpl implements AccountService {
 		return am.deleteMember(email);
 	}
 
-	public Wish selectWish(String email) {
+	public List<Wish> selectWish(String email) {
 		return am.selectWish(email);
 	}
 
-	public ProductPhoto selectThum(int product_no) {
-		return am.selectThum(product_no);
+	public Product selectProThum(int product_no) {
+		return am.selectProThum(product_no);
 	}
 
-	public Product selectProduct(int product_no) {
-		return am.selectProduct(product_no);
+
+	public List<Cart> selectCart(String email) {
+		return am.selectCart(email);
 	}
 
-	@Override
-	public Cart selectCart(String email) {
-		return am.selectCart(email);;
+	public List<UserOrder> selectUserOrder(String email) {
+		return am.selectUserOrder(email);
+	}
+
+	public UserOrderDetail selectOrderDeatail(int orderNo) {
+		return am.selectOrderDeatail(orderNo);
+	}
+
+	public Address selectAddr(int addrNo) {
+		return am.selectAddr(addrNo);
 	}
 }

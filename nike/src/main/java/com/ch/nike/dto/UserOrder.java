@@ -14,4 +14,7 @@ public class UserOrder {
 	private Date orderDate;	
 	private int addrNo;
 	private String status;
+//	조인용
+	private Address address;
+	private UserOrderDetail userOrderDetail;
 }

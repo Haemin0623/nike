@@ -15,9 +15,9 @@
 	<div>사진</div>
 	<div>간단한정보 이메일정도</div>
 	<a class="btn btn-info" th:href="@{/account/profile.do(email=${member.email})}">프로필(정보 다 나오는 거 + 수정 여기서) profile</a>
-	<a href="@{/account/wishList.do(email=${member.email})}">위시리스트 wishList</a>
-	<a href="@{/account/cartList.do(email=${member.email})}">장바구니 cartList</a>
-	<a>주문내역 orders</a>
+	<a th:href="@{/account/wishList.do(email=${member.email})}">위시리스트 wishList</a>
+	<a th:href="@{/account/cartList.do(email=${member.email})}">장바구니 cartList</a>
+	<a th:href="@{/account/orders.do(email=${member.email})}">주문내역 orders</a>
 	<a>리뷰내역 reviews</a>
 	<a>배송지 관리 address</a>
 	<a>문의내역 qnas</a>

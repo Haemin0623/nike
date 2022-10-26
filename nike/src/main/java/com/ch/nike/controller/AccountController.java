@@ -1,13 +1,19 @@
 package com.ch.nike.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ch.nike.dto.Address;
 import com.ch.nike.dto.Cart;
 import com.ch.nike.dto.Product;
 import com.ch.nike.dto.ProductPhoto;
+import com.ch.nike.dto.UserOrder;
+import com.ch.nike.dto.UserOrderDetail;
 import com.ch.nike.dto.Wish;
 import com.ch.nike.service.AccountService;
 
@@ -29,22 +35,44 @@ public class AccountController {
 	}
 	@RequestMapping("/account/wishList.do")
 	public String wishList(String email, Model model) {
-		Wish wish = as.selectWish(email);
-		ProductPhoto thumbnail = as.selectThum(wish.getProductNo());
-		Product product = as.selectProduct(wish.getProductNo());
-		model.addAttribute("wish", wish);
-		model.addAttribute("product", product);
-		model.addAttribute("thumbnail", thumbnail);
+		List<Wish> wishList = as.selectWish(email);
+		List<Product> list = new ArrayList<>();
+		for (Wish wish:wishList) {
+			if (wish != null) {
+				Product product = as.selectProThum(wish.getProductNo());
+				list.add(product);
+			}
+		}
+		model.addAttribute("wish", wishList);
+		model.addAttribute("list", list);
 		return "account/wishList.do";
 	}
 	@RequestMapping("/account/cartList.do")
 	public String cartList(String email, Model model) {
-		Cart cart = as.selectCart(email);
-		ProductPhoto thumbnail = as.selectThum(cart.getProductNo());
-		Product product = as.selectProduct(cart.getProductNo());
-		model.addAttribute("cart", cart);
-		model.addAttribute("product", product);
-		model.addAttribute("thumbnail", thumbnail);
+		List<Cart> cartList = as.selectCart(email);
+		List<Product> list = new ArrayList<>();
+		for (Cart cart:cartList) {
+			if (cart != null) {
+				Product product = as.selectProThum(cart.getProductNo());
+				list.add(product);
+			}
+		}
+		model.addAttribute("cart", cartList);
+		model.addAttribute("list", list);
 		return "account/cartList.do";
+	}
+	@RequestMapping("/account/orders.do")
+	public String orders(String email, Model model) {
+		List<UserOrder> userOrder = as.selectUserOrder(email);
+		List<Product> list = new ArrayList<>();
+		for (UserOrder user:userOrder) {
+			if (user != null) {
+//				order_no로 order,address테이블,uod 모두 다 나와야함.
+				UserOrderDetail userOrderDetail = as.selectOrderDeatail(user.getOrderNo());
+				
+			}
+		}
+		model.addAttribute("userOrder", userOrder);
+		return "account/orders.do";
 	}
 }
