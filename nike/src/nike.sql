@@ -65,7 +65,8 @@ create table product_detail (
 	color				varchar2(20)	not null,
 	stock				number(4)		not null,
 
-	constraint fk_product_detail_product_no foreign key(product_no) references product(product_no)
+	constraint fk_product_detail_product_no foreign key(product_no) references product(product_no),
+	constraint fk_product_detail_color foreign key(color) references color(color)
 );
 
 -- 상품 사진
@@ -75,20 +76,22 @@ create table product_photo (
 	photo_no		number(4)		not	null	primary key,
 	product_no		number(4)		not null,
 	product_photo	varchar2(100)	not null,
-	batch			number(1)	not null,				-- 1(썸네일) / 2(머리) / 3(몸통)
+	batch			number(1)		not null,				-- 1(썸네일) / 2(머리) / 3(몸통)
+	color			varchar2(20)	not null,
 
-	constraint fk_product_photo_product_no foreign key(product_no) references product(product_no)
+	constraint fk_product_photo_product_no foreign key(product_no) references product(product_no),
+	constraint fk_product_photo_color foreign key(color) references color(color)
 );
 
--- 소재
-drop table product_material cascade constraints;
+-- 특징
+drop table product_feature cascade constraints;
 
-create table product_material (
-	material_no	number(4)		not null	primary key,
+create table product_feature (
+	feature_no	number(4)		not null	primary key,
 	product_no	number(4)		not	null,
-	material	varchar2(30)	not	null,
+	feature	varchar2(30)	not	null,
 
-	constraint fk_product_material_product_no foreign key(product_no) references product(product_no)
+	constraint fk_product_feature_product_no foreign key(product_no) references product(product_no)
 );
 
 -- 위시리스트
@@ -223,5 +226,12 @@ create table notice (
 	reg_date		date					not	null,	
 	read_count		number(6)				not	null,	
 	del				char(1)		default 'N'	not	null
+);
+
+-- 컬러
+drop table color cascade constraints;
+
+create table color (
+	color	varchar2(20)	not null	primary key
 );
 

@@ -109,6 +109,7 @@ insert into product values (24, '에어 조던 XXXVII 테이텀 PF', 12, 239000,
 insert into product_detail values (1, 1, 'M', '블랙', 10);
 insert into product_detail values (2, 1, 'L', '블랙', 0);
 insert into product_detail values (3, 1, 'XL', '블랙', 6);
+
 insert into product_detail values (4, 2, 'M', '화이트', 10);
 insert into product_detail values (5, 2, 'L', '화이트', 10);
 insert into product_detail values (6, 2, 'XL', '화이트', 3);
@@ -267,38 +268,38 @@ insert into product_detail values (135, 24, '260', '옐로우', 3);
 
 
 -- 상품 사진
-insert into product_photo values (1, 1, 'a1.webp',1);
-insert into product_photo values (2, 1, 'a2.webp',2);
-insert into product_photo values (3, 1, 'a3.webp',2);
-insert into product_photo values (4, 1, 'a4.webp',2);
-insert into product_photo values (5, 1, 'a5.webp',2);
+insert into product_photo values (1, 1, 'a1.webp', 1, '블랙');
+insert into product_photo values (2, 1, 'a2.webp', 2, '블랙');
+insert into product_photo values (3, 1, 'a3.webp', 2, '블랙');
+insert into product_photo values (4, 1, 'a4.webp', 2, '블랙');
+insert into product_photo values (5, 1, 'a5.webp', 2, '블랙');
 
-insert into product_photo values (6, 2, 'b1.webp',1);
-insert into product_photo values (7, 2, 'b2.webp',2);
-insert into product_photo values (8, 2, 'b3.webp',2);
-insert into product_photo values (9, 2, 'b4.webp',2);
-insert into product_photo values (10, 2, 'b5.webp',2);
+insert into product_photo values (6, 2, 'b1.webp', 1, '화이트');
+insert into product_photo values (7, 2, 'b2.webp', 2, '화이트');
+insert into product_photo values (8, 2, 'b3.webp', 2, '화이트');
+insert into product_photo values (9, 2, 'b4.webp', 2, '화이트');
+insert into product_photo values (10, 2, 'b5.webp', 2, '화이트');
 
-insert into product_photo values (11, 3, 'c1.webp',1);
-insert into product_photo values (12, 3, 'c2.webp',2);
-insert into product_photo values (13, 3, 'c3.webp',2);
-insert into product_photo values (14, 3, 'c4.webp',2);
-insert into product_photo values (15, 3, 'c5.webp',2);
-insert into product_photo values (16, 3, 'c6.webp',2);
+insert into product_photo values (11, 3, 'c1.webp', 1, '블랙');
+insert into product_photo values (12, 3, 'c2.webp', 2, '블랙');
+insert into product_photo values (13, 3, 'c3.webp', 2, '블랙');
+insert into product_photo values (14, 3, 'c4.webp', 2, '블랙');
+insert into product_photo values (15, 3, 'c5.webp', 2, '블랙');
+insert into product_photo values (16, 3, 'c6.webp', 2, '블랙');
 
 
--- 소재
-insert into product_material values (1, 1, '면');
+-- 특징
+insert into product_feature values (1, 1, '면');
 
-insert into product_material values (2, 2, '면');
-insert into product_material values (3, 2, '폴리에스터');
+insert into product_feature values (2, 2, '면');
+insert into product_feature values (3, 2, '폴리에스터');
 
-insert into product_material values (4, 3, '면');
-insert into product_material values (5, 3, '폴리에스터');
-insert into product_material values (6, 3, '스판덱스');
+insert into product_feature values (4, 3, '면');
+insert into product_feature values (5, 3, '폴리에스터');
+insert into product_feature values (6, 3, '스판덱스');
 
-insert into product_material values (7, 4, '면');
-insert into product_material values (8, 4, '폴리에스터');
+insert into product_feature values (7, 4, '면');
+insert into product_feature values (8, 4, '폴리에스터');
 
 
 --위시리스트
@@ -316,7 +317,7 @@ insert into wish values (9, 3, 'chang@ryul.com');
 
 insert into wish values (10, 12, 'sun@ny.com');
 insert into wish values (11, 17, 'sun@ny.com');
-insert into wish values (11, 18, 'sun@ny.com');
+insert into wish values (12, 18, 'sun@ny.com');
 
 
 -- 장바구니
@@ -359,3 +360,16 @@ insert into store values (4, '나이키 신세계 강남', '신반포로 176 신
 
 -- 공지사항
 -- 이거는 기능 만들어서 구현 해야지 의미 있을듯
+
+
+-- 컬러
+insert into color values ('블랙');
+insert into color values ('화이트');
+insert into color values ('핑크');
+insert into color values ('그레이');
+insert into color values ('그린');
+insert into color values ('블루');
+insert into color values ('브라운');
+insert into color values ('레드');
+insert into color values ('바이올렛');
+insert into color values ('옐로우');
