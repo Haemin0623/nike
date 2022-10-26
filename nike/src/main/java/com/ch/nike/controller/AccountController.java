@@ -64,11 +64,11 @@ public class AccountController {
 	@RequestMapping("/account/orders.do")
 	public String orders(String email, Model model) {
 		List<UserOrder> userOrder = as.selectUserOrder(email);
-		List<Product> list = new ArrayList<>();
+		List<UserOrder> list = new ArrayList<>();
 		for (UserOrder user:userOrder) {
 			if (user != null) {
-//				order_no로 order,address테이블,uod 모두 다 나와야함.
-				UserOrderDetail userOrderDetail = as.selectOrderDeatail(user.getOrderNo());
+//				order_no로 order,address테이블,user_order_detail 모두 다 나와야함.
+				UserOrderDetail orderDetail = as.selectOrderDetail(user.getOrderNo());
 				
 			}
 		}

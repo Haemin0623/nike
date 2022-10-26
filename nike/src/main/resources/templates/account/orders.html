@@ -5,15 +5,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div>
-<div th:if="${#lists.size(orders)} == 0">
+%%%%%%   반품인거 아닌거 넣어야함...?
+<div th:if="${#lists.size(userOrder)} == 0">
 	 주문내역 없음
 </div>
-<div th:if="${#lists.size(orders)} != 0" th:each="orders:${orderList}">	
-	주문 날짜 : [[${orders.order_date}]]
-	배송지 : [[${  }]]
-			product_no로 상품사진 불러오기
-		 	<a> 주문상세 </a>
+<div th:if="${#lists.size(userOrder)} != 0" th:each="orders:${userOrder}">	
+	상품 사진 PP
+	상품 이름 P
+	사이즈 PD
+	<a> 주문상세버튼 이동 orders_detail </a>
 </div>
 </body>
 </html>

@@ -17,14 +17,16 @@ public interface AccountMapper {
 
 	List<Wish> selectWish(String email);
 
-	Product selectCartThum(int product_detail_no);
+	Product selectWishThum(int productNo);
 
 	List<Cart> selectCart(String email);
+	
+	Product selectCartThum(int productDetailNo);
 
 	List<UserOrder> selectUserOrder(String email);
 
-	UserOrderDetail selectOrderDeatail(int orderNo);
+	UserOrderDetail selectOrderDetail(int orderNo);
 
-	Address selectAddr(int addrNo);
+
 
 }

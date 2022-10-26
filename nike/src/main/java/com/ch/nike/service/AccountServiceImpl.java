@@ -27,11 +27,11 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	public Product selectWishThum(int productNo) {
-		return null;
+		return am.selectWishThum(productNo);
 	}
 	
-	public Product selectCartThum(int product_detail_no) {
-		return am.selectCartThum(product_detail_no);
+	public Product selectCartThum(int productDetailNo) {
+		return am.selectCartThum(productDetailNo);
 	}
 
 
@@ -43,12 +43,10 @@ public class AccountServiceImpl implements AccountService {
 		return am.selectUserOrder(email);
 	}
 
-	public UserOrderDetail selectOrderDeatail(int orderNo) {
-		return am.selectOrderDeatail(orderNo);
+	public UserOrderDetail selectOrderDetail(int orderNo) {
+		return am.selectOrderDetail(orderNo);
 	}
 
-	public Address selectAddr(int addrNo) {
-		return am.selectAddr(addrNo);
-	}
+
 
 }
