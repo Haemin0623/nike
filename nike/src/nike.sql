@@ -107,15 +107,13 @@ create table wish (
 drop table cart cascade constraints;
 
 create table cart (
-	cart_no			number(4)		not	null	primary key,
-	email			varchar2(50)	not	null,
-	product_no		number(4)		not	null,
-	cart_quantity	number(4)		not	null,
-	cart_size		varchar2(20)    not	null,
-	cart_color		varchar2(20)    not	null,
+	cart_no					number(4)		not	null	primary key,
+	email					varchar2(50)	not	null,
+	product_detail_no		number(4)		not	null,
+	cart_quantity			number(4)		not	null,
 
 	constraint fk_cart_email foreign key(email) references member(email),
-	constraint fk_cart_product_no foreign key(product_no) references product(product_no)
+	constraint fk_cart_product_detail_no foreign key(product_detail_no) references product_detail(product_detail_no)
 );
 
 -- 문의

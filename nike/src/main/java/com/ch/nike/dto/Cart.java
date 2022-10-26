@@ -9,6 +9,6 @@ import lombok.Data;
 public class Cart {
 	private int cartNo;
 	private String email;
-	private int productNo;
+	private int productDetailNo;
 	private int cartQuantity;
 }
