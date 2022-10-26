@@ -13,8 +13,7 @@ public class Product {
 	private int price;
 	private String detail;
 	private String gender;
-	//조인용
-	private int batch;
-	private String productPhoto;
 	
+	//조인용
+	private ProductPhoto productPhoto;//조인용
 }
