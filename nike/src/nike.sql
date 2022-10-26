@@ -204,11 +204,11 @@ drop table refund cascade constraints;
 
 create table refund (
 	refund_no		number(4)		not	null	primary key,
-	order_deatil_no	number(4)		not	null,
+	order_detail_no	number(4)		not	null,
 	reason			varchar2(300)	not	null,	
 	refund_photo	varchar2(100)	not	null,
 
-	constraint fk_refund_order_deatil_no foreign key(order_deatil_no) references user_order_detail(order_deatil_no)
+	constraint fk_refund_order_detail_no foreign key(order_detail_no) references user_order_detail(order_detail_no)
 );
 
 -- 매장
