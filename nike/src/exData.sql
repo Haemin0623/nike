@@ -104,6 +104,17 @@ insert into product values (24, '에어 조던 XXXVII 테이텀 PF', 12, 239000,
 	'신발 끈을 묶으면 점프와 스피드에 더해 코트에서 최강의 실력을 발휘할 수 있습니다. 최신 AJ는 도약과 착지를 최고의 장점으로 삼는 제품으로, 지면에서 뛰어 오르기 위한 다수의 에어 유닛과 충격을 흡수하는 포뮬러 23 폼을 적용했습니다. 갑피가 강화된 견고한 레노 위브 소재로 제작되어 빠르게 움직여도 안정감을 느낄 수 있습니다. 아웃도어 코트에 적합하도록 더 넓게 제작된 버전으로, 디테일을 통해 제이슨 테이텀의 기량을 예리하게 표현합니다.'
 	,'M');
 
+-- 컬러
+insert into color values ('블랙');
+insert into color values ('화이트');
+insert into color values ('핑크');
+insert into color values ('그레이');
+insert into color values ('그린');
+insert into color values ('블루');
+insert into color values ('브라운');
+insert into color values ('레드');
+insert into color values ('바이올렛');
+insert into color values ('옐로우');
 
 -- 상품 상세
 insert into product_detail values (1, 1, 'M', '블랙', 10);
@@ -362,14 +373,4 @@ insert into store values (4, '나이키 신세계 강남', '신반포로 176 신
 -- 이거는 기능 만들어서 구현 해야지 의미 있을듯
 
 
--- 컬러
-insert into color values ('블랙');
-insert into color values ('화이트');
-insert into color values ('핑크');
-insert into color values ('그레이');
-insert into color values ('그린');
-insert into color values ('블루');
-insert into color values ('브라운');
-insert into color values ('레드');
-insert into color values ('바이올렛');
-insert into color values ('옐로우');
+
