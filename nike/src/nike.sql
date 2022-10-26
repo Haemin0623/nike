@@ -70,7 +70,8 @@ create table product_detail (
 	product_no			number(4)		not null,
 	product_size		varchar2(20)	not null,
 	color				varchar2(20)	not null,
-	stock				number(4)		not null,
+	stock	
+			number(4)		not null,
 
 	constraint fk_product_detail_product_no foreign key(product_no) references product(product_no),
 	constraint fk_product_detail_color foreign key(color) references color(color)
@@ -188,7 +189,7 @@ create table user_order (
 drop table user_order_detail cascade constraints;
 
 create table user_order_detail (
-	order_deatil_no	number(4)				not	null	primary key,
+	order_detail_no	number(4)				not	null	primary key,
 	order_no		number(4)				not null,
 	product_no		number(4)				not	null,
 	order_quantity	number(4)				not	null,
