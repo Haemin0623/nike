@@ -26,4 +26,9 @@ public class ProductServiceImpl implements ProductService{
 		return pd.productlist(category);
 	}
 
+	@Override
+	public Product count(Category category) {
+		return pd.count(category);
+	}
+
 }

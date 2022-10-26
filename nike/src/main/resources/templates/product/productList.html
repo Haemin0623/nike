@@ -6,19 +6,18 @@
 </head>
 <body>
 <div> <!--좌측 상단 상품 카테고리, 상품 수 -->
-	<h2>[[${category.large}]]/[[${category.small}]]</h2>
-	<h2>[[${category.large}]][[${category.small}]]([[${product.gettotal}]])</h2>
+	<h2 >[[${category.large}]]</h2><h2>/</h2><h2>[[${category.small}]]</h2>
+	<h2>[[${category.large}]][[${category.small}]]([[${product2}]])</h2>
 </div>
-	<div> <!--상품 이미지, 상세정보-->
-		<a href="productDetail.do"> <!--상품 상세 정보로 이동-->
-			<img alt="" src="${path }/resources/images/product_photo.jpg">
+	<div th:each="product:${product}"> <!--상품 이미지, 상세정보-->
+		<a th:href="@{productDetail.do(productno=${productNo})}"> <!--상품 상세 정보로 이동-->
+			<img alt="" th:src="@{image/}+${list.productPhoto}">
 		</a>
 		<div> <!--상품명, 상품 정보-->
-			[[${product.product_name}]]<p>
+			[[${product.productName}]]<p>
 			[[${category.large}]]<p>
-			[[${product_detail.product_color}]]<p>
+			[[${product.color}]]<p>
 			[[${product.price}]]<p>
-			
 <!-- 			xml에서 값이 null이 아닌 상품만 리스트에 뿌려준다. -->
 <!-- 			필터 적용은 script로 -->
 		</div>

@@ -11,5 +11,5 @@ public interface ProductService {
 
 	List<Product> productlist(Category category);
 
-
+	Product count(Category category);
 }

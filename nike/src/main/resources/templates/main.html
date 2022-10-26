@@ -36,7 +36,7 @@
 <div th:each="list:${list}">
 	<h2>신발</h2>	
 	<a th:href="@{/product/productDetail.do(productNo=${list.productNo})}"><!-- 상품 디테일 페이지로 이동 -->
-		<img alt="" th:src="@{classpath:/static/image/${list.productPhoto}}"><!-- 상품 이미지 -->
+		<img alt="" th:src="@{image/}+${list.productPhoto}"><!-- 상품 이미지 -->
 		[[${list.productName}]] [[${list.price}]]
 		[[${list.large]]
 	</a>
@@ -44,7 +44,7 @@
 <div th:each="list:${list}">
 	<h2>카테고리별 상품</h2>	
 	<a th:href="@{/product/productList.do(large=${list.large})}"><!-- 상품 리스트 페이지로 이동 -->
-		<img alt="" src="@{classpath:/static/image/${list.productPhoto}}"><!-- 상품 이미지 -->
+		<img alt="" src="@{image/}+${list.productPhoto}"><!-- 상품 이미지 -->
 	</a>
 </div>
 </body>
