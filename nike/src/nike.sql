@@ -69,6 +69,13 @@ create table product_detail (
 	constraint fk_product_detail_color foreign key(color) references color(color)
 );
 
+-- 컬러
+drop table color cascade constraints;
+
+create table color (
+	color	varchar2(20)	not null	primary key
+);
+
 -- 상품 사진
 drop table product_photo cascade constraints;
 
@@ -228,10 +235,5 @@ create table notice (
 	del				char(1)		default 'N'	not	null
 );
 
--- 컬러
-drop table color cascade constraints;
 
-create table color (
-	color	varchar2(20)	not null	primary key
-);
 
