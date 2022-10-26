@@ -39,7 +39,7 @@ public class AccountController {
 		List<Product> list = new ArrayList<>();
 		for (Wish wish:wishList) {
 			if (wish != null) {
-				Product product = as.selectProThum(wish.getProductNo());
+				Product product = as.selectWishThum(wish.getProductNo());
 				list.add(product);
 			}
 		}
@@ -53,7 +53,7 @@ public class AccountController {
 		List<Product> list = new ArrayList<>();
 		for (Cart cart:cartList) {
 			if (cart != null) {
-				Product product = as.selectProThum(cart.getProductNo());
+				Product product = as.selectCartThum(cart.getProductDetailNo());
 				list.add(product);
 			}
 		}

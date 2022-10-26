@@ -26,8 +26,12 @@ public class AccountServiceImpl implements AccountService {
 		return am.selectWish(email);
 	}
 
-	public Product selectProThum(int product_no) {
-		return am.selectProThum(product_no);
+	public Product selectWishThum(int productNo) {
+		return null;
+	}
+	
+	public Product selectCartThum(int product_detail_no) {
+		return am.selectCartThum(product_detail_no);
 	}
 
 
@@ -46,4 +50,5 @@ public class AccountServiceImpl implements AccountService {
 	public Address selectAddr(int addrNo) {
 		return am.selectAddr(addrNo);
 	}
+
 }

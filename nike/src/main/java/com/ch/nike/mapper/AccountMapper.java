@@ -17,7 +17,7 @@ public interface AccountMapper {
 
 	List<Wish> selectWish(String email);
 
-	Product selectProThum(int product_no);
+	Product selectCartThum(int product_detail_no);
 
 	List<Cart> selectCart(String email);
 

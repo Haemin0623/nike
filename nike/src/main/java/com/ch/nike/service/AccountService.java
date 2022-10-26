@@ -15,14 +15,18 @@ public interface AccountService {
 
 	List<Wish> selectWish(String email);
 
-	Product selectProThum(int product_no);
+	Product selectWishThum(int productNo);
 
 	List<Cart> selectCart(String email);
 
+	Product selectCartThum(int product_detail_no);
+	
 	List<UserOrder> selectUserOrder(String email);
 
 	UserOrderDetail selectOrderDeatail(int orderNo);
 
 	Address selectAddr(int addrNo);
+
+
 
 }

@@ -13,9 +13,11 @@
 	<select id="selectCart" parameterType="string" resultType="list">
 		select * from cart where email=#{email}
 	</select>
-<!-- 	product_no로 product + thumbnail 구하기 -->
 	<select id="selectProThum" parameterType="integer" resultType="product">
-		select p.*, pp.product_photo from product p, (select * from product_photo where product_no=#{product_no} and batch=1) pp where p.product_no=pp.product_no
+		select p.*, pp.product_photo from product p, (select * from product_photo where product_no=
+			(select product_no from product_detail pd, cart c where pd.product_detail_no=#{product_detail_no}) 
+			and batch=1) pp where p.product_no=pp.product_no
+		
 	</select>
 	
 <!-- 	orders  테이블 전체 조인 oracle 패키지의 sql-emp.xml 참고-->
