@@ -89,7 +89,7 @@ drop table product_feature cascade constraints;
 create table product_feature (
 	feature_no	number(4)		not null	primary key,
 	product_no	number(4)		not	null,
-	feature	varchar2(30)	not	null,
+	feature		varchar2(300)	not	null,
 
 	constraint fk_product_feature_product_no foreign key(product_no) references product(product_no)
 );
