@@ -31,4 +31,14 @@ public class ProductServiceImpl implements ProductService{
 		return pd.count(category);
 	}
 
+	@Override
+	public List<Product> color(Category category) {
+		return pd.color(category);
+	}
+
+	@Override
+	public Product colorcount(Category category) {
+		return pd.colorcount(category);
+	}
+
 }

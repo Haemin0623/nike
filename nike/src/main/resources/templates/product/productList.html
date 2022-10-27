@@ -1,26 +1,62 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="/header.html::header"></span>
 </head>
-<body>
+<body><!-- by창률 -->
+<script type="text/javascript">
+	function filter(){
+		
+	}
+	function hot(){
+		
+	}
+	function latest(){
+			
+		}
+	function highprice(){
+		
+	}
+	function lowprice(){
+		
+	}
+
+</script>
 <div> <!--좌측 상단 상품 카테고리, 상품 수 -->
 	<h2 >[[${category.large}]]</h2><h2>/</h2><h2>[[${category.small}]]</h2>
-	<h2>[[${category.large}]][[${category.small}]]([[${product2}]])</h2>
+	<h2>[[${category.large}]][[${category.small}]]([[${productcount}]])</h2>
+	
+	<h2 onclick="filter()" id="filter">필터 숨기기</h2>
+		<button id="sort" value="">-- 정렬기준 --</button>
+	    <button id="hot" value="hot" onclick="hot()">추천순</button>
+	    <button id="new" value="new" onclick="latest()">최신순</button>
+	    <button id="highprice" value="highprice" onclick="highprice()">높은 가격순</button>
+	    <button id="lowprice" value="lowprice" onclick="lowprice()">낮은 가격순</button>
 </div>
-	<div th:each="product:${product}"> <!--상품 이미지, 상세정보-->
-		<a th:href="@{productDetail.do(productno=${productNo})}"> <!--상품 상세 정보로 이동-->
-			<img alt="" th:src="@{image/}+${list.productPhoto}">
-		</a>
-		<div> <!--상품명, 상품 정보-->
-			[[${product.productName}]]<p>
-			[[${category.large}]]<p>
-			[[${product.color}]]<p>
-			[[${product.price}]]<p>
-<!-- 			xml에서 값이 null이 아닌 상품만 리스트에 뿌려준다. -->
-<!-- 			필터 적용은 script로 -->
-		</div>
+	<div th:each="product:${product}" > <!--상품 이미지, 상세정보-->
+		<th:block th:if="${product.stock} > 0">
+			<div th:if="${product.colorcount} == 1">
+				<a th:href="@{productDetail.do(productNo=${productNo})}"> <!--상품 상세 정보로 이동-->
+					<img alt="" th:src="@{image/}+${list.productPhoto}">
+				</a>
+				<div> <!--상품명, 상품 정보-->
+					[[${product.productName}]]<p>
+					[[${category.large}]]<p>
+					[[${product.color}]]<p>
+					[[${product.price}]]<p>
+				</div>
+			</div>
+			<div th:if="${product.colorcount} > 1">
+				<a th:href="@{productDetail.do(productNo=${productNo})}"> <!--상품 상세 정보로 이동-->
+					<img alt="" th:src="@{image/}+${list.productPhoto}">
+				</a>
+				<div >
+					[[${product.productName}]]<p>
+					[[${category.large}]]<p>
+					[[${product.color}]]<p>
+					[[${product.price}]]<p>
+				</div>
+			</div>
+		</th:block>
 	</div>
 </body>
 </html>

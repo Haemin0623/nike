@@ -12,4 +12,8 @@ public interface ProductService {
 	List<Product> productlist(Category category);
 
 	Product count(Category category);
+
+	List<Product> color(Category category);
+
+	Product colorcount(Category category);
 }

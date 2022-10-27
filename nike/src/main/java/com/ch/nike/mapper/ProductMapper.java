@@ -17,6 +17,10 @@ public interface ProductMapper {
 
 	Product count(Category category);
 
+	List<Product> color(Category category);
+
+	Product colorcount(Category category);
+
 
 
 }
