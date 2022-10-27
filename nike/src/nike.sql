@@ -1,5 +1,6 @@
 -- 회원
 drop table member cascade constraints;
+select * from member;
 
 create table member (
 	email			varchar2(50)		not null	primary key,

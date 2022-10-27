@@ -15,4 +15,9 @@ public class MemberServiceImpl implements MemberService {
 	public Member select(String email) {
 		return mm.select(email);
 	}
+
+	@Override
+	public int insert(Member member) {
+		return mm.insert(member);
+	}
 }

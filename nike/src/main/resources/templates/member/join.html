@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+
+<th:block th:if="${result} > 0">
+	<script type="text/javascript">
+		alert("가입성공");
+		location.href="emailLoginForm.do?email=[[${member.email}]]";
+	</script>
+</th:block>
+<th:block th:if="${result} == 0">
+	<script type="text/javascript">
+		alert("가입실패");
+		history.go(-1);
+	</script>
+</th:block>
+<th:block th:if="${result} < 0">
+	<script type="text/javascript">
+		alert("중복");
+		history.go(-1);
+	</script>
+</th:block>
+
 
 </body>
 </html>

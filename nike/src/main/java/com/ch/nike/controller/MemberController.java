@@ -14,7 +14,8 @@ public class MemberController {
 	private MemberService ms;
 
 	@RequestMapping("/member/emailLoginForm.do")
-	public String emailLoginForm() {
+	public String emailLoginForm(String email, Model model) {
+		model.addAttribute("email", email);
 		return "member/emailLoginForm";
 	}
 
@@ -26,7 +27,23 @@ public class MemberController {
 		} else {// 가입안되어있을때
 			return "member/joinForm";
 		}
+	}
 
+	@RequestMapping("/member/join.do")
+	public String join(Member member, Model model) {
+		int result = 0;
+		
+		Member member2 = null;
+		member2 = ms.select(member.getEmail());
+		
+		if (member2 == null) {
+			result = ms.insert(member);
+		} else { 
+			result = -1;
+		}
+		model.addAttribute("result", result);
+		model.addAttribute("member", member);
+		return "member/join";
 	}
 
 }

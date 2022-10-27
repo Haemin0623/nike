@@ -9,5 +9,6 @@ import com.ch.nike.dto.Member;
 public interface MemberMapper {
 
 	Member select(String email);
+	int insert(Member member);
 
 }
