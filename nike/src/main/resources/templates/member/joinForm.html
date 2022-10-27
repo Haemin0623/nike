@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
+<h2>이제 나이키 멤버가 되어볼까요?</h2>
+
+<h4>인증코드를 전송했습니다</h4>
+<h4>[[${member.email}]] <a href="emailLoginForm">편집</a></h4>
+
+<form action="join.do" method="post">
+	<input type="number" required="required" placeholder="코드"><p>
+	<input type="text" required="required" placeholder="이름"><p>
+	<input type="password" required="required" placeholder="비밀번호"><p> <!-- onchange=함수/비번조건추가(최소몇자, 대,소문자,최소1개숫자) -->
+	<select id="gender" required="required">
+		<option id="female">여성</option>
+		<option id="male">남성</option>
+	</select>
+	
+</form>
 </body>
 </html>

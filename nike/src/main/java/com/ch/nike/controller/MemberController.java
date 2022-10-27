@@ -10,19 +10,23 @@ import com.ch.nike.service.MemberService;
 
 @Controller
 public class MemberController {
-	@Autowired 
+	@Autowired
 	private MemberService ms;
-	
-	@RequestMapping("/member/emailLogin.do")
-	public String emailLogin(String email, Model model) {
-		
-		Member member = ms.select(email);
-			if (member != null) { // 가입되어있을때
-				return "/member/pwLoginForm";
-			} else {//가입안되어있을때
-				return "/member/joinForm";
-			}
-		
+
+	@RequestMapping("/member/emailLoginForm.do")
+	public String emailLoginForm() {
+		return "member/emailLoginForm";
 	}
-	
+
+	@RequestMapping("/member/emailLogin.do")
+	public String emailLogin(Member member, Model model) {
+		Member member2 = ms.select(member.getEmail());
+		if (member2 != null) { // 가입되어있을때
+			return "member/pwLoginForm";
+		} else {// 가입안되어있을때
+			return "member/joinForm";
+		}
+
+	}
+
 }

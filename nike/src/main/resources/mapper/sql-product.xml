@@ -12,7 +12,7 @@
   		where p.category_no = c.category_no and p.product_No=h.product_No and large = '상의' and small = '후드' and batch ='1'
 	</select>
 	
-	<select id="count" parameterType="category" resultType="interger">
+	<select id="count" parameterType="category" resultType="integer">
 		select count(*) from product p, category c where p.category_no = c.category_no and c.large = '상의' and c.small = '후드'
 	</select>
 </mapper>

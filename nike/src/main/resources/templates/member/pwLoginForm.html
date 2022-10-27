@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -7,7 +7,20 @@
 <body>
 
 <h2>비밀번호를 입력하세요</h2>
-[[${member.email}]] <a href="emailLoginForm.do ${member.email} 값을 가지고">편집</a>
+[[${member.email}]] <a th:href="@{/member/emailLoginForm.do }">편집</a><p>
+
+<form action="mail.do" method="post">
+<table>
+	<tr>
+		<td><input type="password" required="required" autofocus="autofocus" 
+		id="password" placeholder="비밀번호"><p>
+		<a th:href="@{/member/findPwForm.do }">비밀번호 찾기</a>
+	</tr>
+	<tr>
+		<td align="center"><input type="submit" value="로그인"></td>
+	</tr>
+</table>
+</form> 
 
 </body>
 </html>
