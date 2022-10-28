@@ -3,43 +3,38 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{layouts/layout}">
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	table {width: 80%}
+	th {border:1px solid green;}
+	td {border:1px solid green;}
+</style>
 </head>
 <body>
 <div layout:fragment="content">
 	<table>
 		<tr>
-			<th>ÀÌ¸ŞÀÏ</th>
-			<th>ÀÌ¸§</th>
-			<th>¼ºº°</th>
-			<th>»ı³â¿ùÀÏ</th>
-			<th>ÀüÈ­¹øÈ£</th>
-			<th>°¡ÀÔÀÏ</th>
-			<th>Å»Åğ¿©ºÎ</th>
+			<th>ì´ë©”ì¼</th>
+			<th>ì´ë¦„</th>
+			<th>ì„±ë³„</th>
+			<th>ìƒë…„ì›”ì¼</th>
+			<th>ì „í™”ë²ˆí˜¸</th>
+			<th>ê°€ì…ì¼</th>
+			<th>íƒˆí‡´ì—¬ë¶€</th>
 		</tr>
-		<tr th:each="list:${list}">
-			<td>[[${list.email]]</td>
-			<td>[[${list.name]]</td>
-			<td>[[${list.member_gender]]</td>
-			<td>[[${list.birthdy]]</td>
-			<td>[[${list.member_tel]]</td>
-			<td>[[${list.reg_date]]</td>
-			<td>[[${list.member_del]]</td>
+		<tr th:each="lists:${list}">
+			<td>[[${lists.email}]]</td>
+			<td>[[${lists.name}]]</td>
+			<td>[[${lists.memberGender}]]</td>
+			<td>[[${lists.birthday}]]</td>
+			<td>[[${lists.memberTel}]]</td>
+			<td>[[${lists.regDate}]]</td>
+			<td>[[${lists.memberDel}]]</td>
 			<td>
-				<button th:onclick="location.href='memberDetail.do(email=${list.email})'">È¸¿ø »ó¼¼ º¸±â</button>
+				<a th:href="@{/admin/memberDetail.do(email=${lists.email})}">íšŒì› ìƒì„¸ ë³´ê¸°</a>
 			</td>
 	</table>
-	ÀÌ¸ŞÀÏ
-	ÀÌ¸§
-	¼ºº°
-	»ı³â¿ùÀÏ
-	ÀüÈ­¹øÈ£
-	°¡ÀÔÀÏ
-	Å»Åğ¿©ºÎ
-	È¸¿ø »ó¼¼º¸±â
-	
-	°ü¸®ÀÚ ¸ŞÀÎÀ¸·Î ÀÌµ¿
 </div>
 </body>
 </html>

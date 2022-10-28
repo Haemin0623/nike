@@ -15,10 +15,10 @@ public class AdminController {
 	@Autowired
 	private AdminService as;
 	
-	@RequestMapping("adminMemberList.do")
+	@RequestMapping("/adminMemberList.do")
 	public String adminMemberList(Model model) {
 		List<Member> list = as.memberlist();
 		model.addAttribute("list",list);
-		return "";
+		return "admin/adminMemberList";
 	}
 }
