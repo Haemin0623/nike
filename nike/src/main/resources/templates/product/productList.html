@@ -11,8 +11,8 @@
 		
 	}
 	function latest(){
-			
-		}
+		location.href="/product/productList_latest.do?category=${category}"
+	} 
 	function highprice(){
 		
 	}
@@ -24,7 +24,6 @@
 <div> <!--좌측 상단 상품 카테고리, 상품 수 -->
 	<h2 >[[${category.large}]]</h2><h2>/</h2><h2>[[${category.small}]]</h2>
 	<h2>[[${category.large}]][[${category.small}]]([[${productcount}]])</h2>
-	
 	<h2 onclick="filter()" id="filter">필터 숨기기</h2>
 		<button id="sort" value="">-- 정렬기준 --</button>
 	    <button id="hot" value="hot" onclick="hot()">추천순</button>
