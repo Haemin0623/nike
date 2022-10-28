@@ -14,7 +14,9 @@ public class Product {
 	private String detail;
 	private String gender;
 
-	//조인용
+	// 조인용
+	// 이렇게 해도 되는데 ProductPhoto 클래스 자체를 넣어도 될듯??
+	// private ProductPhoto productPhoto	by 해민
 	private int batch;
 	private String productPhoto;
 	private String color;

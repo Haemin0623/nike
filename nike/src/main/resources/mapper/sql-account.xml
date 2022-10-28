@@ -6,9 +6,12 @@
 		update member set member_del='Y' where email=#{email}
 	</update>
 <!-- 	wishList -->
+<!-- wish테이블에서의 결과는 wish모델임, wish모델 여러개를 뽑아오니까 list에 담아야 하는거 아닌가? 라고 생각 한거 같은데
+	resultType은 wish에 담아줘야해. wish객체 여러개를 얘가 알아서 list형식으로 묶어줄거야 다른 애들도 마찬가지 by 해민 -->
 	<select id="selectWish" parameterType="string" resultType="list">
 		select * from wish where email=#{email}
 	</select>
+	<!-- product 모델(dto) 한번 확인해봐 by 해민 -->
 	<select id="selectWishThum" parameterType="integer" resultType="product">
 		select p.*, pp.product_photo from product p, (select * from product_photo where product_no=#{product_no} 
 			and batch=1) pp where p.product_no=#{product_no}

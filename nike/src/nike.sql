@@ -143,6 +143,7 @@ create table QnA (
 	notice_subject	varchar2(100)		not	null,
 	content			varchar2(2000)		not	null,
 	reg_date		date				not	null,
+	qna_status		varchar2(30)		not null,
 	qna_del			char(1)	default 'N'	not	null,
 
 	constraint fk_QnA_email foreign key(email) references member(email),

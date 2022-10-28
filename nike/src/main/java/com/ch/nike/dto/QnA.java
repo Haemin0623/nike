@@ -15,5 +15,6 @@ public class QnA {
 	private String noticeSubject;
 	private String content;
 	private Date regDate;
+	private String qnaStatus;
 	private String qnaDel;
 }
