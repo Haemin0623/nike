@@ -23,4 +23,12 @@
 	<select id="reviewlist" resultType="review"><!-- 관리자 리뷰 목록 -->
 		select * from review order by review_no desc
 	</select>
+	
+	<select id="noticelist" resultType="notice">
+		select * from notice order by notice_no desc
+	</select>
+	
+	<select id="storelist" resultType="store">
+		select * from store order by store_no desc
+	</select>
 </mapper>

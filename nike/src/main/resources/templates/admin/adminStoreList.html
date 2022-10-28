@@ -5,9 +5,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	table {width: 80%}
+	th {border:1px solid green;}
+	td {border:1px solid green;}
+</style>
 </head>
 <body>
 <div layout:fragment="content">
+	<table>
+		<tr>
+			<th>매장번호</th>
+			<th>매장이름</th>
+			<th>매장주소</th>
+			<th>개점시간</th>
+			<th>폐점시간</th>
+			<th>전화번호</th>
+		</tr>
+		<tr th:each="lists:${list}">
+			<td>[[${lists.storeNo}]]</td>
+			<td>[[${lists.storeName}]]</td>
+			<td>[[${lists.storeAddr}]]</td>
+			<td>[[${lists.storeOpen}]]</td>
+			<td>[[${lists.storeClose}]]</td>
+			<td>[[${lists.storeTel}]]</td>
+			<td><a>삭제</a>
+		</tr>
+	</table>
+	<a>매장 등록</a>
 </div>
 </body>
 </html>

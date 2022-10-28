@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ch.nike.dto.Member;
+import com.ch.nike.dto.Notice;
 import com.ch.nike.dto.Product;
 import com.ch.nike.dto.QnA;
 import com.ch.nike.dto.Review;
+import com.ch.nike.dto.Store;
 import com.ch.nike.dto.UserOrder;
 import com.ch.nike.service.AdminService;
 
@@ -76,5 +78,28 @@ public class AdminController {
 		List<Review> list = as.reviewlist();
 		model.addAttribute("list",list);
 		return "admin/adminReviewList";
+	}
+	
+	@RequestMapping("/adminNoticeList.do") //공지 리스트 by창률
+	public String adminNoticeList(Model model) {
+		List<Notice> list = as.noticelist();
+		model.addAttribute("list",list);
+		return "admin/adminNoticeList";
+	}
+	
+	@RequestMapping("/adminNoticeDetail.do") //관리자 공지 상세 
+	public String adminNoticeDetail() {
+		return "admin/adminNoticeDetail";
+	}
+	
+	@RequestMapping("/adminNoticeInsert.do") //관리자 공지 등록
+	public String adminNoticeInsert() {
+		return "admin/adminNoticeInsert";
+	}
+	@RequestMapping("/adminStoreList.do")	//관리자 매장 관리 by창률
+	public String adminStoreList(Model model) {
+		List<Store> list = as.storelist();
+		model.addAttribute("list",list);
+		return "admin/adminStoreList";
 	}
 }

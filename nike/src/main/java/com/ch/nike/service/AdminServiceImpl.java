@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.nike.dto.Member;
+import com.ch.nike.dto.Notice;
 import com.ch.nike.dto.Product;
 import com.ch.nike.dto.QnA;
 import com.ch.nike.dto.Review;
+import com.ch.nike.dto.Store;
 import com.ch.nike.dto.UserOrder;
 import com.ch.nike.mapper.AdminMapper;
 
@@ -40,5 +42,15 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<Review> reviewlist() {
 		return am.reviewlist();
+	}
+
+	@Override
+	public List<Notice> noticelist() {
+		return am.noticelist();
+	}
+
+	@Override
+	public List<Store> storelist() {
+		return am.storelist();
 	}
 }
