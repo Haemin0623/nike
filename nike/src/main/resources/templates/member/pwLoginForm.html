@@ -6,14 +6,20 @@
 </head>
 <body>
 
+
 <h2>비밀번호를 입력하세요</h2>
 [[${member.email}]] <a th:href="@{/member/emailLoginForm.do }">편집</a><p>
+
+<h4>[[${msg}]]</h4>
 
 <form action="login.do" method="post">
 <table>
 	<tr>
-		<td><input type="password" required="required" autofocus="autofocus" 
-		id="password" placeholder="비밀번호"><p>
+		<td>
+		<input type="password" required="required" autofocus="autofocus" 
+		id="password" name="password" placeholder="비밀번호"><p>
+		<input type="hidden" name="email" th:value="${member.email}" >
+		
 		<a th:href="@{/member/findPwForm.do }">비밀번호 찾기</a>
 	</tr>
 	<tr>
@@ -24,3 +30,4 @@
 
 </body>
 </html>
+

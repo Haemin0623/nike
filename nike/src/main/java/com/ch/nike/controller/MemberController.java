@@ -25,18 +25,18 @@ public class MemberController {
 	public String emailLogin(Member member, Model model) {
 		Member member2 = ms.select(member.getEmail());
 		// 가입되어있을때
-		 if (member2 != null) { // 이미 있는 회원
-			 
-			 if (member2.getMemberDel().equals("Y")) { // 탈퇴한 회원
-					String msg = "탈퇴한 회원입니다. 다른 이메일주소를 입력하세요";
-					model.addAttribute("msg", msg);
-					return "member/emailLoginForm";
-			} else {
+		if (member2 != null) { // 이미 있는 회원
+
+			if (member2.getMemberDel().equals("Y")) { // 탈퇴한 회원
+				int result = 1;
+				model.addAttribute("result", result);
+				return "member/emailLoginForm";
+			} else { // 비번입력 후 로그인
 				return "member/pwLoginForm";
 			}
 		} else // 가입안되어있을때
 			return "member/joinForm";
-		
+
 	}
 
 	@RequestMapping("/member/join.do")
@@ -57,14 +57,17 @@ public class MemberController {
 
 	@RequestMapping("member/login.do")
 	public String login(Member member, Model model, HttpSession session) {
-		int result = 0;
 		Member member2 = ms.select(member.getEmail());
-		if (member2 != null || member.getMemberDel().equals("Y")) { // 아이디가 없거나, 탈퇴(y)한 회원
-
-		}
-
-		session.setAttribute("email", member.getEmail());
-		return "/"; // main으로
+		if (member2 != null) {
+			if (member2.getPassword().equals(member.getPassword())) {
+				session.setAttribute("email", member.getEmail());
+				return "main";
+			} else  {
+				String msg = "📢비밀번호가 일치하지 않습니다";
+				model.addAttribute("msg", msg);
+				return "member/pwLoginForm";
+			}
+		} else
+			return "member/emailLoginForm";
 	}
-
 }

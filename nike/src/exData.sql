@@ -1,5 +1,5 @@
 -- 회원
-insert into member values ('hae@min.com', '이해민', '123', 'M', sysdate, 01012345678, sysdate, 'N');
+insert into member values ('hae@min.com', '이해민', '123', 'M', sysdate, 01012345678, sysdate, 'Y');
 insert into member values ('soo@in.com', '박수인', '123', 'F', sysdate, 01012345678, sysdate, 'N');
 insert into member values ('chang@ryul.com', '김창률', '123', 'M', sysdate, 01012345678, sysdate, 'N');
 insert into member values ('sun@ny.com', '최선희', '123', 'F', sysdate, 01012345678, sysdate, 'N');
