@@ -17,7 +17,7 @@ public class ProductController {
 	@Autowired
 	private ProductService ps;
 	
-	@RequestMapping("/product/main.do") //메인 최하단 하단 신발 리스트 by창률
+	@RequestMapping("/") //메인 최하단 하단 신발 리스트 by창률
 	public String main(Model model) {
 		List<Product> product = ps.list();
 		model.addAttribute("product", product);

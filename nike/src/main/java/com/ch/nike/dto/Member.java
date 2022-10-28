@@ -14,7 +14,7 @@ public class Member {
 	private String password;
 	private String memberGender;
 	private Date birthday;
-	private int memberTel;
+	private String memberTel;
 	private Date regDate;
 	private String memberDel;
 }
