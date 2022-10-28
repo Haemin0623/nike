@@ -8,12 +8,16 @@ create table member (
 	password		varchar2(100)		not null,
 	member_gender	char(1) 			not null,
 	birthday		date 				not null,
-	member_tel		number(15) 			not null,
+	member_tel		varchar2(15)		not null,
 	reg_date		date				not null,
 	member_del		char(1)	default 'N'	not null,
 
 	constraint check_gender check(member_gender in ('M', 'F')),
 	constraint check_del check(member_del in ('N', 'Y'))
+);
+alter table member
+modify (
+	member_tel varchar2(15)	
 );
 
 -- 배송지
@@ -236,6 +240,3 @@ create table notice (
 	read_count		number(6)				not	null,	
 	del				char(1)		default 'N'	not	null
 );
-
-
-
