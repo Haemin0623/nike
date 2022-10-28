@@ -5,10 +5,41 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	table {width: 80%}
+	th {border:1px solid green;}
+	td {border:1px solid green;}
+</style>
 </head>
-<body>
+<body><!-- by창률 -->
 <div layout:fragment="content">
-
+	<table>
+		<tr>
+			<th>상품번호</th>
+			<th>상품명</th>
+			<th>카테고리번호</th>
+			<th>가격</th>
+			<th>상품설명</th>
+			<th>성별</th>
+			<th>색상</th>
+			<th>대표이미지</th>
+			<th>재고</th>
+			<th></th>
+		</tr>
+		<tr th:each="lists:${list}">
+			<td>[[${lists.productDetailNo}]]</td>
+			<td>[[${lists.productName}]]</td>
+			<td>[[${lists.categoryNo}]]</td>
+			<td>[[${lists.price}]]</td>
+			<td>[[${lists.detail}]]</td>
+			<td>[[${lists.gender}]]</td>
+			<td>[[${lists.color}]]</td>
+			<td>[[${lists.productPhoto}]]</td>
+			<td>[[${lists.stock}]]</td>
+			<td><a th:href="@{/adminProductUpdate.do(productDetailNo=${lists.productDetailNo})}">상품 수정</a></td>
+		</tr>
+	</table>
+	<a href="/adminProductInsert.do">상품 등록</a>
 </div>
 </body>
 </html>

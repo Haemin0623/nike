@@ -5,9 +5,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	table {width: 80%}
+	th {border:1px solid green;}
+	td {border:1px solid green;}
+</style>
 </head>
-<body>
+<body><!-- by창률 -->
 <div layout:fragment="content">
+	<table>
+		<tr>
+			<th>리뷰번호</th>
+			<th>상품번호</th>
+			<th>이메일</th>
+			<th>내용</th>
+			<th>별점</th>
+			<th>등록일</th>
+			<th>삭제여부</th>
+		</tr>
+		<tr th:each="lists:${list}">
+			<td>[[${lists.reviewNo}]]</td>
+			<td>[[${lists.productNo}]]</td>
+			<td>[[${lists.email}]]</td>
+			<td>[[${lists.content}]]</td>
+			<td>[[${lists.star}]]</td>
+			<td>[[${lists.reviewDate}]]</td>
+			<td>[[${lists.reviewDel}]]</td>
+			<td><a>삭제</a></td>
+		</tr>
+	</table>
 </div>
 </body>
 </html>

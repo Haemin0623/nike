@@ -11,7 +11,7 @@
 	td {border:1px solid green;}
 </style>
 </head>
-<body>
+<body> <!-- by창률 -->
 <div layout:fragment="content">
 	<table>
 		<tr>
@@ -32,8 +32,9 @@
 			<td>[[${lists.regDate}]]</td>
 			<td>[[${lists.memberDel}]]</td>
 			<td>
-				<a th:href="@{/admin/memberDetail.do(email=${lists.email})}">회원 상세 보기</a>
+				<a th:href="@{/adminMemberDetail.do(email=${lists.email})}">회원 상세 보기</a>
 			</td>
+		</tr>
 	</table>
 </div>
 </body>

@@ -21,5 +21,7 @@ public class Product {
 	private String productPhoto;
 	private String color;
 	private String productSize;
+	private int stock;
+	private String productDetailNo;
 
 }

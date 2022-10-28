@@ -2,7 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.AdminMapper">
-	<select id="memberlist" resultType="member">
+	<select id="memberlist" resultType="member"> <!-- 관리자 회원목록 -->
 		select * from member order by reg_date desc
+	</select>
+	
+	<select id="productlist" resultType="product"><!-- 관리자 상품 목록 -->
+		select p.*, d.color, d.stock, d.product_size, h.product_photo,d.product_detail_no 
+		from product p, product_detail d , product_photo h where p.product_no = d.product_no and 
+		p.product_no=h.product_no and d.color=h.color and h.batch=1 order by p.product_no
+	</select>
+	
+	<select id="orderlist" resultType="userorder"><!-- 관리자 주문 목록 -->
+		select * from user_order order by order_no desc
+	</select>
+	
+	<select id="qnalist" resultType="qna"><!-- 관리자 문의 목록 -->
+		 select * from qna order by qna_no desc
+	</select>
+	
+	<select id="reviewlist" resultType="review"><!-- 관리자 리뷰 목록 -->
+		select * from review order by review_no desc
 	</select>
 </mapper>

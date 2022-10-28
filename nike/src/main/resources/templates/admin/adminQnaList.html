@@ -5,9 +5,37 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	table {width: 80%}
+	th {border:1px solid green;}
+	td {border:1px solid green;}
+</style>
 </head>
-<body>
+<body><!-- by창률 -->
 <div layout:fragment="content">
+<table>
+	<tr>
+		<th>문의번호</th>
+		<th>이메일</th>
+		<th>상품번호</th>
+		<th>문의유형</th>
+		<th>제목</th>
+		<th>내용</th>
+		<th>등록일</th>
+		<th>삭제여부</th>
+	</tr>
+	<tr th:each="lists:${list}">
+		<td>[[${list.qnaNo}]]</td>
+		<td>[[${list.email}]]</td>
+		<td>[[${list.productNo}]]</td>
+		<td>[[${list.qnaType}]]</td>
+		<td>[[${list.noticeSubject}]]</td>
+		<td>[[${list.content}]]</td>
+		<td>[[${list.regDate}]]</td>
+		<td>[[${list.qnaDel}]]</td>
+		<td><a th:href="@{/adminQnaDetail.do(qnaNo=${lists.qnaNo})}">문의 상세 보기</a><td>
+	</tr>
+</table>
 </div>
 </body>
 </html>
