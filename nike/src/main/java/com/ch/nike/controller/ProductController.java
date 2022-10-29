@@ -3,6 +3,8 @@ package com.ch.nike.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +19,12 @@ public class ProductController {
 	@Autowired
 	private ProductService ps;
 	
-	@RequestMapping("/") //메인 최하단 하단 신발 리스트 by창률
-	public String main(Model model) {
+	@RequestMapping("/") //메인 최하단 하단 신발 리스트 by창률 // 로그아웃 위한 세션작업 by수인
+	public String main(Model model, HttpSession session) {
 		List<Product> product = ps.list();
+		String email = (String) session.getAttribute("email"); //by 수인
 		model.addAttribute("product", product);
+		model.addAttribute("email", email); //by 수인
 		return "main";
 	}
 	

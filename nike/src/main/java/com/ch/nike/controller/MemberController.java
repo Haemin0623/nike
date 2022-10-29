@@ -61,7 +61,7 @@ public class MemberController {
 		if (member2 != null) {
 			if (member2.getPassword().equals(member.getPassword())) {
 				session.setAttribute("email", member.getEmail());
-				return "main";
+				return "redirect:/"; //redirect: (이 주소가 url로 ), forward: (/에서 요청한 주소가 url에 뜸) // ProductController의 @RequestMapping("/") 찾아감
 			} else  {
 				String msg = "📢비밀번호가 일치하지 않습니다";
 				model.addAttribute("msg", msg);
@@ -69,5 +69,10 @@ public class MemberController {
 			}
 		} else
 			return "member/emailLoginForm";
+	}
+	@RequestMapping("member/logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "member/logout";
 	}
 }
