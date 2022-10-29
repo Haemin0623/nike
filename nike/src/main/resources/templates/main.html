@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout}">
+	  
 <span th:insert="/header.html::header"></span>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body><!-- by창률 -->
+<div layout:fragment="content"> <!-- header적용 by 수인 -->
 <div> <!--메인 영상-->	
 	<a href="/product/productList.do?large=1?small=1"> <!-- 상품 리스트로 이동 -->
 		<video muted autoplay loop>
@@ -49,6 +53,7 @@
 </div>
 
 [[${email}]]
-<a th:href="@{/member/logout.do}">로그아웃</a>
+<a href="/member/logout.do">로그아웃</a>
+</div>
 </body>
 </html>
