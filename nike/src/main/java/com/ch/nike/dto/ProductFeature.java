@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 @Alias("ProductMaterial")
-public class ProductMaterial {
-	private int materialNo;
+public class ProductFeature {
+	private int featurelNo;
 	private int productNo;
-	private String material;
+	private String feature;
 }
