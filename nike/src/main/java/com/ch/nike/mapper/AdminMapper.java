@@ -11,6 +11,7 @@ import com.ch.nike.dto.QnA;
 import com.ch.nike.dto.Review;
 import com.ch.nike.dto.Store;
 import com.ch.nike.dto.UserOrder;
+import com.ch.nike.dto.Wish;
 
 @Mapper
 public interface AdminMapper {
@@ -28,5 +29,13 @@ public interface AdminMapper {
 	List<Notice> noticelist();
 
 	List<Store> storelist();
+
+	Member memberselect(String email);
+
+	List<Review> reviewselect(String email);
+
+	List<Product> wishselect(String email);
+
+	List<UserOrder> userorderselect(String email);
 
 }

@@ -26,5 +26,13 @@ public interface AdminService {
 
 	List<Store> storelist();
 
+	Member memberselect(String email);
+
+	List<Review> reviewselect(String email);
+
+	List<Product> wishselect(String email);
+
+	List<UserOrder> userorderselect(String email);
+
 
 }

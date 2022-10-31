@@ -5,10 +5,73 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	table {width: 80%}
+	th {border:1px solid green;}
+	td {border:1px solid green;}
+</style>
 </head>
 <body>
 <div layout:fragment="content">
-공지 상세 페이지
+	<table>
+		<caption>위시리스트</caption>
+		<tr>
+			<th>상품명</th>
+			<th>색상</th>
+			<th>사진</th>
+			<th></th>
+		</tr>
+		<tr th:if="${#lists.size(wish)} == 0">
+			<td colspan="4">위시리스트가 비었습니다</td>
+		<tr th:if="${#lists.size(wish)} > 0" th:each="wishs:${wish}">
+			<td>[[${wishs.productName}]]</td>
+			<td>[[${wishs.color}]]</td>
+			<td><img alt="" th:src="@{images/product_photo/} + ${wishs.productPhoto}" height="200"></td>
+			<td><a th:href="@{/productDetail.do(productNo=${wishs.productNo})}">상품바로가기</a></td>
+		</tr>
+	</table>
+	<table>
+		<caption>작성한 리뷰</caption>
+		<tr>
+			<th>상품명</th>
+			<th>별점</th>
+			<th>리뷰내용</th>
+			<th>작성일</th>
+			<th>삭제여부</th>
+		</tr>
+		<tr th:if="${#lists.size(review)} == 0">
+			<td colspan="5">작성한 리뷰가 없습니다</td>
+		</tr>
+		<tr th:if="${#lists.size(review)} > 0" th:each="reviews:${review}">
+			<td>[[${reviews.productName}]]</td>
+			<td>[[${reviews.star}]]</td>
+			<td>[[${reviews.content}]]</td>
+			<td>[[${reviews.reviewDate}]]</td>
+			<td>[[${reviews.reviewDel}]]</td>
+		</tr>
+	</table>
+	<table>
+		<caption>주문내역</caption>
+		<tr>
+			<th>주문번호</th>
+			<th>주문일</th>
+			<th>주문수량</th>
+			<th>상품상태</th>
+			<th>환불여부</th>
+			<th></th>
+		</tr>
+		<tr th:if="${#lists.size(userorder)} == 0">
+			<td colspan="6">주문 내역이 없습니다</td>
+		</tr>
+		<tr th:if="${#lists.size(userorder)} > 0" th:each="userorders:${userorder}">
+			<td>[[${userorders.orderNo}]]</td>
+			<td>[[${userorders.orderDate}]]</td>
+			<td>[[${userorders.orderQuantity}]]</td>
+			<td>[[${userorders.status}]]</td>
+			<td>[[${userorders.refundChk}]]</td>
+			<td><a th:href="@{/orderDetail.do(orderNo=${userorder.orderNo})}">주문상세</a></td>
+		</tr>
+	</table>
 </div>
 </body>
 </html>

@@ -12,6 +12,7 @@ import com.ch.nike.dto.QnA;
 import com.ch.nike.dto.Review;
 import com.ch.nike.dto.Store;
 import com.ch.nike.dto.UserOrder;
+import com.ch.nike.dto.Wish;
 import com.ch.nike.mapper.AdminMapper;
 
 @Service
@@ -52,5 +53,25 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<Store> storelist() {
 		return am.storelist();
+	}
+
+	@Override
+	public Member memberselect(String email) {
+		return am.memberselect(email);
+	}
+
+	@Override
+	public List<Review> reviewselect(String email) {
+		return am.reviewselect(email);
+	}
+
+	@Override
+	public List<Product> wishselect(String email) {
+		return am.wishselect(email);
+	}
+
+	@Override
+	public List<UserOrder> userorderselect(String email) {
+		return am.userorderselect(email);
 	}
 }

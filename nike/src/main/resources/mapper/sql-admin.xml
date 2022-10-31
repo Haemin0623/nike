@@ -31,4 +31,22 @@
 	<select id="storelist" resultType="store">
 		select * from store order by store_no desc
 	</select>
+	
+	<select id="memberselect" parameterType="string" resultType="member">
+		select*from member where email=#{email} order by reg_date desc
+	</select>
+	
+	<select id="reviewselect" parameterType="string" resultType="review">
+		select r.*, p.product_name from review r, product p where p.product_no = r.product_no and r.email=#{email}
+	</select>
+	
+	<select id="wishselect" parameterType="string" resultType="product">
+		select p.*, h.* from wish w, product p, product_photo h where 
+		p.product_no = h.product_no and p.product_no = w.product_no and w.email=#{email} and h.batch=1 order by w.wish_no desc
+	</select>
+	
+	<select id="userorderselect" parameterType="string" resultType="userorder">
+		 select uo.*, uod.* from user_order uo, user_order_detail uod where uo.order_no = uod.order_no and 
+		 uo.email=#{email} order by uo.order_no desc
+	</select>
 </mapper>

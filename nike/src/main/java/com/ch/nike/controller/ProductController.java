@@ -28,7 +28,7 @@ public class ProductController {
 		return "main";
 	}
 	
-	@RequestMapping("/product/productList.do") // 상품리스트 상품 리스트불러오기 (대분류,소분류), 상품수체크 by창률
+	@RequestMapping("/productList.do") // 상품리스트 상품 리스트불러오기 (대분류,소분류), 상품수체크 by창률
 	public String productList(Model model, Category category ) {
 		List<Product> product = ps.productlist(category);
 		Product product2 = ps.count(category);

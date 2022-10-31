@@ -31,9 +31,17 @@ public class AdminController {
 		List<Member> list = as.memberlist();
 		model.addAttribute("list",list);
 		return "admin/adminMemberList";
-	}
+	} 
 	@RequestMapping("/adminMemberDetail.do")// 관리자 멤버상세 
-	public String adminMemberDetail() {
+	public String adminMemberDetail(String email, Model model) {
+		Member member = as.memberselect(email);
+		List<Review> review = as.reviewselect(email);
+		List<Product> wish = as.wishselect(email);
+		List<UserOrder> userorder = as.userorderselect(email);
+		model.addAttribute("member",member);
+		model.addAttribute("review",review);
+		model.addAttribute("wish",wish);
+		model.addAttribute("userorder",userorder);
 		return "admin/adminMemberDetail";
 	}
 	
@@ -101,5 +109,9 @@ public class AdminController {
 		List<Store> list = as.storelist();
 		model.addAttribute("list",list);
 		return "admin/adminStoreList";
+	}
+	@RequestMapping("/adminStoreInsert.do") //관리자 매장 등록
+	public String adminStoreInsert() {
+		return "admin/adminStoreInsert";
 	}
 }

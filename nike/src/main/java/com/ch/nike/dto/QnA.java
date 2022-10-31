@@ -17,4 +17,7 @@ public class QnA {
 	private Date regDate;
 	private String qnaStatus;
 	private String qnaDel;
+	
+	//조인용
+	private String productName;
 }
