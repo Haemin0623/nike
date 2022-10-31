@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.nike.mapper.UserOrderMapper">
+   <select id="orderlist" resultType="userorder"><!-- 관리자 주문 목록 -->
+      select * from user_order order by order_no desc
+   </select>
+   
+	<select id="userorderselect" parameterType="string" resultType="userorder">
+		 select uo.*, uod.* from user_order uo, user_order_detail uod where uo.order_no = uod.order_no and 
+		 uo.email=#{email} order by uo.order_no desc
+	</select>
+</mapper>

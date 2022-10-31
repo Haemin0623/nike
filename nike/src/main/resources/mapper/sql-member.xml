@@ -9,4 +9,7 @@
 		insert into member values(#{email}, #{name}, #{password}, #{memberGender},#{birthday},
 		 #{memberTel}, sysdate, 'N')
 	</insert>
+	<select id="memberlist" resultType="member"> <!-- 관리자 회원목록 -->
+		select * from member order by reg_date desc
+	</select>
 </mapper>

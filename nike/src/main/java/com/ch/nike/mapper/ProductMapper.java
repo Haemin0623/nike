@@ -21,6 +21,8 @@ public interface ProductMapper {
 
 	Product colorcount(Category category);
 
+	List<Product> adminproductlist();
+
 
 
 }

@@ -10,5 +10,9 @@ public class Wish {
 	private int wishNo;
 	private int productNo;
 	private String email;
-
+	
+	//조인용
+	private String productName;
+	private String productPhoto;
+	private String color;
 }

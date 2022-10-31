@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.nike.mapper.WishMapper">
+	<select id="wishselect" parameterType="string" resultType="wish">
+		select p.*, h.* from wish w, product p, product_photo h where 
+		p.product_no = h.product_no and p.product_no = w.product_no and w.email=#{email} and h.batch=1 order by w.wish_no desc
+	</select>
+</mapper>

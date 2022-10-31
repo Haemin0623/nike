@@ -14,31 +14,35 @@ import com.ch.nike.mapper.ProductMapper;
 @Service
 public class ProductServiceImpl implements ProductService{
 	@Autowired
-	private ProductMapper pd;
+	private ProductMapper pm;
 
 	@Override
 	public List<Product> list() {
-		return pd.list();
+		return pm.list();
 	}
 
 	@Override
 	public List<Product> productlist(Category category) {
-		return pd.productlist(category);
+		return pm.productlist(category);
 	}
 
 	@Override
 	public Product count(Category category) {
-		return pd.count(category);
+		return pm.count(category);
 	}
 
 	@Override
 	public List<Product> color(Category category) {
-		return pd.color(category);
+		return pm.color(category);
 	}
 
 	@Override
 	public Product colorcount(Category category) {
-		return pd.colorcount(category);
+		return pm.colorcount(category);
+	}
+	@Override
+	public List<Product> adminproductlist() {
+		return pm.adminproductlist();
 	}
 
 }

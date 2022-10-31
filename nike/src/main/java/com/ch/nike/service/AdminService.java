@@ -12,27 +12,7 @@ import com.ch.nike.dto.UserOrder;
 
 public interface AdminService {
 
-	List<Member> memberlist();
 
-	List<Product> productlist();
-
-	List<UserOrder> orderlist();
-
-	List<QnA> qnalist();
-
-	List<Review> reviewlist();
-
-	List<Notice> noticelist();
-
-	List<Store> storelist();
-
-	Member memberselect(String email);
-
-	List<Review> reviewselect(String email);
-
-	List<Product> wishselect(String email);
-
-	List<UserOrder> userorderselect(String email);
 
 
 }

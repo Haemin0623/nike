@@ -14,12 +14,38 @@ import com.ch.nike.dto.QnA;
 import com.ch.nike.dto.Review;
 import com.ch.nike.dto.Store;
 import com.ch.nike.dto.UserOrder;
+import com.ch.nike.dto.Wish;
 import com.ch.nike.service.AdminService;
+import com.ch.nike.service.MemberService;
+import com.ch.nike.service.NoticeService;
+import com.ch.nike.service.ProductService;
+import com.ch.nike.service.QnAService;
+import com.ch.nike.service.ReviewService;
+import com.ch.nike.service.StoreService;
+import com.ch.nike.service.UserOrderService;
+import com.ch.nike.service.WishService;
 
 @Controller
 public class AdminController {
 	@Autowired
 	private AdminService as;
+	@Autowired
+	private MemberService ms;
+	@Autowired
+	private ReviewService rs;
+	@Autowired
+	private StoreService ss;
+	@Autowired
+	private ProductService ps;
+	@Autowired
+	private WishService ws;
+	@Autowired
+	private UserOrderService uos;
+	@Autowired
+	private NoticeService ns;
+	@Autowired
+	private QnAService qs;
+	@Autowired
 	
 	@RequestMapping("/adminMain.do")// 관리자 메인으로 이동
 	public String adminMain() {
@@ -28,16 +54,16 @@ public class AdminController {
 	
 	@RequestMapping("/adminMemberList.do")// 관리자 멤버리스트 by창률 
 	public String adminMemberList(Model model) {
-		List<Member> list = as.memberlist();
+		List<Member> list = ms.memberlist();
 		model.addAttribute("list",list);
 		return "admin/adminMemberList";
 	} 
 	@RequestMapping("/adminMemberDetail.do")// 관리자 멤버상세 
 	public String adminMemberDetail(String email, Model model) {
-		Member member = as.memberselect(email);
-		List<Review> review = as.reviewselect(email);
-		List<Product> wish = as.wishselect(email);
-		List<UserOrder> userorder = as.userorderselect(email);
+		Member member = ms.select(email);
+		List<Review> review = rs.reviewselect(email);
+		List<Wish> wish = ws.wishselect(email);
+		List<UserOrder> userorder = uos.userorderselect(email);
 		model.addAttribute("member",member);
 		model.addAttribute("review",review);
 		model.addAttribute("wish",wish);
@@ -47,7 +73,7 @@ public class AdminController {
 	
 	@RequestMapping("/adminProductList.do")// 관리자 상품 리스트 by창률 
 	public String adminProductList(Model model) {
-		List<Product> list = as.productlist();
+		List<Product> list = ps.adminproductlist();
 		model.addAttribute("list",list);
 		return "admin/adminProductList";
 	}
@@ -64,14 +90,14 @@ public class AdminController {
 	
 	@RequestMapping("/adminOrderList.do")// 관리자 주문 리스트 by창률 
 	public String adminOrderList(Model model) {
-		List<UserOrder> list = as.orderlist();
+		List<UserOrder> list = uos.orderlist();
 		model.addAttribute("list",list);
 		return "admin/adminOrderList";
 	}
 	
 	@RequestMapping("/adminQnaList.do")// 관리자 문의 리스트 by창률 
 	public String adminQnaList(Model model) {
-		List<QnA> list = as.qnalist();
+		List<QnA> list = qs.qnalist();
 		model.addAttribute("list",list);
 		return "admin/adminQnaList";
 	}
@@ -83,14 +109,14 @@ public class AdminController {
 	
 	@RequestMapping("/adminReviewList.do") // 관리자 리뷰 리스트 by창률 
 	public String adminReviewList(Model model) {
-		List<Review> list = as.reviewlist();
+		List<Review> list = rs.reviewlist();
 		model.addAttribute("list",list);
 		return "admin/adminReviewList";
 	}
 	
 	@RequestMapping("/adminNoticeList.do") //공지 리스트 by창률
 	public String adminNoticeList(Model model) {
-		List<Notice> list = as.noticelist();
+		List<Notice> list = ns.noticelist();
 		model.addAttribute("list",list);
 		return "admin/adminNoticeList";
 	}
@@ -106,7 +132,7 @@ public class AdminController {
 	}
 	@RequestMapping("/adminStoreList.do")	//관리자 매장 관리 by창률
 	public String adminStoreList(Model model) {
-		List<Store> list = as.storelist();
+		List<Store> list = ss.storelist();
 		model.addAttribute("list",list);
 		return "admin/adminStoreList";
 	}

@@ -25,4 +25,10 @@
 		select count(*) from category c, product p, product_photo h where c.category_no=p.category_no 
 		and p.product_no=h.product_no and p.product_no='1' and batch='1'
 	</select>
+	
+	<select id="adminproductlist" resultType="product"><!-- 관리자 상품 목록 -->
+		select p.*, d.color, d.stock, d.product_size, h.product_photo,d.product_detail_no 
+		from product p, product_detail d , product_photo h where p.product_no = d.product_no and 
+		p.product_no=h.product_no and d.color=h.color and h.batch=1 order by p.product_no
+	</select>
 </mapper>

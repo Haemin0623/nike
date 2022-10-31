@@ -16,4 +16,5 @@ public interface ProductService {
 	List<Product> color(Category category);
 
 	Product colorcount(Category category);
+	List<Product> adminproductlist();
 }
