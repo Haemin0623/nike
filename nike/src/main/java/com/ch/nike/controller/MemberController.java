@@ -1,8 +1,11 @@
 package com.ch.nike.controller;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +17,8 @@ import com.ch.nike.service.MemberService;
 public class MemberController {
 	@Autowired
 	private MemberService ms;
+	@Autowired
+	private JavaMailSender jms;
 
 	@RequestMapping("/member/emailLoginForm.do")
 	public String emailLoginForm(String email, Model model) {
@@ -55,7 +60,7 @@ public class MemberController {
 		return "member/join";
 	}
 
-	@RequestMapping("member/login.do")
+	@RequestMapping("/member/login.do")
 	public String login(Member member, Model model, HttpSession session) {
 		Member member2 = ms.select(member.getEmail());
 		if (member2 != null) {
@@ -70,9 +75,45 @@ public class MemberController {
 		} else
 			return "member/emailLoginForm";
 	}
-	@RequestMapping("member/logout.do")
+	@RequestMapping("/member/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "member/logout";
 	}
+	@RequestMapping("/member/findPwForm.do")
+	public String findPwForm(String email, Model model) {
+		model.addAttribute("email", email);
+		return "member/findPwForm";
+	}
+
+	@RequestMapping("/member/pwLoginForm.do")
+	public String pwLoginForm(Member member, Model model) {
+		model.addAttribute("member", member);
+		return "member/pwLoginForm";
+	}
+	
+	
+	@RequestMapping("/member/pwLogin.do")
+	public String pwLogin(Model model) {
+		// 암호화한 코드
+		return "member/pwLogin";
+	}
+//	@RequestMapping("member/email.do")
+//	public String email(Member member, Model model) {
+//		MimeMessage mm = jms.createMimeMessage();
+//		try {
+//			MimeMessageHelper mmh = new MimeMessageHelper(mm, true, "utf-8");
+//			mmh.setSubject("일회용 코드를 알려드립니다");
+//			mmh.setText("요청하신 일회용 인증 코드는 123456 입니다.");
+//			mmh.setTo(member.getEmail());
+//			mmh.setFrom("sooin8181@naver.com");
+//			jms.send(mm);
+//			model.addAttribute("msg", "메일보내기 성공");
+//		} catch (Exception e) {
+//			System.out.println(e.getMessage());
+//			model.addAttribute("msg", "메일보내기 실패");
+//		}
+//		return "member/email.do";
+//	}
+
 }
