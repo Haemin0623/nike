@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<th:block th:if="${msg} != null">
+	<script type="text/javascript">
+		alert("[[${msg}]]")
+	</script>
+</th:block>
+
 </head>
 <body>
 
@@ -10,7 +17,7 @@
 <h2>비밀번호를 입력하세요</h2>
 [[${member.email}]] <a th:href="@{emailLoginForm.do(email=${member.email})}">편집</a><p>
 
-<h4>[[${msg}]]</h4>
+
 
 <form action="login.do" method="post">
 	<table>

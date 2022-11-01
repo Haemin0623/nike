@@ -22,7 +22,6 @@ public class MemberController {
 
 	@RequestMapping("/member/emailLoginForm.do")
 	public String emailLoginForm(String email, Model model) {
-		model.addAttribute("email", email);
 		return "member/emailLoginForm";
 	}
 
@@ -56,7 +55,6 @@ public class MemberController {
 		} else // 가입되어있을때
 			result = -1;
 		model.addAttribute("result", result);
-		model.addAttribute("member", member);
 		return "member/join";
 	}
 
@@ -81,14 +79,26 @@ public class MemberController {
 		return "member/logout";
 	}
 	@RequestMapping("/member/findPwForm.do")
-	public String findPwForm(String email, Model model) {
-		model.addAttribute("email", email);
+	public String findPwForm(Member member, Model model) {
+		MimeMessage mm = jms.createMimeMessage();
+		try {
+			MimeMessageHelper mmh = new MimeMessageHelper(mm, true, "utf-8");
+			mmh.setSubject("일회용 코드를 알려드립니다");
+			mmh.setText("요청하신 일회용 인증 코드는 123456 입니다.");
+			mmh.setTo(member.getEmail());
+			mmh.setFrom("sooin8181@naver.com");
+			jms.send(mm);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			model.addAttribute("msg", "메일 인증코드 발송실패");
+			
+			return "member/pwLoginForm";	
+		}
 		return "member/findPwForm";
 	}
 
 	@RequestMapping("/member/pwLoginForm.do")
 	public String pwLoginForm(Member member, Model model) {
-		model.addAttribute("member", member);
 		return "member/pwLoginForm";
 	}
 	
@@ -98,22 +108,5 @@ public class MemberController {
 		// 암호화한 코드
 		return "member/pwLogin";
 	}
-//	@RequestMapping("member/email.do")
-//	public String email(Member member, Model model) {
-//		MimeMessage mm = jms.createMimeMessage();
-//		try {
-//			MimeMessageHelper mmh = new MimeMessageHelper(mm, true, "utf-8");
-//			mmh.setSubject("일회용 코드를 알려드립니다");
-//			mmh.setText("요청하신 일회용 인증 코드는 123456 입니다.");
-//			mmh.setTo(member.getEmail());
-//			mmh.setFrom("sooin8181@naver.com");
-//			jms.send(mm);
-//			model.addAttribute("msg", "메일보내기 성공");
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//			model.addAttribute("msg", "메일보내기 실패");
-//		}
-//		return "member/email.do";
-//	}
 
 }
