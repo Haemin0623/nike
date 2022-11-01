@@ -21,7 +21,7 @@ public class MemberController {
 	private JavaMailSender jms;
 
 	@RequestMapping("/member/emailLoginForm.do")
-	public String emailLoginForm(String email, Model model) {
+	public String emailLoginForm(Member member, Model model) {
 		return "member/emailLoginForm";
 	}
 
@@ -104,9 +104,10 @@ public class MemberController {
 	
 	
 	@RequestMapping("/member/pwLogin.do")
-	public String pwLogin(Model model) {
-		// 암호화한 코드
+	public String pwLogin(Member member, Model model) {
+//		if ()
+//		123456 확인후
+//		맞으면 새비번으로 수정
 		return "member/pwLogin";
 	}
-
 }

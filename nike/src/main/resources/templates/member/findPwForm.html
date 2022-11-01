@@ -3,15 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	function verifypw() {
-		if (frm.verificode.value == '123456') {
-			$('#verificode').html("인증코드가 일치합니다");
-			return false;
-		} else
-			$('#verificode').html("인증코드가 일치하지 않습니다. 다시 확인해주세요");
-	}
-</script>
+
 </head>
 <body>
 
@@ -20,16 +12,16 @@
 
 [[${member.email}]] <a th:href="@{emailLoginForm.do(email=${member.email})}">편집</a>
 
-<form action = "" name="frm" method="post">
+<form action = "pwLogin.do" method="post">
 
-	<input type="text" name="verificode" required="required" placeholder="이메일로 받은 인증코드" onchange="verifypw()"><p>
+	<input type="text" name="verificode" required="required" placeholder="이메일로 받은 인증코드" ><p>
 	<span id="verificode"></span>
 	<input type="password" required="required" placeholder="새비밀번호"><p>
 	<span>※최소 8자</span><p>
 	<span>※알파벳 대문자 및 소문자 조합, 최소 1개 이상의 숫자</span><p>
 	
 	<a th:href="@{pwLoginForm.do(email=${member.email})}">취소</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<a th:href="@{member/pwLogin.do}">저장</a>
+	<input type="submit" value="저장">
 </form>
 </body>
 </html>
