@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+
+<th:block th:if ="${result} > 0">
+	<script type="text/javascript">
+		alert("비밀번호 변경이 완료되었습니다");
+		location.href="pwLoginForm.do?email=[[${member.email}]]";
+	</script>
+</th:block>
+<th:block th:if ="${result} == -1">
+	<script type="text/javascript">
+		alert("인증코드가 일치하지 않습니다. 다시 확인해주세요");
+		history.go(-1);
+	</script>
 
 </body>
 </html>

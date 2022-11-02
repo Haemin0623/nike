@@ -13,17 +13,18 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberMapper mm;
 
-	@Override
 	public Member select(String email) {
 		return mm.select(email);
 	}
 
-	@Override
 	public int insert(Member member) {
 		return mm.insert(member);
 	}
-	@Override
 	public List<Member> memberlist() {
 		return mm.memberlist();
+	}
+
+	public int update(String email) {
+		return mm.update(email);
 	}
 }

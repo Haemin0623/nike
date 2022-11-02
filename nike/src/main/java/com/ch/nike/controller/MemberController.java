@@ -104,10 +104,15 @@ public class MemberController {
 	
 	
 	@RequestMapping("/member/pwLogin.do")
-	public String pwLogin(Member member, Model model) {
-//		if ()
-//		123456 확인후
-//		맞으면 새비번으로 수정
+	public String pwLogin(Member member, int verifiCode, String newPw, Model model) {
+		int result = 0;
+//		Member member2 = ms.select(member.getEmail()); 
+		if(verifiCode == 123456) {
+			member.setPassword(newPw); //새비번변경 성공
+			result = ms.update(member.getEmail());
+		} else 
+			result = -1;
+		model.addAttribute("result", result);
 		return "member/pwLogin";
 	}
 }
