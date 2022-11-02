@@ -5,8 +5,8 @@ import java.util.List;
 import com.ch.nike.dto.Address;
 import com.ch.nike.dto.Cart;
 import com.ch.nike.dto.Product;
+import com.ch.nike.dto.Refund;
 import com.ch.nike.dto.UserOrder;
-import com.ch.nike.dto.UserOrderDetail;
 import com.ch.nike.dto.Wish;
 
 public interface AccountService {
@@ -23,7 +23,19 @@ public interface AccountService {
 	
 	List<UserOrder> selectUserOrder(String email);
 
-	UserOrderDetail selectOrderDetail(int orderNo);
+	Product selectOrderDetail(int orderNo);
+
+	String selectName(int orderDetailNo);
+
+	int insertRefund(Refund refund);
+
+	int selectRefundNum(int refundNo);
+
+	void updateRefundChk(int orderDetailNo);
+
+	
+
+
 
 
 

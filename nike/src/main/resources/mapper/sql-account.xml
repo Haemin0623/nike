@@ -33,13 +33,24 @@
 	</select>
 	<select id="selectOrderDetail" parameterType="integer" resultType="UserOrder"> 
 	<!-- dto에서 @alias 이름과 동일하게 설정해야함 수정전: resultMap="user_order" /수정by soo-->
-		select p.*, uod.*, a.*, pp.product_photo, pp.color from product p, (select * from user_order_detail 
-			where order_no=#{order_no}) uod, address a, (select * from user_order where order_no=#{order_no}) uo, 
-			product_photo pp where p.product_no=uod.product_no and uo.addr_no=a.addr_no and p.product_no
-			=pp.product_no
-
-
+		select p.*, uod.*, a.*, pp.product_photo, pp.color, uo.order_date, pd.product_size, r.* from product p, 
+			(select * from user_order_detail where order_no=#{order_no}) uod, address a, (select * from user_order 
+			where order_no=#{order_no}) uo, product_photo pp, product_detail pd, refund r where p.product_no
+			=uod.product_no and uo.addr_no=a.addr_no and p.product_no=pp.product_no and p.product_no=pd.product_no 
+			and r.order_detail_no=uod.order_detail_no
 	</select>
-	
-	
+<!-- 	refund -->
+	<select id="selectName" parameterType="integer" resultType="string">
+		select p.product_name from product p, (select * from user_order_detail where order_detail_no
+			=#{order_detail_no}) uod where p.product_no=uod.product_no
+	</select>
+	<select id="selectRefundNum" parameterType="integer" resultType="integer">
+		select nvl(max(refund_no),0) +1 refundNum from refund;
+	</select>
+	<select id="insertRefund" parameterType="refund">
+		into into refund values (#{refund_no}, #{order_detail_no}, #{reason}, #{refund_photo})
+	</select>
+	<select id="updateRefundChk" parameterType="integer">
+		update user_order_detail set refund_chk='A' where order_detail_no=#{order_detail_no}
+	</select>
 </mapper>

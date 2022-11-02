@@ -10,7 +10,7 @@
 		.err { color: red; font-weight: bold; }
 	</style>
 <script type="text/javascript">
-	function member_del(email) {
+	function memberDel(email) {
 		var cf = confirm("정말로 삭제하시겠습니까?");
 		if (cf) {
 			location.href="deleteMember.do?email="+email;
@@ -30,7 +30,7 @@
 		<div>member.member_tel (나이키는 수정 팝업창)</div>
 		<div>member.reg_date</div>
 		<div>
-			<button th:onclick="member_del([[${member.email}]])" class="btn btn-danger">
+			<button th:onclick="memberDel([[${member.email}]])" class="btn btn-danger">
 				계정삭제함수
 			</button>
 		</div>

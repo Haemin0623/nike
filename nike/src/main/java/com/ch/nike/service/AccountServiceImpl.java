@@ -5,11 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ch.nike.dto.Address;
 import com.ch.nike.dto.Cart;
 import com.ch.nike.dto.Product;
+import com.ch.nike.dto.Refund;
 import com.ch.nike.dto.UserOrder;
-import com.ch.nike.dto.UserOrderDetail;
 import com.ch.nike.dto.Wish;
 import com.ch.nike.mapper.AccountMapper;
 
@@ -43,9 +42,31 @@ public class AccountServiceImpl implements AccountService {
 		return am.selectUserOrder(email);
 	}
 
-	public UserOrderDetail selectOrderDetail(int orderNo) {
+	public Product selectOrderDetail(int orderNo) {
 		return am.selectOrderDetail(orderNo);
 	}
+
+	public String selectName(int orderDetailNo) {
+		return am.selectName(orderDetailNo);
+	}
+
+	public int insertRefund(Refund refund) {
+		return am.insertRefund(refund);
+	}
+
+	@Override
+	public int selectRefundNum(int refundNo) {
+		return am.selectRefundNum(refundNo);
+	}
+
+	@Override
+	public void updateRefundChk(int orderDetailNo) {
+		am.updateRefundChk(orderDetailNo);
+	}
+
+	
+
+
 
 
 

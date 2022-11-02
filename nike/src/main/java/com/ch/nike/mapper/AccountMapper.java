@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.ch.nike.dto.Address;
 import com.ch.nike.dto.Cart;
 import com.ch.nike.dto.Product;
+import com.ch.nike.dto.Refund;
 import com.ch.nike.dto.UserOrder;
-import com.ch.nike.dto.UserOrderDetail;
 import com.ch.nike.dto.Wish;
 
 @Mapper
@@ -25,7 +25,17 @@ public interface AccountMapper {
 
 	List<UserOrder> selectUserOrder(String email);
 
-	UserOrderDetail selectOrderDetail(int orderNo);
+	Product selectOrderDetail(int orderNo);
+
+	String selectName(int orderDetailNo);
+
+	int selectRefundNum(int refundNo);
+
+	int insertRefund(Refund refund);
+
+	void updateRefundChk(int orderDetailNo);
+
+
 
 
 

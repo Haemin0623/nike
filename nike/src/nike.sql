@@ -199,7 +199,7 @@ create table user_order_detail (
 	order_no		number(4)				not null,
 	product_no		number(4)				not	null,
 	order_quantity	number(4)				not	null,
-	refund_chk		char(1)		default 'N'	not	null,
+	refund_chk		char(1)		default 'N'	not	null,	-- N(default, 신청안함) / A(환불진행중) / Y(환불완료) / D(환불거절) / T(환불할수없음, 2주지남)
 
 	constraint fk_user_order_detail_order_no foreign key(order_no) references user_order(order_no),
 	constraint fk_user_order_detail_product_no foreign key(product_no) references product(product_no)

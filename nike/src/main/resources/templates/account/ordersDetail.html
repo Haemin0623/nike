@@ -3,21 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function refund(orderDetailNo) {
+		var cf = confirm("환불하시겠습니까?");
+		if (cf) {
+			location.href="refundForm.do?orderDetailNo="+orderDetailNo;
+		} else alert("환불이 취소되었습니다.");
+	}
+</script>
 </head>
 <body>
 <div>
-	주문내역 없으면
-	
-	
-	주문내역 있으면
-	<ul>
-		<li>
-			상품사진
+	<ul th:if="${#lists.size(userOrder)} != 0" th:each="orders:${list}">
+		<li><a href="">아래 이미지 누르면 해당 상품의 상세페이지로 이동
+				<img alt="" th:src="@{/images/product_photo/}+${orders.product_photo}">
+			</a>
+			주문날짜
+			[[${orders.orderDate]]
 			배송지
+			[[${orders.zonecode]]
+			[[${orders.roadaddress]]
+			([[${orders.jibunaddress]])
+			[[${orders.detailaddress]]
 		 	배송상태
+		 	[[${orders.status]]
 		 	금액
-		 	<button th:onclick="refund()">환불</button>
+		 	[[${orders.price]]
 		 	
+		 	<div th:if="${orders.refund_chk} != 'Y'">
+		 		환불하기
+		 		<button th:onclick="refund([[${orders.orderDetailNo]])">환불상태</button>
+		 	</div>
+		 	<div th:if="${orders.refund_chk} == 'A'"  th:each="refund:#{refund}">
+		 		환불 진행 중
+		 	</div>
+<!-- 		 	Y랑 D는 관리자가 할 수 있도록  -->
+		 	<div th:if="${orders.refund_chk} == 'Y'"  th:each="refund:#{refund}">
+		 		환불 완료
+		 	</div>
+		 	<div th:if="${orders.refund_chk} == 'D'"  th:each="refund:#{refund}">
+		 		환불 거절
+		 		사유와 사진이 합당하지 않아 환불이 거절되었습니다.
+		 	</div>
+		 	<div th:if="${orders.refund_chk} == 'T'"  th:each="refund:#{refund}">
+		 		2주가 지나 환불 할 수 없음
+		 	</div>
 		</li>
 	</ul>
 </div>

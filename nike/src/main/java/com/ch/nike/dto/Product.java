@@ -21,10 +21,16 @@ public class Product {
 	private String productPhoto;
 	private String color;
 	private String productSize;
+<<<<<<< HEAD
 	private int stock;
 	private String productDetailNo;
 	private String email;
 	private String name;
 	
+=======
+	private Address address;
+	private UserOrderDetail userOrderDetail;
+	private Refund refund;
+>>>>>>> 5ac0323 (위시리스트, 장바구니, 주문내역(+환불) 일단 완료)
 
 }
