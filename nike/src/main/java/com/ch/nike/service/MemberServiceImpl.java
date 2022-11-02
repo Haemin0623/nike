@@ -24,7 +24,7 @@ public class MemberServiceImpl implements MemberService {
 		return mm.memberlist();
 	}
 
-	public int update(String email) {
-		return mm.update(email);
+	public int update(Member member) {
+		return mm.update(member);
 	}
 }

@@ -15,4 +15,5 @@
 	<update id="update" parameterType="member"> <!-- 새비밀번호 변경 -->
 		update member set password=#{password} where email=#{email}
 	</update>
+
 </mapper>

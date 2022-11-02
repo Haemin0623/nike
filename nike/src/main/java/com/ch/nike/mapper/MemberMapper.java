@@ -13,6 +13,6 @@ public interface MemberMapper {
 	Member select(String email);
 	int insert(Member member);
 	List<Member> memberlist();
-	int update(String email); //새비번변경
+	int update(Member member); //새비번변경
 
 }

@@ -1,6 +1,7 @@
 package com.ch.nike.controller;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,8 @@ public class MemberController {
 	private MemberService ms;
 	@Autowired
 	private JavaMailSender jms;
-
+	
+//	int vCode;
 	@RequestMapping("/member/emailLoginForm.do")
 	public String emailLoginForm(Member member, Model model) {
 		return "member/emailLoginForm";
@@ -79,12 +81,15 @@ public class MemberController {
 		return "member/logout";
 	}
 	@RequestMapping("/member/findPwForm.do")
-	public String findPwForm(Member member, Model model) {
+	public String findPwForm(Member member, Model model, HttpSession session) {
+		int vCode = (int) (Math.random() * 100000); /* 인증코드 랜덤으로 보내기 */
+		session.setAttribute("vCode", vCode);
+		session.setMaxInactiveInterval(60); //60초 시간지정
 		MimeMessage mm = jms.createMimeMessage();
 		try {
 			MimeMessageHelper mmh = new MimeMessageHelper(mm, true, "utf-8");
 			mmh.setSubject("일회용 코드를 알려드립니다");
-			mmh.setText("요청하신 일회용 인증 코드는 123456 입니다.");
+			mmh.setText("요청하신 일회용 인증 코드는 "+vCode+"입니다.");
 			mmh.setTo(member.getEmail());
 			mmh.setFrom("sooin8181@naver.com");
 			jms.send(mm);
@@ -103,16 +108,22 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping("/member/pwLogin.do")
-	public String pwLogin(Member member, int verifiCode, String newPw, Model model) {
-		int result = 0;
-//		Member member2 = ms.select(member.getEmail()); 
-		if(verifiCode == 123456) {
-			member.setPassword(newPw); //새비번변경 성공
-			result = ms.update(member.getEmail());
-		} else 
-			result = -1;
+	@RequestMapping("/member/changePw.do")
+	public String changePw(Member member, int verifiCode, String newPw, Model model, HttpSession session) {
+		int result;
+		if (session.getAttribute("vCode") == null) { // 인증코드 세션만료
+			result = 0;
+		} else {
+			int vCode = (int) session.getAttribute("vCode");
+			if (verifiCode == vCode) { // 사용자가 입력한 verifiCode, 메일발송한 vCode
+				member.setPassword(newPw); // 새비번변경 성공
+				result = ms.update(member);
+			} else { //인증코드 불일치
+				result = -1;
+			}
+		}
 		model.addAttribute("result", result);
-		return "member/pwLogin";
+		return "member/changePw";
 	}
+	
 }
