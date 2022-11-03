@@ -14,5 +14,6 @@ public interface MemberMapper {
 	int insert(Member member);
 	List<Member> memberlist();
 	int update(Member member); //새비번변경
+	int deleteMember(String email);
 
 }

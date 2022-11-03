@@ -2,55 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.AccountMapper">
-	<update id="deleteMember" parameterType="string">
-		update member set member_del='Y' where email=#{email}
-	</update>
-<!-- 	wishList -->
-<!-- wish테이블에서의 결과는 wish모델임, wish모델 여러개를 뽑아오니까 list에 담아야 하는거 아닌가? 라고 생각 한거 같은데
-	resultType은 wish에 담아줘야해. wish객체 여러개를 얘가 알아서 list형식으로 묶어줄거야 다른 애들도 마찬가지 by 해민 -->
-	<select id="selectWish" parameterType="string" resultType="list">
-		select * from wish where email=#{email}
-	</select>
-	<!-- product 모델(dto) 한번 확인해봐 by 해민 -->
-	<select id="selectWishThum" parameterType="integer" resultType="product">
-		select p.*, pp.product_photo from product p, (select * from product_photo where product_no=#{product_no} 
-			and batch=1) pp where p.product_no=#{product_no}
-	</select>
-<!-- 	cartList -->
-	<select id="selectCart" parameterType="string" resultType="list">
-		select * from cart where email=#{email}
-	</select>
-	<select id="selectCartThum" parameterType="integer" resultType="product">
-		select p.*, pp.product_photo, pp.color, pd.product_size, cart_quantity from product p, (select * from 
-			product_photo where product_no=(select product_no from product_detail pd, cart c where 
-			pd.product_detail_no=#{product_detail_no}) and batch=1) pp, product_detail pd, cart c where p.product_no
-			=pp.product_no and p.product_no=pd.product_no and #{product_detail_no}=pd.product_detail_no
-	</select>
-	
-<!-- 	orders-->
-	<select id="selectUserOrder" parameterType="string" resultType="list">
-		select * from user_order where email=#{email}
-	</select>
-	<select id="selectOrderDetail" parameterType="integer" resultType="UserOrder"> 
-	<!-- dto에서 @alias 이름과 동일하게 설정해야함 수정전: resultMap="user_order" /수정by soo-->
-		select p.*, uod.*, a.*, pp.product_photo, pp.color, uo.order_date, pd.product_size, r.* from product p, 
-			(select * from user_order_detail where order_no=#{order_no}) uod, address a, (select * from user_order 
-			where order_no=#{order_no}) uo, product_photo pp, product_detail pd, refund r where p.product_no
-			=uod.product_no and uo.addr_no=a.addr_no and p.product_no=pp.product_no and p.product_no=pd.product_no 
-			and r.order_detail_no=uod.order_detail_no
-	</select>
-<!-- 	refund -->
-	<select id="selectName" parameterType="integer" resultType="string">
-		select p.product_name from product p, (select * from user_order_detail where order_detail_no
-			=#{order_detail_no}) uod where p.product_no=uod.product_no
-	</select>
-	<select id="selectRefundNum" parameterType="integer" resultType="integer">
-		select nvl(max(refund_no),0) +1 refundNum from refund;
-	</select>
-	<select id="insertRefund" parameterType="refund">
-		into into refund values (#{refund_no}, #{order_detail_no}, #{reason}, #{refund_photo})
-	</select>
-	<select id="updateRefundChk" parameterType="integer">
-		update user_order_detail set refund_chk='A' where order_detail_no=#{order_detail_no}
-	</select>
+
+
 </mapper>

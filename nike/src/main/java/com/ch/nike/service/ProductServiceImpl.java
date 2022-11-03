@@ -44,5 +44,9 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> adminproductlist() {
 		return pm.adminproductlist();
 	}
+	public Product selectCartThum(int productDetailNo) {
+		return pm.selectCartThum(productDetailNo);
+	}
+
 
 }

@@ -21,7 +21,7 @@
 <body>
 <div> 정보 보여주고 수정가능한건 수정되도록
 	<div>사진 및 사진 수정</div>
-	<div th:if="${#lists.sixe(list) > 0" th:each="member:${list}">
+	<div th:if="${#lists.sixe(member) > 0" th:each="member:${member}">
 		<div>member.email</div>
 		<div>member.password + 확인 (나이키는 수정 팝업창)</div>
 		<div>member.name</div>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.ch.nike.dto.Product;
 import com.ch.nike.dto.UserOrder;
 
 
@@ -14,5 +15,7 @@ public interface UserOrderMapper {
 
 	List<UserOrder> userorderselect(String email);
 
-
+	List<UserOrder> selectUserOrder(String email);
+	
+	Product selectOrderDetail(int orderNo);
 }

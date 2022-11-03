@@ -17,4 +17,8 @@ public interface ProductService {
 
 	Product colorcount(Category category);
 	List<Product> adminproductlist();
+	
+	Product selectCartThum(int productDetailNo);
+	
+
 }
