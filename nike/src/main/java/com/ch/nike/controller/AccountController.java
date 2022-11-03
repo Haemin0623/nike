@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ch.nike.dto.Address;
 import com.ch.nike.dto.Cart;
 import com.ch.nike.dto.Member;
 import com.ch.nike.dto.Product;
@@ -20,6 +21,7 @@ import com.ch.nike.dto.Refund;
 import com.ch.nike.dto.UserOrder;
 import com.ch.nike.dto.Wish;
 import com.ch.nike.service.AccountService;
+import com.ch.nike.service.AddressService;
 import com.ch.nike.service.CartService;
 import com.ch.nike.service.MemberService;
 import com.ch.nike.service.ProductService;
@@ -29,8 +31,6 @@ import com.ch.nike.service.WishService;
 
 @Controller
 public class AccountController {
-	@Autowired
-	private AccountService as;
 	@Autowired
 	private MemberService ms;
 	@Autowired
@@ -43,6 +43,8 @@ public class AccountController {
 	private UserOrderService uos;
 	@Autowired
 	private RefundService rs;
+	@Autowired
+	private AddressService as;
 	
 	@RequestMapping("/account/mypage.do")	// mypage로 이동 by선희
 	public String mypage(Model model, HttpSession session) {
@@ -51,25 +53,30 @@ public class AccountController {
 		return "account/mypage";
 	}
 	@RequestMapping("/account/profile.do")	// mypage에서 profile로 이동 by선희
-	public String profile(String email, Model model) {
+	public String profile(Model model, HttpSession session) {
+		String email = (String) session.getAttribute("email");
 		Member member = ms.select(email);
 		model.addAttribute("member", member);
 		return "account/profile";
 	}
 	@RequestMapping("/account/deleteMember.do")	// mypage - profile에서 회원탈퇴 by선희
-	public String deleteMember(String email, Model model) {
+	public String deleteMember(Model model, HttpSession session) {
+		String email = (String) session.getAttribute("email");
 		int result = ms.deleteMember(email);
 		model.addAttribute("result", result);
 		return "account/deleteMember";
 	}
 	@RequestMapping("/account/wishList.do")		// 로그인한 회원의 wishlist 불러오기 by선희
-	public String wishList(String email, Model model) {
+	public String wishList(Model model, HttpSession session) {
+		String email = (String) session.getAttribute("email");
 		List<Wish> wishList = ws.selectWish(email);
 		List<Product> list = new ArrayList<>();
 		for (Wish wish:wishList) {
 			if (wish != null) {
 				Product product = ws.selectWishThum(wish.getProductNo());
-				list.add(product);
+				if (product != null) {
+					list.add(product);
+				}
 			}
 		}
 		model.addAttribute("wish", wishList);
@@ -77,13 +84,16 @@ public class AccountController {
 		return "account/wishList";
 	}
 	@RequestMapping("/account/cartList.do")		// 로그인한 회원의 장바구니 불러오기 by선희
-	public String cartList(String email, Model model) {
+	public String cartList(Model model, HttpSession session) {
+		String email = (String) session.getAttribute("email");
 		List<Cart> cartList = cs.selectCart(email);
 		List<Product> list = new ArrayList<>();
 		for (Cart cart:cartList) {
 			if (cart != null) {
 				Product product = ps.selectCartThum(cart.getProductDetailNo());
-				list.add(product);
+				if (product != null) {
+					list.add(product);
+				}
 			}
 		}
 		model.addAttribute("cart", cartList);
@@ -91,7 +101,8 @@ public class AccountController {
 		return "account/cartList";
 	}
 	@RequestMapping("/account/orders.do")		// 로그인한 회원의 주문내역 불러오기 by선희
-	public String orders(String email, Model model) {
+	public String orders(Model model, HttpSession session) {
+		String email = (String) session.getAttribute("email");
 		List<UserOrder> userOrder = uos.selectUserOrder(email);
 		List<Product> list = new ArrayList<>();
 		for (UserOrder user:userOrder) {
@@ -106,7 +117,8 @@ public class AccountController {
 		return "account/orders";
 	}
 	@RequestMapping("/account/ordersDetail.do") 	// 로그인한 회원의 주문내역 상세 불러오기 by선희
-	public String ordersDetail(String email, Model model) {
+	public String ordersDetail(Model model, HttpSession session) {
+		String email = (String) session.getAttribute("email");
 		List<UserOrder> userOrder = uos.selectUserOrder(email);
 		List<Product> list = new ArrayList<>();
 		
@@ -121,7 +133,7 @@ public class AccountController {
 		return "account/ordersDetail";
 	}
 	@RequestMapping("/account/refundForm.do")		// 주문내역 - 환불신청으로 넘어가기 by선희
-	public String refundForm(int orderDetailNo, Model model) {
+	public String refundForm(int orderDetailNo, Model model, HttpSession session) {
 		String productName = rs.selectName(orderDetailNo);
 		model.addAttribute("productName", productName);
 		model.addAttribute("orderDetailNo", orderDetailNo);
@@ -146,5 +158,12 @@ public class AccountController {
 		} else result = -1;  // 이미 있으니 입력하지마
 		model.addAttribute("result", result);
 		return "account/refund";
+	}
+	@RequestMapping("/account/address.do")	// 배송지관리 by선희
+	public String address(Model model, HttpSession session) {
+		String email = (String) session.getAttribute("email");
+		List<Address> addrList = as.selectAddr(email);
+		model.addAttribute("addrList", addrList);
+		return "account/address";
 	}
 }

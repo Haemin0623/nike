@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-	<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
-	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-	<style type="text/css">
-		.err { color: red; font-weight: bold; }
-	</style>
 <script type="text/javascript">
 	function memberDel(email) {
 		var cf = confirm("정말로 삭제하시겠습니까?");
@@ -19,22 +15,20 @@
 </script>
 </head>
 <body>
-<div> 정보 보여주고 수정가능한건 수정되도록
+<div layout:fragment="content"> 정보 보여주고 수정가능한건 수정되도록
 	<div>사진 및 사진 수정</div>
-	<div th:if="${#lists.sixe(member) > 0" th:each="member:${member}">
-		<div>member.email</div>
-		<div>member.password + 확인 (나이키는 수정 팝업창)</div>
-		<div>member.name</div>
-		<div>member.member_gender</div>
-		<div>member.birthday</div>
-		<div>member.member_tel (나이키는 수정 팝업창)</div>
-		<div>member.reg_date</div>
+		<div>[[${member.email}]]</div>
+		<div>[[${member.password}]] + 확인 (나이키는 수정 팝업창)</div>
+		<div>[[${member.name}]]</div>
+		<div>[[${member.memberGender}]]</div>
+		<div>[[${member.birthday}]]</div>
+		<div>[[${member.memberTel}]] (나이키는 수정 팝업창)</div>
+		<div>[[${member.regDate}]]</div>
 		<div>
 			<button th:onclick="memberDel([[${member.email}]])" class="btn btn-danger">
-				계정삭제함수
+				회원탈퇴
 			</button>
 		</div>
-	</div>
 </div>
 </body>
 </html>

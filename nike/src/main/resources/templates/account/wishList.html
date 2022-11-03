@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<div>
-	<div th:if="${#lists.size(wish)} == 0">
+<div layout:fragment="content">
+	<div th:if="${#lists.size(list)} == 0">
 		 현재 위시리스트가 비어있습니다.
 	</div>
 	
-	<ul th:if="${#lists.size(wish)} != 0" th:each="wishList:${list}">
+	<ul th:if="${#lists.size(list)} != 0" th:each="wishList:${list}">
 		<li>
-			[[${wishList.product_name}]]
+			[[${wishList.productName}]]
 			[[${wishList.price}]]
 			<a href="상품상세 주소 넣기!!!!!!!!!!">  사진누르면 상품상세로 이동 넣기
-				<img alt="상품 상세 페이지로 이동합니다." src="상품사진위치+이름넣기"> [[${wishList.product_photo}]] 썸네일 사진
+				<img alt="상품 상세 페이지로 이동합니다." src="상품사진위치+이름넣기"> [[${wishList.productPhoto}]] 썸네일 사진
 				
 			</a>
 		</li>

@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<div>
-배송지 없으면
-현재 배송지 없음
+<div layout:fragment="content">
+	<div th:if="${#lists.size(addrList} == 0">
+		 	배송지 없으면
+			현재 배송지 없음
+			
+	</div>
+	<div th:if="${#lists.size(addrList)} != 0" th:each="addr:${addrList}">
 
+		addr_name
+		tel
+		roadaddress
+		jibunaddress
+		detailaddress
+		zonecode
+	</div>
 
-배송지 있으면
-배송지 보여주고
-<div>
-	addr_name
-	tel
-	roadaddress
-	jibunaddress
-	detailaddress
-	zonecode
-</div>
-
-주소추카버튼
+주소추가버튼
 </div>
 </body>
 </html>

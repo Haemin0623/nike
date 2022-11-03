@@ -15,7 +15,7 @@
 	<update id="update" parameterType="member"> <!-- 새비밀번호 변경 -->
 		update member set password=#{password} where email=#{email}
 	</update>
-		<update id="deleteMember" parameterType="string">
+	<update id="deleteMember" parameterType="string">
 		update member set member_del='Y' where email=#{email}
 	</update>
 </mapper>

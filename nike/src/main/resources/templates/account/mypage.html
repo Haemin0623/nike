@@ -9,13 +9,13 @@
 <body>
 <div layout:fragment="content">
 	<div>사진</div>
-	<div>간단한정보 이메일정도</div>
-	<a class="btn btn-info" th:href="@{/account/profile.do(email=${email})}">프로필(정보 다 나오는 거 + 수정 여기서) profile</a>
-	<a th:href="@{/account/wishList.do(email=${email})}">위시리스트 wishList</a>
-	<a th:href="@{/account/cartList.do(email=${email})}">장바구니 cartList</a>
-	<a th:href="@{/account/orders.do(email=${email})}">주문내역 orders</a>
+	<div>[[${email}]]</div>
+	<a class="btn btn-info" th:href="@{/account/profile.do}">프로필(정보 다 나오는 거 + 수정 여기서) profile</a>
+	<a class="btn btn-info" th:href="@{/account/wishList.do}">위시리스트 wishList</a>
+	<a class="btn btn-info" th:href="@{/account/cartList.do}">장바구니 cartList</a>
+	<a class="btn btn-info" th:href="@{/account/orders.do}">주문내역 orders</a>
 	<a>리뷰내역 reviews</a>
-	<a>배송지 관리 address</a>
+	<a class="btn btn-info" th:href="@{/account/address.do}">배송지 관리 address</a>
 	<a>문의내역 qnas</a>
 </div>
 </body>
