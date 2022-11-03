@@ -14,7 +14,7 @@
 
 <form action="join.do" name="frm" method="post">
 	<input type="hidden" name="email" th:value="${member.email}">
-	<input type="number" required="required" placeholder="코드"><p>
+	<input type="text" name="verifiCode" required="required" placeholder="이메일로 받은 인증코드" ><p>
 	<input type="text" name="name" required="required" placeholder="이름"><p>
 	<input type="password" name="password" required="required" placeholder="비밀번호"><p> <!-- onchange=함수/비번조건추가(최소몇자, 대,소문자,최소1개숫자) -->
 	<span>※최소 8자</span><p>

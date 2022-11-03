@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+[[${result}]]
 
 <th:block th:if="${result} > 0">
 	<script type="text/javascript">
@@ -12,15 +13,31 @@
 		location.href="emailLoginForm.do?email=[[${member.email}]]";
 	</script>
 </th:block>
+
 <th:block th:if="${result} == 0">
 	<script type="text/javascript">
 		alert("가입실패");
 		history.go(-1);
 	</script>
 </th:block>
-<th:block th:if="${result} < 0">
+
+<th:block th:if="${result} == -1 ">
 	<script type="text/javascript">
-		alert("중복");
+		alert("이미 가입되어있는 회원입니다");
+		history.go(-1);
+	</script>
+</th:block>
+
+<th:block th:if="${result} == -2">
+	<script type="text/javascript">
+		alert("인증코드 유효시간이 만료되었습니다(1분)");
+		history.go(-2);	
+	</script>
+</th:block>
+
+<th:block th:if ="${result} == -3">
+	<script type="text/javascript">
+		alert("인증코드가 일치하지 않습니다. 다시 확인해주세요");
 		history.go(-1);
 	</script>
 </th:block>

@@ -10,6 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -52,4 +53,6 @@ public class DataBaseConfiguration {
 	public SqlSessionTemplate sst(SqlSessionFactory ssf) {
 		return new SqlSessionTemplate(ssf);
 	}
+
+	
 }
