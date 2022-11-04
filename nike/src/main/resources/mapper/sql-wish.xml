@@ -44,7 +44,7 @@
 	</delete>
 	<select id="selectCount" resultType="integer">
 		select	nvl(max(refund_no),0) + 1 wishNo
-		from	refund;
+		from	refund
 	</select>
 	<select id="addWish" parameterType="map">
 		insert	into	wish
