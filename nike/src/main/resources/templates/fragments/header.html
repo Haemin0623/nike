@@ -39,11 +39,11 @@
 		
 		<th:block th:if="${session.email} != null"> <!-- 세션에 이메일 있으면 -->
 			[[${session.email}]]
-			<a href="member/logout.do">로그아웃</a>
+			<a href="/member/logout.do">로그아웃</a>
 		</th:block>
 		
 		<th:block th:if="${session.email} == null"> <!-- 세션에 이메일 없으면 -->
-			<a href="member/emailLoginForm.do">로그인 및 가입하기</a>
+			<a href="/member/emailLoginForm.do">로그인 및 가입하기</a>
 		</th:block>
 		
 	</header>
