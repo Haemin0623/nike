@@ -70,10 +70,10 @@ public class MemberController {
 		member.setMemberTel(memberTel);
 		member2 = ms.select(member.getEmail());
 		if (member2 == null) { // 가입x -> 회원가입
-			int vCode = (int) session.getAttribute("vCode");
 			if (session.getAttribute("vCode") == null) { // 인증코드 세션만료
 				result = -2;
 			} else {
+				int vCode = (int) session.getAttribute("vCode");
 				if (verifiCode == vCode) { // 사용자가 입력한 verifiCode, 메일발송한 vCode
 					String encPass = bpe.encode(member.getPassword()); // 비밀번호 암호화
 					member.setPassword(encPass);
@@ -110,7 +110,7 @@ public class MemberController {
 	}
 	@RequestMapping("/member/findPwForm.do")
 	public String findPwForm(Member member, Model model, HttpSession session) {
-		int vCode = (int) (Math.random() * 100000); /* 인증코드 랜덤으로 보내기 */
+		int vCode = (int) (Math.random() * 99999 - 10000 )+10000; /* 인증코드 랜덤으로 보내기(5자리) */
 		session.setAttribute("vCode", vCode);
 		session.setMaxInactiveInterval(60); //60초 시간지정
 		MimeMessage mm = jms.createMimeMessage();
