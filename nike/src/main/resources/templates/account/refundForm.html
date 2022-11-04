@@ -2,12 +2,7 @@
 
 <head><meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-	<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
-	<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-	<style type="text/css">
-		.err { color: red; font-weight: bold; }
-	</style>
+
 <style type="text/css">
 	/* drag & drop */
 	.drag-over { background: yellow; }
@@ -83,15 +78,16 @@ function preview(file) {
 	<tr>
 		<th>사진  <span class="glyphicon glyphicon-picture"></span>
 		</th> 
-		<td>
+		<td><input type="file" name="file" required="required">
 			<div id="drop">
 				<div id="thumbnails">그림을 올려 놓으세요</div>
 			</div>
+			
 		</td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center">
-			<input type="submit" value="회원가입" class="btn btn-success form-control">
+			<input type="submit" value="환불신청" class="btn btn-success form-control">
 		</td>
 	</tr>	
 </table>

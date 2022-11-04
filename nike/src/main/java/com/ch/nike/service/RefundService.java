@@ -7,7 +7,7 @@ public interface RefundService {
 	
 	int insertRefund(Refund refund);
 
-	int selectRefundNum(int refundNo);
+	int selectRefundNum();
 
 	void updateRefundChk(int orderDetailNo);
 }

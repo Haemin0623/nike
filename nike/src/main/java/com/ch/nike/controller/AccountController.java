@@ -20,7 +20,6 @@ import com.ch.nike.dto.Product;
 import com.ch.nike.dto.Refund;
 import com.ch.nike.dto.UserOrder;
 import com.ch.nike.dto.Wish;
-import com.ch.nike.service.AccountService;
 import com.ch.nike.service.AddressService;
 import com.ch.nike.service.CartService;
 import com.ch.nike.service.MemberService;
@@ -151,7 +150,7 @@ public class AccountController {
 			FileOutputStream fos = new FileOutputStream(new File(real+"/"+refundPhoto));
 			fos.write(refund.getFile().getBytes());
 			fos.close();
-			int refundNum = rs.selectRefundNum(refund.getRefundNo());
+			int refundNum = rs.selectRefundNum();
 			refund.setRefundNo(refundNum);
 			result = rs.insertRefund(refund);
 			rs.updateRefundChk(refund.getOrderDetailNo());
@@ -159,11 +158,16 @@ public class AccountController {
 		model.addAttribute("result", result);
 		return "account/refund";
 	}
-	@RequestMapping("/account/address.do")	// 배송지관리 by선희
+	@RequestMapping("/account/address.do")	// 배송지관리로 이동 by선희
 	public String address(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
 		List<Address> addrList = as.selectAddr(email);
 		model.addAttribute("addrList", addrList);
 		return "account/address";
+	}
+	@RequestMapping("/account/addAddr.do")
+	public String addAddr(Model model, HttpSession session) {
+		
+		return "account/addAddr";
 	}
 }

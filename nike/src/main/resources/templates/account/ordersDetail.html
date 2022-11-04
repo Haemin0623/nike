@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -13,7 +15,7 @@
 </script>
 </head>
 <body>
-<div>
+<div layout:fragment="content">
 	<ul th:if="${#lists.size(userOrder)} != 0" th:each="orders:${list}">
 		<li><a href="">아래 이미지 누르면 해당 상품의 상세페이지로 이동
 				<img alt="" th:src="@{/images/product_photo/}+${orders.product_photo}">

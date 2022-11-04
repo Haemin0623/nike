@@ -41,4 +41,10 @@ public class ProductController {
 		return "product/productList";
 	}
 	
+	@RequestMapping("/product/product.do")	// 등록된 상품 불러오기 by선희
+	public String product(Model model) {
+		List<Product> list = ps.selectProduct();
+		model.addAttribute("list", list);
+		return "product/product";
+	}
 }

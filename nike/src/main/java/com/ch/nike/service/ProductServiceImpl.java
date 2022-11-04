@@ -48,5 +48,10 @@ public class ProductServiceImpl implements ProductService{
 		return pm.selectCartThum(productDetailNo);
 	}
 
+	@Override
+	public List<Product> selectProduct() {
+		return pm.selectProduct();
+	}
+
 
 }

@@ -37,5 +37,8 @@
 			pd.product_detail_no=#{product_detail_no}) and batch=1) pp, product_detail pd, cart c where p.product_no
 			=pp.product_no and p.product_no=pd.product_no and #{product_detail_no}=pd.product_detail_no
 	</select>
+	<select id="selectProduct" resultType="product">
+		select p.*, pp.product_photo, pp.batch  from product p, product_photo pp where p.product_no=pp.product_no and batch=1
+	</select>
 
 </mapper>

@@ -8,7 +8,7 @@ import com.ch.nike.dto.Refund;
 public interface RefundMapper {
 	String selectName(int orderDetailNo);
 	
-	int selectRefundNum(int refundNo);
+	int selectRefundNum();
 
 	int insertRefund(Refund refund);
 

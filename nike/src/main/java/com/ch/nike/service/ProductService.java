@@ -19,6 +19,8 @@ public interface ProductService {
 	List<Product> adminproductlist();
 	
 	Product selectCartThum(int productDetailNo);
+
+	List<Product> selectProduct();
 	
 
 }

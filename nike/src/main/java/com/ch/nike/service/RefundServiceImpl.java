@@ -18,8 +18,8 @@ public class RefundServiceImpl implements RefundService {
 		return rm.insertRefund(refund);
 	}
 
-	public int selectRefundNum(int refundNo) {
-		return rm.selectRefundNum(refundNo);
+	public int selectRefundNum() {
+		return rm.selectRefundNum();
 	}
 
 	public void updateRefundChk(int orderDetailNo) {
