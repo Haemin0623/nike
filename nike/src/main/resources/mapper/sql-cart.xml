@@ -4,7 +4,9 @@
 <mapper namespace="com.ch.nike.mapper.CartMapper">
   <!-- 	cartList -->
 	<select id="selectCart" parameterType="string" resultType="cart">
-		select * from cart where email=#{email}
+		select	*
+		from	cart
+		where	email = #{email}
 	</select>
 
 </mapper>

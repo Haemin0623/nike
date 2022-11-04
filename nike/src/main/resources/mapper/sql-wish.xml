@@ -3,28 +3,53 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.WishMapper">
 	<select id="wishselect" parameterType="string" resultType="wish">
-		select p.*, h.* from wish w, product p, product_photo h where 
-		p.product_no = h.product_no and p.product_no = w.product_no and w.email=#{email} and h.batch=1 order by w.wish_no desc
+		select	p.*,
+				h.*
+		from	wish w,
+				product p,
+				product_photo h
+		where	p.product_no = h.product_no
+			and p.product_no = w.product_no
+			and w.email = #{email}
+			and h.batch = 1
+	order by	w.wish_no desc
 	</select>
 	<!-- wishList -->
 	<select id="selectWish" parameterType="string" resultType="wish">
-		select * from wish where email=#{email}
+		select	*
+		from	wish
+		where	email = #{email}
 	</select>
 	<select id="selectWishThum" parameterType="integer" resultType="product">
-		select p.*, pp.product_photo from product p, (select * from product_photo where product_no=#{product_no} 
-			and batch=1) pp where p.product_no=#{product_no}
+		select	p.*,
+				pp.product_photo
+		from	product p,
+				(select	*
+				from	product_photo
+				where	product_no = #{product_no} 
+					and batch = 1) pp
+		where	p.product_no = #{product_no}
 	</select>	
 	<!-- 위시리스트 추가용 -->
 	<select id="selectWishResult" parameterType="map" resultType="integer">
-		select wishNo from wish where productNo=#{productNo} and email=#{email}
+		select	wishNo
+		from	wish
+		where	productNo = #{productNo}
+		and		email = #{email}
 	</select>
 	<delete id="deleteWish">
-		delete from wish where productNo=#{productNo} and email=#{email}
+		delete	from	wish
+		where			productNo = #{productNo}
+					and email = #{email}
 	</delete>
 	<select id="selectCount" resultType="integer">
-		select nvl(max(refund_no),0) +1 wishNo from refund;
+		select	nvl(max(refund_no),0) + 1 wishNo
+		from	refund;
 	</select>
 	<select id="addWish" parameterType="map">
-		insert into wish values(#{wishNo}, #{productNo}, #{email})
+		insert	into	wish
+		values			(#{wishNo},
+						#{productNo},
+						#{email})
 	</select>
 </mapper>

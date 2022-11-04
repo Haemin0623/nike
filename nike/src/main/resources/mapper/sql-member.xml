@@ -3,19 +3,34 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.MemberMapper">
 	<select id="select" parameterType="string" resultType="member">
-		select * from member where email=#{email}
+		select	*
+		from	member
+		where	email = #{email}
 	</select>
 	<insert id="insert" parameterType="member">
-		insert into member values(#{email}, #{name}, #{password}, #{memberGender},#{birthday},
-		 #{memberTel}, sysdate, 'N')
+		insert	into	member
+				values	(#{email},
+						#{name},
+						#{password},
+						#{memberGender},
+						#{birthday},
+						#{memberTel},
+						sysdate,
+						'N')
 	</insert>
 	<select id="memberlist" resultType="member"> <!-- 관리자 회원목록 -->
-		select * from member order by reg_date desc
+		select	*
+		from	member
+	order by	reg_date desc
 	</select>
 	<update id="update" parameterType="member"> <!-- 새비밀번호 변경 -->
-		update member set password=#{password} where email=#{email}
+		update	member
+		set		password = #{password}
+		where	email = #{email}
 	</update>
 	<update id="deleteMember" parameterType="string">
-		update member set member_del='Y' where email=#{email}
+		update	member
+		set		member_del = 'Y'
+		where	email = #{email}
 	</update>
 </mapper>
