@@ -39,7 +39,7 @@
 				address a,
 				(select	*
 				from	user_order
-				where	order_no = #{order_no}) uo,
+				where	order_no = #{order_no}) uo,asa
 				product_photo pp,
 				product_detail pd,
 				refund r
