@@ -13,10 +13,10 @@ import com.ch.nike.service.WishService;
 public class WishController {
 	@Autowired
 	private WishService ws;
-	@RequestMapping("addWish.do")	// 위시리스트 추가 및 삭제 by선희
+	@RequestMapping("/product/addWish.do")	// 위시리스트 추가 및 삭제 by선희
 	public String addWish(int productNo, Model model, HttpSession session) {
 		int result = 0;
-		if (session != null) {
+		if (session.getAttribute("email") != null) {
 			String email = (String) session.getAttribute("email");
 			int wishResult = ws.selectWishResult(email, productNo);
 			if (wishResult != 0) {	// 있으면 삭제
