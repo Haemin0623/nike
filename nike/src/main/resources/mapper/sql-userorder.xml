@@ -35,11 +35,11 @@
 		from	product p,
 				(select	*
 				from	user_order_detail
-				where	order_no = #{order_no}) uod,
+				where	order_no = #{orderNo}) uod,
 				address a,
 				(select	*
 				from	user_order
-				where	order_no = #{order_no}) uo,asa
+				where	order_no = #{orderNo}) uo,
 				product_photo pp,
 				product_detail pd,
 				refund r

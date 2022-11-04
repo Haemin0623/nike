@@ -26,27 +26,27 @@
 		from	product p,
 				(select	*
 				from	product_photo
-				where	product_no = #{product_no} 
+				where	product_no = #{productNo} 
 					and batch = 1) pp
-		where	p.product_no = #{product_no}
+		where	p.product_no = #{productNo}
 	</select>	
 	<!-- 위시리스트 추가용 -->
-	<select id="selectWishResult" parameterType="map" resultType="integer">
-		select	wishNo
+	<select id="selectWishResult" parameterType="hashmap" resultType="wish">
+		select	*
 		from	wish
-		where	productNo = #{productNo}
+		where	product_no = #{productNo}
 		and		email = #{email}
 	</select>
-	<delete id="deleteWish">
+	<delete id="deleteWish" parameterType="hashmap">
 		delete	from	wish
-		where			productNo = #{productNo}
+		where			product_no = #{productNo}
 					and email = #{email}
 	</delete>
 	<select id="selectCount" resultType="integer">
-		select	nvl(max(refund_no),0) + 1 wishNo
-		from	refund
+		select	nvl(max(wish_no),0) + 1 wishNo
+		from	wish
 	</select>
-	<select id="addWish" parameterType="map">
+	<select id="addWish" parameterType="hashmap">
 		insert	into	wish
 		values			(#{wishNo},
 						#{productNo},

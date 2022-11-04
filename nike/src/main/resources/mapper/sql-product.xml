@@ -88,13 +88,13 @@
 				where	product_no = (select	product_no
 										from	product_detail pd,
 												cart c
-										where	pd.product_detail_no = #{product_detail_no})
+										where	pd.product_detail_no = #{productDetailNo})
 					and batch = 1) pp,
 				product_detail pd,
 				cart c
 		where	p.product_no = pp.product_no
 			and p.product_no = pd.product_no
-			and #{product_detail_no} = pd.product_detail_no
+			and #{productDetailNo} = pd.product_detail_no
 	</select>
 	<select id="selectProduct" resultType="product">
 		select	p.*,
