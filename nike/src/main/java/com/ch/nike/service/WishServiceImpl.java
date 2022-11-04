@@ -26,14 +26,17 @@ public class WishServiceImpl implements WishService{
 	public Product selectWishThum(int productNo) {
 		return wm.selectWishThum(productNo);
 	}
-	public int selectWishResult(String email, int productNo) {
+	public Wish selectWishResult(String email, int productNo) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("email", email);
 		map.put("productNo", productNo);
 		return wm.selectWishResult(map);
 	}
 	public void deleteWish(String email, int productNo) {
-		wm.deleteWish();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("email", email);
+		map.put("productNo", productNo);
+		wm.deleteWish(map);
 	}
 	public int selectCount() {
 		return wm.selectCount();

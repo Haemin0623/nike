@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ch.nike.dto.Wish;
 import com.ch.nike.service.WishService;
 
 @Controller
@@ -18,12 +19,13 @@ public class WishController {
 		int result = 0;
 		if (session.getAttribute("email") != null) {
 			String email = (String) session.getAttribute("email");
-			int wishResult = ws.selectWishResult(email, productNo);
-			if (wishResult != 0) {	// 있으면 삭제
+			Wish wish = ws.selectWishResult(email, productNo);
+			if (wish != null) {	// 있으면 삭제
 				ws.deleteWish(email, productNo);
 				result = 1;
 			} else {				// 없으면 추가
 				int wishNo = ws.selectCount();
+				System.out.println("wishNo="+wishNo);
 				ws.addWish(email, productNo, wishNo);
 				result = 2;
 			}

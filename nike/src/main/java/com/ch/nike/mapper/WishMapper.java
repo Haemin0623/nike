@@ -17,8 +17,8 @@ public interface WishMapper {
 	List<Wish> wishselect(String email);
 	List<Wish> selectWish(String email);	// 이메일로 wishlist 가져오기
 	Product selectWishThum(int productNo);
-	int selectWishResult(HashMap<String, Object> map);
-	void deleteWish();
+	Wish selectWishResult(HashMap<String, Object> map);
+	void deleteWish(HashMap<String, Object> map);
 	int selectCount();
 	void addWish(HashMap<String, Object> map);
 

@@ -109,6 +109,7 @@ create table product_feature (
 
 -- 위시리스트
 drop table wish cascade constraints;
+select * from wish;
 
 create table wish (
 	wish_no		number(4)		not null	primary key,
