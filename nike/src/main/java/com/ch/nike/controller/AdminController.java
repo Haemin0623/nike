@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ch.nike.dto.Member;
 import com.ch.nike.dto.Notice;
+import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Product;
 import com.ch.nike.dto.QnA;
 import com.ch.nike.dto.Review;
@@ -53,9 +54,24 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/adminMemberList.do")// 관리자 멤버리스트 by창률 
-	public String adminMemberList(Model model) {
+	public String adminMemberList(String pageNum, Model model, PagingBean pagingbean) {
+		int rowPerPage = 10; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = ms.getTotal();		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		pagingbean.setStartRow(startRow); 
+		pagingbean.setEndRow(endRow);
+		List<Member> list2 = ms.paginglist(pagingbean);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		List<Member> list = ms.memberlist();
-		model.addAttribute("list",list);
+		
+		model.addAttribute("num", num);
+		model.addAttribute("list", list);
+		model.addAttribute("list2",list2);
+		model.addAttribute("pb", pb);
 		return "admin/adminMemberList";
 	} 
 	@RequestMapping("/adminMemberDetail.do")// 관리자 멤버상세 
@@ -72,9 +88,23 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/adminProductList.do")// 관리자 상품 리스트 by창률 
-	public String adminProductList(Model model) {
+	public String adminProductList(String pageNum, Model model, PagingBean pagingbean) {
+		int rowPerPage = 10; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = ms.getTotal();		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		pagingbean.setStartRow(startRow);
+		pagingbean.setEndRow(endRow);
+		List<Product> list2 = ps.paginglist(pagingbean);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		List<Product> list = ps.adminproductlist();
-		model.addAttribute("list",list);
+		model.addAttribute("num", num);
+		model.addAttribute("list", list);
+		model.addAttribute("list2",list2);
+		model.addAttribute("pb", pb);
 		return "admin/adminProductList";
 	}
 	

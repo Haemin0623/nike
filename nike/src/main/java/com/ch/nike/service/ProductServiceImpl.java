@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.nike.dto.Category;
+import com.ch.nike.dto.Member;
+import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Product;
 import com.ch.nike.mapper.ProductMapper;
 
@@ -53,5 +55,10 @@ public class ProductServiceImpl implements ProductService{
 		return pm.selectProduct();
 	}
 
+
+	@Override
+	public List<Product> paginglist(PagingBean pagingbean) {
+		return pm.paginglist(pagingbean);
+	}
 
 }

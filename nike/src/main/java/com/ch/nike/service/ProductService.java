@@ -3,6 +3,8 @@ package com.ch.nike.service;
 import java.util.List;
 
 import com.ch.nike.dto.Category;
+import com.ch.nike.dto.Member;
+import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Product;
 
 public interface ProductService {
@@ -21,6 +23,6 @@ public interface ProductService {
 	Product selectCartThum(int productDetailNo);
 
 	List<Product> selectProduct();
-	
 
+	List<Product> paginglist(PagingBean pagingbean);
 }

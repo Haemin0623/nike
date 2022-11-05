@@ -7,6 +7,7 @@
 		from	member
 		where	email = #{email}
 	</select>
+	
 	<insert id="insert" parameterType="member">
 		insert	into	member
 				values	(#{email},
@@ -33,4 +34,15 @@
 		set		member_del = 'Y'
 		where	email = #{email}
 	</update>
+	
+	<select id="getTotal" resultType="integer"> <!-- 페이징용 전체 회원 카운트 by창률 -->
+		select 	count(*) 
+		from	member
+	</select>
+	
+	<select id="paginglist" parameterType="pagingbean" resultType="member">
+		select 	* 
+		from 	(select a.*, rowNum rn from (select * from member order by reg_date desc)a) 
+		where 	rn between #{startRow} and #{endRow}
+	</select>
 </mapper>

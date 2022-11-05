@@ -106,4 +106,10 @@
 			and batch = 1
 	</select>
 
+	
+	<select id="paginglist" parameterType="pagingbean" resultType="product">
+		select 	* 
+		from 	(select a.*, rowNum rn from (select * from product order by product_no desc)a) 
+		where 	rn between #{startRow} and #{endRow}
+	</select>
 </mapper>
