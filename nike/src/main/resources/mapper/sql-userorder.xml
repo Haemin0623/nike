@@ -49,4 +49,9 @@
 			and p.product_no = pd.product_no
 			and r.order_detail_no = uod.order_detail_no
 	</select>
+	<select id="paginglist" parameterType="pagingbean" resultType="userorder">
+		select 	* 
+		from 	(select a.*, rowNum rn from (select * from user_order order by order_no desc)a) 
+		where 	rn between #{startRow} and #{endRow}
+	</select>
 </mapper>

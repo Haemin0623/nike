@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Review;
+import com.ch.nike.dto.UserOrder;
 import com.ch.nike.mapper.ProductMapper;
 import com.ch.nike.mapper.ReviewMapper;
 
@@ -21,5 +23,9 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public List<Review> reviewselect(String email) {
 		return rm.reviewselect(email);
+	}
+	@Override
+	public List<UserOrder> paginglist(PagingBean pagingbean) {
+		return rm.paginglist(pagingbean);
 	}
 }

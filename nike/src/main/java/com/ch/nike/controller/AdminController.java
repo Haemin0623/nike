@@ -119,16 +119,44 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/adminOrderList.do")// 관리자 주문 리스트 by창률 
-	public String adminOrderList(Model model) {
+	public String adminOrderList(String pageNum, Model model, PagingBean pagingbean) {
+		int rowPerPage = 10; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = ms.getTotal();		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		pagingbean.setStartRow(startRow);
+		pagingbean.setEndRow(endRow);
+		List<UserOrder> list2 = uos.paginglist(pagingbean);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		List<UserOrder> list = uos.orderlist();
-		model.addAttribute("list",list);
+		model.addAttribute("num", num);
+		model.addAttribute("list", list);
+		model.addAttribute("list2",list2);
+		model.addAttribute("pb", pb);
 		return "admin/adminOrderList";
 	}
 	
 	@RequestMapping("/adminQnaList.do")// 관리자 문의 리스트 by창률 
-	public String adminQnaList(Model model) {
+	public String adminQnaList(String pageNum, Model model, PagingBean pagingbean) {
+		int rowPerPage = 10; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = ms.getTotal();		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		pagingbean.setStartRow(startRow);
+		pagingbean.setEndRow(endRow);
+		List<UserOrder> list2 = qs.paginglist(pagingbean);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		List<QnA> list = qs.qnalist();
-		model.addAttribute("list",list);
+		model.addAttribute("num", num);
+		model.addAttribute("list", list);
+		model.addAttribute("list2",list2);
+		model.addAttribute("pb", pb);
 		return "admin/adminQnaList";
 	}
 	
@@ -138,16 +166,44 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/adminReviewList.do") // 관리자 리뷰 리스트 by창률 
-	public String adminReviewList(Model model) {
+	public String adminReviewList(String pageNum, Model model, PagingBean pagingbean) {
+		int rowPerPage = 10; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = ms.getTotal();		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		pagingbean.setStartRow(startRow);
+		pagingbean.setEndRow(endRow);
+		List<UserOrder> list2 = rs.paginglist(pagingbean);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		List<Review> list = rs.reviewlist();
-		model.addAttribute("list",list);
+		model.addAttribute("num", num);
+		model.addAttribute("list", list);
+		model.addAttribute("list2",list2);
+		model.addAttribute("pb", pb);
 		return "admin/adminReviewList";
 	}
 	
 	@RequestMapping("/adminNoticeList.do") //공지 리스트 by창률
-	public String adminNoticeList(Model model) {
+	public String adminNoticeList(String pageNum, Model model, PagingBean pagingbean) {
+		int rowPerPage = 10; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = ms.getTotal();		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		pagingbean.setStartRow(startRow);
+		pagingbean.setEndRow(endRow);
+		List<UserOrder> list2 = ns.paginglist(pagingbean);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		List<Notice> list = ns.noticelist();
-		model.addAttribute("list",list);
+		model.addAttribute("num", num);
+		model.addAttribute("list", list);
+		model.addAttribute("list2",list2);
+		model.addAttribute("pb", pb);
 		return "admin/adminNoticeList";
 	}
 	
@@ -161,9 +217,23 @@ public class AdminController {
 		return "admin/adminNoticeInsert";
 	}
 	@RequestMapping("/adminStoreList.do")	//관리자 매장 관리 by창률
-	public String adminStoreList(Model model) {
+	public String adminStoreList(String pageNum, Model model, PagingBean pagingbean) {
+		int rowPerPage = 10; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = ms.getTotal();		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		pagingbean.setStartRow(startRow);
+		pagingbean.setEndRow(endRow);
+		List<UserOrder> list2 = ss.paginglist(pagingbean);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		List<Store> list = ss.storelist();
-		model.addAttribute("list",list);
+		model.addAttribute("num", num);
+		model.addAttribute("list", list);
+		model.addAttribute("list2",list2);
+		model.addAttribute("pb", pb);
 		return "admin/adminStoreList";
 	}
 	@RequestMapping("/adminStoreInsert.do") //관리자 매장 등록

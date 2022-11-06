@@ -7,4 +7,9 @@
 		from	notice
 	order by	notice_no desc
 	</select>
+	<select id="paginglist" parameterType="pagingbean" resultType="notice">
+		select 	* 
+		from 	(select a.*, rowNum rn from (select * from notice order by notice_no desc)a) 
+		where 	rn between #{startRow} and #{endRow}
+	</select>
 </mapper>

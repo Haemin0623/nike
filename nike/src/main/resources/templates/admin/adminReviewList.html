@@ -34,6 +34,57 @@
 			<td><a>삭제</a></td>
 		</tr>
 	</table>
+	<div>
+		<form action="adminReviewList.do">
+			<select name="keyword">
+				<option value="reviewNo">리뷰번호</option>
+				<option value="productNo">상품번호</option>
+				<option value="email">이메일</option>
+			</select>
+			<input type="text" name="search">
+			<input type="submit" value="검색">
+		</form>
+	</div>
+	<span>
+		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
+		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
+			<li>
+				<a th:href="@{/adminReviewList.do(pageNum=1)}">
+					<span class="glyphicon glyphicon-fast-backward"></span>
+				</a>
+			</li>
+			<li>
+				<a th:href="@{/adminReviewList.do(pageNum=${pb.startPage-1 })}">
+					<span class="glyphicon glyphicon-triangle-left"></span>
+				</a>
+			</li>
+		</th:block>
+		<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
+			<th:block th:if="${pb.currentPage == i }">
+				<li class="active">
+					<a th:href="@{/adminReviewList.do(pageNum=${i})}">[[${i}]]</a>
+				</li>
+			</th:block>
+			<th:block th:if="${pb.currentPage != i }">
+				<li>
+					<a th:href="@{/adminReviewList.do(pageNum=${i})}">[[${i}]]</a>
+				</li>
+			</th:block>		
+		</th:block>
+		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
+		<th:block th:if="${pb.endPage < pb.totalPage}">
+			<li>
+				<a th:href="@{/adminReviewList.do(pageNum=${pb.endPage+1})}">
+					<span class="glyphicon glyphicon-triangle-right"></span>
+				</a>
+			</li>
+			<li>
+				<a th:href="@{/adminReviewList.do(pageNum=${pb.totalPage})}">
+					<span class="glyphicon glyphicon-fast-forward"></span>
+				</a>
+			</li>
+		</th:block>
+	</span>
 </div>
 </body>
 </html>

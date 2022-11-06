@@ -7,4 +7,9 @@
 		from	store
 	order by	store_no desc
 	</select>
+	<select id="paginglist" parameterType="pagingbean" resultType="store">
+		select 	* 
+		from 	(select a.*, rowNum rn from (select * from store order by store_no desc)a) 
+		where 	rn between #{startRow} and #{endRow}
+	</select>
 </mapper>
