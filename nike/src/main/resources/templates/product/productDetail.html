@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function color(color, productNo) {
+		document.getElementById("photoSpot").style.visibility = "hidden";
+		location.href = "colorChange.do?color=" + color + "&productNo="+ productNo;
+		document.getElementById("colorChange").style.visibility = "visible";
+	}
+</script>
+</head>
+<body>
+<div layout:fragment="content">
+	<span id="photoSpot" >
+		<span th:each="photo:${pp}" >
+			<img th:src="@{/images/product_photo/}+${photo.productPhoto}" width="200">
+		</span><br>
+		[[${msg}]]<br>
+		<span id="colorChange" th:if="${anotherColor != null}">
+			<span th:each="photoChange:${anotherColor}"> 
+				<img th:src="@{/images/product_photo/}+${photoChange.productPhoto}" width="200">
+			</span><br>
+		</span>
+	</span><br>
+		
+	[[${product.productName}]]<br>
+	색상 : <span th:each="cList:${color}">
+				<button th:onclick="color([[${cList.color}]],[[${product.productNo}]])">[[${cList.color}]]</button>
+		  </span><br>
+	사이즈 종류 : <span th:each="sList:${size}">
+					[[${sList.productSize}]]
+				</span><br>
+	<a th:href="@{addWish.do(productNo=${product.productNo})}">위시리스트</a><br>
+	<a th:href="@{addCart.do(productNo=${product.productNo})}">장바구니</a><br>
+	상세설명 : [[${product.detail}]]<br>
+	
+	소재: <span th:each="feature:${pf}">[[${feature.feature}]]</span>
+	
+	리뷰<br>
+	
+</div>
+
+</body>
+</html>

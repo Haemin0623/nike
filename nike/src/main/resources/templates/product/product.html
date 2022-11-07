@@ -9,16 +9,18 @@
 </head>
 <body>
 <div layout:fragment="content">
-<ul th:each="product:${list}">
-	<li>
-		<img alt="" th:src="@{image/product_photo/}+${product.productPhoto}"><br>
-		상품명 : [[${product.productName}]]<br>
-		가  격 : [[${product.price}]]<br>
-		<a th:href="@{addWish.do(productNo=${product.productNo})}">위시리스트</a>
-		<button th:onclick="addCart">장바구니</button>
-		
-	</li>
-</ul>
+	<ul th:each="product:${list}">
+		<li>
+			<a th:href="@{productDetail.do(productNo=${product.productNo})}">
+			<img alt="누르시면 상세페이지로 이동합니다." th:src="@{/images/product_photo/}+${product.productPhoto}" width="200"><br>
+			상품명 : [[${product.productName}]]<br>
+			가  격 : [[${product.price}]]<br>
+			</a>
+			<br>
+			
+			
+		</li>
+	</ul>
 </div>
 </body>
 </html>

@@ -24,6 +24,11 @@ public class Product {
 	
 	private String cartQuantity;
 	
-
-
+	private int productDetailNo;
+	private int stock;
+	private int photoNo;
+	private int large;
+	private int small;
+	private int featurelNo;
+	private String feature;
 }

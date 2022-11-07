@@ -26,6 +26,9 @@ public interface ProductMapper {
 	Product selectCartThum(int productDetailNo);
 
 	List<Product> selectProduct();
-	
+
+	Product selectProductOne(int productNo);
+
+
 
 }

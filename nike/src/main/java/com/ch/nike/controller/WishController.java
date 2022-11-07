@@ -25,7 +25,6 @@ public class WishController {
 				result = 1;
 			} else {				// 없으면 추가
 				int wishNo = ws.selectCount();
-				System.out.println("wishNo="+wishNo);
 				ws.addWish(email, productNo, wishNo);
 				result = 2;
 			}

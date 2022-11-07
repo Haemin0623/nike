@@ -52,6 +52,11 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> selectProduct() {
 		return pm.selectProduct();
 	}
+	public Product selectProductOne(int productNo) {
+		return pm.selectProductOne(productNo);
+	}
+
+
 
 
 }

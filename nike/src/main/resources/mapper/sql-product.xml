@@ -105,5 +105,14 @@
 		where	p.product_no = pp.product_no
 			and batch = 1
 	</select>
+	<select id="selectFeature" parameterType="integer" resultType="ProductFeature">
+		select * from product_feature where product_no=#{productNo}
+	</select>
+	<select id="selectPP" parameterType="integer" resultType="ProductPhoto">
+		select * from product_photo where product_no=#{productNo}
+	</select>
+	<select id="selectProductOne" parameterType="integer" resultType="Product">
+		select * from product where product_no=#{productNo}
+	</select>
 
 </mapper>
