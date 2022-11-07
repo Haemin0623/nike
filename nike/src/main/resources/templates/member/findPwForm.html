@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 </head>
 <body>
 
@@ -26,23 +25,6 @@
 </form>
 </body>
 
-<script type="text/javascript">
-	const timeArea = document.getElementById('time');
-	let date = 60;
-	
-	function getTime() {
-	    date -= 1
-	    timeArea.innerText = date;
-	
-		if (date == -1) {
-			clearInterval(interval);
-			timeArea.innerText = '시간만료';
-		}
-	}
-	
-	getTime();
-	let interval = setInterval(getTime, 1000)
-	
-</script>
+<script type="text/javascript" th:src="@{/js/project/verifyCodeTimer.js}"></script>
 
 </html>
