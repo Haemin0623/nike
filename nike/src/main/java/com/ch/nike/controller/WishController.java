@@ -41,4 +41,12 @@ public class WishController {
 		model.addAttribute("color", color);
 		return "product/addWish";
 	}
+	@RequestMapping("/account/deleteWish.do")
+	public String deleteWish(int productNo, String color, Model model, HttpSession session) {
+		String email = (String) session.getAttribute("email");
+		ws.deleteWish(email, productNo, color);
+		int result = 1;
+		model.addAttribute("result", result);
+		return "account/deleteWish";
+	}
 }

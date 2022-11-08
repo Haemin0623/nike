@@ -16,9 +16,10 @@
 		<li>
 			<a th:href="@{/product/productDetail.do(productNo=${wishList.productNo},color=${wishList.color})}">
 				<img alt="누르시면 상세페이지로 이동합니다." th:src="@{/images/product_photo/}+${wishList.productPhoto}" width="200">
-			</a>
-			[[${wishList.productName}]]
-			[[${wishList.price}]]
+			</a><br>
+			[[${wishList.productName}]]<br>
+			[[${wishList.price}]]원<br>
+			<a th:href="@{deleteWish.do(productNo=${wishList.productNo},color=${wishList.color})}">위시리스트 삭제</a><br><br>
 		</li>
 	</ul>
 </div>
