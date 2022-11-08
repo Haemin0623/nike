@@ -11,6 +11,6 @@ public interface WishService {
 	Product selectWishThum(int productNo);
 	Wish selectWishResult(String email, int productNo);
 	void deleteWish(String email, int productNo);
-	int selectCount();
+	int wishCount();
 	void addWish(String email, int productNo, int wishNo);
 }

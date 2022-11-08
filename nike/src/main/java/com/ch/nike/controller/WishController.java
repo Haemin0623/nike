@@ -15,7 +15,7 @@ public class WishController {
 	@Autowired
 	private WishService ws;
 	@RequestMapping("/product/addWish.do")	// 위시리스트 추가 및 삭제 by선희
-	public String addWish(int productNo, Model model, HttpSession session) {
+	public String addWish(int productNo, String color, Model model, HttpSession session) {
 		int result = 0;
 		if (session.getAttribute("email") != null) {
 			String email = (String) session.getAttribute("email");
@@ -24,7 +24,7 @@ public class WishController {
 				ws.deleteWish(email, productNo);
 				result = 1;
 			} else {				// 없으면 추가
-				int wishNo = ws.selectCount();
+				int wishNo = ws.wishCount();
 				ws.addWish(email, productNo, wishNo);
 				result = 2;
 			}
@@ -33,6 +33,7 @@ public class WishController {
 		}
 		model.addAttribute("result", result);
 		model.addAttribute("productNo", productNo);
+		model.addAttribute("color", color);
 		return "product/addWish";
 	}
 }

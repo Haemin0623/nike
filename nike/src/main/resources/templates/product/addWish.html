@@ -4,13 +4,13 @@
 <span th:if="${result} == 2">
 	<script type="text/javascript">
 		alert("위시리스트에 추가되었습니다.");
-		location.href="productDetail.do?productNo=" +[[${productNo}]];
+		location.href="productDetail.do?productNo=[[${productNo}]]&color=[[${color}]]";
 	</script>
 </span>
 <span th:if="${result} == 1">
 	<script type="text/javascript">
 		alert("위시리스트에 삭제되었습니다.");
-		location.href="productDetail.do?productNo=" +[[${productNo}]];
+		location.href="productDetail.do?productNo=[[${productNo}]]&color=[[${color}]]";
 	</script>
 </span>
 <span th:if="${result} == 0">

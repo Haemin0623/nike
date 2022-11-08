@@ -19,7 +19,7 @@ public interface WishMapper {
 	Product selectWishThum(int productNo);
 	Wish selectWishResult(HashMap<String, Object> map);
 	void deleteWish(HashMap<String, Object> map);
-	int selectCount();
+	int wishCount();
 	void addWish(HashMap<String, Object> map);
 
 

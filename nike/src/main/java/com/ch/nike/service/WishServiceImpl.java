@@ -38,8 +38,8 @@ public class WishServiceImpl implements WishService{
 		map.put("productNo", productNo);
 		wm.deleteWish(map);
 	}
-	public int selectCount() {
-		return wm.selectCount();
+	public int wishCount() {
+		return wm.wishCount();
 	}
 	public void addWish(String email, int productNo, int wishNo) {
 		HashMap<String, Object> map = new HashMap<>();

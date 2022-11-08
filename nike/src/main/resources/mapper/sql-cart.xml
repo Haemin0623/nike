@@ -8,5 +8,31 @@
 		from	cart
 		where	email = #{email}
 	</select>
+	<select id="getDetailNo" parameterType="hashmap" resultType="integer">
+		select	product_detail_no 
+		from	product_detail 
+		where	product_no = #{productNo}
+				and product_size = #{size}
+				and color = #{color}
+	</select>
+	<select id="countCartNo" parameterType="hashmap" resultType="integer">
+		select	nvl(count(cart_no),0) cartNo 
+		from	cart 
+		where	email = #{email}
+			and product_detail_no = #{productDetailNo}
+	</select>
+	<update id="updateCartQuantity" parameterType="hashmap">
+		update	cart 
+		set		cart_quantity = cart_quantity+1 
+		where	email = #{email}
+			and product_detail_no = #{productDetailNo}
+	</update>
+	<select id="cartCount" resultType="integer">
+		select	nvl(max(cart_no), 0) + 1 cartNo
+		from	cart
+	</select>
+	<insert id="addCart" parameterType="hashmap">
 
+		insert into cart values(#{cartNo}, #{email}, #{productDetailNo}, 1)
+	</insert>
 </mapper>

@@ -42,14 +42,14 @@
 		where			product_no = #{productNo}
 					and email = #{email}
 	</delete>
-	<select id="selectCount" resultType="integer">
+	<select id="wishCount" resultType="integer">
 		select	nvl(max(wish_no),0) + 1 wishNo
 		from	wish
 	</select>
-	<select id="addWish" parameterType="hashmap">
+	<insert id="addWish" parameterType="hashmap">
 		insert	into	wish
 		values			(#{wishNo},
 						#{productNo},
 						#{email})
-	</select>
+	</insert>
 </mapper>

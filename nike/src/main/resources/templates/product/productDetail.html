@@ -26,22 +26,21 @@
 		  </span><br><br>
 	<form action="addCart.do" method="post" >
 		<input type="hidden" name="productNo" th:value="${product.productNo}">
-		<input type="hidden" name="color" th:value="${product.productNo}">
+		<input type="hidden" name="color" th:value="${color}">
 	사이즈 종류 : 
 		<span th:each="sList:${sizes}">
-			<input type="radio" th:value="${sList.productSize}" name="size" th:text="${sList.productSize}">
+			<input type="radio" th:value="${sList.productSize}" name="size" th:text="${sList.productSize}" required="required">
 		</span><br><br>
-		<input type="submit" value="장바구니" class="btn btn-danger">
+		<input type="submit" value="장바구니" class="btn btn-danger"><br><br>
 	</form>
-	<a th:href="@{addCart.do(productNo=${product.productNo})}">장바구니</a><br><br>
-	<a th:href="@{addWish.do(productNo=${product.productNo})}">위시리스트</a><br><br>
+	<a th:href="@{addWish.do(productNo=${product.productNo},color=${color})}">위시리스트</a><br><br>
 	상세설명 : [[${product.detail}]]<br>
 	
 	특징: 
 		<span th:each="feature:${pf}">
 			[[${feature.feature}]] /
 		</span>
-	<br>
+	<br><br>
 	리뷰<br>
 	
 </div>

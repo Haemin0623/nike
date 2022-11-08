@@ -3,14 +3,14 @@
 <title>Insert title here</title></head><body>
 <span th:if="${result} == 2">
 	<script type="text/javascript">
-		alert("위시리스트에 추가되었습니다.");
-		location.href="productDetail.do?productNo=" +[[${productNo}]];
+		alert("장바구니 수량 추가 완료");
+		location.href="productDetail.do?productNo=[[${productNo}]]&color=[[${color}]]";
 	</script>
 </span>
 <span th:if="${result} == 1">
 	<script type="text/javascript">
-		alert("위시리스트에 삭제되었습니다.");
-		location.href="productDetail.do?productNo=" +[[${productNo}]];
+		alert("장바구니 새로 등록 완료");
+		location.href="productDetail.do?productNo=[[${productNo}]]&color=[[${color}]]";
 	</script>
 </span>
 <span th:if="${result} == 0">
