@@ -115,6 +115,7 @@ create table wish (
 	wish_no		number(4)		not null	primary key,
 	product_no	number(4)		not null,
 	email		varchar2(50)	not null,
+	color		varchar2(50)	not null,
 
 	constraint fk_wish_email foreign key(email) references member(email),
 	constraint fk_wish_product_no foreign key(product_no) references product(product_no)

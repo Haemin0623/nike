@@ -314,21 +314,21 @@ insert into product_feature values (8, 4, '폴리에스터');
 
 
 --위시리스트
-insert into wish values (1, 1, 'hae@min.com');
-insert into wish values (2, 5, 'hae@min.com');
-insert into wish values (3, 8, 'hae@min.com');
+insert into wish values (1, 1, 'hae@min.com','블랙');
+insert into wish values (2, 2, 'hae@min.com','화이트');
+insert into wish values (3, 2, 'hae@min.com','블랙');
 
-insert into wish values (4, 2, 'soo@in.com');
-insert into wish values (5, 11, 'soo@in.com');
-insert into wish values (6, 16, 'soo@in.com');
+insert into wish values (4, 2, 'soo@in.com','화이트');
+insert into wish values (5, 11, 'soo@in.com','그린');
+insert into wish values (6, 16, 'soo@in.com','화이트');
 
-insert into wish values (7, 21, 'chang@ryul.com');
-insert into wish values (8, 4, 'chang@ryul.com');
-insert into wish values (9, 3, 'chang@ryul.com');
+insert into wish values (7, 21, 'chang@ryul.com','블랙');
+insert into wish values (8, 4, 'chang@ryul.com','핑크');
+insert into wish values (9, 3, 'chang@ryul.com','화이트');
 
-insert into wish values (10, 12, 'sun@ny.com');
-insert into wish values (11, 17, 'sun@ny.com');
-insert into wish values (12, 18, 'sun@ny.com');
+insert into wish values (10, 12, 'sun@ny.com', '블랙');
+insert into wish values (11, 17, 'sun@ny.com', '블랙');
+insert into wish values (12, 18, 'sun@ny.com', '블랙');
 
 
 -- 장바구니
