@@ -6,24 +6,18 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function color(color, productNo) {
-		document.getElementById("photoSpot").style.visibility = "hidden";
-		location.href = "colorChange.do?color=" + color + "&productNo="+ productNo;
+		location.href = "productDetail.do?color=" + color + "&productNo="+ productNo;
 		document.getElementById("colorChange").style.visibility = "visible";
 	}
 </script>
 </head>
 <body>
 <div layout:fragment="content">
-	<span id="photoSpot" >
-		<span th:each="photo:${pp}" >
-			<img th:src="@{/images/product_photo/}+${photo.productPhoto}" width="200">
+	[[${msg}]]<br>
+	<span id="colorChange" th:if="${anotherColor != null}">
+		<span th:each="photoChange:${anotherColor}"> 
+			<img th:src="@{/images/product_photo/}+${photoChange.productPhoto}" width="200">
 		</span><br>
-		[[${msg}]]<br>
-		<span id="colorChange" th:if="${anotherColor != null}">
-			<span th:each="photoChange:${anotherColor}"> 
-				<img th:src="@{/images/product_photo/}+${photoChange.productPhoto}" width="200">
-			</span><br>
-		</span>
 	</span><br>
 		
 	[[${product.productName}]]<br><br>

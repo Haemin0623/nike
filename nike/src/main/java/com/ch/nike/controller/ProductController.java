@@ -49,7 +49,6 @@ public class ProductController {
 		model.addAttribute("productcount",product2);
 		model.addAttribute("color",product3);
 		model.addAttribute("colorcount",product4);
-		
 		return "product/productList";
 	}
 	
@@ -57,55 +56,31 @@ public class ProductController {
 	public String product(Model model) {
 		List<Product> list = ps.selectProduct();
 		model.addAttribute("list", list);
-		
 		return "product/product";
 	}
+
 	@RequestMapping("/product/productDetail.do")	// 상품 상세 페이지 by선희
-	public String productDetail(int productNo, Model model) {
-		Product product = ps.selectProductOne(productNo); // p랑 pp만
-		List<ProductDetail> colors = null;
-		List<ProductDetail> sizes = null;
-		if (product != null) {
-			colors = pds.color(productNo);
-			sizes = pds.size(productNo);
-			
-		}
-		
-		
-		List<ProductFeature> pf = pfs.selectFeature(productNo);	// p, pp, pd 다 가져오므로 여기에서 특정 조건을 더 줘서 보내야함
-		List<ProductPhoto> pp = pps.selectPP(productNo);
-		model.addAttribute("product", product);
-		model.addAttribute("colors", colors);
-		model.addAttribute("sizes", sizes);
-		model.addAttribute("pf", pf);
-		model.addAttribute("pp", pp);
-		return "product/productDetail";
-	}
-	@RequestMapping("/product/colorChange.do")
 	public String colorChange(String color, int productNo, Model model) {
-		Product product = ps.selectProductOne(productNo); // p 만
-		
+		Product product = ps.selectProductOne(productNo);
+		List<ProductFeature> pfeature = pfs.selectFeature(productNo);
 		List<ProductDetail> anotherColor = pps.colorChange(color, productNo);
-		List<ProductDetail> colors = null;
-		List<ProductDetail> sizes = null;
 		if (anotherColor.size() != 0) {
 			model.addAttribute("anotherColor", anotherColor);
 		} else {
 			String msg = "준비중입니다.";
 			model.addAttribute("msg", msg);
 		}
+		List<ProductDetail> colors = null;
+		List<ProductDetail> sizes = null;
 		if (product != null) {
 			colors = pds.color(productNo);
 			sizes = pds.size(productNo);
 		}
-		List<ProductFeature> pf = pfs.selectFeature(productNo);
-		model.addAttribute("pf", pf);
+		model.addAttribute("color", color);
+		model.addAttribute("product", product);
+		model.addAttribute("pf", pfeature);
 		model.addAttribute("colors", colors);
 		model.addAttribute("sizes", sizes);
-		model.addAttribute("product", product);
-		model.addAttribute("color", color);
-		
-		
 		return "product/productDetail";
 	}
 }
