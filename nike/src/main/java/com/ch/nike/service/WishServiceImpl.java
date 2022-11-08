@@ -36,10 +36,11 @@ public class WishServiceImpl implements WishService{
 		map.put("color", color);
 		return wm.selectWishResult(map);
 	}
-	public void deleteWish(String email, int productNo) {
+	public void deleteWish(String email, int productNo, String color) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("email", email);
 		map.put("productNo", productNo);
+		map.put("color", color);
 		wm.deleteWish(map);
 	}
 	public int wishCount() {

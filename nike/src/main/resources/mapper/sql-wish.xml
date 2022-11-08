@@ -37,6 +37,7 @@
 		delete	from	wish
 		where			product_no = #{productNo}
 					and email = #{email}
+					and		color = #{color}
 	</delete>
 	<select id="wishCount" resultType="integer">
 		select	nvl(max(wish_no),0) + 1 wishNo

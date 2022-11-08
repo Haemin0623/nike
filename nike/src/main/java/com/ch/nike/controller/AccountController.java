@@ -1,5 +1,6 @@
 package com.ch.nike.controller;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -75,10 +76,9 @@ public class AccountController {
 		List<Wish> wishList = ws.selectWish(email);	// email에 대한 wish 조회
 		List<Product> list = new ArrayList<>();	
 		for (Wish wish:wishList) {
-			System.out.println(wish.getColor());
-			Product product = ws.selectWishThum(wish.getProductNo(), wish.getColor());
-			list.add(product);
 			if (wish != null) {
+				Product product = ws.selectWishThum(wish.getProductNo(), wish.getColor());
+				list.add(product);
 			}
 		}
 		model.addAttribute("wish", wishList);

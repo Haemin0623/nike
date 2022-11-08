@@ -21,7 +21,7 @@ public class WishController {
 			String email = (String) session.getAttribute("email");
 			Wish wish = ws.selectWishResult(email, productNo, color);
 			if (wish != null) {	// 있으면 삭제
-				ws.deleteWish(email, productNo);
+				ws.deleteWish(email, productNo, color);
 				result = 1;
 			} else {				// 없으면 추가
 				Wish newWish = new Wish();

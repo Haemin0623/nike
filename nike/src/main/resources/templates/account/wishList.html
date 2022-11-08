@@ -14,7 +14,7 @@
 	
 	<ul th:if="${#lists.size(list)} != 0" th:each="wishList:${list}">
 		<li>
-			<a th:href="@{/product/productDetail.do(productNo=${wishList.productNo},color=${color})}">
+			<a th:href="@{/product/productDetail.do(productNo=${wishList.productNo},color=${wishList.color})}">
 				<img alt="누르시면 상세페이지로 이동합니다." th:src="@{/images/product_photo/}+${wishList.productPhoto}" width="200">
 			</a>
 			[[${wishList.productName}]]

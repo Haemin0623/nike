@@ -10,7 +10,7 @@ public interface WishService {
 	List<Wish> selectWish(String email);
 	Product selectWishThum(int productNo, String color);
 	Wish selectWishResult(String email, int productNo, String color);
-	void deleteWish(String email, int productNo);
+	void deleteWish(String email, int productNo, String color);
 	int wishCount();
 	void addWish(Wish newWish);
 }
