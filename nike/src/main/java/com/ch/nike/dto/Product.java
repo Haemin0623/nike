@@ -22,7 +22,9 @@ public class Product {
 	private String color;
 	private String productSize;
 	
-	private String cartQuantity;
+	private int cartNo;
+	private String email;
+	private int cartQuantity;
 	
 	private int productDetailNo;
 	private int stock;

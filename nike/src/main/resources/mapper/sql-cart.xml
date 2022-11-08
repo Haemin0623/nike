@@ -4,9 +4,12 @@
 <mapper namespace="com.ch.nike.mapper.CartMapper">
   <!-- 	cartList -->
 	<select id="selectCart" parameterType="string" resultType="cart">
-		select	*
-		from	cart
-		where	email = #{email}
+		select	c.*, 
+				pd.*
+		from	cart c, 
+				product_detail pd
+		where	pd.product_detail_no = c.product_detail_no 
+			and email = #{email}
 	</select>
 	<select id="getDetailNo" parameterType="hashmap" resultType="integer">
 		select	product_detail_no 
@@ -32,7 +35,9 @@
 		from	cart
 	</select>
 	<insert id="addCart" parameterType="hashmap">
-
 		insert into cart values(#{cartNo}, #{email}, #{productDetailNo}, 1)
 	</insert>
+	<delete id="deleteCart" parameterType="integer">
+		delete from cart where cart_no=#{cartNo}
+	</delete>
 </mapper>

@@ -45,10 +45,11 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> adminproductlist() {
 		return pm.adminproductlist();
 	}
-	public List<Product> selectCartDetail(String email, int productDetailNo) {
+	public Product selectCartDetail(String email, int productDetailNo, String color) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("email", email);
 		map.put("productDetailNo", productDetailNo);
+		map.put("color", color);
 		return pm.selectCartDetail(map);
 	}
 

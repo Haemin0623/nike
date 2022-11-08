@@ -22,6 +22,8 @@ public interface CartMapper {
 
 	void addCart(HashMap<String, Object> map);
 
+	void deleteCart(int cartNo);
+
 
 
 }

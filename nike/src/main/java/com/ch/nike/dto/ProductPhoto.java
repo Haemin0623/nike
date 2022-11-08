@@ -12,5 +12,6 @@ public class ProductPhoto {
 	private int productNo;
 	private String productPhoto;
 	private int batch;				// 1(썸네일) / 2(머리) / 3(몸통)
+	private String color;
 
 }

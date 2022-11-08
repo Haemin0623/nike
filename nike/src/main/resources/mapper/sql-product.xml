@@ -77,11 +77,21 @@
 	order by	p.product_no
 	</select>
 	<select id="selectCartDetail" parameterType="hashmap" resultType="product"> <!-- cartList by선희 -->
-		select	distinct pd.*, p.* 
-   		from	product_detail pd, 
-   				product p
-    	where	p.product_no=pd.product_no 
-        	and product_detail_no=#{product_detail_no}
+		select	distinct p.*, 
+				pd.*, 
+				c.*, 
+				pp.*
+    	from	product_detail pd, 
+    			product p, 
+    			cart c, 
+    			product_photo pp
+   		where	p.product_no=pd.product_no 
+        	and pd.product_detail_no=c.product_detail_no
+        	and p.product_no=pp.product_no
+        	and batch =1
+        	and pp.color=#{color}
+        	and pd.product_detail_no=#{productDetailNo}
+        	and c.email=#{email}
 	</select>
 	<select id="selectProduct" resultType="product">
 		select	p.*,

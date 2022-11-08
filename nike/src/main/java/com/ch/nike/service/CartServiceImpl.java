@@ -46,5 +46,8 @@ public class CartServiceImpl implements CartService {
 		map.put("productDetailNo", productDetailNo);
 		cm.addCart(map);
 	}
+	public void deleteCart(int cartNo) {
+		cm.deleteCart(cartNo);
+	}
 
 }

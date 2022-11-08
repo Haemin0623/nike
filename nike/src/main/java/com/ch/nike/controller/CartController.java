@@ -39,5 +39,12 @@ public class CartController {
 		return "product/addCart";
 		
 	}
+	@RequestMapping("/product/deleteCart.do")
+	public String deleteCart(int cartNo, Model model, HttpSession session) {
+		cs.deleteCart(cartNo);
+		int result = 1;
+		model.addAttribute("result", result);
+		return "account/deleteCart";
+	}
 
 }

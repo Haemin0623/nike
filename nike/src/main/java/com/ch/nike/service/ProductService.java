@@ -18,7 +18,7 @@ public interface ProductService {
 	Product colorcount(Category category);
 	List<Product> adminproductlist();
 	
-	List<Product> selectCartDetail(String email, int productDetailNo);
+	Product selectCartDetail(String email, int productDetailNo, String color);
 
 	List<Product> selectProduct();
 

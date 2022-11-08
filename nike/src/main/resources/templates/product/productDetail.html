@@ -21,9 +21,11 @@
 	</span><br>
 		
 	[[${product.productName}]]<br><br>
-	색상 : <span th:each="cList:${colors}">
-				<button th:onclick="color([[${cList.color}]],[[${product.productNo}]])">[[${cList.color}]]</button>
-		  </span><br><br>
+	<span th:each="photo:${photoList}">
+		<a th:onclick="color([[${photo.color}]],[[${photo.productNo}]])">
+			<img th:src="@{/images/product_photo/}+${photo.productPhoto}" width="50">
+		</a>
+ 	</span><br><br>
 	<form action="addCart.do" method="post" >
 		<input type="hidden" name="productNo" th:value="${product.productNo}">
 		<input type="hidden" name="color" th:value="${color}">
@@ -31,7 +33,7 @@
 		<span th:each="sList:${sizes}">
 			<input type="radio" th:value="${sList.productSize}" name="size" th:text="${sList.productSize}" required="required">
 		</span><br><br>
-		<input type="submit" value="장바구니" class="btn btn-danger"><br><br>
+		<input type="submit" value="장바구니"><br><br>
 	</form>
 	<a th:href="@{addWish.do(productNo=${product.productNo},color=${color})}">위시리스트</a><br><br>
 	상세설명 : [[${product.detail}]]<br>

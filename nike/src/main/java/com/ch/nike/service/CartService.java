@@ -18,5 +18,7 @@ public interface CartService {
 
 	void addCart(int newCartNo, String email, int productDetailNo);
 
+	void deleteCart(int cartNo);
+
 
 }

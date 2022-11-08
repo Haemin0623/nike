@@ -11,4 +11,10 @@ public class Cart {
 	private String email;
 	private int productDetailNo;
 	private int cartQuantity;
+	
+	// 조인용
+	private int productNo;
+	private String productSize;
+	private String color;
+	private int stock;
 }

@@ -24,7 +24,7 @@ public interface ProductMapper {
 
 	List<Product> adminproductlist();
 
-	List<Product> selectCartDetail(HashMap<String, Object> map);
+	Product selectCartDetail(HashMap<String, Object> map);
 
 	List<Product> selectProduct();
 

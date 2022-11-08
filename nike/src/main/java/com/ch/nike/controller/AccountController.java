@@ -1,6 +1,5 @@
 package com.ch.nike.controller;
 
-import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,7 +17,6 @@ import com.ch.nike.dto.Address;
 import com.ch.nike.dto.Cart;
 import com.ch.nike.dto.Member;
 import com.ch.nike.dto.Product;
-import com.ch.nike.dto.ProductPhoto;
 import com.ch.nike.dto.Refund;
 import com.ch.nike.dto.UserOrder;
 import com.ch.nike.dto.Wish;
@@ -88,24 +86,16 @@ public class AccountController {
 	@RequestMapping("/account/cartList.do")		// 로그인한 회원의 장바구니 불러오기 by선희
 	public String cartList(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
-		// 1 이메일에 대한 모든 카트 리스트 구해
 		List<Cart> cartList = cs.selectCart(email);
-		List<Product> list = new ArrayList<>();
-		for (Cart cart:cartList) {	// 2. 카트 리스트에서 하나 꺼내서 그 상품에 대한 디테일번호로 
-//			if (cart != null) {
-//				List<Product> productList = ps.selectCartDetail(email, cart.getProductDetailNo());	// p, pd, c
-//				for (Product product:productList) {
-//					if (product != null) {
-//						// ProductPhoto pp = pps.getPhoto(product.getProductNo(), product.getColor());
-//						list.add(product);
-//						
-//					}
-//					
-//				}
-//			}
+		List<Product> productList = new ArrayList<>();
+		for (Cart cart:cartList) {	 
+			if (cart != null) {
+				Product product = ps.selectCartDetail(email, cart.getProductDetailNo(), cart.getColor());	// p, pd, c
+				productList.add(product);
+			}
 		}
 		model.addAttribute("cart", cartList);
-		model.addAttribute("list", list);
+		model.addAttribute("productList", productList);
 		return "account/cartList";
 	}
 	@RequestMapping("/account/orders.do")		// 로그인한 회원의 주문내역 불러오기 by선희

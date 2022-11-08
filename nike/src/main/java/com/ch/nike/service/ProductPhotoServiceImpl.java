@@ -25,11 +25,13 @@ public class ProductPhotoServiceImpl implements ProductPhotoService {
 		map.put("productNo", productNo);
 		return ppm.colorChange(map);
 	}
-	@Override
 	public ProductPhoto getPhoto(int productNo, String color) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("color", color);
 		map.put("productNo", productNo);
 		return ppm.getPhoto(map);
+	}
+	public List<ProductPhoto> photoList(int productNo) {
+		return ppm.photoList(productNo);
 	}
 }

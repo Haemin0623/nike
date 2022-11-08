@@ -8,7 +8,6 @@ import com.ch.nike.dto.ProductDetail;
 
 @Mapper
 public interface ProductDetailMapper {
-	List<ProductDetail> color(int productNo);
 	List<ProductDetail> size(int productNo);
 
 

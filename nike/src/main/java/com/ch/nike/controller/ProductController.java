@@ -70,16 +70,16 @@ public class ProductController {
 			String msg = "준비중입니다.";
 			model.addAttribute("msg", msg);
 		}
-		List<ProductDetail> colors = null;
+		List<ProductPhoto> photoList = null;
 		List<ProductDetail> sizes = null;
 		if (product != null) {
-			colors = pds.color(productNo);
+			photoList = pps.photoList(productNo);
 			sizes = pds.size(productNo);
 		}
 		model.addAttribute("color", color);
 		model.addAttribute("product", product);
 		model.addAttribute("pf", pfeature);
-		model.addAttribute("colors", colors);
+		model.addAttribute("photoList", photoList);
 		model.addAttribute("sizes", sizes);
 		return "product/productDetail";
 	}

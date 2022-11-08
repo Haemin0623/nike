@@ -16,4 +16,10 @@
 			and color=#{color}
 			and batch=1
 	</select>
+	<select id="photoList" parameterType="integer" resultType="ProductPhoto">
+		select	* 
+		from	product_photo 
+		where	product_no=#{productNo}
+			and batch=1
+	</select>
 </mapper>

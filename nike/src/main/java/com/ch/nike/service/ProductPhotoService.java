@@ -10,4 +10,5 @@ public interface ProductPhotoService {
 	List<ProductPhoto> selectPP(int productNo);
 	List<ProductDetail> colorChange(String color, int productNo);
 	ProductPhoto getPhoto(int productNo, String color);
+	List<ProductPhoto> photoList(int productNo);
 }

@@ -14,4 +14,5 @@ public interface ProductPhotoMapper {
 	List<ProductPhoto> selectPP(int productNo);
 	List<ProductDetail> colorChange(HashMap<String, Object> map);
 	ProductPhoto getPhoto(HashMap<String, Object> map);
+	List<ProductPhoto> photoList(int productNo);
 }
