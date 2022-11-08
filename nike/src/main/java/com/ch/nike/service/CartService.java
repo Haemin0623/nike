@@ -9,5 +9,7 @@ public interface CartService {
 	
 	List<Cart> selectCart(String email);
 
+	int addCart(int productNo, String size);
+
 
 }

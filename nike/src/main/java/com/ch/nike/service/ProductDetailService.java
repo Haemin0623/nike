@@ -6,8 +6,8 @@ import com.ch.nike.dto.ProductDetail;
 
 public interface ProductDetailService {
 
-	List<ProductDetail> Color(int productNo);
-	List<ProductDetail> Size(int productNo);
+	List<ProductDetail> color(int productNo);
+	List<ProductDetail> size(int productNo);
 
 
 	

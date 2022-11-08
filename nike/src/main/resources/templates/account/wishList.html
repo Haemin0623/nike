@@ -14,12 +14,11 @@
 	
 	<ul th:if="${#lists.size(list)} != 0" th:each="wishList:${list}">
 		<li>
+			<a th:href="@{/product/productDetail.do(productNo=${wishList.productNo})}">
+				<img alt="누르시면 상세페이지로 이동합니다." th:src="@{/images/product_photo/}+${wishList.productPhoto}" width="200">
+			</a>
 			[[${wishList.productName}]]
 			[[${wishList.price}]]
-			<a href="상품상세 주소 넣기!!!!!!!!!!">  사진누르면 상품상세로 이동 넣기
-				<img alt="상품 상세 페이지로 이동합니다." src="상품사진위치+이름넣기"> [[${wishList.productPhoto}]] 썸네일 사진
-				
-			</a>
 		</li>
 	</ul>
 </div>

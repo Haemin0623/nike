@@ -98,8 +98,7 @@
 	</select>
 	<select id="selectProduct" resultType="product">
 		select	p.*,
-				pp.product_photo,
-				pp.batch
+				pp.*
 		from	product p,
 				product_photo pp
 		where	p.product_no = pp.product_no

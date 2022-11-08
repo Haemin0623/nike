@@ -26,19 +26,28 @@
 		</span>
 	</span><br>
 		
-	[[${product.productName}]]<br>
-	색상 : <span th:each="cList:${color}">
+	[[${product.productName}]]<br><br>
+	색상 : <span th:each="cList:${colors}">
 				<button th:onclick="color([[${cList.color}]],[[${product.productNo}]])">[[${cList.color}]]</button>
-		  </span><br>
-	사이즈 종류 : <span th:each="sList:${size}">
-					[[${sList.productSize}]]
-				</span><br>
-	<a th:href="@{addWish.do(productNo=${product.productNo})}">위시리스트</a><br>
-	<a th:href="@{addCart.do(productNo=${product.productNo})}">장바구니</a><br>
+		  </span><br><br>
+	<form action="addCart.do" method="post" >
+		<input type="hidden" name="productNo" th:value="${product.productNo}">
+		<input type="hidden" name="color" th:value="${product.productNo}">
+	사이즈 종류 : 
+		<span th:each="sList:${sizes}">
+			<input type="radio" th:value="${sList.productSize}" name="size" th:text="${sList.productSize}">
+		</span><br><br>
+		<input type="submit" value="장바구니" class="btn btn-danger">
+	</form>
+	<a th:href="@{addCart.do(productNo=${product.productNo})}">장바구니</a><br><br>
+	<a th:href="@{addWish.do(productNo=${product.productNo})}">위시리스트</a><br><br>
 	상세설명 : [[${product.detail}]]<br>
 	
-	소재: <span th:each="feature:${pf}">[[${feature.feature}]]</span>
-	
+	특징: 
+		<span th:each="feature:${pf}">
+			[[${feature.feature}]] /
+		</span>
+	<br>
 	리뷰<br>
 	
 </div>

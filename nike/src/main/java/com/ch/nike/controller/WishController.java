@@ -32,6 +32,7 @@ public class WishController {
 			result = -1;	// 로그인 안한 경우
 		}
 		model.addAttribute("result", result);
+		model.addAttribute("productNo", productNo);
 		return "product/addWish";
 	}
 }
