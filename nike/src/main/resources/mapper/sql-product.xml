@@ -76,25 +76,12 @@
 			and h.batch = 1
 	order by	p.product_no
 	</select>
-	<select id="selectCartThum" parameterType="integer" resultType="product"> <!-- cartList by선희 -->
-		select	p.*,
-				pp.product_photo,
-				pp.color,
-				pd.product_size,
-				cart_quantity
-		from	product p,
-				(select	*
-				from	product_photo
-				where	product_no = (select	product_no
-										from	product_detail pd,
-												cart c
-										where	pd.product_detail_no = #{productDetailNo})
-					and batch = 1) pp,
-				product_detail pd,
-				cart c
-		where	p.product_no = pp.product_no
-			and p.product_no = pd.product_no
-			and #{productDetailNo} = pd.product_detail_no
+	<select id="selectCartDetail" parameterType="hashmap" resultType="product"> <!-- cartList by선희 -->
+		select	distinct pd.*, p.* 
+   		from	product_detail pd, 
+   				product p
+    	where	p.product_no=pd.product_no 
+        	and product_detail_no=#{product_detail_no}
 	</select>
 	<select id="selectProduct" resultType="product">
 		select	p.*,
@@ -113,5 +100,15 @@
 	<select id="selectProductOne" parameterType="integer" resultType="Product">
 		select * from product where product_no=#{productNo}
 	</select>
-
+	<select id="productInfo" parameterType="hashmap" resultType="product">
+		select	p.*, 
+				pp.* 
+		from	product p, 
+				product_photo pp 
+		where	p.product_no=pp.product_no 
+			and p.product_no=#{productNo} 
+			and pp.color=#{color}
+			and pp.batch=1
+		
+	</select>
 </mapper>

@@ -19,13 +19,18 @@ public class WishController {
 		int result = 0;
 		if (session.getAttribute("email") != null) {
 			String email = (String) session.getAttribute("email");
-			Wish wish = ws.selectWishResult(email, productNo);
+			Wish wish = ws.selectWishResult(email, productNo, color);
 			if (wish != null) {	// 있으면 삭제
 				ws.deleteWish(email, productNo);
 				result = 1;
 			} else {				// 없으면 추가
+				Wish newWish = new Wish();
 				int wishNo = ws.wishCount();
-				ws.addWish(email, productNo, wishNo);
+				newWish.setWishNo(wishNo);
+				newWish.setProductNo(productNo);
+				newWish.setEmail(email);
+				newWish.setColor(color);
+				ws.addWish(newWish);
 				result = 2;
 			}
 		} else {

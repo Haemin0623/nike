@@ -9,4 +9,11 @@
 		<select id="colorChange" parameterType="hashmap" resultType="ProductPhoto">
 		select * from product_photo where product_no=#{productNo} and color=#{color}
 	</select>
+	<select id="getPhoto" parameterType="hashmap" resultType="ProductPhoto">
+		select	* 
+		from	product_photo
+		where	product_no=#{productNo} 
+			and color=#{color}
+			and batch=1
+	</select>
 </mapper>

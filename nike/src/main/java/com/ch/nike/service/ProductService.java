@@ -18,11 +18,13 @@ public interface ProductService {
 	Product colorcount(Category category);
 	List<Product> adminproductlist();
 	
-	Product selectCartThum(int productDetailNo);
+	List<Product> selectCartDetail(String email, int productDetailNo);
 
 	List<Product> selectProduct();
 
 	Product selectProductOne(int productNo);
+
+	Product productInfo(int productNo, String color);
 
 
 

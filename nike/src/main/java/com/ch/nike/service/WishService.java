@@ -8,9 +8,9 @@ import com.ch.nike.dto.Wish;
 public interface WishService {
 	List<Wish> wishselect(String email);
 	List<Wish> selectWish(String email);
-	Product selectWishThum(int productNo);
-	Wish selectWishResult(String email, int productNo);
+	Product selectWishThum(int productNo, String color);
+	Wish selectWishResult(String email, int productNo, String color);
 	void deleteWish(String email, int productNo);
 	int wishCount();
-	void addWish(String email, int productNo, int wishNo);
+	void addWish(Wish newWish);
 }

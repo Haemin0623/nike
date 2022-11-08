@@ -17,12 +17,14 @@ import com.ch.nike.dto.Address;
 import com.ch.nike.dto.Cart;
 import com.ch.nike.dto.Member;
 import com.ch.nike.dto.Product;
+import com.ch.nike.dto.ProductPhoto;
 import com.ch.nike.dto.Refund;
 import com.ch.nike.dto.UserOrder;
 import com.ch.nike.dto.Wish;
 import com.ch.nike.service.AddressService;
 import com.ch.nike.service.CartService;
 import com.ch.nike.service.MemberService;
+import com.ch.nike.service.ProductPhotoService;
 import com.ch.nike.service.ProductService;
 import com.ch.nike.service.RefundService;
 import com.ch.nike.service.UserOrderService;
@@ -44,6 +46,8 @@ public class AccountController {
 	private RefundService rs;
 	@Autowired
 	private AddressService as;
+	@Autowired
+	private ProductPhotoService pps;
 	
 	@RequestMapping("/account/mypage.do")	// mypage로 이동 by선희
 	public String mypage(Model model, HttpSession session) {
@@ -68,14 +72,13 @@ public class AccountController {
 	@RequestMapping("/account/wishList.do")		// 로그인한 회원의 wishlist 불러오기 by선희
 	public String wishList(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
-		List<Wish> wishList = ws.selectWish(email);
-		List<Product> list = new ArrayList<>();
+		List<Wish> wishList = ws.selectWish(email);	// email에 대한 wish 조회
+		List<Product> list = new ArrayList<>();	
 		for (Wish wish:wishList) {
+			System.out.println(wish.getColor());
+			Product product = ws.selectWishThum(wish.getProductNo(), wish.getColor());
+			list.add(product);
 			if (wish != null) {
-				Product product = ws.selectWishThum(wish.getProductNo());
-				if (product != null) {
-					list.add(product);
-				}
 			}
 		}
 		model.addAttribute("wish", wishList);
@@ -85,15 +88,21 @@ public class AccountController {
 	@RequestMapping("/account/cartList.do")		// 로그인한 회원의 장바구니 불러오기 by선희
 	public String cartList(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
+		// 1 이메일에 대한 모든 카트 리스트 구해
 		List<Cart> cartList = cs.selectCart(email);
 		List<Product> list = new ArrayList<>();
-		for (Cart cart:cartList) {
-			if (cart != null) {
-				Product product = ps.selectCartThum(cart.getProductDetailNo());
-				if (product != null) {
-					list.add(product);
-				}
-			}
+		for (Cart cart:cartList) {	// 2. 카트 리스트에서 하나 꺼내서 그 상품에 대한 디테일번호로 
+//			if (cart != null) {
+//				List<Product> productList = ps.selectCartDetail(email, cart.getProductDetailNo());	// p, pd, c
+//				for (Product product:productList) {
+//					if (product != null) {
+//						// ProductPhoto pp = pps.getPhoto(product.getProductNo(), product.getColor());
+//						list.add(product);
+//						
+//					}
+//					
+//				}
+//			}
 		}
 		model.addAttribute("cart", cartList);
 		model.addAttribute("list", list);
