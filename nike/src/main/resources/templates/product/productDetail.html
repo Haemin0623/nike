@@ -43,8 +43,13 @@
 			[[${feature.feature}]] /
 		</span>
 	<br><br>
-	리뷰<br>
-	
+	<div id="review">리뷰</div><br>
+	<div id="reviewDetail">
+		<a th:href="@{/product/reviewWriteFormChk.do(productNo=${product.productNo},color=${color})}">
+			리뷰 작성하기
+		</a>
+		<div id="reviewList">리부 작성하기 만들고 리뷰 가져오는거 만들어서 여기에 불러오기 숨겨뒀다가 누르면 보이기</div>
+	</div>
 </div>
 
 </body>

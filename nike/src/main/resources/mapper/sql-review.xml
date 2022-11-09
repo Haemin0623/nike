@@ -15,4 +15,24 @@
 		where	p.product_no = r.product_no
 			and r.email = #{email}
 	</select>
+	<select id="productReview" parameterType="hashmap" resultType="Review">
+		select	*
+		from	review
+		where	product_no = #{productNo}
+			and email = #{email}
+	</select>
+	<select id="countReview" resultType="integer">
+		select	nvl(max(review_no),0) + 1 reviewNo
+		from	review
+	</select>
+	<insert id="insert" parameterType="review">
+		insert	into	review
+				values	(#{reviewNo},
+						#{productNo},
+						#{email},
+						#{content},
+						#{star},
+						sysdate,
+						'N')
+	</insert>
 </mapper>

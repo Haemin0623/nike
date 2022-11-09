@@ -1,6 +1,7 @@
 package com.ch.nike.dto;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
@@ -14,4 +15,6 @@ public class Review {
 	private int star;
 	private String reviewDate;
 	private String reviewDel;
+	// upload용
+	private MultipartFile file;
 }

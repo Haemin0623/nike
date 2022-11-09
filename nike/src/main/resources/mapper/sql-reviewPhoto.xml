@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.nike.mapper.ReviewPhotoMapper">
+	<select id="countReviewPhoto" resultType="integer">
+		select	nvl(max(review_photo_no),0) + 1 reviewPhotoNo
+		from	review_photo
+	</select>
+	<insert id="insert" parameterType="ReviewPhoto">
+		insert into review_photo values(#{reviewPhotoNo}, #{reviewNo}, #{reviewPhoto})
+		
+	</insert>
+</mapper>

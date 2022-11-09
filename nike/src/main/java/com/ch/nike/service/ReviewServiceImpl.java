@@ -1,5 +1,6 @@
 package com.ch.nike.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,17 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public List<Review> reviewselect(String email) {
 		return rm.reviewselect(email);
+	}
+	public Review productReview(String email, int productNo) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("email", email);
+		map.put("productNo", productNo);
+		return rm.productReview(map);
+	}
+	public int countReview() {
+		return rm.countReview();
+	}
+	public int insert(Review review) {
+		return rm.insert(review);
 	}
 }
