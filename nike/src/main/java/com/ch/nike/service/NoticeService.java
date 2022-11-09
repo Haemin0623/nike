@@ -10,4 +10,6 @@ public interface NoticeService {
 	List<Notice> noticelist();
 
 	List<UserOrder> paginglist(PagingBean pagingbean);
+
+	int getTotal();
 }

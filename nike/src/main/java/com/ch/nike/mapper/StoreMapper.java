@@ -16,5 +16,7 @@ public interface StoreMapper {
 
 	List<UserOrder> paginglist(PagingBean pagingbean);
 
+	int getTotal();
+
 
 }

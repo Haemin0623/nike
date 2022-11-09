@@ -10,4 +10,6 @@ public interface StoreService {
 	List<Store> storelist();
 
 	List<UserOrder> paginglist(PagingBean pagingbean);
+
+	int getTotal();
 }

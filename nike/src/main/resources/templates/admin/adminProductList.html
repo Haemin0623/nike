@@ -22,19 +22,21 @@
 			<th>상품설명</th>
 			<th>성별</th>
 			<th>색상</th>
+			<th>사이즈</th>
 			<th>대표이미지</th>
 			<th>재고</th>
 			<th></th>
 		</tr>
-		<tr th:each="lists:${list}">
-			<td>[[${lists.productDetailNo}]]</td>
+		<tr th:each="lists:${list2}">
+			<td>[[${lists.productNo}]]</td>
 			<td>[[${lists.productName}]]</td>
 			<td>[[${lists.categoryNo}]]</td>
 			<td>[[${lists.price}]]</td>
 			<td>[[${lists.detail}]]</td>
 			<td>[[${lists.gender}]]</td>
 			<td>[[${lists.color}]]</td>
-			<td>[[${lists.productPhoto}]]</td>
+			<td>[[${lists.productSize}]]
+			<td><img alt="" th:src="@{images/product_photo/} + ${lists.productPhoto}" height="100" width="100"></td>
 			<td>[[${lists.stock}]]</td>
 			<td><a th:href="@{/adminProductUpdate.do(productDetailNo=${lists.productDetailNo})}">상품 수정</a></td>
 		</tr>
@@ -63,7 +65,7 @@
 				</a>
 			</li>
 		</th:block>
-		<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
+		<th:block th:each="i:${#numbers.sequence(pb.startPage, pb.endPage) }">
 			<th:block th:if="${pb.currentPage == i }">
 				<li class="active">
 					<a th:href="@{/adminProductList.do(pageNum=${i})}">[[${i}]]</a>

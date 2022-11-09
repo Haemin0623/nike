@@ -83,18 +83,18 @@ create table product_detail (
 );
 
 -- 상품 사진
+select * from product_photo;
 drop table product_photo cascade constraints;
 
 create table product_photo (
-	photo_no		number(4)		not	null	primary key,
+	product_photo_no		number(4)		not	null	primary key,
 	product_no		number(4)		not null,
 	product_photo	varchar2(100)	not null,
-	batch			number(1)		not null,				-- 1(썸네일) / 2(머리) / 3(몸통)
+	batch			number(1)		not null,				
 	color			varchar2(20)	not null,
 
 	constraint fk_product_photo_product_no foreign key(product_no) references product(product_no),
-	constraint fk_product_photo_color foreign key(color) references color(color)
-);
+	constraint fk_product_photo_color foreign key(color) references color(color));
 
 -- 특징
 drop table product_feature cascade constraints;

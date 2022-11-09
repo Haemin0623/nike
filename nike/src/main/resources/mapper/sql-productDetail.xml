@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.nike.mapper.ProductDetailMapper">
+<insert id="productinsert" parameterType="product">
+	<selectKey keyProperty="productDetailNo" order="BEFORE" resultType="integer">
+			select	nvl(max(product_detail_no),0) +1 productDetailNo 
+			from 	product_detail		
+		</selectKey>
+		insert into product_Detail 
+			values	(#{productDetailNo}, 
+					#{productNo}, 
+					#{productSize}, 
+					#{color}, 
+					#{stock})
+	</insert>
+	<update id="productupdate" parameterType="product">
+		update 	product_detail
+		set		poduct_size=#{productSize},
+				stock=#{stock}
+		where	product_no=#{productNo}
+	</update>
+</mapper>

@@ -16,6 +16,7 @@ insert into address values (7, 'chang@ryul.com', '회안사', 0312344567, '너�
 insert into address values (8, 'sun@ny.com', '기본', 0311236543, '해민도 수인시 창률구 선희로88', '해민도 수인시 창률동 선희아파트', 21337, '10호');
 
 -- 분류
+DELETE TABLE category;
 insert into category values (1, '상의', '티셔츠');
 insert into category values (2, '상의', '후드');
 insert into category values (3, '상의', '재킷');

@@ -60,22 +60,22 @@
 			and batch = '1'
 	</select>
 	
-	<select id="adminproductlist" resultType="product"><!-- 관리자 상품 목록 -->
-		select	p.*,
-				d.color,
-				d.stock,
-				d.product_size,
-				h.product_photo,
-				d.product_detail_no 
-		from	product p,
-				product_detail d,
-				product_photo h
-		where	p.product_no = d.product_no
-			and p.product_no = h.product_no
-			and d.color = h.color
-			and h.batch = 1
-	order by	p.product_no
-	</select>
+<!-- 	<select id="adminproductlist" resultType="product">관리자 상품 목록 -->
+<!-- 		select	p.*, -->
+<!-- 				d.color, -->
+<!-- 				d.stock, -->
+<!-- 				d.product_size, -->
+<!-- 				h.product_photo, -->
+<!-- 				d.product_detail_no  -->
+<!-- 		from	product p, -->
+<!-- 				product_detail d, -->
+<!-- 				product_photo h -->
+<!-- 		where	p.product_no = d.product_no -->
+<!-- 			and p.product_no = h.product_no -->
+<!-- 			and d.color = h.color -->
+<!-- 			and h.batch = 1 -->
+<!-- 	order by	p.product_no -->
+<!-- 	</select> -->
 	<select id="selectCartThum" parameterType="integer" resultType="product"> <!-- cartList by선희 -->
 		select	p.*,
 				pp.product_photo,
@@ -108,7 +108,73 @@
 
 	<select id="paginglist" parameterType="pagingbean" resultType="product">
 		select 	* 
-		from 	(select a.*, rowNum rn from (select * from product order by product_no desc)a) 
-		where 	rn between #{startRow} and #{endRow}
+		from 	(select	a.*,
+						rowNum rn
+				from	(select	p.*,
+								d.color,
+								d.stock,
+								d.product_size,
+								h.product_photo,
+								d.product_detail_no 
+						from	product p,
+								product_detail d,
+								product_photo h
+						where	p.product_no = d.product_no
+							and p.product_no = h.product_no(+)
+							and d.color = h.color
+							and batch = 1
+					order by	p.product_no) a
+				) 
+		where	rn between #{startRow} and #{endRow}
 	</select>
+	
+	<select id="selectproductNo" resultType="integer">
+		select	nvl(max(product_no),0) + 1 productNo
+		from	product
+	</select>
+	
+	<insert id="productinsert" parameterType="product">
+		insert into product 
+			values	(#{productNo}, 
+					#{productName}, 
+					#{categoryNo}, 
+					#{price}, 
+					#{detail}, 
+					#{gender})
+	</insert>
+	<select id="getTotal" resultType="integer"> <!-- 페이징용 전체 상품 카운트 by창률 -->
+		select 	count(*) 
+		from	product p,
+				product_detail d,
+				product_photo h
+		where	p.product_no = d.product_no
+			and p.product_no = h.product_no(+)
+			and d.color = h. color
+			and batch = 1
+	</select>
+	<select id="select" parameterType="integer" resultType="product">
+		select	p.*,
+								d.color,
+								d.stock,
+								d.product_size,
+								h.product_photo,
+								d.product_detail_no 
+						from	product p,
+								product_detail d,
+								product_photo h
+						where	p.product_no = d.product_no
+							and p.product_no = h.product_no(+)
+							and d.color = h.color
+							and d.product_Detail_No=#{productDetailNo}
+                            and batch=1
+	</select>
+	<update id="productupdate" parameterType="product">
+		update 	product 
+		set 	category_No=#{categoryNo}, 
+				product_Name=#{productName}, 
+				price=#{price}, 
+				detail=#{detail}, 
+				gender=#{gender}
+		where	product_No=#{productNo}
+	</update>
 </mapper>

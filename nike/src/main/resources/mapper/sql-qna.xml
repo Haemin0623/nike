@@ -2,14 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.QnAMapper">
-	<select id="qnalist" resultType="qna"><!-- 관리자 문의 목록 -->
-		 select	*
-		 from	qna
-	order by	qna_no desc
-	</select>
 	<select id="paginglist" parameterType="pagingbean" resultType="qna">
 		select 	* 
 		from 	(select a.*, rowNum rn from (select * from qna order by qna_no desc)a) 
 		where 	rn between #{startRow} and #{endRow}
+	</select>
+	<select id="getTotal" resultType="integer"> <!-- 페이징용 전체 문의 카운트 by창률 -->
+		select 	count(*) 
+		from	qna
 	</select>
 </mapper>

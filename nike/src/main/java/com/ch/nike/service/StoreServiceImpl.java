@@ -24,4 +24,9 @@ public class StoreServiceImpl implements StoreService{
 	public List<UserOrder> paginglist(PagingBean pagingbean) {
 		return sm.paginglist(pagingbean);
 	}
+
+	@Override
+	public int getTotal() {
+		return sm.getTotal();
+	}
 }

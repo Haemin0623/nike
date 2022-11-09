@@ -16,5 +16,7 @@ public interface NoticeMapper {
 
 	List<UserOrder> paginglist(PagingBean pagingbean);
 
+	int getTotal();
+
 
 }

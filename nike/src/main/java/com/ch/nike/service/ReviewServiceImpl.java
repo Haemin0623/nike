@@ -28,4 +28,8 @@ public class ReviewServiceImpl implements ReviewService{
 	public List<UserOrder> paginglist(PagingBean pagingbean) {
 		return rm.paginglist(pagingbean);
 	}
+	@Override
+	public int getTotal() {
+		return rm.getTotal();
+	}
 }

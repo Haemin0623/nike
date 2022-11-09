@@ -2,11 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.ReviewMapper">
-	<select id="reviewlist" resultType="review"><!-- 관리자 리뷰 목록 -->
-		select	*
-		from	review
-	order by	review_no desc
-	</select>
 	<select id="reviewselect" parameterType="string" resultType="review">
 		select	r.*,
 				p.product_name
@@ -19,5 +14,9 @@
 		select 	* 
 		from 	(select a.*, rowNum rn from (select * from review order by review_no desc)a) 
 		where 	rn between #{startRow} and #{endRow}
+	</select>
+	<select id="getTotal" resultType="integer"> <!-- 페이징용 전체 주문 카운트 by창률 -->
+		select 	count(*) 
+		from	review
 	</select>
 </mapper>

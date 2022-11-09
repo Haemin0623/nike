@@ -10,4 +10,6 @@ public interface QnAService {
 	List<QnA> qnalist();
 
 	List<UserOrder> paginglist(PagingBean pagingbean);
+
+	int getTotal();
 }

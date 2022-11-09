@@ -24,4 +24,9 @@ public class NoticeServiceImpl implements NoticeService{
 	public List<UserOrder> paginglist(PagingBean pagingbean) {
 		return nm.paginglist(pagingbean);
 	}
+
+	@Override
+	public int getTotal() {
+		return nm.getTotal();
+	}
 }

@@ -33,4 +33,8 @@ public class UserOrderServiceImpl implements UserOrderService{
 	public List<UserOrder> paginglist(PagingBean pagingbean) {
 		return uod.paginglist(pagingbean);
 	}
+	@Override
+	public int getTotal() {
+		return uod.getTotal();
+	}
 }

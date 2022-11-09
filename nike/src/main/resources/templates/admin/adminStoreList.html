@@ -21,14 +21,17 @@
 			<th>개점시간</th>
 			<th>폐점시간</th>
 			<th>전화번호</th>
+			<th></th>
+			<th></th>
 		</tr>
-		<tr th:each="lists:${list}">
+		<tr th:each="lists:${list2}">
 			<td>[[${lists.storeNo}]]</td>
 			<td>[[${lists.storeName}]]</td>
 			<td>[[${lists.storeAddr}]]</td>
 			<td>[[${lists.storeOpen}]]</td>
 			<td>[[${lists.storeClose}]]</td>
 			<td>[[${lists.storeTel}]]</td>
+			<td><a>수정</a>
 			<td><a>삭제</a>
 		</tr>
 	</table>

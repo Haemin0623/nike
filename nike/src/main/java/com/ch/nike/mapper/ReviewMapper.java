@@ -18,5 +18,7 @@ public interface ReviewMapper {
 
 	List<UserOrder> paginglist(PagingBean pagingbean);
 
+	int getTotal();
+
 
 }

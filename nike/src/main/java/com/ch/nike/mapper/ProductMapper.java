@@ -30,6 +30,16 @@ public interface ProductMapper {
 
 
 	List<Product> selectProduct();
+
+	int productinsert(Product product);
+
+	int selectproductNo();
+
+	int getTotal();
+
+	Product select(int productDetailNo);
+
+	int productupdate(Product product);
 	
 
 }

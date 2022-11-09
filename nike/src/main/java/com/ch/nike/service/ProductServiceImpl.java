@@ -59,4 +59,29 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> paginglist(PagingBean pagingbean) {
 		return pm.paginglist(pagingbean);
 	}
+
+	@Override
+	public int productinsert(Product product) {
+		return pm.productinsert(product);
+	}
+
+	@Override
+	public int selectproductNo() {
+		return pm.selectproductNo();
+	}
+
+	@Override
+	public int getTotal() {
+		return pm.getTotal();
+	}
+
+	@Override
+	public Product select(int productDetailNo) {
+		return pm.select(productDetailNo);
+	}
+
+	@Override
+	public int productupdate(Product product) {
+		return pm.productupdate(product);
+	}
 }

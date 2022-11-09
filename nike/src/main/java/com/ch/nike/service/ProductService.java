@@ -25,4 +25,14 @@ public interface ProductService {
 	List<Product> selectProduct();
 
 	List<Product> paginglist(PagingBean pagingbean);
+
+	int productinsert(Product product);
+
+	int selectproductNo();
+
+	int getTotal();
+
+	Product select(int productDetailNo);
+
+	int productupdate(Product product);
 }

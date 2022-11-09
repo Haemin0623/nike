@@ -24,4 +24,9 @@ public class QnAServiceImpl implements QnAService{
 	public List<UserOrder> paginglist(PagingBean pagingbean) {
 		return qm.paginglist(pagingbean);
 	}
+
+	@Override
+	public int getTotal() {
+		return qm.getTotal();
+	}
 }

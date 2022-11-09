@@ -21,4 +21,6 @@ public interface UserOrderMapper {
 	Product selectOrderDetail(int orderNo);
 
 	List<UserOrder> paginglist(PagingBean pagingbean);
+
+	int getTotal();
 }

@@ -16,5 +16,7 @@ public interface QnAMapper {
 
 	List<UserOrder> paginglist(PagingBean pagingbean);
 
+	int getTotal();
+
 
 }

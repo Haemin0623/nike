@@ -10,4 +10,5 @@ public interface ReviewService {
 	List<Review> reviewlist();
 	List<Review> reviewselect(String email);
 	List<UserOrder> paginglist(PagingBean pagingbean);
+	int getTotal();
 }
