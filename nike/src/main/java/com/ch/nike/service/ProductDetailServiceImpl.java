@@ -12,9 +12,6 @@ import com.ch.nike.mapper.ProductDetailMapper;
 public class ProductDetailServiceImpl implements ProductDetailService{
 	@Autowired
 	private ProductDetailMapper pdm;
-	public List<ProductDetail> color(int productNo) {
-		return pdm.color(productNo);
-	}
 	public List<ProductDetail> size(int productNo) {
 		return pdm.size(productNo);
 	}
