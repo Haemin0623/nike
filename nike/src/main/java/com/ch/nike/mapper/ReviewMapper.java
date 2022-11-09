@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ch.nike.dto.Review;
+import com.ch.nike.dto.ReviewPhoto;
 
 
 @Mapper
@@ -20,6 +21,10 @@ public interface ReviewMapper {
 	int countReview();
 
 	int insert(Review review);
+
+	List<Review> selectProductReview(int productNo);
+
+	
 
 
 }

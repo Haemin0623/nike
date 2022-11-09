@@ -1,6 +1,7 @@
 package com.ch.nike.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,10 +16,14 @@ import com.ch.nike.dto.Product;
 import com.ch.nike.dto.ProductDetail;
 import com.ch.nike.dto.ProductFeature;
 import com.ch.nike.dto.ProductPhoto;
+import com.ch.nike.dto.Review;
+import com.ch.nike.dto.ReviewPhoto;
 import com.ch.nike.service.ProductDetailService;
 import com.ch.nike.service.ProductFeatureService;
 import com.ch.nike.service.ProductPhotoService;
 import com.ch.nike.service.ProductService;
+import com.ch.nike.service.ReviewPhotoService;
+import com.ch.nike.service.ReviewService;
 
 @Controller
 public class ProductController {
@@ -30,6 +35,10 @@ public class ProductController {
 	private ProductDetailService pds;
 	@Autowired
 	private ProductFeatureService pfs;
+	@Autowired
+	private ReviewService rs;
+	@Autowired
+	private ReviewPhotoService rps;
 	
 	@RequestMapping("/") //메인 최하단 하단 신발 리스트 by창률 // 로그아웃 위한 세션작업 by수인
 	public String main(Model model, HttpSession session) {
@@ -71,16 +80,28 @@ public class ProductController {
 			model.addAttribute("msg", msg);
 		}
 		List<ProductPhoto> photoList = null;
-		List<ProductDetail> sizes = null;
+		List<ProductDetail> productDetail = null;
 		if (product != null) {
 			photoList = pps.photoList(productNo);
-			sizes = pds.size(productNo);
+			productDetail = pds.productDetail(productNo, color);
+			
 		}
 		model.addAttribute("color", color);
 		model.addAttribute("product", product);
 		model.addAttribute("pf", pfeature);
 		model.addAttribute("photoList", photoList);
-		model.addAttribute("sizes", sizes);
+		model.addAttribute("productDetail", productDetail);
+		
+		
+		List<Review> rvList = rs.selectProductReview(productNo);
+		List<ReviewPhoto> rvPhotos = new ArrayList<>();	
+		for (Review rv:rvList) {
+			rvPhotos = rps.selectReviewPhoto(rv.getReviewNo());
+		}
+		model.addAttribute("rvList", rvList);
+		model.addAttribute("rvPhotos", rvPhotos);
+		model.addAttribute("productNo", productNo);
+		
 		return "product/productDetail";
 	}
 }

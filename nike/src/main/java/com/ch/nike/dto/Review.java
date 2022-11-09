@@ -17,4 +17,7 @@ public class Review {
 	private String reviewDel;
 	// upload용
 	private MultipartFile file;
+	//조인용
+	private int reviewPhotoNo;
+	private String reviewPhoto;
 }

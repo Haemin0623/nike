@@ -35,4 +35,10 @@
 						sysdate,
 						'N')
 	</insert>
+	<select id="selectProductReview" parameterType="integer" resultType="Review">
+		select	distinct *
+		from	review
+		where	product_no=#{product_no} 
+	</select>
+
 </mapper>

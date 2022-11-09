@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.nike.dto.Review;
+import com.ch.nike.dto.ReviewPhoto;
 import com.ch.nike.mapper.ProductMapper;
 import com.ch.nike.mapper.ReviewMapper;
 
@@ -35,4 +36,8 @@ public class ReviewServiceImpl implements ReviewService{
 	public int insert(Review review) {
 		return rm.insert(review);
 	}
+	public List<Review> selectProductReview(int productNo) {
+		return rm.selectProductReview(productNo);
+	}
+
 }

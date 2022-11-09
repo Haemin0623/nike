@@ -88,4 +88,5 @@ public class ReviewController {
 		model.addAttribute("result", result);
 		return "product/reviewWrite";
 	}
+
 }

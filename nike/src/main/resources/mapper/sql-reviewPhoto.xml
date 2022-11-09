@@ -7,7 +7,14 @@
 		from	review_photo
 	</select>
 	<insert id="insert" parameterType="ReviewPhoto">
-		insert into review_photo values(#{reviewPhotoNo}, #{reviewNo}, #{reviewPhoto})
-		
+		insert into	review_photo 
+		values		(#{reviewPhotoNo}, 
+						#{reviewNo}, 
+						#{reviewPhoto})
 	</insert>
+	<select id="selectReviewPhoto" resultType="ReviewPhoto">
+		select	* 
+		from	review_photo 
+		where	review_no=#{reviewNo}
+	</select>
 </mapper>

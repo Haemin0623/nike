@@ -11,13 +11,17 @@ import com.ch.nike.mapper.ReviewPhotoMapper;
 @Service
 public class ReviewPhotoServiceImpl implements ReviewPhotoService {
 	@Autowired
-	private ReviewPhotoMapper ppm;
+	private ReviewPhotoMapper rpm;
 
 	public int countReviewPhoto() {
-		return ppm.countReviewPhoto();
+		return rpm.countReviewPhoto();
 	}
 
 	public int insert(ReviewPhoto rp) {
-		return ppm.insert(rp);
+		return rpm.insert(rp);
+	}
+	public List<ReviewPhoto> selectReviewPhoto(int reviewNo) {
+		
+		return rpm.selectReviewPhoto(reviewNo);
 	}
 }

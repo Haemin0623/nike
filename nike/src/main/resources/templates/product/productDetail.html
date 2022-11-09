@@ -4,15 +4,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.reviewDetail {
+		display: none;
+	}
+</style>
 <script type="text/javascript">
 	function color(color, productNo) {
 		location.href = "productDetail.do?color=" + color + "&productNo="+ productNo;
 		document.getElementById("colorChange").style.visibility = "visible";
 	}
+	$(function() {
+		$('.review').click(function() {
+			$('.reviewDetail').toggle();
+		
+		});
+	});
 </script>
 </head>
 <body>
 <div layout:fragment="content">
+	<h2>[[${product.productName}]]</h2><br>
 	[[${msg}]]<br>
 	<span id="colorChange" th:if="${anotherColor != null}">
 		<span th:each="photoChange:${anotherColor}"> 
@@ -20,35 +32,58 @@
 		</span><br>
 	</span><br>
 		
-	[[${product.productName}]]<br><br>
 	<span th:each="photo:${photoList}">
 		<a th:onclick="color([[${photo.color}]],[[${photo.productNo}]])">
-			<img th:src="@{/images/product_photo/}+${photo.productPhoto}" width="50">
+			<img th:src="@{/images/product_photo/}+${photo.productPhoto}" width="70">
 		</a>
  	</span><br><br>
 	<form action="addCart.do" method="post" >
 		<input type="hidden" name="productNo" th:value="${product.productNo}">
 		<input type="hidden" name="color" th:value="${color}">
-	사이즈 종류 : 
-		<span th:each="sList:${sizes}">
-			<input type="radio" th:value="${sList.productSize}" name="size" th:text="${sList.productSize}" required="required">
+		
+	<span style="font-size: 20pt">사이즈 : 
+		<span th:each="productDetail:${productDetail}">
+			<input type="radio" th:value="${productDetail.productSize}" name="size" th:text="${productDetail.productSize}" required="required">
+			<span style="font-size: 10pt">
+				&nbsp재고 : [[${productDetail.stock}]]&nbsp&nbsp&nbsp&nbsp
+			</span>
 		</span><br><br>
+	</span>
 		<input type="submit" value="장바구니"><br><br>
 	</form>
 	<a th:href="@{addWish.do(productNo=${product.productNo},color=${color})}">위시리스트</a><br><br>
-	상세설명 : [[${product.detail}]]<br>
+	상세설명 : [[${product.detail}]]<br><br>
 	
 	특징: 
 		<span th:each="feature:${pf}">
 			[[${feature.feature}]] /
 		</span>
 	<br><br>
-	<div id="review">리뷰</div><br>
-	<div id="reviewDetail">
+	<div class="review" style="font-size: 20pt">리뷰</div><br>
+	
+	<div class="reviewDetail">
 		<a th:href="@{/product/reviewWriteFormChk.do(productNo=${product.productNo},color=${color})}">
 			리뷰 작성하기
-		</a>
-		<div id="reviewList">리부 작성하기 만들고 리뷰 가져오는거 만들어서 여기에 불러오기 숨겨뒀다가 누르면 보이기</div>
+		</a><br>
+		<div class="reviewList">
+			<table>
+				<span th:each="review:${rvList}">
+					<tr>
+						<th>[[${review.star}]]</th>
+						<td>[[${review.reviewDate}]]</td>
+					</tr>
+					<tr>
+						<td colspan="2">[[${review.content}]]</td>
+					</tr>
+					<tr>
+						<td colspan="2"><span th:each="photo:${rvPhotos}"> <img
+								th:src="@{/images/review_photo/}+${photo.reviewPhoto}"
+								width="50">
+						</span></td>
+					</tr>
+				</span>
+			</table>
+		</div>
 	</div>
 </div>
 
