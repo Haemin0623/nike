@@ -17,4 +17,8 @@
 		from	review_photo 
 		where	review_no=#{reviewNo}
 	</select>
+	<delete id="delete" parameterType="integer">
+		delete from	review_photo
+		where		review_no = #{reviewNo}
+	</delete>
 </mapper>

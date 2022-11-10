@@ -8,13 +8,12 @@
 </head>
 <body>
 <div layout:fragment="content" id="wish">
+	<br>
+	<br>
 <h2>리뷰리스트</h2>
 	<div th:if="${#lists.size(rvList)} == 0">
 		 현재 리뷰리스트가 비어있습니다.
 	</div>
-	
-	작성가능한리뷰 - 이 사람이 주문한 상품 다 불러오고 리뷰 내역에서 이메일과 프러덕트넘버가 동시에 일치하면 작성가능
-	where email=email and product_no=(select product_no from user_order_detail where 
 	<br>
 	<br>
 	<div class="reviewList">
@@ -31,7 +30,7 @@
 			<span th:if="${#lists.size(rvList)} != 0" th:each="review:${rvList}">
 				<tr>
 					<td>
-						<span th:if="${photo.productNo} == ${review.productNo}" th:each="photo:${photos}">
+						<span th:if="${photo.productNo} == ${review.productNo} and ${photo.color} == ${review.color}" th:each="photo:${photos}">
 							<img th:src="@{/images/product_photo/}+${photo.productPhoto}" width="50">
 						</span>
 					</td>
@@ -40,7 +39,7 @@
 					<td>[[${review.content}]]</td>
 					<td>[[${review.reviewDate}]]</td>
 					<td>
-						<a>수정</a>
+						<a th:href="@{/product/reviewUpdateForm.do(reviewNo=${review.reviewNo})}">수정</a>
 					</td>
 					<td>
 						<a th:href="@{/account/deleteReview.do(reviewNo=${review.reviewNo})}">삭제</a>
@@ -49,6 +48,11 @@
 			</span>
 		</table>
 	</div>
+	<br>
+	<br>
+<h2>작성가능한리뷰</h2>
+ 이 사람이 주문한 상품 다 불러오고 리뷰 내역에서 이메일과 프러덕트넘버가 동시에 일치하면 작성가능
+	where email=email and product_no=(select product_no from user_order_detail where 
 </div>
 </body>
 </html>

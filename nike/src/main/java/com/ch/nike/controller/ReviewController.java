@@ -47,7 +47,7 @@ public class ReviewController {
 		return "product/reviewWriteForm";
 	}
 	@RequestMapping("/product/reviewWrite.do")
-	public String writeReviewForm(Review review, String ratevalue, int productNo, String color, Model model, HttpSession session, 
+	public String reviewWrite(Review review, String ratevalue, int productNo, String color, Model model, HttpSession session, 
 			MultipartHttpServletRequest mhr) throws IOException {
 		int result = 0;
 		String email = (String) session.getAttribute("email");
@@ -103,6 +103,55 @@ public class ReviewController {
 		int result = rs.deleteReview(reviewNo);
 		model.addAttribute("result", result);
 		return "account/deleteReview";
+	}
+	@RequestMapping("/product/reviewUpdateForm.do")
+	public String reviewUpdate(int reviewNo, Model model, HttpSession session) {
+		Review review  = rs.reviewInfo(reviewNo);
+		List<ReviewPhoto> rvPhoto = rps.selectReviewPhoto(reviewNo);
+		model.addAttribute("review", review);
+		model.addAttribute("rvPhoto", rvPhoto);
+		return"product/reviewUpdateForm";
+	}
+	@RequestMapping("/product/reviewUpdate.do")
+	public String reviewUpdate(Review review, String ratevalue, int reviewNo, int productNo, String color, 
+			Model model, HttpSession session, MultipartHttpServletRequest mhr) throws IOException {
+		int result = 0;
+		String email = (String) session.getAttribute("email");
+		float star = 0;
+		try {
+			star = Float.valueOf(ratevalue);
+		} catch (NumberFormatException e) {
+			// TODO: handle exception
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		// 한번에 여러개의 파일이 들어온다
+		List<MultipartFile> list = mhr.getFiles("file");
+		String real = "src/main/resources/static/images/review_photo";
+		review.setStar(star);
+		rs.update(review);
+		rps.delete(reviewNo);
+		
+		for(MultipartFile mf : list) {	// 리뷰 포토는 기존거 다 삭제하고 다시 저장해버릴까 ^^
+			ReviewPhoto rp = new ReviewPhoto();
+			String reviewPhoto = mf.getOriginalFilename();
+			rp.setReviewPhoto(reviewPhoto);
+			rp.setReviewNo(reviewNo);
+			int reviewPhotoNo = rps.countReviewPhoto();
+			rp.setReviewPhotoNo(reviewPhotoNo);
+			
+			// 그림파일 저장
+			FileOutputStream fos = new FileOutputStream(new File(real+"/"+reviewPhoto));
+			fos.write(mf.getBytes());
+			fos.close();
+			
+			result = rps.insert(rp);
+		}
+		model.addAttribute("color", color);
+		model.addAttribute("productNo", productNo);
+		model.addAttribute("result", result);
+		return "product/reviewUpdate";
 	}
 
 }

@@ -14,4 +14,6 @@ public interface ReviewPhotoMapper {
 	
 	List<ReviewPhoto> selectReviewPhoto(int reviewNo);
 
+	void delete(int reviewNo);
+
 }

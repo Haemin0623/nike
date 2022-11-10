@@ -94,11 +94,13 @@ public class ProductController {
 		//리뷰리스트
 		List<Review> rvList = rs.selectProductReview(productNo);
 		List<ReviewPhoto> rvPhotos = new ArrayList<>();	
+		List<ReviewPhoto> rvPhotos2 = new ArrayList<>();
 		for (Review rv:rvList) {
 			rvPhotos = rps.selectReviewPhoto(rv.getReviewNo());
+			rvPhotos2.addAll(rvPhotos);
 		}
+		model.addAttribute("rvPhotos", rvPhotos2);
 		model.addAttribute("rvList", rvList);
-		model.addAttribute("rvPhotos", rvPhotos);
 		model.addAttribute("productNo", productNo);
 		
 		return "product/productDetail";

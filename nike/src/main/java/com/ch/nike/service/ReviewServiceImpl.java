@@ -43,9 +43,14 @@ public class ReviewServiceImpl implements ReviewService{
 	public int deleteReview(int reviewNo) {
 		return rm.deleteReview(reviewNo);
 	}
-	@Override
 	public List<Review> memberReview(String email) {
 		return rm.memberReview(email);
+	}
+	public Review reviewInfo(int reviewNo) {
+		return rm.reviewInfo(reviewNo);
+	}
+	public void update(Review review) {
+		rm.update(review);
 	}
 
 }

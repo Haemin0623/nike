@@ -57,4 +57,16 @@
 			and r.email = #{email}
 			and review_del = 'N'
 	</select>
+	<select id="reviewInfo" parameterType="integer" resultType="Review">
+		select	*
+		from	review
+		where	review_no = #{reviewNo}
+	</select>
+	<update id="update" parameterType="review">
+		update	review
+		set		star = #{star},
+				content = #{content}
+		where	review_no = #{reviewNo}
+	</update>
+	
 </mapper>

@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8">
+<title>Insert title here</title></head><body>
+<span th:if="${result} == 1">
+	<script type="text/javascript">
+		alert("리뷰 수정 완료")
+		location.href="productDetail.do?productNo=[[${productNo}]]&color=[[${color}]]";
+	</script>
+</span>
+<span th:if="${result} == 0">
+	<script type="text/javascript">
+		alert("리뷰 수정 실패");
+		history.back();
+	</script>
+</span>
+
+</body>
+</html>

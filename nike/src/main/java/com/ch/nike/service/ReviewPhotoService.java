@@ -12,5 +12,7 @@ public interface ReviewPhotoService {
 	
 	List<ReviewPhoto> selectReviewPhoto(int reviewNo);
 
+	void delete(int reviewNo);
+
 
 }

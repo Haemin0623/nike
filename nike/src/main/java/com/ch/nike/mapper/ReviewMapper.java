@@ -28,6 +28,10 @@ public interface ReviewMapper {
 
 	List<Review> memberReview(String email);
 
+	Review reviewInfo(int reviewNo);
+
+	void update(Review review);
+
 	
 
 

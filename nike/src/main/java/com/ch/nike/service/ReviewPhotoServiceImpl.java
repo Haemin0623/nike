@@ -21,7 +21,9 @@ public class ReviewPhotoServiceImpl implements ReviewPhotoService {
 		return rpm.insert(rp);
 	}
 	public List<ReviewPhoto> selectReviewPhoto(int reviewNo) {
-		
 		return rpm.selectReviewPhoto(reviewNo);
+	}
+	public void delete(int reviewNo) {
+		rpm.delete(reviewNo);
 	}
 }

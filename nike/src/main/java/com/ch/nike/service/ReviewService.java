@@ -14,4 +14,6 @@ public interface ReviewService {
 	List<Review> selectProductReview(int productNo);
 	int deleteReview(int reviewNo);
 	List<Review> memberReview(String email);
+	Review reviewInfo(int reviewNo);
+	void update(Review review);
 }
