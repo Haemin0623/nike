@@ -12,11 +12,10 @@
 	<ul th:each="product:${list}">
 		<li>
 			<a th:href="@{productDetail.do(productNo=${product.productNo},color=${product.color})}">
-			<img alt="누르시면 상세페이지로 이동합니다." th:src="@{/images/product_photo/}+${product.productPhoto}" width="200"><br>
-			상품명 : [[${product.productName}]]<br>
-			가  격 : [[${product.price}]]<br>
-			</a>
-			<br>
+				<img alt="누르시면 상세페이지로 이동합니다." th:src="@{/images/product_photo/}+${product.productPhoto}" width="200"><br>
+				상품명 : [[${product.productName}]]<br>
+				가  격 : [[${product.price}]]<br>
+			</a><br>
 			
 			
 		</li>

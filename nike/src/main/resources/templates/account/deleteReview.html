@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8">
+<title>Insert title here</title></head><body>
+<span th:if="${result} > 0">
+	<script type="text/javascript">
+		alert("리뷰가 삭제되었습니다.");
+		location.href="/account/reviewList.do";
+	</script>
+</span>
+<span th:if="${result} == 0">
+	<script type="text/javascript">
+		alert("리뷰 삭제 실패");
+		history.back();
+	</script>
+</span>
+</body>
+</html>

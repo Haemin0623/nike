@@ -76,10 +76,11 @@
 						<td colspan="2">[[${review.content}]]</td>
 					</tr>
 					<tr>
-						<td colspan="2"><span th:each="photo:${rvPhotos}"> <img
-								th:src="@{/images/review_photo/}+${photo.reviewPhoto}"
-								width="50">
-						</span></td>
+						<td colspan="2">
+							<span th:each="photo:${rvPhotos}">
+								<img th:src="@{/images/review_photo/}+${photo.reviewPhoto}" width="50">
+							</span>
+						</td>
 					</tr>
 				</span>
 			</table>

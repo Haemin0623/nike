@@ -24,6 +24,10 @@ public interface ReviewMapper {
 
 	List<Review> selectProductReview(int productNo);
 
+	int deleteReview(int reviewNo);
+
+	List<Review> memberReview(String email);
+
 	
 
 

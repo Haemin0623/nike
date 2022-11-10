@@ -84,7 +84,6 @@ public class ProductController {
 		if (product != null) {
 			photoList = pps.photoList(productNo);
 			productDetail = pds.productDetail(productNo, color);
-			
 		}
 		model.addAttribute("color", color);
 		model.addAttribute("product", product);
@@ -92,7 +91,7 @@ public class ProductController {
 		model.addAttribute("photoList", photoList);
 		model.addAttribute("productDetail", productDetail);
 		
-		
+		//리뷰리스트
 		List<Review> rvList = rs.selectProductReview(productNo);
 		List<ReviewPhoto> rvPhotos = new ArrayList<>();	
 		for (Review rv:rvList) {

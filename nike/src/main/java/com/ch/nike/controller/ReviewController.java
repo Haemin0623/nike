@@ -47,21 +47,31 @@ public class ReviewController {
 		return "product/reviewWriteForm";
 	}
 	@RequestMapping("/product/reviewWrite.do")
-	public String writeReviewForm(Review review, int productNo, String color, Model model, HttpSession session, 
+	public String writeReviewForm(Review review, String ratevalue, int productNo, String color, Model model, HttpSession session, 
 			MultipartHttpServletRequest mhr) throws IOException {
 		int result = 0;
 		String email = (String) session.getAttribute("email");
-		Review review2 = rs.productReview(email, productNo);
-		if (review2 == null) {
+		float star = 0;
+		try {
+			star = Float.valueOf(ratevalue);
+		} catch (NumberFormatException e) {
+			// TODO: handle exception
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		Review review2 = rs.productReview(email, productNo, color);
+		if (review2 == null || review2.getReviewDel().equals("Y")) {
 			// 한번에 여러개의 파일이 들어온다
 			List<MultipartFile> list = mhr.getFiles("file");
 			String real = "src/main/resources/static/images/review_photo";
 			// list의 사진을 하나씩 뽑아서 photos에 저장
-			Review rv = new Review();
 			int reviewNo = rs.countReview();
 			review.setReviewNo(reviewNo);
 			review.setProductNo(productNo);
 			review.setEmail(email);
+			review.setStar(star);
+			review.setColor(color);
 			rs.insert(review);
 			
 			for(MultipartFile mf : list) {
@@ -87,6 +97,12 @@ public class ReviewController {
 		model.addAttribute("productNo", productNo);
 		model.addAttribute("result", result);
 		return "product/reviewWrite";
+	}
+	@RequestMapping("/account/deleteReview.do")
+	public String reviewDel(int reviewNo, Model model, HttpSession session) {
+		int result = rs.deleteReview(reviewNo);
+		model.addAttribute("result", result);
+		return "account/deleteReview";
 	}
 
 }

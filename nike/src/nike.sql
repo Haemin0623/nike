@@ -156,7 +156,7 @@ create table QnA (
 
 -- 리뷰
 drop table review cascade constraints;
-
+select * from review;
 create table review (
 	review_no	number(4)		not	null	primary key,
 	product_no	number(4)		not null,

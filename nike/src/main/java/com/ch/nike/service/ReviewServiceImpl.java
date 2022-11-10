@@ -24,10 +24,11 @@ public class ReviewServiceImpl implements ReviewService{
 	public List<Review> reviewselect(String email) {
 		return rm.reviewselect(email);
 	}
-	public Review productReview(String email, int productNo) {
+	public Review productReview(String email, int productNo, String color) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("email", email);
 		map.put("productNo", productNo);
+		map.put("color", color);
 		return rm.productReview(map);
 	}
 	public int countReview() {
@@ -38,6 +39,13 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	public List<Review> selectProductReview(int productNo) {
 		return rm.selectProductReview(productNo);
+	}
+	public int deleteReview(int reviewNo) {
+		return rm.deleteReview(reviewNo);
+	}
+	@Override
+	public List<Review> memberReview(String email) {
+		return rm.memberReview(email);
 	}
 
 }

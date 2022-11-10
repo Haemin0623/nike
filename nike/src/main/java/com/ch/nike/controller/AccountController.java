@@ -17,7 +17,10 @@ import com.ch.nike.dto.Address;
 import com.ch.nike.dto.Cart;
 import com.ch.nike.dto.Member;
 import com.ch.nike.dto.Product;
+import com.ch.nike.dto.ProductPhoto;
 import com.ch.nike.dto.Refund;
+import com.ch.nike.dto.Review;
+import com.ch.nike.dto.ReviewPhoto;
 import com.ch.nike.dto.UserOrder;
 import com.ch.nike.dto.Wish;
 import com.ch.nike.service.AddressService;
@@ -26,6 +29,8 @@ import com.ch.nike.service.MemberService;
 import com.ch.nike.service.ProductPhotoService;
 import com.ch.nike.service.ProductService;
 import com.ch.nike.service.RefundService;
+import com.ch.nike.service.ReviewPhotoService;
+import com.ch.nike.service.ReviewService;
 import com.ch.nike.service.UserOrderService;
 import com.ch.nike.service.WishService;
 
@@ -47,7 +52,24 @@ public class AccountController {
 	private AddressService as;
 	@Autowired
 	private ProductPhotoService pps;
+	@Autowired
+	private ReviewService rvs;
+	@Autowired
+	private ReviewPhotoService rps;
 	
+	@RequestMapping("/account/mypageSessionChk.do")	// mypage로 이동 전 세션 체크 by선희
+	public String mypageSessionChk(Model model, HttpSession session) {
+		int result = 0;
+		if (session.getAttribute("email") != null) {
+			String email = (String) session.getAttribute("email");
+			result = 1;
+			model.addAttribute("email", email);
+		} else {
+			result = -1;	// 로그인 안한 경우
+		}
+		model.addAttribute("result", result);
+		return "account/mypageSessionChk";
+	}
 	@RequestMapping("/account/mypage.do")	// mypage로 이동 by선희
 	public String mypage(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
@@ -157,6 +179,19 @@ public class AccountController {
 		model.addAttribute("result", result);
 		return "account/refund";
 	}
+	@RequestMapping("/account/reviewList.do")		// 로그인한 회원의 장바구니 불러오기 by선희
+	public String reviewList(Model model, HttpSession session) {
+		String email = (String) session.getAttribute("email");
+		List<Review> rvList = rvs.memberReview(email);
+		List<ProductPhoto> photos = new ArrayList<>();
+		for (Review rv:rvList) {
+			ProductPhoto photo = pps.getPhoto(rv.getProductNo(), rv.getColor());
+			photos.add(photo);
+		}
+		model.addAttribute("rvList", rvList);
+		model.addAttribute("photos", photos);
+		return "account/reviewList";
+	}
 	@RequestMapping("/account/address.do")	// 배송지관리로 이동 by선희
 	public String address(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
@@ -164,9 +199,10 @@ public class AccountController {
 		model.addAttribute("addrList", addrList);
 		return "account/address";
 	}
-	@RequestMapping("/account/addAddr.do")
+	@RequestMapping("/account/addAddr.do")	// 로그인한 회원의 리뷰리스트 by선희
 	public String addAddr(Model model, HttpSession session) {
 		
 		return "account/addAddr";
 	}
+	
 }
