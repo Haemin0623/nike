@@ -91,38 +91,7 @@ public class AccountController {
 		model.addAttribute("result", result);
 		return "account/deleteMember";
 	}
-	@RequestMapping("/account/wishList.do")		// 로그인한 회원의 wishlist 불러오기 by선희
-	public String wishList(Model model, HttpSession session) {
-		String email = (String) session.getAttribute("email");
-		List<Wish> wishList = ws.selectWish(email);	// email에 대한 wish 조회
-		List<Product> list = new ArrayList<>();	
-		Product product = null;
-		for (Wish wish:wishList) {
-			if (wish != null) {
-				product = ws.selectWishThum(wish.getProductNo(), wish.getColor());
-				list.add(product);
-			}
-		}
-		model.addAttribute("wish", wishList);
-		model.addAttribute("list", list);
-		return "account/wishList";
-	}
-	@RequestMapping("/account/cartList.do")		// 로그인한 회원의 장바구니 불러오기 by선희
-	public String cartList(Model model, HttpSession session) {
-		String email = (String) session.getAttribute("email");
-		List<Cart> cartList = cs.selectCart(email);
-		List<Product> productList = new ArrayList<>();
-		Product product = null;
-		for (Cart cart:cartList) {	 
-			if (cart != null) {
-				product = ps.selectCartDetail(email, cart.getProductDetailNo(), cart.getColor());	// p, pd, c
-				productList.add(product);
-			}
-		}
-		model.addAttribute("cart", cartList);
-		model.addAttribute("productList", productList);
-		return "account/cartList";
-	}
+	
 	@RequestMapping("/account/orderList.do")		// 로그인한 회원의 주문내역 불러오기 by선희
 	public String orders(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");

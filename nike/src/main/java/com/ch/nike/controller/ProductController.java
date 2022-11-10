@@ -60,49 +60,22 @@ public class ProductController {
 		model.addAttribute("colorcount",product4);
 		return "product/productList";
 	}
-	
-	@RequestMapping("/product/product.do")	// 등록된 상품 불러오기 by선희
-	public String product(Model model) {
-		List<Product> list = ps.selectProduct();
-		model.addAttribute("list", list);
-		return "product/product";
-	}
 
-	@RequestMapping("/product/productDetail.do")	// 상품 상세 페이지 by선희
-	public String colorChange(String color, int productNo, Model model) {
-		Product product = ps.selectProductOne(productNo);
-		List<ProductFeature> pfeature = pfs.selectFeature(productNo);
-		List<ProductDetail> anotherColor = pps.colorChange(color, productNo);
-		if (anotherColor.size() != 0) {
-			model.addAttribute("anotherColor", anotherColor);
-		} else {
-			String msg = "준비중입니다.";
-			model.addAttribute("msg", msg);
-		}
-		List<ProductPhoto> photoList = null;
-		List<ProductDetail> productDetail = null;
-		if (product != null) {
-			photoList = pps.photoList(productNo);
-			productDetail = pds.productDetail(productNo, color);
-		}
-		model.addAttribute("color", color);
-		model.addAttribute("product", product);
-		model.addAttribute("pf", pfeature);
-		model.addAttribute("photoList", photoList);
-		model.addAttribute("productDetail", productDetail);
-		
-		//리뷰리스트
-		List<Review> rvList = rs.selectProductReview(productNo);
-		List<ReviewPhoto> rvPhotos = new ArrayList<>();	
-		List<ReviewPhoto> rvPhotos2 = new ArrayList<>();
-		for (Review rv:rvList) {
-			rvPhotos = rps.selectReviewPhoto(rv.getReviewNo());
-			rvPhotos2.addAll(rvPhotos);
-		}
-		model.addAttribute("rvPhotos", rvPhotos2);
-		model.addAttribute("rvList", rvList);
-		model.addAttribute("productNo", productNo);
-		
-		return "product/productDetail";
-	}
+//	@RequestMapping("/product/productDetail.do")	// 상품 상세 페이지 by선희
+//	public String colorChange(String color, int productNo, Model model) {
+//				
+//		//리뷰리스트
+//		List<Review> rvList = rs.selectProductReview(productNo);
+//		List<ReviewPhoto> rvPhotos = new ArrayList<>();	
+//		List<ReviewPhoto> rvPhotos2 = new ArrayList<>();
+//		for (Review rv:rvList) {
+//			rvPhotos = rps.selectReviewPhoto(rv.getReviewNo());
+//			rvPhotos2.addAll(rvPhotos);
+//		}
+//		model.addAttribute("rvPhotos", rvPhotos2);
+//		model.addAttribute("rvList", rvList);
+//		model.addAttribute("productNo", productNo);
+//		
+//		return "product/productDetail";
+//	}
 }
