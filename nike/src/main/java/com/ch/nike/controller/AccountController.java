@@ -14,15 +14,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ch.nike.dto.Address;
-import com.ch.nike.dto.Cart;
 import com.ch.nike.dto.Member;
 import com.ch.nike.dto.Product;
+import com.ch.nike.dto.ProductPhoto;
 import com.ch.nike.dto.Refund;
 import com.ch.nike.dto.UserOrder;
 import com.ch.nike.dto.Wish;
 import com.ch.nike.service.AddressService;
 import com.ch.nike.service.CartService;
 import com.ch.nike.service.MemberService;
+import com.ch.nike.service.ProductPhotoService;
 import com.ch.nike.service.ProductService;
 import com.ch.nike.service.RefundService;
 import com.ch.nike.service.UserOrderService;
@@ -44,6 +45,9 @@ public class AccountController {
 	private RefundService rs;
 	@Autowired
 	private AddressService as;
+	@Autowired
+	private ProductPhotoService pps;
+	
 	
 	@RequestMapping("/account/mypage.do")	// mypage로 이동 by선희
 	public String mypage(Model model, HttpSession session) {
@@ -65,21 +69,12 @@ public class AccountController {
 		model.addAttribute("result", result);
 		return "account/deleteMember";
 	}
-	@RequestMapping("/account/wishList.do")		// 로그인한 회원의 wishlist 불러오기 by선희
-	public String wishList(Model model, HttpSession session) {
+
+	@RequestMapping("/account/wishList.do") //마이페이지-위시리스트 
+	public String wishList(HttpSession session, Model model) {
 		String email = (String) session.getAttribute("email");
-		List<Wish> wishList = ws.selectWish(email);
-		List<Product> list = new ArrayList<>();
-		for (Wish wish:wishList) {
-			if (wish != null) {
-				Product product = ws.selectWishThum(wish.getProductNo());
-				if (product != null) {
-					list.add(product);
-				}
-			}
-		}
-		model.addAttribute("wish", wishList);
-		model.addAttribute("list", list);
+		List<Wish> wishList = ws.wishList(email);
+		model.addAttribute("wishList",wishList);
 		return "account/wishList";
 	}
 //	@RequestMapping("/account/cartList.do")		// 로그인한 회원의 장바구니 불러오기 by선희

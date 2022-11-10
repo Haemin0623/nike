@@ -20,6 +20,9 @@ modify (
 	member_tel varchar2(15)	
 );
 
+
+select * from wish;
+
 -- 배송지
 drop table address cascade constraints;
 

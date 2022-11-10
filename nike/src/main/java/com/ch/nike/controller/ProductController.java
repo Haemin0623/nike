@@ -37,6 +37,7 @@ public class ProductController {
 		model.addAttribute("product", product);
 		return "nike_main";
 
+
 	}
 	
 	@RequestMapping("/product/newReleases.do") // 상품리스트 by 수인
@@ -45,7 +46,7 @@ public class ProductController {
 		model.addAttribute("productList", productList);
 		return "product/newReleases";
 	}
-	@RequestMapping("/product/productDetail.do")
+	@RequestMapping("/product/productDetail.do") //해당상품의 상세정보 by수인
 	public String productDetail(int productNo, String color, Model model) {
 		Product product = ps.select(productNo);
 		List<ProductDetail> productDetailList  = pds.detailList(productNo);

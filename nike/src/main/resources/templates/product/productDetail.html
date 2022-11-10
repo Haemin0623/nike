@@ -17,16 +17,26 @@
 		</th:block>
 		
 		<th:block th:if="${#lists.size(productPhotoList)} > 0 and ${color}==${productPhoto.color}" 
-				  th:each="productPhoto:${productPhotoList}">
-			<img alt="" th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" height="150">
+				  th:each="productPhoto:${productPhotoList}">			
+			<img alt="" th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" height="200">
 		</th:block>
+		<p>
+		<th:block th:if="${#lists.size(productPhotoList)} > 0 and ${productPhoto.batch}==1" 
+					  th:each="productPhoto:${productPhotoList}">
+				<a th:href="@{productDetail.do(productNo=${productPhoto.productNo},color=${productPhoto.color})}">
+				<img alt="" th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" height="100"></a>
+		</th:block>
+		
 	<table border="1">
 		<tr th:if="${color}== ${productDetail.color}" th:each="productDetail:${productDetailList}">
-			<th>색상</th><td>[[${productDetail.color}]]</td>
 			<th>사이즈</th><td>[[${productDetail.productSize}]]</td>
 			<th>재고</th><td>[[${productDetail.stock}]]</td>
 		</tr>
 	</table>
+	
+	<button th:onclick="|location.href='@{addWish.do(productNo=${product.productNo})}'|">위시리스트</button><p> <!-- 양옆에 ||붙임 -->
+<!-- 	<a th:href="">장바구니</a> -->
+	
 	<br>
 	<table border="1">
 		<tr>
@@ -35,7 +45,6 @@
 		<tr>
 			<th>가격</th><td>[[${product.price}]]</td>
 		</tr>
-
 		<tr>
 			<th>상품상세</th><td>[[${product.detail}]]</td>
 		</tr>
@@ -46,10 +55,7 @@
 			<th>특징</th><td>[[${productFeature.feature}]]</td>
 		</tr>
 	</table>
-	
-	
 </div>
-
 
 </body>
 </html>
