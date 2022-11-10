@@ -7,7 +7,9 @@ import com.ch.nike.dto.Product;
 
 public interface CartService {
 	
-	List<Cart> selectCart(String email);
+	Cart select(Cart cart);
+	int insert(Cart cart);
+	int update(Cart cart2);
 
 
 }
