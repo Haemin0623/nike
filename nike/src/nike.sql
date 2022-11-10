@@ -19,7 +19,7 @@ alter table member
 modify (
 	member_tel varchar2(15)	
 );
-
+select * from cart;
 
 select * from wish;
 
@@ -114,6 +114,7 @@ create table product_feature (
 	constraint fk_product_feature_product_no foreign key(product_no) references product(product_no)
 );
 
+
 -- 위시리스트
 drop table wish cascade constraints;
 select * from wish;
@@ -176,6 +177,8 @@ create table review (
 	constraint fk_review_email foreign key(email) references member(email),
 	constraint fk_review_product_no foreign key(product_no) references product(product_no)
 );
+
+select * from wish where email ='hae@min.com';
 
 -- 리뷰 사진
 drop table review_photo cascade constraints;

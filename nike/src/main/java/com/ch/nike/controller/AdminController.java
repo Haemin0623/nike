@@ -85,11 +85,11 @@ public class AdminController {
 	public String adminMemberDetail(String email, Model model) {
 		Member member = ms.select(email);
 		List<Review> review = rs.reviewselect(email);
-		List<Wish> wish = ws.wishselect(email);
+		//List<Wish> wish = ws.wishselect(email);
 		List<UserOrder> userorder = uos.userorderselect(email);
 		model.addAttribute("member",member);
 		model.addAttribute("review",review);
-		model.addAttribute("wish",wish);
+		//model.addAttribute("wish",wish);
 		model.addAttribute("userorder",userorder);
 		return "admin/adminMemberDetail";
 	}
@@ -108,9 +108,11 @@ public class AdminController {
 		pagingbean.setEndRow(endRow);
 		List<Product> list2 = ps.paginglist(pagingbean);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+
 //		List<Product> list = ps.adminproductlist();
 		model.addAttribute("num", num);
 //		model.addAttribute("list", list);
+
 		model.addAttribute("list2",list2);
 		model.addAttribute("pb", pb);
 		return "admin/adminProductList";

@@ -12,16 +12,16 @@ public interface ProductService {
 	List<Product> list();
 	Product select(int productNo);
 
-	Product count(Category category);
-
-	List<Product> color(Category category);
-
-	Product colorcount(Category category);
-	List<Product> adminproductlist();
-	
-	Product selectCartThum(int productDetailNo);
-
-	List<Product> selectProduct();
+//	Product count(Category category);
+//
+//	List<Product> color(Category category);
+//
+//	Product colorcount(Category category);
+//	List<Product> adminproductlist();
+//	
+//	Product selectCartThum(int productDetailNo);
+//
+//	List<Product> selectProduct();
 
 	List<Product> paginglist(PagingBean pagingbean);
 

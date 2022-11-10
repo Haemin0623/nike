@@ -26,18 +26,16 @@
 				<a th:href="@{productDetail.do(productNo=${productPhoto.productNo},color=${productPhoto.color})}">
 				<img alt="" th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" height="100"></a>
 		</th:block>
+		<p>
 		
-	<table border="1">
-		<tr th:if="${color}== ${productDetail.color}" th:each="productDetail:${productDetailList}">
-			<th>사이즈</th><td>[[${productDetail.productSize}]]</td>
-			<th>재고</th><td>[[${productDetail.stock}]]</td>
-		</tr>
-	</table>
+	<form action="/account/addCart.do" method="post">
+		<select name="productDetailNo">		
+			<option th:value="${productDetail.productDetailNo}" th:if="${color}== ${productDetail.color}" th:each="productDetail:${productDetailList}">[[${productDetail.productSize}]] (재고: [[${productDetail.stock}]])</option>		
+		</select><br>
+		<button type="submit">장바구니 추가</button>
+	</form><p>
+	<button th:onclick="|location.href='@{addWish.do(productNo=${product.productNo},color=${color})}'|">위시리스트</button><p> <!-- 양옆에 ||붙임 -->
 	
-	<button th:onclick="|location.href='@{addWish.do(productNo=${product.productNo})}'|">위시리스트</button><p> <!-- 양옆에 ||붙임 -->
-<!-- 	<a th:href="">장바구니</a> -->
-	
-	<br>
 	<table border="1">
 		<tr>
 			<th>상품명</th><td>[[${product.productName}]]</td>

@@ -1,20 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/layout}">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
-<div layout:fragment="content">
-	위시리스트에 추가되었습니다.
+	 <th:block th:if="${result} > 0">
+		<script type="text/javascript">
+			alert("위시리스트에 추가되었습니다");
+			location.href="productDetail.do?productNo=[[${wish.productNo}]]&color=[[${wish.color}]]"; 
+		</script>
+	</th:block>
 	
-	위시리스트에 추가실패(이미 있는경우)
+	 <th:block th:if="${result} == -1">
+		<script type="text/javascript">
+			alert("위시리스트에서 삭제되었습니다");
+			location.href="productDetail.do?productNo=[[${wish.productNo}]]&color=[[${wish.color}]]"; 
+		</script>
+	</th:block>
 	
-</div>
-
+	 <th:block th:if="${result} == -2">
+		<script type="text/javascript">
+			location.href="/member/emailLoginForm.do"; 
+		</script>
+	</th:block>
+	
+	<th:block th:if="${result} == -3">
+		<script type="text/javascript">
+			alert("위시리스트에서 삭제되었습니다");
+			location.href="/account/wishList.do"; 
+		</script>
+	</th:block>
 
 </body>
 </html>

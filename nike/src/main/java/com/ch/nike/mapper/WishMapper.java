@@ -10,6 +10,9 @@ import com.ch.nike.dto.Wish;
 @Mapper
 public interface WishMapper {
 
+	Wish selectByEmail(Wish wish);
+	int insert(Wish wish);
+	void delete(int wishNo);
 	List<Wish> wishList(String email);
 
 }

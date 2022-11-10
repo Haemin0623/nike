@@ -8,27 +8,29 @@
 </head>
 <body>
 
-<div layout:fragment="content">
-	<h3> 위시리스트 </h3>
-	<table>
+<div layout:fragment="content" align="center">
+	<h3 > 위시리스트 </h3>
+	<table border="1" width="80%">
 		<tr>
-			<th> 위시리스트 번호 </th>
+			<th> 번호 </th>
 			<th> 상품사진 </th>
 			<th> 상품명 </th>
-			<th> 컬러 </th>	
+			<th> 컬러 </th>
+			<th></th>	
 		</tr>
 		
 		<tr th:if="${#lists.size(wishList)} == 0">
-			<td colspan ="3"> 위시리스트가 비었습니다</td>
+			<td colspan ="5"> 위시리스트가 비었습니다</td>
 		</tr>
 		<tr th:if="${#lists.size(wishList)} > 0" th:each="wish:${wishList}" >
-			<td>[[${wish.wishNo}]]
+			<td>[[${wish.wishNo}]]</td>
 			<td> 
-				<a th:href="@{productDetail.do(productNo=${wish.productNo}">
+				<a th:href="@{/product/productDetail.do(productNo=${wish.productNo},color=${wish.color})}">
 				<img alt="" th:src="@{/images/product_photo/}+${wish.productPhoto}" height="150"></a>
 			</td>
 			<td>[[${wish.productName}]]</td>
 			<td>[[${wish.color}]]</td>
+			<td>&nbsp; <a th:href="@{/product/addWish.do(productNo=${wish.productNo},color=${wish.color},page=-3)}">삭제</a>
 		</tr>
 	</table>
 	

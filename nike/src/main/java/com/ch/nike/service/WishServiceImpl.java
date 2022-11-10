@@ -13,6 +13,18 @@ public class WishServiceImpl implements WishService{
 	@Autowired
 	private WishMapper wm;
 
+	public Wish selectByEmail(Wish wish) {
+		return wm.selectByEmail(wish);
+	}
+
+	public int insert(Wish wish) {
+		return wm.insert(wish);
+	}
+
+	public void delete(int wishNo) {
+		wm.delete(wishNo);
+	}
+
 	@Override
 	public List<Wish> wishList(String email) {
 		return wm.wishList(email);

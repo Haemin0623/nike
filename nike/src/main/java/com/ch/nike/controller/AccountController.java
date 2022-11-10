@@ -14,9 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ch.nike.dto.Address;
+import com.ch.nike.dto.Cart;
 import com.ch.nike.dto.Member;
 import com.ch.nike.dto.Product;
-import com.ch.nike.dto.ProductPhoto;
+import com.ch.nike.dto.ProductDetail;
 import com.ch.nike.dto.Refund;
 import com.ch.nike.dto.UserOrder;
 import com.ch.nike.dto.Wish;
@@ -70,30 +71,40 @@ public class AccountController {
 		return "account/deleteMember";
 	}
 
-	@RequestMapping("/account/wishList.do") //마이페이지-위시리스트 
+	@RequestMapping("/account/wishList.do") //마이페이지-위시리스트 by 수인
 	public String wishList(HttpSession session, Model model) {
 		String email = (String) session.getAttribute("email");
 		List<Wish> wishList = ws.wishList(email);
 		model.addAttribute("wishList",wishList);
 		return "account/wishList";
 	}
-//	@RequestMapping("/account/cartList.do")		// 로그인한 회원의 장바구니 불러오기 by선희
-//	public String cartList(Model model, HttpSession session) {
-//		String email = (String) session.getAttribute("email");
-//		List<Cart> cartList = cs.selectCart(email);
-//		List<Product> list = new ArrayList<>();
-//		for (Cart cart:cartList) {
-//			if (cart != null) {
-//				Product product = ps.selectCartThum(cart.getProductDetailNo());
-//				if (product != null) {
-//					list.add(product);
-//				}
-//			}
-//		}
-//		model.addAttribute("cart", cartList);
-//		model.addAttribute("list", list);
-//		return "account/cartList";
-//	}
+	@RequestMapping("/account/cartList.do") //마이페이지 - 장바구니리스트 by 수인
+	
+	@RequestMapping("/account/addCart.do") //장바구니 추가 by 수인
+	public String addCart(HttpSession session, ProductDetail productDetail, Model model) {
+		int result = 0;
+		if(session.getAttribute("email")== null) { //로그인x - 이메일로그인창 
+			result = -1;
+		} else { //로그인o - 장바구니 추가			
+			String email = (String) session.getAttribute("email");
+			int productDetailNo = productDetail.getProductDetailNo();
+			Cart cart = new Cart();
+			cart.setEmail(email);
+			cart.setProductDetailNo(productDetailNo);
+			
+			Cart cart2 = cs.select(cart);
+			
+			if(cart2 == null) { //장바구니에 해당상품 없으면 추가(재고는 1로)
+				result = cs.insert(cart); 
+			} else { // 카트에 이미 상품 있으면 - 재고+1
+				result = cs.update(cart2);
+			}
+		}
+		model.addAttribute("result", result);
+		return "account/addCart";
+		
+	}
+
 	@RequestMapping("/account/orders.do")		// 로그인한 회원의 주문내역 불러오기 by선희
 	public String orders(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
@@ -165,4 +176,5 @@ public class AccountController {
 		
 		return "account/addAddr";
 	}
+	
 }

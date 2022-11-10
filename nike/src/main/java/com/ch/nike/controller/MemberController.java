@@ -92,7 +92,7 @@ public class MemberController {
 		Member member2 = ms.select(member.getEmail());
 		if (member2 != null) {
 			if (bpe.matches(member.getPassword(),member2.getPassword())) {
-				session.setAttribute("email", member.getEmail());
+				session.setAttribute("email", "hae@min.com");
 				return "redirect:/"; //redirect: (이 주소가 url로 ), forward: (/에서 요청한 주소가 url에 뜸) // ProductController의 @RequestMapping("/") 찾아감
 			} else  {
 				String msg = "📢비밀번호가 일치하지 않습니다";
