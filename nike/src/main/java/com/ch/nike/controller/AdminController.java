@@ -109,10 +109,9 @@ public class AdminController {
 		List<Product> list2 = ps.paginglist(pagingbean);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 
-//		List<Product> list = ps.adminproductlist();
+		//List<Product> list = ps.adminproductlist();
 		model.addAttribute("num", num);
-//		model.addAttribute("list", list);
-
+		//model.addAttribute("list", list);
 		model.addAttribute("list2",list2);
 		model.addAttribute("pb", pb);
 		return "admin/adminProductList";

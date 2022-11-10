@@ -14,16 +14,10 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	private CartMapper cm;
 
-	public Cart select(Cart cart) {
-		return cm.select(cart);
-	}
 
-	public int insert(Cart cart) {
-		return cm.insert(cart);
-	}
 
-	public int update(Cart cart2) {
-		return cm.update(cart2);
+	public List<Cart> selectCart(String email) {
+		return cm.selectCart(email);
 	}
 
 	public List<Cart> cartList(String email) {

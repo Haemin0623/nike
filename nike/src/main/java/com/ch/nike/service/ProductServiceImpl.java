@@ -27,6 +27,37 @@ public class ProductServiceImpl implements ProductService{
 	public Product selectsoo(int productNo) {
 		return pm.select(productNo);
 	}
+	
+	public List<Product> productlist(Category category) {
+		return pm.productlist(category);
+	}
+
+	@Override
+	public Product count(Category category) {
+		return pm.count(category);
+	}
+
+	@Override
+	public List<Product> color(Category category) {
+		return pm.color(category);
+	}
+
+	@Override
+	public Product colorcount(Category category) {
+		return pm.colorcount(category);
+	}
+	@Override
+	public List<Product> adminproductlist() {
+		return pm.adminproductlist();
+	}
+	public Product selectCartThum(int productDetailNo) {
+		return pm.selectCartThum(productDetailNo);
+	}
+
+	@Override
+	public List<Product> selectProduct() {
+		return pm.selectProduct();
+	}
 
 	@Override
 	public List<Product> paginglist(PagingBean pagingbean) {

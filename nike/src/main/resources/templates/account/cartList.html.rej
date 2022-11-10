@@ -1,0 +1,65 @@
+diff a/nike/src/main/resources/templates/account/cartList.html b/nike/src/main/resources/templates/account/cartList.html	(rejected hunks)
+@@ -1,31 +1,41 @@
+ <!DOCTYPE html>
+ <html xmlns:th="http://www.thymeleaf.org"
+-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+-      layout:decorate="~{layouts/layout}">
++	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
++	  layout:decorate="~{layouts/layout}">
+ <head>
+ <meta charset="UTF-8">
+ <title>Insert title here</title>
+ </head>
+ <body>
+-<div layout:fragment="content">
+-	<div th:if="${#lists.size(list)} == 0">
+-		 현재 장바구니가 비어있습니다.
+-	</div>
+-	<div th:if="${#lists.size(list)} != 0" th:each="cartList:${list}">
+-		<label>
+-			<input type="checkbox" name="cart" th:value="${cartList.productName}">
+-			<a href="상품상세 주소 넣기!!!!!!!!!!">  사진누르면 상품상세로 이동 넣기
+-				<img alt="상품 상세 페이지로 이동합니다." src="상품사진위치+이름넣기"> [[${cartList.productPhoto}]] 썸네일 사진
+-			</a>
+-			[[${cartList.productName}]]
+-			[[${cartList.price}]]
+-			[[${cartList.productSize}]]
+-			[[${cartList.color}]]
+-			[[${cartList.cartQuanity}]]
+-		</label>
+-				
+-	</div>
+-	총 가격 계산하는거 필요
++
++<div layout:fragment="content" align="center">
++	<h3> 장바구니 </h3>
++	<table border="1">
++		<tr>
++			<th> 번호 </th>
++			<th> 상품사진 </th>
++			<th> 상품명 </th>
++			<th> 컬러 </th>
++			<th></th>	
++		</tr>
++		
++		<tr th:if="${#lists.size(wishList)} == 0">
++			<td colspan ="5"> 장바구니가 비었습니다</td>
++		</tr>
++		<tr th:if="${#lists.size(wishList)} > 0" th:each="wish:${wishList}" >
++			<td>[[${wish.wishNo}]]</td>
++			<td> 
++				<a th:href="@{/product/productDetail.do(productNo=${wish.productNo},color=${wish.color})}">
++				<img alt="" th:src="@{/images/product_photo/}+${wish.productPhoto}" height="150"></a>
++			</td>
++			<td>[[${wish.productName}]]</td>
++			<td>[[${wish.color}]]</td>
++			<td>&nbsp; <a th:href="@{/product/addWish.do(productNo=${wish.productNo},color=${wish.color},page=-3)}">삭제</a>
++		</tr>
++	</table>
++	
+ </div>
++
++
+ </body>
+ </html>
+\ No newline at end of file

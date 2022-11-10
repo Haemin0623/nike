@@ -7,7 +7,7 @@
 		select 	* 
 		from 	cart 
 		where 	email=#{email} 
-			and product_detail_no=#{productDetailNo}
+			and product_detail_no=#{productDetailNo} 
 	</select>
 	
 	<insert id="insert" parameterType="Cart" > <!-- 없는 값은 selectKey로 먼저 구함 -->
@@ -46,11 +46,9 @@
 			and pp.batch = 1
 	order by 	cart_no desc
 	</select>
-	
 	<delete id="deleteCart" parameterType="integer">
 		delete 	from cart 
 		where 	cart_no = #{cartNo}
 	</delete>
-	
 
 </mapper>

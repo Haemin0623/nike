@@ -21,7 +21,6 @@ public class Product {
 	private int batch;
 	private String productPhoto;
 	private String color;
-	
 	private String productSize;
 	private int productDetailNo;
 	private String cartQuantity;

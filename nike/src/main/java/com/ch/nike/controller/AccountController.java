@@ -105,6 +105,7 @@ public class AccountController {
 			} else { // 카트에 이미 상품 있으면 - 재고+1
 				result = cs.update(cart2);
 			}
+
 		}
 		model.addAttribute("result", result);
 		return "account/addCart";

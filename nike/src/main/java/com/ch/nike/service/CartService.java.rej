@@ -1,0 +1,12 @@
+diff a/nike/src/main/java/com/ch/nike/service/CartService.java b/nike/src/main/java/com/ch/nike/service/CartService.java	(rejected hunks)
+@@ -7,7 +7,9 @@
+ 
+ public interface CartService {
+ 	
+-	List<Cart> selectCart(String email);
++	Cart select(Cart cart);
++	int insert(Cart cart);
++	int update(Cart cart2);
+ 
+ 
+ }

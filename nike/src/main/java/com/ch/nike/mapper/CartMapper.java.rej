@@ -1,0 +1,13 @@
+diff a/nike/src/main/java/com/ch/nike/mapper/CartMapper.java b/nike/src/main/java/com/ch/nike/mapper/CartMapper.java	(rejected hunks)
+@@ -10,7 +10,8 @@
+ @Mapper
+ public interface CartMapper {
+ 	
+-	List<Cart> selectCart(String email);
+-	
+-	
++	Cart select(Cart cart);
++	int insert(Cart cart);
++	int update(Cart cart2);
++		
+ }

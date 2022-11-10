@@ -8,9 +8,6 @@ import com.ch.nike.dto.Wish;
 
 public interface WishService {
 
-	Wish selectByEmail(Wish wish);
-	int insert(Wish wish);
-	void delete(int wishNo);
 	List<Wish> wishList(String email);
 
 

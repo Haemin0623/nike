@@ -299,13 +299,6 @@ insert into product_photo values (14, 3, 'c4.webp', 2, '블랙');
 insert into product_photo values (15, 3, 'c5.webp', 2, '블랙');
 insert into product_photo values (16, 3, 'c6.webp', 2, '블랙');
 
-insert into product_photo values (17, 3, 'd1.webp', 1, '화이트');
-insert into product_photo values (18, 3, 'd2.webp', 2, '화이트');
-insert into product_photo values (19, 3, 'd3.webp', 2, '화이트');
-insert into product_photo values (20, 3, 'd4.webp', 2, '화이트');
-insert into product_photo values (21, 3, 'd5.webp', 2, '화이트');
-insert into product_photo values (22, 3, 'd6.webp', 2, '화이트');
-
 
 -- 특징
 insert into product_feature values (1, 1, '면');
@@ -380,5 +373,5 @@ insert into store values (4, '나이키 신세계 강남', '신반포로 176 신
 -- 공지사항
 -- 이거는 기능 만들어서 구현 해야지 의미 있을듯
 
-select * from product
+
 

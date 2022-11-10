@@ -1,41 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/layout}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
-<div layout:fragment="content" align="center">
-	<h3 > 위시리스트 </h3>
-	<table border="1" width="80%">
-		<tr>
-			<th> 번호 </th>
-			<th> 상품사진 </th>
-			<th> 상품명 </th>
-			<th> 컬러 </th>
-			<th></th>	
-		</tr>
-		
-		<tr th:if="${#lists.size(wishList)} == 0">
-			<td colspan ="5"> 위시리스트가 비었습니다</td>
-		</tr>
-		<tr th:if="${#lists.size(wishList)} > 0" th:each="wish:${wishList}" >
-			<td>[[${wish.wishNo}]]</td>
-			<td> 
-				<a th:href="@{/product/productDetail.do(productNo=${wish.productNo},color=${wish.color})}">
-				<img alt="" th:src="@{/images/product_photo/}+${wish.productPhoto}" height="150"></a>
-			</td>
-			<td>[[${wish.productName}]]</td>
-			<td>[[${wish.color}]]</td>
-			<td>&nbsp; <a th:href="@{/product/addWish.do(productNo=${wish.productNo},color=${wish.color},page=-3)}">삭제</a>
-		</tr>
-	</table>
+<div layout:fragment="content">
+	<div th:if="${#lists.size(list)} == 0">
+		 현재 위시리스트가 비어있습니다.
+	</div>
 	
+	<ul th:if="${#lists.size(list)} != 0" th:each="wishList:${list}">
+		<li>
+			[[${wishList.productName}]]
+			[[${wishList.price}]]
+			<a href="상품상세 주소 넣기!!!!!!!!!!">  사진누르면 상품상세로 이동 넣기
+				<img alt="상품 상세 페이지로 이동합니다." src="상품사진위치+이름넣기"> [[${wishList.productPhoto}]] 썸네일 사진
+				
+			</a>
+		</li>
+	</ul>
 </div>
-
-
 </body>
 </html>

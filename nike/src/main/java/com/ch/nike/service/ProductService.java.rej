@@ -1,0 +1,10 @@
+diff a/nike/src/main/java/com/ch/nike/service/ProductService.java b/nike/src/main/java/com/ch/nike/service/ProductService.java	(rejected hunks)
+@@ -11,8 +11,6 @@
+ 
+ 	List<Product> list();
+ 
+-	List<Product> productlist(Category category);
+-
+ 	Product count(Category category);
+ 
+ 	List<Product> color(Category category);
