@@ -7,6 +7,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ch.nike.dto.Category;
+import com.ch.nike.dto.Member;
+import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Product;
 
 @Mapper
@@ -23,7 +25,7 @@ public interface ProductMapper {
 	Product colorcount(Category category);
 
 	List<Product> adminproductlist();
-
+	
 	Product selectCartDetail(HashMap<String, Object> map);
 
 	List<Product> selectProduct();
@@ -31,7 +33,17 @@ public interface ProductMapper {
 	Product selectProductOne(int productNo);
 
 	Product productInfo(HashMap<String, Object> map);
+	Product selectCartThum(int productDetailNo);
+	List<Product> paginglist(PagingBean pagingbean);
 
+	int productinsert(Product product);
 
+	int selectproductNo();
+
+	int getTotal();
+
+	Product select(int productDetailNo);
+
+	int productupdate(Product product);
 
 }

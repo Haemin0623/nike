@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.ch.nike.dto.Product;
 import com.ch.nike.dto.ProductDetail;
 import com.ch.nike.dto.ProductPhoto;
 
@@ -15,4 +16,12 @@ public interface ProductPhotoMapper {
 	List<ProductDetail> colorChange(HashMap<String, Object> map);
 	ProductPhoto getPhoto(HashMap<String, Object> map);
 	List<ProductPhoto> photoList(int productNo);
+
+	int productinsert(Product product);
+
+	int productupdate(Product product);
+
+	int productinsert2(Product product);
+
+	int productinsert3(Product product);
 }

@@ -13,27 +13,77 @@
 </head>
 <body>
 <div layout:fragment="content">
-<table>
-	<tr>
-		<th>공지번호</th>
-		<th>공지유형</th>
-		<th>제목</th>
-		<th>내용</th>
-		<th>등록일</th>
-		<th>조회수</th>
-		<th>삭제여부</th>
-	</tr>
-	<tr th:each="lists:${list}">
-		<td>[[${lists.noticeNo}]]</td>
-		<td>[[${lists.noticeType}]]</td>
-		<td>[[${lists.noticeSubject}]]</td>
-		<td>[[${lists.content}]]</td>
-		<td>[[${lists.regDate}]]</td>
-		<td>[[${lists.readCount}]]</td>
-		<td>[[${lists.del}]]</td>
-		<td><a th:href="@{/adminNoticeDetail.do(noticeNo=${lists.noticeNo})}">공지상세</a>
-	</tr>
-</table>
+	<table>
+		<tr>
+			<th>공지번호</th>
+			<th>공지유형</th>
+			<th>제목</th>
+			<th>내용</th>
+			<th>등록일</th>
+			<th>조회수</th>
+			<th>삭제여부</th>
+		</tr>
+		<tr th:each="lists:${list2}">
+			<td>[[${lists.noticeNo}]]</td>
+			<td>[[${lists.noticeType}]]</td>
+			<td>[[${lists.noticeSubject}]]</td>
+			<td>[[${lists.content}]]</td>
+			<td>[[${lists.regDate}]]</td>
+			<td>[[${lists.readCount}]]</td>
+			<td>[[${lists.del}]]</td>
+			<td><a th:href="@{/adminNoticeDetail.do(noticeNo=${lists.noticeNo})}">공지상세</a>
+		</tr>
+	</table>
+	<div>
+		<form action="adminNoticeList.do">
+			<select name="keyword">
+				<option value="noticeNo">공지번호</option>
+				<option value="noticeSubject">제목</option>
+			</select>
+			<input type="text" name="search">
+			<input type="submit" value="검색">
+		</form>
+	</div>
+	<span>
+		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
+		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
+			<li>
+				<a th:href="@{/adminNoticeList.do(pageNum=1)}">
+					<span class="glyphicon glyphicon-fast-backward"></span>
+				</a>
+			</li>
+			<li>
+				<a th:href="@{/adminNoticeList.do(pageNum=${pb.startPage-1 })}">
+					<span class="glyphicon glyphicon-triangle-left"></span>
+				</a>
+			</li>
+		</th:block>
+		<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
+			<th:block th:if="${pb.currentPage == i }">
+				<li class="active">
+					<a th:href="@{/adminNoticeList.do(pageNum=${i})}">[[${i}]]</a>
+				</li>
+			</th:block>
+			<th:block th:if="${pb.currentPage != i }">
+				<li>
+					<a th:href="@{/adminNoticeList.do(pageNum=${i})}">[[${i}]]</a>
+				</li>
+			</th:block>		
+		</th:block>
+		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
+		<th:block th:if="${pb.endPage < pb.totalPage}">
+			<li>
+				<a th:href="@{/adminNoticeList.do(pageNum=${pb.endPage+1})}">
+					<span class="glyphicon glyphicon-triangle-right"></span>
+				</a>
+			</li>
+			<li>
+				<a th:href="@{/adminNoticeList.do(pageNum=${pb.totalPage})}">
+					<span class="glyphicon glyphicon-fast-forward"></span>
+				</a>
+			</li>
+		</th:block>
+	</span>
 <a href="/adminNoticeInsert.do">공지 등록</a>
 </div>
 </body>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.nike.dto.Member;
+import com.ch.nike.dto.PagingBean;
 import com.ch.nike.mapper.MemberMapper;
 
 @Service
@@ -30,4 +31,14 @@ public class MemberServiceImpl implements MemberService {
 	public int deleteMember(String email) {
 		return mm.deleteMember(email);
 	}
+	@Override
+	public int getTotal() {
+		return mm.getTotal();
+	}
+
+	@Override
+	public List<Member> paginglist(PagingBean pagingbean) {
+		return mm.paginglist(pagingbean);
+	}
+
 }

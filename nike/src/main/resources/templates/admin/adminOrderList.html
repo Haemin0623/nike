@@ -21,7 +21,7 @@
 			<th>주소번호</th>
 			<th>상태</th>
 		</tr>
-		<tr th:each="lists:${list}">
+		<tr th:each="lists:${list2}">
 			<td>[[${lists.orderNo}]]</td>
 			<td>[[${lists.email}]]</td>
 			<td>[[${lists.orderDate}]]</td>
@@ -30,6 +30,56 @@
 			<td><a th:href="@{/adminOrderDetail.do(orderNo=${lists.orderNo})}">주문 상세 보기</a><td>
 		</tr>
 	</table>
+	<div>
+		<form action="adminOrderList.do">
+			<select name="keyword">
+				<option value="orderNum">주문번호</option>
+				<option value="email">이메일</option>
+			</select>
+			<input type="text" name="search">
+			<input type="submit" value="검색">
+		</form>
+	</div>
+	<span>
+		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
+		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
+			<li>
+				<a th:href="@{/adminOrderList.do(pageNum=1)}">
+					<span class="glyphicon glyphicon-fast-backward"></span>
+				</a>
+			</li>
+			<li>
+				<a th:href="@{/adminOrderList.do(pageNum=${pb.startPage-1 })}">
+					<span class="glyphicon glyphicon-triangle-left"></span>
+				</a>
+			</li>
+		</th:block>
+		<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
+			<th:block th:if="${pb.currentPage == i }">
+				<li class="active">
+					<a th:href="@{/adminOrderList.do(pageNum=${i})}">[[${i}]]</a>
+				</li>
+			</th:block>
+			<th:block th:if="${pb.currentPage != i }">
+				<li>
+					<a th:href="@{/adminProductList.do(pageNum=${i})}">[[${i}]]</a>
+				</li>
+			</th:block>		
+		</th:block>
+		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
+		<th:block th:if="${pb.endPage < pb.totalPage}">
+			<li>
+				<a th:href="@{/adminOrderList.do(pageNum=${pb.endPage+1})}">
+					<span class="glyphicon glyphicon-triangle-right"></span>
+				</a>
+			</li>
+			<li>
+				<a th:href="@{/adminOrderList.do(pageNum=${pb.totalPage})}">
+					<span class="glyphicon glyphicon-fast-forward"></span>
+				</a>
+			</li>
+		</th:block>
+	</span>
 </div>
 </body>
 </html>

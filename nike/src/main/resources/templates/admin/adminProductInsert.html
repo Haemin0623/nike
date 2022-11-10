@@ -8,7 +8,74 @@
 </head>
 <body>
 <div layout:fragment="content">
-상품 등록 페이지
+	<form action="adminProductInsertResult.do" method="post" enctype="multipart/form-data">
+		<div>
+			<h2>상품 등록</h2>
+			<fieldset>
+			    <legend>카테고리</legend>
+				  상의
+				  <label><input type="radio" name="categoryNo" value="1">티셔츠</label>
+				  <label><input type="radio" name="categoryNo" value="2">후드</label>
+				  <label><input type="radio" name="categoryNo" value="3">재킷</label>
+				  <br>
+				  하의
+				  <label><input type="radio" name="categoryNo" value="4">팬츠</label>
+				  <label><input type="radio" name="categoryNo" value="5">타이즈</label>
+				  <label><input type="radio" name="categoryNo" value="6">쇼츠</label>
+				  <br>
+				  용품
+				  <label><input type="radio" name="categoryNo" value="7">양말</label>
+				  <label><input type="radio" name="categoryNo" value="8">모자</label>
+				  <label><input type="radio" name="categoryNo" value="9">가방</label>
+				  <br>
+				  신발
+				  <label><input type="radio" name="categoryNo" value="10">라이프스타일</label>
+				  <label><input type="radio" name="categoryNo" value="11">러닝</label>
+				  <label><input type="radio" name="categoryNo" value="12">농구</label>
+			  </fieldset>
+		</div>
+		<div>상품명
+			<input type="text" name="productName" required="required" autofocus="autofocus">
+		</div>
+		<div>색상
+			<input type="text" name="color" required="required">
+		</div>
+		<div>사이즈
+			<input type="text" name="productSize" required="required">
+		</div>
+		<div>
+			<fieldset>
+				<legend>성별</legend>
+				<label>
+					<input type="radio" name="gender" value="M">남자
+				</label>
+				<label>
+					<input type="radio" name="gender" value="F">여자
+				</label>
+			</fieldset>
+		</div>
+		<div>재고
+			<input type="number" name="stock" value="1" required="required">
+		</div>
+		<div>대표이미지
+			<input type="file" name="file" required="required" >
+		</div>
+		<div>상품 사진
+			<input type="file" name="file2" required="required" multiple="multiple">
+		</div>
+<!-- 		<div>상품 사진(하단) -->
+<!-- 			<input type="file" name="file3" required="required" multiple="multiple"> -->
+<!-- 		</div> -->
+		<div>가격
+			<input type="number" name="price" value="0" required="required">
+		</div>
+		<div>상세정보
+			<input type="text" name="detail" required="required">
+		</div>
+		<div>
+			<input type="submit" value="확인">
+		</div>
+	</form>
 </div>
 </body>
 </html>

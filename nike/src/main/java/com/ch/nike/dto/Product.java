@@ -1,6 +1,7 @@
 package com.ch.nike.dto;
 
 import org.apache.ibatis.type.Alias;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
@@ -13,7 +14,7 @@ public class Product {
 	private int price;
 	private String detail;
 	private String gender;
-
+	
 	// 조인용
 	// 이렇게 해도 되는데 ProductPhoto 클래스 자체를 넣어도 될듯?? //맞네? 그랬네?? ㅋㅋ
 	// private ProductPhoto productPhoto	by 해민
@@ -33,4 +34,8 @@ public class Product {
 	private int small;
 	private int featurelNo;
 	private String feature;
+	
+	
+	
+	private int productPhotoNo;
 }

@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Review;
-import com.ch.nike.dto.ReviewPhoto;
-
+import com.ch.nike.dto.UserOrder;
 
 @Mapper
 public interface ReviewMapper {
@@ -15,6 +15,7 @@ public interface ReviewMapper {
 	List<Review> reviewlist();
 
 	List<Review> reviewselect(String email);
+
 
 	Review productReview(HashMap<String, Object> map);
 
@@ -33,6 +34,10 @@ public interface ReviewMapper {
 	void update(Review review);
 
 	
+
+	List<UserOrder> paginglist(PagingBean pagingbean);
+
+	int getTotal();
 
 
 }

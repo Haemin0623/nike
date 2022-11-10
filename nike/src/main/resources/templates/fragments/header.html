@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;"
+	lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<title>header</title>
+
 </head>
+
 <body>
 	<header th:fragment="headerFragment">
 		<a class="btn btn-primary" href="/">메인</a>
@@ -45,8 +48,6 @@
 		<th:block th:if="${session.email} == null"> <!-- 세션에 이메일 없으면 -->
 			<a href="/member/emailLoginForm.do">로그인 및 가입하기</a>
 		</th:block>
-		
-	</header>
-
+		</header>
 </body>
 </html>

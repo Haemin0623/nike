@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Product;
 import com.ch.nike.dto.UserOrder;
 import com.ch.nike.mapper.UserOrderMapper;
@@ -25,7 +26,15 @@ public class UserOrderServiceImpl implements UserOrderService{
 	public List<UserOrder> selectUserOrder(String email) {
 		return uod.selectUserOrder(email);
 	}
-	public UserOrder selectOrderDetail(int orderNo) {
-		return uod.selectOrderDetail(orderNo);
+//	public UserOrder selectOrderDetail(int orderNo) {
+//		return uod.selectOrderDetail(orderNo);
+//	}
+	@Override
+	public List<UserOrder> paginglist(PagingBean pagingbean) {
+		return uod.paginglist(pagingbean);
+	}
+	@Override
+	public int getTotal() {
+		return uod.getTotal();
 	}
 }
