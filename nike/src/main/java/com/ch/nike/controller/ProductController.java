@@ -23,7 +23,7 @@ public class ProductController {
 	public String main(Model model, HttpSession session) {
 		List<Product> product = ps.list();
 		model.addAttribute("product", product);
-		return "main";
+		return "nike_main";
 	}
 	
 	@RequestMapping("/productList.do") // 상품리스트 상품 리스트불러오기 (대분류,소분류), 상품수체크 by창률
