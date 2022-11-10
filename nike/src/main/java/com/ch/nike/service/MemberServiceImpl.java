@@ -31,12 +31,10 @@ public class MemberServiceImpl implements MemberService {
 	public int deleteMember(String email) {
 		return mm.deleteMember(email);
 	}
-	@Override
 	public int getTotal() {
 		return mm.getTotal();
 	}
 
-	@Override
 	public List<Member> paginglist(PagingBean pagingbean) {
 		return mm.paginglist(pagingbean);
 	}

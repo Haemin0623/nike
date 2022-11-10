@@ -16,21 +16,27 @@
 			<th> 상품사진 </th>
 			<th> 상품명 </th>
 			<th> 컬러 </th>
+			<th> 사이즈 </th>
+			<th> 수량 </th>
 			<th></th>	
 		</tr>
+		<!-- 		카트번호, 수량 /상품사진(배치1번), 상품명/ 사이즈, 컬러  -->
 		
-		<tr th:if="${#lists.size(wishList)} == 0">
+		<tr th:if="${#lists.size(cartList)} == 0">
 			<td colspan ="5"> 장바구니가 비었습니다</td>
 		</tr>
-		<tr th:if="${#lists.size(wishList)} > 0" th:each="wish:${wishList}" >
-			<td>[[${wish.wishNo}]]</td>
+		
+		<tr th:if="${#lists.size(cartList)} > 0" th:each="cartDetail:${cartList}" >
+			<td>[[${cartDetail.cartNo}]]</td>
 			<td> 
-				<a th:href="@{/product/productDetail.do(productNo=${wish.productNo},color=${wish.color})}">
-				<img alt="" th:src="@{/images/product_photo/}+${wish.productPhoto}" height="150"></a>
+				<a th:href="@{/product/productDetail.do(productNo=${cartDetail.productNo},color=${cartDetail.color})}">
+				<img alt="" th:src="@{/images/product_photo/}+${cartDetail.productPhoto}" height="150"></a>
 			</td>
-			<td>[[${wish.productName}]]</td>
-			<td>[[${wish.color}]]</td>
-			<td>&nbsp; <a th:href="@{/product/addWish.do(productNo=${wish.productNo},color=${wish.color},page=-3)}">삭제</a>
+			<td>[[${cartDetail.productName}]]</td>
+			<td>[[${cartDetail.color}]]</td>
+			<td>[[${cartDetail.productSize}]]</td>
+			<td>[[${cartDetail.cartQuantity}]]</td>
+			<td>&nbsp; <a th:href="@{/product/addCart.do(productNo=${cartDetail.productNo},color=${cartDetail.color},page=-3)}">삭제</a>
 		</tr>
 	</table>
 	

@@ -10,6 +10,7 @@ public interface CartService {
 	Cart select(Cart cart);
 	int insert(Cart cart);
 	int update(Cart cart2);
+	List<Cart> cartList(String email);
 
 
 }

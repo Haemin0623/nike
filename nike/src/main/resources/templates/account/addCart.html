@@ -17,6 +17,13 @@
 			location.href="/member/emailLoginForm.do"; 
 		</script>
 	</th:block>
+	
+	<th:block th:if="${result} == -3"> 
+		<script type="text/javascript">
+			alert("장바구니에서 삭제되었습니다");
+			location.href="/account/cartList.do"; 
+		</script>
+	</th:block>
 
 </body>
 </html>

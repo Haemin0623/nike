@@ -79,9 +79,15 @@ public class AccountController {
 		return "account/wishList";
 	}
 	@RequestMapping("/account/cartList.do") //마이페이지 - 장바구니리스트 by 수인
+	public String cartList(HttpSession session, Model model) {
+		String email = (String) session.getAttribute("email");
+		List <Cart> cartList = cs.cartList(email);
+		model.addAttribute("cartList",cartList);
+		return "account/cartList";
+	}
 	
 	@RequestMapping("/account/addCart.do") //장바구니 추가 by 수인
-	public String addCart(HttpSession session, ProductDetail productDetail, Model model) {
+	public String addCart(HttpSession session, ProductDetail productDetail, Model model, Integer page) {
 		int result = 0;
 		if(session.getAttribute("email")== null) { //로그인x - 이메일로그인창 
 			result = -1;
@@ -99,6 +105,9 @@ public class AccountController {
 			} else { // 카트에 이미 상품 있으면 - 재고+1
 				result = cs.update(cart2);
 			}
+		}
+		if(page!=null) {
+			result = page;
 		}
 		model.addAttribute("result", result);
 		return "account/addCart";

@@ -19,9 +19,15 @@ alter table member
 modify (
 	member_tel varchar2(15)	
 );
-select * from cart;
 
-select * from wish;
+select c.*, pp.product_photo, p.product_name, p.price, pd.product_size, pd.color 
+from cart c, product p, product_photo pp, product_detail pd
+where c.product_detail_no = pd.product_detail_no
+and p.product_no = pd.product_no
+and p.product_no = pp.product_no
+and pp.batch = 1
+and email = 'hae@min.com'
+order by cart_no desc;
 
 -- 배송지
 drop table address cascade constraints;

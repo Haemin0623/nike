@@ -25,4 +25,10 @@ public class CartServiceImpl implements CartService {
 	public int update(Cart cart2) {
 		return cm.update(cart2);
 	}
+
+	public List<Cart> cartList(String email) {
+		return cm.cartList(email);
+	}
+
+
 }
