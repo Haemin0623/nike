@@ -30,5 +30,9 @@ public class CartServiceImpl implements CartService {
 		return cm.cartList(email);
 	}
 
+	public int deleteCart(int cartNo) {
+		return cm.deleteCart(cartNo);
+	}
+
 
 }

@@ -48,10 +48,12 @@ public class ProductController {
 	}
 	@RequestMapping("/product/productDetail.do") //해당상품의 상세정보 by수인
 	public String productDetail(int productNo, String color, Model model) {
-		Product product = ps.select(productNo);
+		Product product = ps.selectsoo(productNo);
+		
 		List<ProductDetail> productDetailList  = pds.detailList(productNo);
 		List<ProductPhoto> productPhotoList = pps.photoList(productNo);		
 		List<ProductFeature> productFeatureList = pfs.featureList(productNo);
+		
 		model.addAttribute("product", product);
 		model.addAttribute("productDetailList",productDetailList);
 		model.addAttribute("productPhotoList",productPhotoList);

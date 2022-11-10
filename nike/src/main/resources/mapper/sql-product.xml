@@ -3,9 +3,14 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.ProductMapper">
 	<select id = "list" resultType="Product"  >
-		select	* 
-		from	product 
-	order by	product_no desc
+		select	p.*,
+				ph.product_photo,
+				ph.color			
+		from	product p,
+				product_photo ph
+		where	p.product_no = ph.product_no
+			and ph.batch = 1
+	order by	p.product_no desc
 	</select>
 
 	<select id="productlist" parameterType="category" resultType="product"><!-- 상품리스트 by창률 -->
@@ -172,7 +177,7 @@
 		where	product_No=#{productNo}
 	</update>
 
-	<select id="select" parameterType="integer" resultType="Product">
+	<select id="selectsoo" parameterType="integer" resultType="Product">
 		 select	* 
 		 from 	product 
 		 where 	product_no = #{productNo}

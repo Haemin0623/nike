@@ -14,5 +14,6 @@ public interface CartMapper {
 	int insert(Cart cart);
 	int update(Cart cart2);
 	List<Cart> cartList(String email);
+	int deleteCart(int cartNo);
 		
 }

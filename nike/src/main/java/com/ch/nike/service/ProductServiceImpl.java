@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public Product select(int productNo) {
+	public Product selectsoo(int productNo) {
 		return pm.select(productNo);
 	}
 

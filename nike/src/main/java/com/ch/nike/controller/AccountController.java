@@ -87,7 +87,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping("/account/addCart.do") //장바구니 추가 by 수인
-	public String addCart(HttpSession session, ProductDetail productDetail, Model model, Integer page) {
+	public String addCart(HttpSession session, ProductDetail productDetail, Model model, int cartNo) {
 		int result = 0;
 		if(session.getAttribute("email")== null) { //로그인x - 이메일로그인창 
 			result = -1;
@@ -106,13 +106,22 @@ public class AccountController {
 				result = cs.update(cart2);
 			}
 		}
-		if(page!=null) {
-			result = page;
-		}
 		model.addAttribute("result", result);
 		return "account/addCart";
-		
 	}
+	
+	@RequestMapping("/account/deleteCart.do") // 장바구니 - 삭제 by 수인
+	public String deleteCart(HttpSession session, int cartNo, Model model) {
+		int result = 0;
+		if(session.getAttribute("email") == null) { //로그인x
+			result = -1; 
+		} else { //로그인o - 장바구니 삭제
+			result = cs.deleteCart(cartNo);
+		}
+		model.addAttribute("result",result);
+		return "account/deleteCart";
+	}
+	
 
 	@RequestMapping("/account/orders.do")		// 로그인한 회원의 주문내역 불러오기 by선희
 	public String orders(Model model, HttpSession session) {

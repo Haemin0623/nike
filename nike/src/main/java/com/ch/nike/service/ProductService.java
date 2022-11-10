@@ -10,7 +10,7 @@ import com.ch.nike.dto.Product;
 public interface ProductService {
 
 	List<Product> list();
-	Product select(int productNo);
+	Product selectsoo(int productNo);
 
 //	Product count(Category category);
 //

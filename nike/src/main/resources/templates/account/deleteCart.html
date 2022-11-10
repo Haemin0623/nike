@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:if="${result} == -1"> <!-- 로그인x  -->
+		<script type="text/javascript">
+			location.href="/member/emailLoginForm.do"; 
+		</script>
+	</th:block>
+	
+	 <th:block th:if="${result} > 0"> 
+		<script type="text/javascript">
+			alert("장바구니에서 삭제되었습니다");
+			location.href="/account/cartList.do"; 
+		</script>
+	</th:block>
+	
+	 <th:block th:if="${result} == 0"> 
+		<script type="text/javascript">
+			alert("장바구니에서 삭제가 실패되었습니다");
+			history.go(-1); 
+		</script>
+	</th:block>
+</body>
+</html>

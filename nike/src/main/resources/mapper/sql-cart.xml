@@ -2,12 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.CartMapper">
+
 	<select id="select" parameterType="Cart" resultType="Cart" >
 		select 	* 
 		from 	cart 
 		where 	email=#{email} 
 			and product_detail_no=#{productDetailNo}
 	</select>
+	
 	<insert id="insert" parameterType="Cart" > <!-- 없는 값은 selectKey로 먼저 구함 -->
 		<selectKey keyProperty="cartNo" order="BEFORE" resultType="integer">
 			select 	nvl(max(cart_no),0)+1 cartNo 
@@ -42,43 +44,13 @@
 			and p.product_no = pd.product_no
 			and p.product_no = pp.product_no
 			and pp.batch = 1
-	order by 	cart_no desc;
+	order by 	cart_no desc
 	</select>
-	<insert id="insert" parameterType="Cart" > <!-- 없는 값은 selectKey로 먼저 구함 -->
-		<selectKey keyProperty="cartNo" order="BEFORE" resultType="integer">
-			select 	nvl(max(cart_no),0)+1 cartNo 
-			from 	cart
-		</selectKey>
-	 	insert 	into cart 
-	 	values	(#{cartNo},
-	 			#{email},
-	 			#{productDetailNo},
-	 			1)
-	</insert>
 	
-	<update id="update" parameterType="Cart">
-		update 	cart 
-		set 	cart_quantity=#{cartQuantity}+1
-		where	cart_no=#{cartNo} <!--email, productDetailNo, cartQuantity 모두 포함됨-->
-	</update>
+	<delete id="deleteCart" parameterType="integer">
+		delete 	from cart 
+		where 	cart_no = #{cartNo}
+	</delete>
 	
-	<select id="cartList" parameterType="String" resultType="Cart">
-		select 	c.*, 
-				pp.product_photo, 
-				p.product_name, 
-				p.price, 
-				pd.product_size, 
-				pd.color 
-		from 	cart c, 
-				product p, 
-				product_photo pp, 
-				product_detail pd
-		where 	email=#{email}
-			and	c.product_detail_no = pd.product_detail_no
-			and p.product_no = pd.product_no
-			and p.product_no = pp.product_no
-			and pp.batch = 1
-	order by 	cart_no desc;
-	</select>
 
 </mapper>

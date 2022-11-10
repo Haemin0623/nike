@@ -20,6 +20,23 @@ modify (
 	member_tel varchar2(15)	
 );
 
+		select 	c.*, 
+				pp.product_photo, 
+				p.product_name, 
+				p.price, 
+				pd.product_size, 
+				pd.color 
+		from 	cart c, 
+				product p, 
+				product_photo pp, 
+				product_detail pd
+		where 	c.email='hae@min.com'
+			and	c.product_detail_no = pd.product_detail_no
+			and p.product_no = pd.product_no
+			and p.product_no = pp.product_no
+			and pp.batch = 1
+	order by 	cart_no desc;
+
 select c.*, pp.product_photo, p.product_name, p.price, pd.product_size, pd.color 
 from cart c, product p, product_photo pp, product_detail pd
 where c.product_detail_no = pd.product_detail_no
