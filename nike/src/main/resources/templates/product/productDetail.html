@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+	<h2>[[${product.productName}]]</h2>
+	<h3>[[${color}]]</h3>
+
+		<th:block th:if="${#lists.size(productPhotoList)} == 0">
+			<td colspan="#"> 상품사진이 없습니다 </td>
+		</th:block>
+		
+		<th:block th:if="${#lists.size(productPhotoList)} > 0 and ${color}==${productPhoto.color}" 
+				  th:each="productPhoto:${productPhotoList}">
+			<img alt="" th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" height="150">
+		</th:block>
+	<table border="1">
+		<tr th:if="${color}== ${productDetail.color}" th:each="productDetail:${productDetailList}">
+			<th>색상</th><td>[[${productDetail.color}]]</td>
+			<th>사이즈</th><td>[[${productDetail.productSize}]]</td>
+			<th>재고</th><td>[[${productDetail.stock}]]</td>
+		</tr>
+	</table>
+	<br>
+	<table border="1">
+		<tr>
+			<th>상품명</th><td>[[${product.productName}]]</td>
+		</tr>
+		<tr>
+			<th>가격</th><td>[[${product.price}]]</td>
+		</tr>
+
+		<tr>
+			<th>상품상세</th><td>[[${product.detail}]]</td>
+		</tr>
+		<tr>
+			<th>성별</th><td>[[${product.gender}]]</td>
+		</tr>
+		<tr th:each="productFeature:${productFeatureList}">
+			<th>특징</th><td>[[${productFeature.feature}]]</td>
+		</tr>
+	</table>
+	
+	
+</div>
+
+
+</body>
+</html>

@@ -5,7 +5,7 @@ import org.apache.ibatis.type.Alias;
 import lombok.Data;
 
 @Data
-@Alias("ProductMaterial")
+@Alias("ProductFeature")
 public class ProductFeature {
 	private int featurelNo;
 	private int productNo;

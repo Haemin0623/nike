@@ -1,5 +1,6 @@
 package com.ch.nike.service;
 
+
 import com.ch.nike.dto.Product;
 
 public interface ProductDetailService {
@@ -10,5 +11,12 @@ public interface ProductDetailService {
 
 	
 
+
+import java.util.List;
+import com.ch.nike.dto.ProductDetail;
+
+public interface ProductDetailService {
+
+	List<ProductDetail> detailList(int productNo);
 
 }

@@ -94,6 +94,7 @@ public class AdminController {
 		return "admin/adminMemberDetail";
 	}
 	
+
 	@RequestMapping("/adminProductList.do")// 관리자 상품 리스트 by창률 
 	public String adminProductList(String pageNum, Model model, PagingBean pagingbean) {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
@@ -114,6 +115,7 @@ public class AdminController {
 		model.addAttribute("pb", pb);
 		return "admin/adminProductList";
 	}
+
 	
 	@RequestMapping("/adminProductInsert.do")// 관리자 상품 수정 
 	public String adminProductInsert() {

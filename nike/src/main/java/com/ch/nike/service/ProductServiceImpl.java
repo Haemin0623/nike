@@ -23,6 +23,11 @@ public class ProductServiceImpl implements ProductService{
 		return pm.list();
 	}
 
+	@Override
+	public Product select(int productNo) {
+		return pm.select(productNo);
+	}
+
 
 	@Override
 	public List<Product> paginglist(PagingBean pagingbean) {

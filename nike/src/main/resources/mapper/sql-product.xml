@@ -91,14 +91,13 @@
 			and #{product_detail_no} = pd.product_detail_no
 	</select>
 	<select id="selectProduct" resultType="product">
-		select	p.*,
-				pp.product_photo,
-				pp.batch
-		from	product p,
-				product_photo pp
-		where	p.product_no = pp.product_no
-			and batch = 1
 
+		select 	* 
+		from 	product p, 
+				product_photo h				 
+		where 	p.product_no = h.product_no
+			and	batch=1 
+	order by 	p.product_no desc 
 	</select>
 
 	<select id="paginglist" parameterType="pagingbean" resultType="product">
@@ -172,4 +171,10 @@
 				gender=#{gender}
 		where	product_No=#{productNo}
 	</update>
+
+	<select id="select" parameterType="integer" resultType="Product">
+		 select	* 
+		 from 	product 
+		 where 	product_no = #{productNo}
+	</select>
 </mapper>

@@ -69,6 +69,7 @@ create table color (
 
 -- 상품 상세
 drop table product_detail cascade constraints;
+select * from product_detail
 
 create table product_detail (
 	product_detail_no	number(4)		not	null	primary key,
@@ -81,6 +82,9 @@ create table product_detail (
 	constraint fk_product_detail_product_no foreign key(product_no) references product(product_no),
 	constraint fk_product_detail_color foreign key(color) references color(color)
 );
+
+ 
+
 
 -- 상품 사진
 select * from product_photo;
@@ -133,6 +137,8 @@ create table cart (
 	constraint fk_cart_email foreign key(email) references member(email),
 	constraint fk_cart_product_detail_no foreign key(product_detail_no) references product_detail(product_detail_no)
 );
+
+
 
 -- 문의
 drop table QnA cascade constraints;
@@ -243,3 +249,6 @@ create table notice (
 	read_count		number(6)				not	null,	
 	del				char(1)		default 'N'	not	null
 );
+
+
+
