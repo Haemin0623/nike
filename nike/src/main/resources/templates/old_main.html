@@ -10,47 +10,7 @@
 </head>
 <body><!-- by창률 -->
 <div layout:fragment="content"> <!-- header적용 by 수인 -->
-<div> <!--메인 영상-->	
-	<a href="/product/productList.do?large=1?small=1"> <!-- 상품 리스트로 이동 -->
-		<video muted autoplay loop>
-			<source src="classpath:/static/image/동영상명" type="video/mp4">
-		</video>
-	</a>
-	<div> <!--설명-->
-		<h2> JOIN FORCES </h2> <!-- 시간되면 관리자가 수정할 수 있도록 변경예정 -->
-		<h1> 지금의 나이키 에어포스 1의 중심에는 지난 40년간 문화를 이끌고 변화를 만들어낸 커뮤니티가 있습니다.</h1><!-- 시간되면 관리자가 수정할 수 있도록 변경예정 -->
-		<h1>한국 댄스 씬을 바꾸고 있는 댄서들과 그들의 커뮤니티가 만들어가는 미래를 에어 포스 1과 함께해 보세요.</h1><!-- 시간되면 관리자가 수정할 수 있도록 변경예정 -->
-		<button onclick="location.href='/product/productList.do?large=1?small=1'">구매하기</button>
-	</div>
-</div>
-<!-- <div th:each=""> -->
-	<div><!-- 이미지 -->
-	 	<a href="/product/productList.do?large=1?small=1"> <!-- 상품 리스트로 이동 -->
-	 		<img alt="" src="classpath:/static/image/이미지명"> <!-- 배너 이미지 -->
-	 	</a>
-	</div>
-	<div> <!--설명-->
-		<h2> JOIN FORCES </h2> <!-- 시간되면 관리자가 수정할 수 있도록 변경예정 -->
-		<h1> 지금의 나이키 에어포스 1의 중심에는 지난 40년간 문화를 이끌고 변화를 만들어낸 커뮤니티가 있습니다.</h1><!-- 시간되면 관리자가 수정할 수 있도록 변경예정 -->
-		<h1>한국 댄스 씬을 바꾸고 있는 댄서들과 그들의 커뮤니티가 만들어가는 미래를 에어 포스 1과 함께해 보세요.</h1><!-- 시간되면 관리자가 수정할 수 있도록 변경예정 -->
-		<button onclick="location.href='/product/productList.do?large=1?small=1'">구매하기</button><!-- 상품 리스트로 이동 -->
-	</div>
-<!-- </div> -->
-<!--  러닝화 스타일 가이드 등은 기능이 없어 작업 보류/시간 남으면 할 예정-->
-<div th:each="list:${list}">
-	<h2>신발</h2>	
-	<a th:href="@{/product/productDetail.do(productNo=${list.productNo})}"><!-- 상품 디테일 페이지로 이동 -->
-		<img alt="" th:src="@{image/}+${list.productPhoto}"><!-- 상품 이미지 -->
-		[[${list.productName}]] [[${list.price}]]
-		[[${list.large]]
-	</a>
-</div>
-<div th:each="list:${list}">
-	<h2>카테고리별 상품</h2>	
-	<a th:href="@{/product/productList.do(large=${list.large})}"><!-- 상품 리스트 페이지로 이동 -->
-		<img alt="" src="@{image/}+${list.productPhoto}"><!-- 상품 이미지 -->
-	</a>
-</div>
+
 
 </div>
 </body>
