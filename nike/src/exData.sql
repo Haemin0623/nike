@@ -338,6 +338,14 @@ insert into wish values (10, 12, 'sun@ny.com', '블랙');
 insert into wish values (11, 17, 'sun@ny.com', '블랙');
 insert into wish values (12, 18, 'sun@ny.com', '블랙');
 
+--주문 목록
+insert into user_order values(1,'chang@ryul.com','2022-11-10',1,'출고대기')
+insert into user_order values(2,'chang@ryul.com','2022-11-10',3,'출고완료')
+
+--주문 상세
+
+insert into user_order_detail values(1,1,1,10,'Y')
+insert into user_order_detail values(2,1,2,5,'N')
 
 -- 장바구니
 -- 기능 만들어서 구현 해야지 의미 있을듯

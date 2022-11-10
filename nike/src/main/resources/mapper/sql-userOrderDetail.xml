@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.nike.mapper.UserOrderDetailMapper">
+<select id="paginglist" parameterType="pagingbean" resultType="userOrderDetail">
+		select 	* 
+		from 	(select a.*, rowNum rn from 
+        (select uod.*, p.product_name from 
+                user_order_detail uod, 
+                product_detail pd, 
+                product p, 
+                user_order uo 
+        where   uod.product_detail_no=pd.product_detail_no 
+            and pd.product_no=p.product_no 
+            and uo.order_no=uod.order_no 
+            and uod.order_no = 1 
+            order by order_detail_no desc)a)  
+		where 	rn between #{startRow} and #{endRow}
+	</select>
+	<select id="getTotal" resultType="integer"> <!-- 페이징용 전체 주문 카운트 by창률 -->
+		select 	count(*) 
+		from	store
+	</select>
+</mapper>

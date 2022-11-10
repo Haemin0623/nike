@@ -23,4 +23,11 @@ public interface ProductPhotoService {
 	
 	int productinsert3(Product product);
 
+	int productupdate2(Product product);
+
+	int selectproductPhotoNo(Product product);
+
+	int selectproductPhotoNo2(Product product);
+
+	int productdelete(Product product);
 }

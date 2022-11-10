@@ -46,14 +46,31 @@ public class ProductPhotoServiceImpl implements ProductPhotoService {
 		return ppm.productinsert2(product);
 	}
 
+
+	@Override
+	public int productupdate2(Product product) {
+		return ppm.productupdate2(product);
+	}
+	@Override
+	public int productinsert(Product product) {
+		return ppm.productinsert(product);
+
+	@Override
+	public int selectproductPhotoNo(Product product) {
+		return ppm.selectproductPhotoNo(product);
+	}
+
+	@Override
+	public int selectproductPhotoNo2(Product product) {
+		return ppm.selectproductPhotoNo2(product);
+	}
+
+	@Override
+	public int productdelete(Product product) {
+		return ppm.productdelete(product);
+	}
 	@Override
 	public int productinsert3(Product product) {
 		return ppm.productinsert3(product);
-	}
-	
-	@Override
-	public int productinsert(Product product) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 }

@@ -54,4 +54,21 @@
 					2, 
 					#{color})
 	</insert>
+	<select id="selectproductPhotoNo" parameterType="product" resultType="integer">
+		select 	product_photo_no 
+		from	product_photo
+		where 	product_no=#{productNo}
+			and	batch=1
+	</select>
+	<select id="selectproductPhotoNo2" parameterType="product" resultType="integer">
+		select 	product_photo_no 
+		from	product_photo
+		where 	product_no=#{productNo}
+			and	batch=2
+	</select>
+	<delete id="productdelete" parameterType="product">
+		delete	
+		from	product_photo
+		where	product_Photo_no=#{productPhotoNo}
+	</delete>
 </mapper>

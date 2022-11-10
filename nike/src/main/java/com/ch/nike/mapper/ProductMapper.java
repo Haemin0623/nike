@@ -7,9 +7,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ch.nike.dto.Category;
-import com.ch.nike.dto.Member;
 import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Product;
+import com.ch.nike.dto.UserOrderDetail;
 
 @Mapper
 public interface ProductMapper {
@@ -49,5 +49,7 @@ public interface ProductMapper {
 	Product select(int productDetailNo);
 
 	int productupdate(Product product);
+
+	Product selectproductname(UserOrderDetail uod);
 
 }

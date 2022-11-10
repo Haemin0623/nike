@@ -8,32 +8,101 @@
 </head>
 <body>
 <div layout:fragment="content">
-	<form action="adminProductUpdateResult.do">
+	<form action="adminProductUpdateResult.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="productDetailNo" th:value="${productDetailNo}">
-		<input type="hidden" name="productNo" th:value="${productNo}">
+		<input type="hidden" name="productNo" th:value="${product.productNo}">
 		<div>
 			<fieldset>
 			    <legend>카테고리</legend>
-			    
 			    상의
-			    <label><input type="radio" name="categoryNo" value="1">티셔츠</label>
-			    <label><input type="radio" name="categoryNo" value="2">후드</label>
-			    <label><input type="radio" name="categoryNo" value="3">재킷</label>
+			    <label th:if="${product.categoryNo}==1" >
+			    	<input type="radio" name="categoryNo" value="1" checked="checked">티셔츠
+			    </label>
+			    <label th:if="${product.categoryNo}!=1" >
+			    	<input type="radio" name="categoryNo" value="1">티셔츠
+			    </label>
+			    
+			    <label th:if="${product.categoryNo}==2" >
+			    	<input type="radio" name="categoryNo" value="2" checked="checked">후드
+			    </label>
+			    <label th:if="${product.categoryNo}!=2" >
+			    	<input type="radio" name="categoryNo" value="2">후드
+			    </label>
+			    
+			    <label th:if="${product.categoryNo}==3" >
+			     	<input type="radio" name="categoryNo" value="3" checked="checked">재킷
+			    </label>
+			    <label th:if="${product.categoryNo}!=3" >
+			     	<input type="radio" name="categoryNo" value="3">재킷
+			    </label>
 			  	<br>
 			  	하의
-			    <label><input type="radio" name="categoryNo" value="4">팬츠</label>
-			    <label><input type="radio" name="categoryNo" value="5">타이즈</label>
-			    <label><input type="radio" name="categoryNo" value="6">쇼츠</label>
+			     <label th:if="${product.categoryNo}==4" >
+			     	<input type="radio" name="categoryNo" value="4" checked="checked">팬츠
+			     </label>
+			     <label th:if="${product.categoryNo}!=4" >
+			     	<input type="radio" name="categoryNo" value="4">팬츠
+			     </label>
+			     
+			     <label th:if="${product.categoryNo}==5" >
+			     	<input type="radio" name="categoryNo" value="5" checked="checked">타이즈
+			     </label>
+			     <label th:if="${product.categoryNo}!=5" >
+			     	<input type="radio" name="categoryNo" value="5">타이즈
+			     </label>
+			     
+			     <label th:if="${product.categoryNo}==6" >
+			     	<input type="radio" name="categoryNo" value="6" checked="checked">쇼츠
+			     </label>
+			     <label th:if="${product.categoryNo}!=6" >
+			     	<input type="radio" name="categoryNo" value="6">쇼츠
+			     </label>
+			     
 			  	<br>
 			  	용품
-			    <label><input type="radio" name="categoryNo" value="7">양말</label>
-			    <label><input type="radio" name="categoryNo" value="8">모자</label>
-			    <label><input type="radio" name="categoryNo" value="9">가방</label>
+			     <label th:if="${product.categoryNo}==7" >
+			     	<input type="radio" name="categoryNo" value="7" checked="checked">양말
+			     </label>
+			     <label th:if="${product.categoryNo}!=7" >
+			     	<input type="radio" name="categoryNo" value="7">양말
+			     </label>
+			     
+			     <label th:if="${product.categoryNo}==8" >
+			     	<input type="radio" name="categoryNo" value="8" checked="checked">모자
+			     </label>
+			     <label th:if="${product.categoryNo}!=8" >
+			     	<input type="radio" name="categoryNo" value="8">모자
+			     </label>
+			     
+			     <label th:if="${product.categoryNo}==9" >
+			     	<input type="radio" name="categoryNo" value="9" checked="checked">가방
+			     </label>
+			     <label th:if="${product.categoryNo}!=9" >
+			     	<input type="radio" name="categoryNo" value="9">가방
+			     </label>
+			     
 			    <br>
 			    신발
-			    <label><input type="radio" name="categoryNo" value="10">라이프스타일</label>
-			    <label><input type="radio" name="categoryNo" value="11">러닝</label>
-			    <label><input type="radio" name="categoryNo" value="12">농구</label>
+			     <label th:if="${product.categoryNo}==10" >
+			     	<input type="radio" name="categoryNo" value="10" checked="checked">라이프스타일
+			     </label>
+			     <label th:if="${product.categoryNo}!=10" >
+			     	<input type="radio" name="categoryNo" value="10">라이프스타일
+			     </label>
+			     
+			     <label th:if="${product.categoryNo}==11" >
+			     	<input type="radio" name="categoryNo" value="11" checked="checked">러닝
+			     </label>
+			     <label th:if="${product.categoryNo}!=11" >
+			     	<input type="radio" name="categoryNo" value="11">러닝
+			     </label>
+			     
+			     <label th:if="${product.categoryNo}==12" >
+			     	<input type="radio" name="categoryNo" value="12" checked="checked">농구
+			     </label>
+			     <label th:if="${product.categoryNo}!=12" >
+			     	<input type="radio" name="categoryNo" value="12">농구
+			     </label>
 			    
 		  </fieldset>
 		</div>
@@ -49,10 +118,16 @@
 		<div>
 			<fieldset>
 				<legend>성별</legend>
-				<label>
-					<input type="radio" name="gender" value="M">남자
+				<label th:if="${product.gender}==M">
+					<input type="radio" name="gender" value="M" checked="checked">남자
 				</label>
-				<label>
+				<label th:if="${product.gender}!=M">
+					<input type="radio" name="gender" value="M" >남자
+				</label>
+				<label th:if="${product.gender}==F">
+					<input type="radio" name="gender" value="F" checked="checked">여자
+				</label>
+				<label th:if="${product.gender}!=F">
 					<input type="radio" name="gender" value="F">여자
 				</label>
 			</fieldset>
@@ -60,8 +135,11 @@
 		<div>재고
 			<input type="number" name="stock" value="1" required="required" th:value="${product.stock}">
 		</div>
-		<div>사진
-			<input type="file" name="productPhoto" required="required">
+		<div>대표이미지
+			<input type="file" name="file" required="required">
+		</div>
+		<div>상품사진
+			<input type="file" name="file2" required="required" multiple="multiple">
 		</div>
 		<div>가격
 			<input type="number" name="price" value="0" required="required" th:value="${product.price}">
@@ -73,6 +151,9 @@
 			<input type="submit" value="확인">
 		</div>
 	</form>
+	<div>
+		<button onclick="location.href='adminProductList.do'">취소</button>
+	</div>
 </div>
 </body>
 </html>

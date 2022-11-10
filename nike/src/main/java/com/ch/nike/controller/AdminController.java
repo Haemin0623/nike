@@ -3,7 +3,6 @@ package com.ch.nike.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ import com.ch.nike.dto.Product;
 import com.ch.nike.dto.ProductPhoto;
 import com.ch.nike.dto.Review;
 import com.ch.nike.dto.UserOrder;
-import com.ch.nike.dto.Wish;
+import com.ch.nike.dto.UserOrderDetail;
 import com.ch.nike.service.AdminService;
 import com.ch.nike.service.MemberService;
 import com.ch.nike.service.NoticeService;
@@ -29,6 +28,7 @@ import com.ch.nike.service.ProductService;
 import com.ch.nike.service.QnAService;
 import com.ch.nike.service.ReviewService;
 import com.ch.nike.service.StoreService;
+import com.ch.nike.service.UserOrderDetailService;
 import com.ch.nike.service.UserOrderService;
 import com.ch.nike.service.WishService;
 
@@ -56,6 +56,8 @@ public class AdminController {
 	private ProductPhotoService pps;
 	@Autowired
 	private ProductDetailService pds;
+	@Autowired
+	private UserOrderDetailService uods;
 	
 	@RequestMapping("/adminMain.do")// 관리자 메인으로 이동
 	public String adminMain() {
@@ -126,6 +128,7 @@ public class AdminController {
 	@RequestMapping("/adminProductUpdate.do")// 관리자 상품 업데이트 
 	public String adminProductUpdate(int productDetailNo,Model model) {
 		Product product = ps.select(productDetailNo);
+		model.addAttribute("productDetailNo",productDetailNo);
 		model.addAttribute("product",product);
 		return "admin/adminProductUpdate";
 	}
@@ -249,6 +252,7 @@ public class AdminController {
 		int productNo = 0;
 		productNo = ps.selectproductNo();
 		product.setProductNo(productNo);
+		
 		String fileName = mhr.getFile("file").getOriginalFilename();
 		product.setProductPhoto(fileName);
 		String real = "src/main/resources/static/images/product_photo";
@@ -271,7 +275,6 @@ public class AdminController {
 			fos2.close();
 			product.setProductPhoto(fileName2);
 			result = pps.productinsert2(product);
-			System.out.println(1);
 		}
 		
 		result = pds.productinsert(product);
@@ -280,12 +283,58 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/adminProductUpdateResult.do")
-	public String adminProductUpdateResult(Product product, Model model) {
+	public String adminProductUpdateResult(Product product, Model model, ProductPhoto productPhoto, MultipartHttpServletRequest mhr) throws IOException {
 		int result =0;
+		int productPhotoNo =0;
+		productPhotoNo = pps.selectproductPhotoNo(product);
+		product.setProductPhotoNo(productPhotoNo);
+		
+		result = pps.productdelete(product);
+		
+		String fileName = mhr.getFile("file").getOriginalFilename();
+		product.setProductPhoto(fileName);
+		String real = "src/main/resources/static/images/product_photo";
+		FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
+		fos.write(mhr.getFile("file").getBytes());
+		fos.close();
 		result = ps.productupdate(product);
-		result = pps.productupdate(product);
+		result = pps.productinsert(product);
+		List<MultipartFile> list = mhr.getFiles("file2");
+		// list의 사진을 하나씩 뽑아서 photos에 저장
+		for(MultipartFile mf : list) {
+			ProductPhoto pp = new ProductPhoto();
+			String fileName2 = mf.getOriginalFilename();
+			pp.setProductPhoto(fileName2);
+			
+			// 그림파일 저장
+			FileOutputStream fos2 = new FileOutputStream(new File(real+"/"+fileName2));
+			fos2.write(mf.getBytes());
+			fos2.close();
+			product.setProductPhoto(fileName2);
+			result = pps.productinsert2(product);
+			
+		}
 		result = pds.productupdate(product);
 		model.addAttribute("result",result);
 	return "admin/adminProductUpdateResult";
+	}
+	
+	@RequestMapping("/adminOrderDetail.do")
+	public String adminOrderDetail(String pageNum, Model model, PagingBean pagingbean) {
+		int rowPerPage = 10; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = uods.getTotal();		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		pagingbean.setStartRow(startRow);
+		pagingbean.setEndRow(endRow);
+		List<UserOrderDetail> list2 = uods.paginglist(pagingbean);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		model.addAttribute("num", num);
+		model.addAttribute("list2",list2);
+		model.addAttribute("pb", pb);
+		return "admin/adminOrderDetail";
 	}
 }

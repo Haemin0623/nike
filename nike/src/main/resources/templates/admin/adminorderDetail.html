@@ -15,26 +15,18 @@
 <div layout:fragment="content">
 	<table>
 		<tr>
-			<th>주문번호</th>
-			<th>이메일</th>
-			<th>주문날짜</th>
-			<th>주소번호</th>
-			<th>상태</th>
-			<th>환불여부</th>
-			<th></th>
+			<th>주문 상세 번호</th>
+			<th>상품명</th>
+			<th>구매수량</th>
 		</tr>
 		<tr th:each="lists:${list2}">
-			<td>[[${lists.orderNo}]]</td>
-			<td>[[${lists.email}]]</td>
-			<td>[[${lists.orderDate}]]</td>
-			<td>[[${lists.addrNo}]]</td>
-			<td>[[${lists.status}]]</td>
-			<td>[[${lists.refundChk}]]
-			<td><a th:href="@{/adminOrderDetail.do(orderNo=${lists.orderNo})}">주문 상세 보기</a><td>
+				<td>[[${lists.orderDetailNo}]]</td>
+				<td>[[${lists.productName}]]</td>
+				<td>[[${lists.orderQuantity}]]</td>
 		</tr>
 	</table>
 	<div>
-		<form action="adminOrderList.do">
+		<form action="adminOrderDetail.do">
 			<select name="keyword">
 				<option value="orderNum">주문번호</option>
 				<option value="email">이메일</option>

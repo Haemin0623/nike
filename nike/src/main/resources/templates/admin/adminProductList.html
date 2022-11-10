@@ -16,6 +16,7 @@
 	<table>
 		<tr>
 			<th>상품번호</th>
+			<th>상품상세번호</th>
 			<th>상품명</th>
 			<th>카테고리번호</th>
 			<th>가격</th>
@@ -28,7 +29,8 @@
 			<th></th>
 		</tr>
 		<tr th:each="lists:${list2}">
-			<td>[[${lists.productNo}]]</td>
+			<td>[[${lists.productNo}]]
+			<td>[[${lists.productDetailNo}]]</td>
 			<td>[[${lists.productName}]]</td>
 			<td>[[${lists.categoryNo}]]</td>
 			<td>[[${lists.price}]]</td>

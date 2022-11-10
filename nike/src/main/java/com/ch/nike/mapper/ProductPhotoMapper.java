@@ -25,4 +25,12 @@ public interface ProductPhotoMapper {
 	int productinsert2(Product product);
 
 	int productinsert3(Product product);
+
+	int productupdate2(Product product);
+
+	int selectproductPhotoNo(Product product);
+
+	int selectproductPhotoNo2(Product product);
+
+	int productdelete(Product product);
 }

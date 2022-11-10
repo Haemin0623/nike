@@ -194,6 +194,7 @@ create table review (
 	review_date	date			not	null,
 	review_del	char(1)			not	null,
 
+
 	constraint fk_review_email foreign key(email) references member(email),
 	constraint fk_review_product_no foreign key(product_no) references product(product_no)
 );
@@ -235,6 +236,7 @@ create table user_order_detail (
 
 	constraint fk_user_order_detail_order_no foreign key(order_no) references user_order(order_no),
 	constraint fk_user_order_detail_product_detail_no foreign key(product_detail_no) references product_detail(product_detail_no)
+
 );
 
 -- 환불

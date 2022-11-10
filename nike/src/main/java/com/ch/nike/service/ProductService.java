@@ -5,6 +5,7 @@ import java.util.List;
 import com.ch.nike.dto.Category;
 import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Product;
+import com.ch.nike.dto.UserOrderDetail;
 
 public interface ProductService {
 
@@ -40,4 +41,7 @@ public interface ProductService {
 	Product select(int productDetailNo);
 
 	int productupdate(Product product);
+
+	Product selectproductname(UserOrderDetail uod);
+
 }

@@ -23,7 +23,7 @@
 			from 	product_detail		
 		</selectKey>
 		insert into product_Detail 
-			values	(#{productDetailNo}, 
+			values	(#{productDetailNo},
 					#{productNo}, 
 					#{productSize}, 
 					#{color}, 
@@ -31,7 +31,7 @@
 	</insert>
 	<update id="productupdate" parameterType="product">
 		update 	product_detail
-		set		poduct_size=#{productSize},
+		set		product_size=#{productSize},
 				stock=#{stock}
 		where	product_no=#{productNo}
 	</update>
