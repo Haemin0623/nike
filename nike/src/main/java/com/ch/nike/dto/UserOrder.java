@@ -15,7 +15,7 @@ public class UserOrder {
 	private int addrNo;
 	private String status;
 
-//조인용 mypage - orders에서 사용예정 by선희
+//조인용 mypage - orderList에서 사용예정 by선희
 	//product
 	private int productNo;
 	private String productName;

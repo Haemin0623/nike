@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.jni.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,9 +96,10 @@ public class AccountController {
 		String email = (String) session.getAttribute("email");
 		List<Wish> wishList = ws.selectWish(email);	// email에 대한 wish 조회
 		List<Product> list = new ArrayList<>();	
+		Product product = null;
 		for (Wish wish:wishList) {
 			if (wish != null) {
-				Product product = ws.selectWishThum(wish.getProductNo(), wish.getColor());
+				product = ws.selectWishThum(wish.getProductNo(), wish.getColor());
 				list.add(product);
 			}
 		}
@@ -110,9 +112,10 @@ public class AccountController {
 		String email = (String) session.getAttribute("email");
 		List<Cart> cartList = cs.selectCart(email);
 		List<Product> productList = new ArrayList<>();
+		Product product = null;
 		for (Cart cart:cartList) {	 
 			if (cart != null) {
-				Product product = ps.selectCartDetail(email, cart.getProductDetailNo(), cart.getColor());	// p, pd, c
+				product = ps.selectCartDetail(email, cart.getProductDetailNo(), cart.getColor());	// p, pd, c
 				productList.add(product);
 			}
 		}
@@ -120,31 +123,35 @@ public class AccountController {
 		model.addAttribute("productList", productList);
 		return "account/cartList";
 	}
-	@RequestMapping("/account/orders.do")		// 로그인한 회원의 주문내역 불러오기 by선희
+	@RequestMapping("/account/orderList.do")		// 로그인한 회원의 주문내역 불러오기 by선희
 	public String orders(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
 		List<UserOrder> userOrder = uos.selectUserOrder(email);
-		List<Product> list = new ArrayList<>();
-		for (UserOrder user:userOrder) {
-			if (user != null) {
-//				order_no로 order,address테이블,user_order_detail 모두 다 나와야함.
-				Product orderDetail = uos.selectOrderDetail(user.getOrderNo());
+		List<UserOrder> list = new ArrayList<>();
+		UserOrder orderDetail = null;
+		for (UserOrder order:userOrder) {
+			if (order != null) {
+				System.out.println(order.getOrderNo());
+				orderDetail = uos.selectOrderDetail(order.getOrderNo());
+				System.out.println(orderDetail.getOrderNo());
 				list.add(orderDetail);
 			}
 		}
 		model.addAttribute("list", list);
 		model.addAttribute("userOrder", userOrder);
-		return "account/orders";
+		return "account/orderList";
 	}
-	@RequestMapping("/account/ordersDetail.do") 	// 로그인한 회원의 주문내역 상세 불러오기 by선희
+	@RequestMapping("/account/orderDetail.do") 	// 로그인한 회원의 주문내역 상세 불러오기 by선희
 	public String ordersDetail(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
 		List<UserOrder> userOrder = uos.selectUserOrder(email);
-		List<Product> list = new ArrayList<>();
-		
+		List<UserOrder> list = new ArrayList<>();
+		UserOrder orderDetail = null;
 		for (UserOrder user:userOrder) {
 			if (user != null) {
-				Product orderDetail = uos.selectOrderDetail(user.getOrderNo());
+				
+				orderDetail = uos.selectOrderDetail(user.getOrderNo());
+				
 				list.add(orderDetail);
 			}
 		}
@@ -184,8 +191,9 @@ public class AccountController {
 		String email = (String) session.getAttribute("email");
 		List<Review> rvList = rvs.memberReview(email);
 		List<ProductPhoto> photos = new ArrayList<>();
+		ProductPhoto photo = null;
 		for (Review rv:rvList) {
-			ProductPhoto photo = pps.getPhoto(rv.getProductNo(), rv.getColor());
+			photo = pps.getPhoto(rv.getProductNo(), rv.getColor());
 			photos.add(photo);
 		}
 		model.addAttribute("rvList", rvList);

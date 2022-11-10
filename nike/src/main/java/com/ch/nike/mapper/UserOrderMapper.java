@@ -17,5 +17,5 @@ public interface UserOrderMapper {
 
 	List<UserOrder> selectUserOrder(String email);
 	
-	Product selectOrderDetail(int orderNo);
+	UserOrder selectOrderDetail(int orderNo);
 }

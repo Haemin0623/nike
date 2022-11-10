@@ -29,12 +29,17 @@
 			</tr>
 			<span th:if="${#lists.size(rvList)} != 0" th:each="review:${rvList}">
 				<tr>
-					<td>
+					<td><a th:href="@{/product/productDetail.do(productNo=${review.productNo},color=${review.color})}">
 						<span th:if="${photo.productNo} == ${review.productNo} and ${photo.color} == ${review.color}" th:each="photo:${photos}">
 							<img th:src="@{/images/product_photo/}+${photo.productPhoto}" width="50">
 						</span>
+						</a>
 					</td>
-					<td>[[${review.productName}]]</td>
+					<td>
+						<a th:href="@{/product/productDetail.do(productNo=${review.productNo},color=${review.color})}">
+							[[${review.productName}]]
+						</a>
+					</td>
 					<td>[[${review.star}]]</td>
 					<td>[[${review.content}]]</td>
 					<td>[[${review.reviewDate}]]</td>

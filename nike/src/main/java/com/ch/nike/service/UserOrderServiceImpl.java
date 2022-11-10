@@ -25,7 +25,7 @@ public class UserOrderServiceImpl implements UserOrderService{
 	public List<UserOrder> selectUserOrder(String email) {
 		return uod.selectUserOrder(email);
 	}
-	public Product selectOrderDetail(int orderNo) {
+	public UserOrder selectOrderDetail(int orderNo) {
 		return uod.selectOrderDetail(orderNo);
 	}
 }
