@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+<h2>주문내역</h2>
+<br><br>
+	<div th:if="${#lists.size(list)} == 0">
+		 주문내역 없음
+	</div>
+	<table style="width: 80%">
+		<tr>
+			<th>사진</th>
+			<th>상품이름</th>
+			<th>구매 사이즈</th>
+			<th>구매 컬러</th>
+			<th>상세보기</th>
+			<th>환불신청</th>
+		</tr>
+	<th:block th:if="${#lists.size(list)} != 0" th:each="order:${list}">
+		<tr>
+			<td>
+				<a th:href="@{/product/productDetail.do(productNo=${order.productNo},color=${order.color})}">
+					<img alt="" th:src="@{/images/product_photo/}+${order.productPhoto}" width="50">
+				</a>
+			</td>
+			<td>
+				<a th:href="@{/product/productDetail.do(productNo=${order.productNo},color=${order.color})}">
+					[[${order.productName}]]
+				</a>
+			</td>
+			<td>
+				[[${order.productSize}]]
+			</td>
+			<td>
+				[[${order.color}]]
+			</td>
+			<td>
+				<a th:href="@{/account/orderDetail.do(email=${order.email},orderDetailNo=${order.orderDetailNo})}">주문상세</a>
+			</td>
+			<td>
+				<a th:href="@{/account/refundForm.do(orderDetailNo=${order.orderDetailNo})}">환불신청</a>
+			</td>
+		</tr>
+	</th:block>
+	</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8">
+<title>Insert title here</title></head><body>
+<span th:if="${result} == 1">
+	<script type="text/javascript">
+		location.href="reviewWriteForm.do?productNo=[[${productNo}]]&color=[[${color}]]";
+	</script>
+</span>
+<span th:if="${result} == 0">
+	<script type="text/javascript">
+		alert("리뷰 등록 실패");
+		history.back();
+	</script>
+</span>
+<span th:if="${result} == -1">
+	<script type="text/javascript">
+		alert("로그인한 경우에만 가능합니다.");
+		location.href="/member/emailLoginForm.do";
+	</script>
+</span>
+</body>
+</html>

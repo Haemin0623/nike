@@ -2,6 +2,7 @@
 drop table member cascade constraints;
 select * from member;
 
+
 create table member (
 	email			varchar2(50)		not null	primary key,
 	name			varchar2(30)		not null,
@@ -74,6 +75,7 @@ create table category (
 
 -- 상품
 drop table product cascade constraints;
+select * from product;
 
 create table product (
 	product_no		number(4)		not	null	primary key,
@@ -141,7 +143,8 @@ create table wish (
 	wish_no		number(4)		not null	primary key,
 	product_no	number(4)		not null,
 	email		varchar2(50)	not null,
-	color		varchar2(50)	not null,
+	color		varchar2(20)	not null,
+
 
 	constraint fk_wish_email foreign key(email) references member(email),
 	constraint fk_wish_product_no foreign key(product_no) references product(product_no)
@@ -180,7 +183,7 @@ create table QnA (
 
 -- 리뷰
 drop table review cascade constraints;
-
+select * from review;
 create table review (
 	review_no	number(4)		not	null	primary key,
 	product_no	number(4)		not null,

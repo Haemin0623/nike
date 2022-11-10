@@ -11,7 +11,11 @@ public interface UserOrderService {
 	List<UserOrder> orderlist();
 	List<UserOrder> userorderselect(String email);
 	List<UserOrder> selectUserOrder(String email);
+
+	// UserOrder selectOrderDetail(int orderNo);
+
 	Product selectOrderDetail(int orderNo);
 	List<UserOrder> paginglist(PagingBean pagingbean);
 	int getTotal();
+
 }

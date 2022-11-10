@@ -9,4 +9,49 @@
 		from 	product_photo 
 		where 	product_no=#{productNo}
 	</select>
+
+	<select id="selectPP" parameterType="integer" resultType="ProductPhoto">
+		select * from product_photo where product_no=#{productNo}
+	</select>
+		<select id="colorChange" parameterType="hashmap" resultType="ProductPhoto">
+		select * from product_photo where product_no=#{productNo} and color=#{color}
+	</select>
+	<select id="getPhoto" parameterType="hashmap" resultType="ProductPhoto">
+		select	* 
+		from	product_photo
+		where	product_no=#{productNo} 
+			and color=#{color}
+			and batch=1
+	</select>
+	<select id="photoList" parameterType="integer" resultType="ProductPhoto">
+		select	* 
+		from	product_photo 
+		where	product_no=#{productNo}
+			and batch=1
+	</select>
+
+	<insert id="productinsert" parameterType="product">
+		<selectKey keyProperty="productPhotoNo" order="BEFORE" resultType="integer">
+			select 	nvl(max(product_photo_no),0) +1 productPhotoNo 
+			from 	product_photo	
+		</selectKey>
+		insert into product_Photo 
+			values	(#{productPhotoNo}, 
+					#{productNo}, 
+					#{productPhoto}, 
+					1, 
+					#{color})
+	</insert>
+	<insert id="productinsert2" parameterType="product">
+	<selectKey keyProperty="productPhotoNo" order="BEFORE" resultType="integer">
+			select 	nvl(max(product_photo_no),0) +1 productPhotoNo 
+			from 	product_photo
+		</selectKey>
+		insert into product_Photo 
+			values	(#{productPhotoNo}, 
+					#{productNo}, 
+					#{productPhoto}, 
+					2, 
+					#{color})
+	</insert>
 </mapper>

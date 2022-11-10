@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content" id="wish">
+	<br>
+	<br>
+<h2>리뷰리스트</h2>
+	<div th:if="${#lists.size(rvList)} == 0">
+		 현재 리뷰리스트가 비어있습니다.
+	</div>
+	<br>
+	<br>
+	<div class="reviewList">
+		<table style="width: 80%">
+			<tr>
+				<th>사진</th>
+				<th>상품이름</th>
+				<th>평점</th>
+				<th>리뷰내용</th>
+				<th>등록일</th>
+				<th>수정</th>
+				<th>삭제</th>
+			</tr>
+			<span th:if="${#lists.size(rvList)} != 0" th:each="review:${rvList}">
+				<tr>
+					<td><a th:href="@{/product/productDetail.do(productNo=${review.productNo},color=${review.color})}">
+						<span th:if="${photo.productNo} == ${review.productNo} and ${photo.color} == ${review.color}" th:each="photo:${photos}">
+							<img th:src="@{/images/product_photo/}+${photo.productPhoto}" width="50">
+						</span>
+						</a>
+					</td>
+					<td>
+						<a th:href="@{/product/productDetail.do(productNo=${review.productNo},color=${review.color})}">
+							[[${review.productName}]]
+						</a>
+					</td>
+					<td>[[${review.star}]]</td>
+					<td>[[${review.content}]]</td>
+					<td>[[${review.reviewDate}]]</td>
+					<td>
+						<a th:href="@{/product/reviewUpdateForm.do(reviewNo=${review.reviewNo})}">수정</a>
+					</td>
+					<td>
+						<a th:href="@{/account/deleteReview.do(reviewNo=${review.reviewNo})}">삭제</a>
+					</td>
+				</tr>
+			</span>
+		</table>
+	</div>
+	<br>
+	<br>
+<h2>작성가능한리뷰</h2>
+ 이 사람이 주문한 상품 다 불러오고 리뷰 내역에서 이메일과 프러덕트넘버가 동시에 일치하면 작성가능
+	where email=email and product_no=(select product_no from user_order_detail where 
+</div>
+</body>
+</html>

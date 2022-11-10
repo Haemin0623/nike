@@ -1,0 +1,55 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.reviewDetail {
+		display: none;
+	}
+</style>
+<script type="text/javascript">
+
+	$(function() {
+		$('.review').click(function() {
+			$('.reviewDetail').toggle();
+		
+		});
+	});
+</script>
+</head>
+<body>
+<div layout:fragment="content">
+	
+<!-- 	<div class="review" style="font-size: 20pt">리뷰</div><br> -->
+	
+<!-- 	<div class="reviewDetail"> -->
+<!-- 		<a th:href="@{/product/reviewWriteFormChk.do(productNo=${product.productNo},color=${color})}"> -->
+<!-- 			리뷰 작성하기 -->
+<!-- 		</a><br> -->
+<!-- 		<div class="reviewList"> -->
+<!-- 			<table> -->
+<!-- 				<span th:each="review:${rvList}"> -->
+<!-- 					<tr> -->
+<!-- 						<th>[[${review.star}]]</th> -->
+<!-- 						<td>[[${review.reviewDate}]]</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td colspan="2">[[${review.content}]]</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td colspan="2"> -->
+<!-- 							<span th:if="${review.reviewNo} == ${photo.reviewNo}" th:each="photo:${rvPhotos}"> -->
+<!-- 								<img th:src="@{/images/review_photo/}+${photo.reviewPhoto}" width="50"> -->
+<!-- 							</span> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 				</span> -->
+<!-- 			</table> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+</div>
+
+</body>
+</html>

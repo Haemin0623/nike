@@ -20,36 +20,34 @@
 		from	wish
 		where	email = #{email}
 	</select>
-	<select id="selectWishThum" parameterType="integer" resultType="product">
-		select	p.*,
-				pp.product_photo
-		from	product p,
-				(select	*
-				from	product_photo
-				where	product_no = #{product_no} 
-					and batch = 1) pp
-		where	p.product_no = #{product_no}
+	<select id="selectWishThum" parameterType="hashmap" resultType="product">
+		select p.*,pp.* 
+		from product p, product_photo pp 
+		where p.product_no=pp.product_no and pp.product_no=#{productNo} and color=#{color} and batch=1
 	</select>	
 	<!-- 위시리스트 추가용 -->
-	<select id="selectWishResult" parameterType="map" resultType="integer">
-		select	wishNo
+	<select id="selectWishResult" parameterType="hashmap" resultType="wish">
+		select	*
 		from	wish
-		where	productNo = #{productNo}
+		where	product_no = #{productNo}
 		and		email = #{email}
+		and		color = #{color}
 	</select>
-	<delete id="deleteWish">
+	<delete id="deleteWish" parameterType="hashmap">
 		delete	from	wish
-		where			productNo = #{productNo}
+		where			product_no = #{productNo}
 					and email = #{email}
+					and	color = #{color}
 	</delete>
-	<select id="selectCount" resultType="integer">
-		select	nvl(max(refund_no),0) + 1 wishNo
-		from	refund
+	<select id="wishCount" resultType="integer">
+		select	nvl(max(wish_no),0) + 1 wishNo
+		from	wish
 	</select>
-	<select id="addWish" parameterType="map">
+	<insert id="addWish" parameterType="wish">
 		insert	into	wish
 		values			(#{wishNo},
 						#{productNo},
-						#{email})
-	</select>
+						#{email},
+						#{color})
+	</insert>
 </mapper>

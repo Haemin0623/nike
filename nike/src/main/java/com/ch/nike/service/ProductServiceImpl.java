@@ -2,6 +2,7 @@ package com.ch.nike.service;
 
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,14 +51,29 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> adminproductlist() {
 		return pm.adminproductlist();
 	}
-	public Product selectCartThum(int productDetailNo) {
-		return pm.selectCartThum(productDetailNo);
+	public Product selectCartDetail(String email, int productDetailNo, String color) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("email", email);
+		map.put("productDetailNo", productDetailNo);
+		map.put("color", color);
+		return pm.selectCartDetail(map);
 	}
 
-	@Override
 	public List<Product> selectProduct() {
 		return pm.selectProduct();
 	}
+	public Product selectProductOne(int productNo) {
+		return pm.selectProductOne(productNo);
+	}
+
+	public Product productInfo(int productNo, String color) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("productNo", productNo);
+		map.put("color", color);
+		return pm.productInfo(map);
+	}
+
+
 
 	@Override
 	public List<Product> paginglist(PagingBean pagingbean) {

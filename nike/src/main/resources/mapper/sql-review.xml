@@ -10,6 +10,62 @@
 		where	p.product_no = r.product_no
 			and r.email = #{email}
 	</select>
+
+	<select id="productReview" parameterType="hashmap" resultType="Review">
+		select	*
+		from	review
+		where	product_no = #{productNo}
+			and email = #{email}
+			and color = #{color}
+	</select>
+	<select id="countReview" resultType="integer">
+		select	nvl(max(review_no),0) + 1 reviewNo
+		from	review
+	</select>
+	<insert id="insert" parameterType="review">
+		insert	into	review
+				values	(#{reviewNo},
+						#{productNo},
+						#{email},
+						#{content},
+						#{star},
+						#{color},
+						sysdate,
+						'N')
+	</insert>
+	<select id="selectProductReview" parameterType="integer" resultType="Review">
+		select	distinct *
+		from	review
+		where	product_no = #{product_no} 
+			and review_del = 'N'
+	</select>
+	<update id="deleteReview" parameterType="integer">
+		update	review
+		set		review_del = 'Y'
+		where	review_no = #{reviewNo}
+	</update>
+	<select id="memberReview" parameterType="String" resultType="Review">
+		select	r.*,
+				p.product_name
+		from	review r,
+				product p
+		where	p.product_no = r.product_no
+			and r.email = #{email}
+			and review_del = 'N'
+	</select>
+	<select id="reviewInfo" parameterType="integer" resultType="Review">
+		select	*
+		from	review
+		where	review_no = #{reviewNo}
+	</select>
+	<update id="update" parameterType="review">
+		update	review
+		set		star = #{star},
+				content = #{content}
+		where	review_no = #{reviewNo}
+	</update>
+	
+
 	<select id="paginglist" parameterType="pagingbean" resultType="review">
 		select 	* 
 		from 	(select a.*, rowNum rn from (select * from review order by review_no desc)a) 

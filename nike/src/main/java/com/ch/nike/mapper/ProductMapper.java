@@ -1,6 +1,7 @@
 package com.ch.nike.mapper;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -24,15 +25,29 @@ public interface ProductMapper {
 	Product colorcount(Category category);
 
 	List<Product> adminproductlist();
-
-	Product selectCartThum(int productDetailNo);
-	List<Product> paginglist(PagingBean pagingbean);
-
+	
+	Product selectCartDetail(HashMap<String, Object> map);
 
 	List<Product> selectProduct();
 
 
-	Product select(int productNo);
+
+	Product selectsoo(int productNo);
 	
+	Product selectProductOne(int productNo);
+
+	Product productInfo(HashMap<String, Object> map);
+	Product selectCartThum(int productDetailNo);
+	List<Product> paginglist(PagingBean pagingbean);
+
+	int productinsert(Product product);
+
+	int selectproductNo();
+
+	int getTotal();
+
+	Product select(int productDetailNo);
+
+	int productupdate(Product product);
 
 }

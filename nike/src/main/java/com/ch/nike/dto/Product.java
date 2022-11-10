@@ -22,8 +22,20 @@ public class Product {
 	private String productPhoto;
 	private String color;
 	private String productSize;
+	
+	private int cartNo;
+	private String email;
+	private int cartQuantity;
+	
 	private int productDetailNo;
-	private String cartQuantity;
 	private int stock;
+	private int photoNo;
+	private int large;
+	private int small;
+	private int featurelNo;
+	private String feature;
+	
+	
+	
 	private int productPhotoNo;
 }

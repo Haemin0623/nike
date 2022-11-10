@@ -2,314 +2,52 @@
 <html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;"
 	lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="utf-8">
-<meta name="keywords" content="">
-<meta name="description" content="">
 <title>header</title>
 
-<script type="application/ld+json">
-{
-	"@context": "http://schema.org",
-	"@type": "Organization",
-	"name": "",
-	"logo": "/images/nilke-removebg-preview.png"
-}
-</script>
-<meta name="theme-color" content="#478ac9">
-<meta property="og:title" content="header">
-<meta property="og:type" content="website">
 </head>
-<body class="u-body u-xl-mode" data-lang="en">
-	<header	th:fragment="headerFragment"
-		class="u-align-left u-clearfix u-header u-section-row-container"
-		id="sec-6127">
+
+<body>
+	<header th:fragment="headerFragment">
+		<a class="btn btn-primary" href="/">메인</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/product/product.do">신상품</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="">Men</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="">Women</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="">Kids</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="">Sale</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="">Kids</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="text" placeholder="검색" > 🔎
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/account/mypageSessionChk.do">MyPage</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/account/wishList.do">위시리스트</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="/account/cartList.do">장바구니</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		
-	<link rel="stylesheet" th:href="@{/nice/nicepage.css}" media="screen">
-	<script class="u-script" type="text/javascript"	th:src="@{/nice/jquery.js}" defer=""></script>
-	<script class="u-script" type="text/javascript"	th:src="@{/nice/nicepage.js}" defer=""></script>
-	<meta name="generator" content="Nicepage 4.20.1, nicepage.com">
-	<link id="u-theme-google-font" rel="stylesheet"
-		href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-			
-		<div class="u-section-rows">
-			<div class="u-grey-5 u-section-row u-section-row-1" id="sec-46aa">
-				<div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-					<nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
-						<div class="menu-collapse">
-							<a class="u-button-style u-nav-link" href="#">
-								<svg class="u-svg-link" viewBox="0 0 24 24">
-									<use xmlns:xlink="http://www.w3.org/1999/xlink"
-										xlink:href="#svg-1c33"></use>
-								</svg>
-								<svg class="u-svg-content"
-									version="1.1" id="svg-1c33" viewBox="0 0 16 16" x="0px" y="0px"
-									xmlns:xlink="http://www.w3.org/1999/xlink"
-									xmlns="http://www.w3.org/2000/svg">
-									<g>
-										<rect y="1" width="16" height="2"></rect>
-										<rect y="7" width="16" height="2"></rect>
-										<rect y="13" width="16" height="2"></rect>
-									</g>
-								</svg>
-							</a>
-						</div>
-						
-						<div class="u-custom-menu u-nav-container">
-							<ul class="u-nav u-unstyled">
-								<li class="u-nav-item"><a class="u-button-style u-nav-link"
-									href="/header.html">매장찾기</a></li>
-								<li class="u-nav-item"><a class="u-button-style u-nav-link"
-									href="/고객센터.html">고객센터</a>
-									<div class="u-nav-popup">
-										<ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
-											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link u-white">주문</a></li>
-											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link u-white">로그인 안내</a></li>
-											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link u-white">결제 방법</a></li>
-											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link u-white">배송</a></li>
-											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link u-white">반품</a></li>
-											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link u-white">사이즈 가이드</a></li>
-											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link u-white">문의하기</a></li>
-											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link u-white">개인정보처리방침</a></li>
-											<li class="u-nav-item"><a
-												class="u-button-style u-nav-link u-white">이용약관</a></li>
-												
-										</ul>
-									</div>
-								</li>
-								<!-- 로그인 된 경우 메뉴 -->
-								<th:block th:if="${session.email} != null">
-									<li class="u-nav-item"><a class="u-button-style u-nav-link"
-										href="/account/mypage.do">고객님, 안녕하세요</a>
-										<div class="u-nav-popup">
-											<ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
-												<li class="u-nav-item"><a
-													class="u-button-style u-nav-link u-white">프로필</a></li>
-												<li class="u-nav-item"><a
-													class="u-button-style u-nav-link u-white">주문</a></li>
-												<li class="u-nav-item"><a
-													class="u-button-style u-nav-link u-white">위시리스트</a></li>
-												<li class="u-nav-item"><a
-													class="u-button-style u-nav-link u-white">회원정보관리</a></li>
-												<li class="u-nav-item"><a
-													class="u-button-style u-nav-link u-white"
-													href="/member/logout.do">로그아웃</a></li>
-											</ul>
-										</div>
-									</li>
-									<span class="u-file-icon u-icon u-icon-1">
-										<img th:src="@{/nice/images/3059416.png}" alt="">
-									</span>
-								</th:block>
-								
-								<th:block th:if="${session.email} == null"> <!-- 세션에 이메일 없으면 -->
-									<li class="u-nav-item">
-										<a class="u-button-style u-nav-link" href="/member/emailLoginForm.do">로그인 및 가입하기</a>
-									</li>
-								</th:block>
-							</ul>
-						</div>
-						<div class="u-custom-menu u-nav-container-collapse">
-							<div
-								class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-								<div class="u-inner-container-layout u-sidenav-overflow">
-									<div class="u-menu-close"></div>
-									<ul	class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-4">
-										<li class="u-nav-item">
-											<a class="u-button-style u-nav-link" href="/header.html">header</a>
-										</li>
-										<li class="u-nav-item">
-											<a class="u-button-style u-nav-link" href="/고객센터.html">고객센터</a>
-										<div class="u-nav-popup">
-											<ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
-												<li class="u-nav-item"><a
-													class="u-button-style u-nav-link u-white">주문</a></li>
-												<li class="u-nav-item"><a
-													class="u-button-style u-nav-link u-white">로그인 안내</a></li>
-											</ul>
-										</div>
-										</li>
-										<li class="u-nav-item"><a
-											class="u-button-style u-nav-link" href="/님-안녕하세요.html">고객님,
-												안녕하세요</a>
-											<div class="u-nav-popup">
-												<ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
-													<li class="u-nav-item"><a
-														class="u-button-style u-nav-link u-white">프로필</a></li>
-													<li class="u-nav-item"><a
-														class="u-button-style u-nav-link u-white">주문</a></li>
-												</ul>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
-						</div>
-					</nav>
-					
-				</div>
-				
-			</div>
-			<div class="u-section-row u-section-row-2" id="sec-37e8">
-				<div class="u-clearfix u-sheet u-sheet-2">
-				<!-- 메인페이지 로고 -->
-					<a href="/" class="u-image u-logo u-image-1"
-						data-image-width="480" data-image-height="317"> 
-						<img th:src="@{/nice/images/nilke-removebg-preview.png}"
-							class="u-logo-image u-logo-image-1" data-image-width="80">
-					</a>
-					<nav data-position=""
-						class="u-align-center u-menu u-menu-one-level u-offcanvas u-menu-2">
-						<div class="menu-collapse"
-							style="font-size: 0.875rem; letter-spacing: 0px; font-weight: 300;">
-							<a
-								class="u-button-style u-custom-active-border-color u-custom-border u-custom-border-color u-custom-borders u-custom-hover-border-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-text-hover-color u-custom-top-bottom-menu-spacing u-nav-link"
-								href="#" style="padding: 2px 0px; font-size: calc(1em + 4px);">
-								<svg class="u-svg-link" viewBox="0 0 24 24">
-									<use xmlns:xlink="http://www.w3.org/1999/xlink"
-										xlink:href="#menu-hamburger"></use></svg> <svg class="u-svg-content"
-									version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px"
-									y="0px" xmlns:xlink="http://www.w3.org/1999/xlink"
-									xmlns="http://www.w3.org/2000/svg">
-									<g>
-									<rect y="1" width="16" height="2"></rect>
-									<rect y="7" width="16" height="2"></rect>
-									<rect y="13" width="16" height="2"></rect>
-</g></svg>
-							</a>
-						</div>
-						<div class="u-custom-menu u-nav-container">
-							<ul class="u-nav u-unstyled u-nav-7">
-								<li class="u-nav-item"><a
-									class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-									href="/product/product.do" style="padding: 10px;">New
-										Releases</a></li>
-								<li class="u-nav-item"><a
-									class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-									href="/Men_39353144.html" style="padding: 10px;">Men</a></li>
-								<li class="u-nav-item"><a
-									class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-									href="/Women_270754675.html" style="padding: 10px;">Women</a></li>
-								<li class="u-nav-item"><a
-									class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-									href="/Kids_48329285.html" style="padding: 10px;">Kids</a></li>
-								<li class="u-nav-item"><a
-									class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-									style="padding: 10px;">Sale</a></li>
-								<li class="u-nav-item"><a
-									class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-									style="padding: 10px;">SNKRS</a></li>
-							</ul>
-						</div>
-						<div class="u-custom-menu u-nav-container-collapse">
-							<div
-								class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-								<div class="u-inner-container-layout u-sidenav-overflow">
-									<div class="u-menu-close"></div>
-									<ul
-										class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-8">
-										<li class="u-nav-item"><a
-											class="u-button-style u-nav-link"
-											href="/product/product.do">New Releases</a></li>
-										<li class="u-nav-item"><a
-											class="u-button-style u-nav-link" href="/Men_39353144.html">Men</a>
-										</li>
-										<li class="u-nav-item"><a
-											class="u-button-style u-nav-link"
-											href="/Women_270754675.html">Women</a></li>
-										<li class="u-nav-item"><a
-											class="u-button-style u-nav-link" href="/Kids_48329285.html">Kids</a>
-										</li>
-										<li class="u-nav-item"><a
-											class="u-button-style u-nav-link">Sale</a></li>
-										<li class="u-nav-item"><a
-											class="u-button-style u-nav-link">SNKRS</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
-						</div>
-					</nav>
-					<form action="#" method="get"
-						class="u-grey-5 u-radius-20 u-search u-search-left u-search-1">
-						<button class="u-search-button" type="submit">
-							<span class="u-search-icon u-spacing-10"> <svg
-									class="u-svg-link" preserveAspectRatio="xMidYMin slice"
-									viewBox="0 0 56.966 56.966">
-									<use xmlns:xlink="http://www.w3.org/1999/xlink"
-										xlink:href="#svg-6492"></use></svg> <svg
-									xmlns="http://www.w3.org/2000/svg"
-									xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-									id="svg-6492" x="0px" y="0px" viewBox="0 0 56.966 56.966"
-									style="enable-background: new 0 0 56.966 56.966;"
-									xml:space="preserve" class="u-svg-content">
-									<path
-										d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"></path></svg>
-							</span>
-						</button>
-						<input class="u-search-input" type="search" name="search" value=""
-							placeholder="Search">
-					</form>
-					<!-- 위시리스트 -->
-					<span class="u-hover-feature u-icon u-icon-circle u-icon-2">
-					<a href="/account/wishList.do">
-						<svg class="u-svg-link" preserveAspectRatio="xMidYMin slice"
-								viewBox="0 0 51.997 51.997" style="">
-								<use xmlns:xlink="http://www.w3.org/1999/xlink"
-									xlink:href="#svg-bca3"></use></svg>
-							<svg class="u-svg-content" viewBox="0 0 51.997 51.997" x="0px"
-								y="0px" id="svg-bca3"
-								style="enable-background: new 0 0 51.997 51.997;">
-								<g>
-								<path
-									d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
-									c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478
-									c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014
-									C52.216,18.553,51.97,16.611,51.911,16.242z M49.521,21.261c-0.984,4.172-3.265,7.973-6.59,10.985L25.855,47.481L9.072,32.25
-									c-3.331-3.018-5.611-6.818-6.596-10.99c-0.708-2.997-0.417-4.69-0.416-4.701l0.015-0.101C2.725,9.139,7.806,3.826,14.158,3.826
-									c4.687,0,8.813,2.88,10.771,7.515l0.921,2.183l0.921-2.183c1.927-4.564,6.271-7.514,11.069-7.514
-									c6.351,0,11.433,5.313,12.096,12.727C49.938,16.57,50.229,18.264,49.521,21.261z"></path>
-								</g>
-							</svg>
-						</a>
-					</span>
-					<span class="u-file-icon u-hover-feature u-icon u-icon-circle u-icon-3">
-				<a href="/account/cartList.do">
-						<img th:src="@{/nice/images/2567829.png}" alt="">
-				</a>
-					</span>
-				</div>
-
-
-
-
-
-			</div>
-		</div>
-	</header>
-
-
-
-	<section class="u-backlink u-clearfix u-grey-80">
-		<a class="u-link" href="https://nicepage.com/website-templates"
-			target="_blank"> <span>Website Templates</span>
-		</a>
-		<p class="u-text">
-			<span>created with</span>
-		</p>
-		<a class="u-link" href="" target="_blank"> <span>Website
-				Builder Software</span>
-		</a>.
-	</section>
-
+		<th:block th:if="${session.email} != null"> <!-- 세션에 이메일 있으면 -->
+			[[${session.email}]]
+			<a href="/member/logout.do">로그아웃</a>
+		</th:block>
+		
+		<th:block th:if="${session.email} == null"> <!-- 세션에 이메일 없으면 -->
+			<a href="/member/emailLoginForm.do">로그인 및 가입하기</a>
+		</th:block>
+		</header>
 </body>
 </html>

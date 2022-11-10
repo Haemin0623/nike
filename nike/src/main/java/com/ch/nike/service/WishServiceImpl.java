@@ -23,29 +23,35 @@ public class WishServiceImpl implements WishService{
 		return wm.selectWish(email);
 	}
 
-	public Product selectWishThum(int productNo) {
-		return wm.selectWishThum(productNo);
+	public Product selectWishThum(int productNo, String color) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("productNo", productNo);
+		map.put("color", color);
+		return wm.selectWishThum(map);
 	}
-	public Wish selectWishResult(String email, int productNo) {
+	public Wish selectWishResult(String email, int productNo, String color) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("email", email);
 		map.put("productNo", productNo);
+		map.put("color", color);
 		return wm.selectWishResult(map);
 	}
-	public void deleteWish(String email, int productNo) {
+	public void deleteWish(String email, int productNo, String color) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("email", email);
 		map.put("productNo", productNo);
+		map.put("color", color);
 		wm.deleteWish(map);
 	}
-	public int selectCount() {
-		return wm.selectCount();
+	public int wishCount() {
+		return wm.wishCount();
 	}
-	public void addWish(String email, int productNo, int wishNo) {
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("email", email);
-		map.put("productNo", productNo);
-		map.put("wishNo", wishNo);
-		wm.addWish(map);
+	public void addWish(Wish newWish) {
+		wm.addWish(newWish);
+	}
+	@Override
+	public List<Wish> wishList(String email) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

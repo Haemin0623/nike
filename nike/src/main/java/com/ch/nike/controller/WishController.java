@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.ch.nike.dto.Wish;
+import com.ch.nike.service.CartService;
 import com.ch.nike.service.WishService;
 
 @Controller
@@ -36,4 +37,5 @@ public class WishController {
 		model.addAttribute("result", result);
 		return "product/addWish";
 	}
+
 }

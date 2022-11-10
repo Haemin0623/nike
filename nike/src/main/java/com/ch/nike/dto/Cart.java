@@ -19,4 +19,6 @@ public class Cart {
 	private String productSize;
 	private String color;
 	private int productNo;
+
+	private int stock;
 }

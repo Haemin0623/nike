@@ -26,9 +26,9 @@ public class UserOrderServiceImpl implements UserOrderService{
 	public List<UserOrder> selectUserOrder(String email) {
 		return uod.selectUserOrder(email);
 	}
-	public Product selectOrderDetail(int orderNo) {
-		return uod.selectOrderDetail(orderNo);
-	}
+//	public UserOrder selectOrderDetail(int orderNo) {
+//		return uod.selectOrderDetail(orderNo);
+//	}
 	@Override
 	public List<UserOrder> paginglist(PagingBean pagingbean) {
 		return uod.paginglist(pagingbean);
@@ -36,5 +36,10 @@ public class UserOrderServiceImpl implements UserOrderService{
 	@Override
 	public int getTotal() {
 		return uod.getTotal();
+	}
+	@Override
+	public Product selectOrderDetail(int orderNo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -20,9 +20,14 @@ public interface ProductService {
 	Product colorcount(Category category);
 	List<Product> adminproductlist();
 	
-	Product selectCartThum(int productDetailNo);
+	Product selectCartDetail(String email, int productDetailNo, String color);
 
 	List<Product> selectProduct();
+
+	Product selectProductOne(int productNo);
+
+	Product productInfo(int productNo, String color);
+
 
 	List<Product> paginglist(PagingBean pagingbean);
 

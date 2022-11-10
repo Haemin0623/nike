@@ -1,6 +1,7 @@
 package com.ch.nike.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,12 +13,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ch.nike.dto.Category;
 import com.ch.nike.dto.Product;
+import com.ch.nike.dto.ProductDetail;
+import com.ch.nike.dto.ProductFeature;
+import com.ch.nike.dto.ProductPhoto;
+import com.ch.nike.dto.Review;
+import com.ch.nike.dto.ReviewPhoto;
+import com.ch.nike.service.ProductDetailService;
+import com.ch.nike.service.ProductFeatureService;
+import com.ch.nike.service.ProductPhotoService;
 import com.ch.nike.service.ProductService;
+import com.ch.nike.service.ReviewPhotoService;
+import com.ch.nike.service.ReviewService;
 
 @Controller
 public class ProductController {
 	@Autowired
 	private ProductService ps;
+	@Autowired
+	private ProductPhotoService pps;
+	@Autowired
+	private ProductDetailService pds;
+	@Autowired
+	private ProductFeatureService pfs;
+	@Autowired
+	private ReviewService rs;
+	@Autowired
+	private ReviewPhotoService rps;
 	
 	@RequestMapping("/") //메인 최하단 하단 신발 리스트 by창률 // 로그아웃 위한 세션작업 by수인
 	public String main(Model model, HttpSession session) {
@@ -44,10 +65,22 @@ public class ProductController {
 		model.addAttribute("productPhotoList",productPhotoList);
 		model.addAttribute("productFeatureList",productFeatureList);
 		model.addAttribute("color", color);
+		
+		//리뷰리스트
+		List<Review> rvList = rs.selectProductReview(productNo);
+		List<ReviewPhoto> rvPhotos = new ArrayList<>();	
+		List<ReviewPhoto> rvPhotos2 = new ArrayList<>();
+		for (Review rv:rvList) {
+			rvPhotos = rps.selectReviewPhoto(rv.getReviewNo());
+			rvPhotos2.addAll(rvPhotos);
+		}
+		model.addAttribute("rvPhotos", rvPhotos2);
+		model.addAttribute("rvList", rvList);
+		model.addAttribute("productNo", productNo);
+		
 
 		
 		return "product/productDetail";
 	}
-	
 	
 }

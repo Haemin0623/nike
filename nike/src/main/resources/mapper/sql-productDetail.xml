@@ -3,12 +3,36 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.ProductDetailMapper">
 
-
-<!-- 	List<ProductDetail> detailList(int productNo); -->
 	<select id="detailList" parameterType="integer" resultType="ProductDetail">
 		select 	*
 		from 	product_detail 
 		where 	product_no=#{productNo}
 	
 	</select>
+	
+	<select id="productDetail" parameterType="hashmap" resultType="ProductDetail">
+		select	* 
+		from	product_detail 
+		where	product_no=#{productNo}
+			and color=#{color}
+	</select>
+
+	<insert id="productinsert" parameterType="product">
+		<selectKey keyProperty="productDetailNo" order="BEFORE" resultType="integer">
+			select	nvl(max(product_detail_no),0) +1 productDetailNo 
+			from 	product_detail		
+		</selectKey>
+		insert into product_Detail 
+			values	(#{productDetailNo}, 
+					#{productNo}, 
+					#{productSize}, 
+					#{color}, 
+					#{stock})
+	</insert>
+	<update id="productupdate" parameterType="product">
+		update 	product_detail
+		set		poduct_size=#{productSize},
+				stock=#{stock}
+		where	product_no=#{productNo}
+	</update>
 </mapper>

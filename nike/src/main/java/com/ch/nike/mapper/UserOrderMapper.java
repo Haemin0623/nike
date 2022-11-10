@@ -18,6 +18,9 @@ public interface UserOrderMapper {
 
 	List<UserOrder> selectUserOrder(String email);
 	
+
+	// UserOrder selectOrderDetail(int orderNo);
+
 	Product selectOrderDetail(int orderNo);
 
 	List<UserOrder> paginglist(PagingBean pagingbean);
