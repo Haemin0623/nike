@@ -12,10 +12,13 @@ public interface UserOrderService {
 	// 회원의 주문내역 전체
 	List<UserOrder> selectUserOrder(String email);
 	// 해당 주문의 상세정보
-	UserOrder selectOrderDetail(int orderNo);
-	
-	
-
+	List<UserOrder> selectOrderDetail(int orderNo);
+	// 해당 주문 번호의 주문상세정보
+	List<UserOrder> selectUserOrderDetail(int orderNo);
+	// 해당 주문 상세번호에 대한 모든 정보
+	List<UserOrder> orderInfoAll(int orderDetailNo);
+	// 주문번호당 상품 주문 개수
+	List<Integer> orderCnt(int orderNo);
 
 	// AdminCon
 	// 회원의 주문 + 주문상세 전체
@@ -25,6 +28,7 @@ public interface UserOrderService {
 	// 전체 주문 정보 조회(페이징)
 	List<UserOrder> paginglist(PagingBean pagingbean);
 	
-	// UserOrder selectOrderDetail(int orderNo);
+	
+	
 
 }

@@ -145,23 +145,40 @@ public class AccountController {
 	@RequestMapping("/account/orderList.do")		// 로그인한 회원의 주문내역 불러오기 by선희
 	public String orders(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
-		List<UserOrder> userOrder = uos.selectUserOrder(email);
-		List<UserOrder> list = new ArrayList<>();
-		UserOrder orderDetail = null;
-		for (UserOrder order:userOrder) {
-			if (order != null) {
-				System.out.println(order.getOrderNo());
-				orderDetail = uos.selectOrderDetail(order.getOrderNo());
-				System.out.println(orderDetail.getOrderNo());
-				list.add(orderDetail);
+		List<UserOrder> userOrders = uos.selectUserOrder(email);
+		List<UserOrder> userOrderDetails = new ArrayList<>();
+		List<UserOrder> orderInfo = new ArrayList<>();
+		List<Integer> orderCnt = new ArrayList<>();
+		for (UserOrder userOrder:userOrders) {
+			if (userOrder != null) {
+				// userOrderDetails = uos.selectUserOrderDetail(userOrder.getOrderNo());
+				userOrderDetails = uos.selectOrderDetail(userOrder.getOrderNo());
+				// 주문번호당 상품 주문 개수
+				 uos.orderCnt(userOrder.getOrderNo());
+				System.out.println("orderCnt"+orderCnt);
+				System.out.println("ffffffffffffffff"+userOrder.getOrderNo());
+				System.out.println(userOrderDetails.size());
+				
+				orderCnt.add(userOrderDetails.size());
+				orderInfo.addAll(userOrderDetails);
+				/*
+				 * for(UserOrder order:userOrderDetails) { orderInfo =
+				 * uos.orderInfoAll(order.getOrderDetailNo()); }
+				 */
+					
+				
+				//list.add(orderDetail);
+				
 			}
 		}
-		model.addAttribute("list", list);
-		model.addAttribute("userOrder", userOrder);
+		model.addAttribute("userOrderDetails", userOrderDetails);
+		model.addAttribute("userOrders", userOrders);
+		model.addAttribute("orderCnt", orderCnt);
+		model.addAttribute("orderInfo", orderInfo);
 		return "account/orderList";
 	}
 	@RequestMapping("/account/orderDetail.do") 	// 로그인한 회원의 주문내역 상세 불러오기 by선희
-	public String ordersDetail(Model model, HttpSession session) {
+	public String orderDetail(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
 		List<UserOrder> userOrder = uos.selectUserOrder(email);
 		List<UserOrder> list = new ArrayList<>();
@@ -169,14 +186,14 @@ public class AccountController {
 		for (UserOrder user:userOrder) {
 			if (user != null) {
 				
-				orderDetail = uos.selectOrderDetail(user.getOrderNo());
+				//orderDetail = uos.selectOrderDetail(user.getOrderNo());
 				
 				list.add(orderDetail);
 			}
 		}
 		model.addAttribute("list", list);
 		model.addAttribute("userOrder", userOrder);
-		return "account/ordersDetail";
+		return "account/orderDetail";
 	}
 	@RequestMapping("/account/refundForm.do")		// 주문내역 - 환불신청으로 넘어가기 by선희
 	public String refundForm(int orderDetailNo, Model model, HttpSession session) {
@@ -205,7 +222,7 @@ public class AccountController {
 		model.addAttribute("result", result);
 		return "account/refund";
 	}
-	@RequestMapping("/account/reviewList.do")		// 로그인한 회원의 장바구니 불러오기 by선희
+	@RequestMapping("/account/reviewList.do")		// 마이페이지 - 리뷰리스트 불러오기 by선희
 	public String reviewList(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
 		List<Review> rvList = rvs.memberReview(email);
@@ -226,7 +243,7 @@ public class AccountController {
 		model.addAttribute("addrList", addrList);
 		return "account/address";
 	}
-	@RequestMapping("/account/addAddr.do")	// 로그인한 회원의 리뷰리스트 by선희
+	@RequestMapping("/account/addAddr.do")	//  by선희
 	public String addAddr(Model model, HttpSession session) {
 		
 		return "account/addAddr";

@@ -11,35 +11,35 @@
 
 <h2>주문내역</h2>
 <br><br>
-	<div th:if="${#lists.size(list)} == 0">
+	<div th:if="${#lists.size(userOrders)} == 0">
 		 주문내역 없음
 	</div>
 	<table style="width: 80%">
 		<tr>
-			<th>사진</th>
-			<th>상품이름</th>
-			<th>구매 사이즈</th>
-			<th>구매 컬러</th>
+			<th>구매 정보</th>
+			<th>구매 날짜</th>
+			<th>배송지</th>
 			<th>상세보기</th>
 			<th>환불신청</th>
 		</tr>
-	<th:block th:if="${#lists.size(list)} != 0" th:each="order:${list}">
+	<th:block th:if="${#lists.size(userOrders)} != 0" th:each="order:${userOrders}" >
 		<tr>
 			<td>
 				<a th:href="@{/product/productDetail.do(productNo=${order.productNo},color=${order.color})}">
-					<img alt="" th:src="@{/images/product_photo/}+${order.productPhoto}" width="50">
+				
+				<th:block th:if="${#lists.size(userOrderDetails)} > 1" th:each="cnt:${userOrderDetails}">
+					[[${cnt.productName}]] 외 [[${cnt[#lists.size(cnt)]}]]건
+				</th:block>
+				<th:block th:if="${#lists.size(userOrderDetails)} == 1" th:each="cnt:${userOrderDetails}">
+					[[${cnt.productName}]]
+				</th:block>
 				</a>
 			</td>
 			<td>
-				<a th:href="@{/product/productDetail.do(productNo=${order.productNo},color=${order.color})}">
-					[[${order.productName}]]
-				</a>
+				[[${order.orderDate}]]
 			</td>
 			<td>
-				[[${order.productSize}]]
-			</td>
-			<td>
-				[[${order.color}]]
+				[[${order.addrNo}]]
 			</td>
 			<td>
 				<a th:href="@{/account/orderDetail.do(email=${order.email},orderDetailNo=${order.orderDetailNo})}">주문상세</a>

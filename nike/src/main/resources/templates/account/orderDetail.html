@@ -16,6 +16,23 @@
 </head>
 <body>
 <div layout:fragment="content">
+<table style="width: 80%">
+		<tr>
+			<th>사진</th>
+			<th>구매 정보</th>
+			<th>구매 사이즈</th>
+			<th>구매 컬러</th>
+			<th>상세보기</th>
+			<th>환불신청</th>
+		</tr>
+			<tr>
+			<td>
+				<a th:href="@{/product/productDetail.do(productNo=${order.productNo},color=${order.color})}">
+					<img alt="" th:src="@{/images/product_photo/}+${order.productPhoto}" width="50">
+				</a>
+			</td>
+		</tr>
+</table>
 	<ul th:if="${#lists.size(userOrder)} != 0" th:each="orders:${list}">
 		<li><a href="">아래 이미지 누르면 해당 상품의 상세페이지로 이동
 				<img alt="" th:src="@{/images/product_photo/}+${orders.product_photo}">

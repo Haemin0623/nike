@@ -14,13 +14,16 @@ public interface UserOrderMapper {
 
 	// AccountCon
 	List<UserOrder> selectUserOrder(String email);
-	UserOrder selectOrderDetail(int orderNo);
-	
+	List<UserOrder> selectOrderDetail(int orderNo);
+	List<UserOrder> selectUserOrderDetail(int orderNo);
+	List<UserOrder> orderInfoAll(int orderDetailNo);
+	List<Integer> orderCnt(int orderNo);
 	
 	// AdminCon
 	List<UserOrder> userorderselect(String email);
 	int getTotal();
 	List<UserOrder> paginglist(PagingBean pagingbean);
+	
 	
 	
 

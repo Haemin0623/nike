@@ -20,10 +20,18 @@ public class UserOrderServiceImpl implements UserOrderService{
 	public List<UserOrder> selectUserOrder(String email) {
 		return uod.selectUserOrder(email);
 	}
-	public UserOrder selectOrderDetail(int orderNo) {
+	public List<UserOrder> selectOrderDetail(int orderNo) {
 		return uod.selectOrderDetail(orderNo);
 	}
-	
+	public List<UserOrder> selectUserOrderDetail(int orderNo) {
+		return uod.selectUserOrderDetail(orderNo);
+	}
+	public List<UserOrder> orderInfoAll(int orderDetailNo) {
+		return uod.orderInfoAll(orderDetailNo);
+	}
+	public List<Integer> orderCnt(int orderNo) {
+		return uod.orderCnt(orderNo);
+	}
 	
 	
 	// AdminCon
@@ -39,6 +47,7 @@ public class UserOrderServiceImpl implements UserOrderService{
 	public List<UserOrder> paginglist(PagingBean pagingbean) {
 		return uod.paginglist(pagingbean);
 	}
+
 	
 
 }
