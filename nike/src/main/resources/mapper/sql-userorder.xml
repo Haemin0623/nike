@@ -48,7 +48,7 @@
 	</select>
 	<select id="paginglist" parameterType="pagingbean" resultType="userorder">
 		select 	* 
-		from 	(select a.*, rowNum rn from (select uo.* from user_order uo, user_order_detail uod where uo.order_no=uod.order_no order by uo.order_no desc)a) 
+		from 	(select a.*, rowNum rn from (select * from user_order order by order_no desc)a) 
 		where 	rn between #{startRow} and #{endRow}
 	</select>
 	

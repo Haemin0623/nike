@@ -17,4 +17,5 @@ public interface WishService {
 	// AccountCon
 	// 회원의 위시리스트 전체
 	List<Wish> wishList(String email);
+	List<Wish> wishselect(String email);
 }

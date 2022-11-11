@@ -28,7 +28,7 @@ public interface ProductService {
 	int selectproductNo();
 	// 상품 등록
 	int productinsert(Product product);
-	// ******************************************************
+	// 
 	int productupdate(Product product);
 	
 	

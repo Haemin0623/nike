@@ -17,6 +17,6 @@ public interface ProductDetailService {
 	// AdminCon
 	// 상품 등록시 상세정보 등록
 	int productinsert(Product product);
-	// *******************************************
+	// 
 	int productupdate(Product product);
 }

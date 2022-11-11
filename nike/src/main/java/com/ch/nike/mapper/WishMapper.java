@@ -21,6 +21,7 @@ public interface WishMapper {
 	
 	// AccountCon
 	List<Wish> wishList(String email);
+	List<Wish> wishselect(String email);
 
 
 }

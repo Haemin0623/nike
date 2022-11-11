@@ -19,6 +19,7 @@ import com.ch.nike.dto.ProductPhoto;
 import com.ch.nike.dto.Review;
 import com.ch.nike.dto.UserOrder;
 import com.ch.nike.dto.UserOrderDetail;
+import com.ch.nike.dto.Wish;
 import com.ch.nike.service.AdminService;
 import com.ch.nike.service.MemberService;
 import com.ch.nike.service.NoticeService;
@@ -31,7 +32,7 @@ import com.ch.nike.service.StoreService;
 import com.ch.nike.service.UserOrderDetailService;
 import com.ch.nike.service.UserOrderService;
 import com.ch.nike.service.WishService;
-
+ 
 @Controller
 public class AdminController {
 	@Autowired
@@ -87,11 +88,11 @@ public class AdminController {
 	public String adminMemberDetail(String email, Model model) {
 		Member member = ms.select(email);
 		List<Review> review = rs.reviewselect(email);
-		//List<Wish> wish = ws.wishselect(email);
+		List<Wish> wish = ws.wishselect(email);
 		List<UserOrder> userorder = uos.userorderselect(email);
 		model.addAttribute("member",member);
 		model.addAttribute("review",review);
-		//model.addAttribute("wish",wish);
+		model.addAttribute("wish",wish);
 		model.addAttribute("userorder",userorder);
 		return "admin/adminMemberDetail";
 	}
@@ -297,7 +298,6 @@ public class AdminController {
 		FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
 		fos.write(mhr.getFile("file").getBytes());
 		fos.close();
-		// *******************************************************
 		result = ps.productupdate(product);
 		result = pps.productinsert(product);
 		List<MultipartFile> list = mhr.getFiles("file2");
@@ -315,14 +315,13 @@ public class AdminController {
 			result = pps.productinsert2(product);
 			
 		}
-		// **********************************
 		result = pds.productupdate(product);
 		model.addAttribute("result",result);
 	return "admin/adminProductUpdateResult";
 	}
 	
 	@RequestMapping("/adminOrderDetail.do")
-	public String adminOrderDetail(String pageNum, Model model, PagingBean pagingbean) {
+	public String adminOrderDetail(String pageNum, Model model, PagingBean pagingbean, int orderNo) {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
@@ -332,6 +331,7 @@ public class AdminController {
 		int num = total - startRow + 1;
 		pagingbean.setStartRow(startRow);
 		pagingbean.setEndRow(endRow);
+		pagingbean.setOrderNo(orderNo);
 		List<UserOrderDetail> list2 = uods.paginglist(pagingbean);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		model.addAttribute("num", num);

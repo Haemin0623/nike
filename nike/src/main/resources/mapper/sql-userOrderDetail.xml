@@ -19,7 +19,7 @@
         where   uod.product_detail_no=pd.product_detail_no 
             and pd.product_no=p.product_no 
             and uo.order_no=uod.order_no 
-            and uod.order_no = 1 
+            and uod.order_no = #{orderNo} 
             order by order_detail_no desc)a)  
 		where 	rn between #{startRow} and #{endRow}
 	</select>
