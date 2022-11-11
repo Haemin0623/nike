@@ -21,15 +21,10 @@ public interface UserOrderService {
 	// 회원의 주문 + 주문상세 전체
 	List<UserOrder> userorderselect(String email);
 	// 주문 갯수
-
-	// UserOrder selectOrderDetail(int orderNo);
-
-
-	List<UserOrder> paginglist(PagingBean pagingbean);
-
 	int getTotal();
 	// 전체 주문 정보 조회(페이징)
 	List<UserOrder> paginglist(PagingBean pagingbean);
 	
+	// UserOrder selectOrderDetail(int orderNo);
 
 }
