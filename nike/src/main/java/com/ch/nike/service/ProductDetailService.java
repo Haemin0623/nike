@@ -8,16 +8,15 @@ import com.ch.nike.dto.ProductDetail;
 
 public interface ProductDetailService {
 
-
-	List<ProductDetail> productDetail(int productNo, String color);
-
-
-	int productinsert(Product product);
-
-	int productupdate(Product product);
-
-
+	// ProductCon
+	// 특정 상품 특징 전체 조회
 	List<ProductDetail> detailList(int productNo);
-
-
+	
+	
+	
+	// AdminCon
+	// 상품 등록시 상세정보 등록
+	int productinsert(Product product);
+	// *******************************************
+	int productupdate(Product product);
 }

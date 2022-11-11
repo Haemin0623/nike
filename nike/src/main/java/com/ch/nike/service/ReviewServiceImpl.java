@@ -15,15 +15,8 @@ import com.ch.nike.mapper.ReviewMapper;
 public class ReviewServiceImpl implements ReviewService{
 	@Autowired
 	private ReviewMapper rm;
-
-	@Override
-	public List<Review> reviewlist() {
-		return rm.reviewlist();
-	}
-	@Override
-	public List<Review> reviewselect(String email) {
-		return rm.reviewselect(email);
-	}
+	
+	// ReviewCon
 	public Review productReview(String email, int productNo, String color) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("email", email);
@@ -37,14 +30,8 @@ public class ReviewServiceImpl implements ReviewService{
 	public int insert(Review review) {
 		return rm.insert(review);
 	}
-	public List<Review> selectProductReview(int productNo) {
-		return rm.selectProductReview(productNo);
-	}
 	public int deleteReview(int reviewNo) {
 		return rm.deleteReview(reviewNo);
-	}
-	public List<Review> memberReview(String email) {
-		return rm.memberReview(email);
 	}
 	public Review reviewInfo(int reviewNo) {
 		return rm.reviewInfo(reviewNo);
@@ -52,13 +39,37 @@ public class ReviewServiceImpl implements ReviewService{
 	public void update(Review review) {
 		rm.update(review);
 	}
+	
+	
+	
+	
+	// ProductCon
+	public List<Review> selectProductReview(int productNo) {
+		return rm.selectProductReview(productNo);
+	}
+	
+	
+	
 
+	// AccountCon
+	public List<Review> memberReview(String email) {
+		return rm.memberReview(email);
+	}
+	
+	
+	
+	// AdminCon
 	@Override
-	public List<UserOrder> paginglist(PagingBean pagingbean) {
-		return rm.paginglist(pagingbean);
+	public List<Review> reviewselect(String email) {
+		return rm.reviewselect(email);
 	}
 	@Override
 	public int getTotal() {
 		return rm.getTotal();
 	}
+	@Override
+	public List<UserOrder> paginglist(PagingBean pagingbean) {
+		return rm.paginglist(pagingbean);
+	}
+	
 }

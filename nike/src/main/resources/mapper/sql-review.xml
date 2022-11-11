@@ -2,15 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.ReviewMapper">
-	<select id="reviewselect" parameterType="string" resultType="review">
-		select	r.*,
-				p.product_name
-		from	review r,
-				product p
-		where	p.product_no = r.product_no
-			and r.email = #{email}
-	</select>
-
+	
+	<!-- ReviewCon -->
 	<select id="productReview" parameterType="hashmap" resultType="Review">
 		select	*
 		from	review
@@ -33,26 +26,11 @@
 						sysdate,
 						'N')
 	</insert>
-	<select id="selectProductReview" parameterType="integer" resultType="Review">
-		select	distinct *
-		from	review
-		where	product_no = #{product_no} 
-			and review_del = 'N'
-	</select>
 	<update id="deleteReview" parameterType="integer">
 		update	review
 		set		review_del = 'Y'
 		where	review_no = #{reviewNo}
 	</update>
-	<select id="memberReview" parameterType="String" resultType="Review">
-		select	r.*,
-				p.product_name
-		from	review r,
-				product p
-		where	p.product_no = r.product_no
-			and r.email = #{email}
-			and review_del = 'N'
-	</select>
 	<select id="reviewInfo" parameterType="integer" resultType="Review">
 		select	*
 		from	review
@@ -65,14 +43,56 @@
 		where	review_no = #{reviewNo}
 	</update>
 	
-
-	<select id="paginglist" parameterType="pagingbean" resultType="review">
-		select 	* 
-		from 	(select a.*, rowNum rn from (select * from review order by review_no desc)a) 
-		where 	rn between #{startRow} and #{endRow}
+	
+	
+	
+	<!-- ProductCon -->
+	<select id="selectProductReview" parameterType="integer" resultType="Review">
+		select	distinct *
+		from	review
+		where	product_no = #{product_no} 
+			and review_del = 'N'
+	</select>
+	
+	
+	
+	<!-- AccountCon -->
+	<select id="memberReview" parameterType="String" resultType="Review">
+		select	r.*,
+				p.product_name
+		from	review r,
+				product p
+		where	p.product_no = r.product_no
+			and r.email = #{email}
+			and review_del = 'N'
+	</select>
+	
+	
+	
+	<!-- AdminCon -->
+	<select id="reviewselect" parameterType="string" resultType="review">
+		select	r.*,
+				p.product_name
+		from	review r,
+				product p
+		where	p.product_no = r.product_no
+			and r.email = #{email}
 	</select>
 	<select id="getTotal" resultType="integer"> <!-- 페이징용 전체 주문 카운트 by창률 -->
 		select 	count(*) 
 		from	review
 	</select>
+	<select id="paginglist" parameterType="pagingbean" resultType="review">
+		select 	* 
+		from 	(select a.*, rowNum rn from (select * from review order by review_no desc)a) 
+		where 	rn between #{startRow} and #{endRow}
+	</select>
+	
+
+	
+	
+	
+
+	
+	
 </mapper>

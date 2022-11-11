@@ -3,8 +3,11 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.ProductFeatureMapper">
 	
-	<select id="selectFeature" parameterType="integer" resultType="ProductFeature">
+	<!-- ProductCon -->
+	<select id="featureList" parameterType="integer" resultType="ProductFeature">
 		select * from product_feature where product_no=#{productNo}
 	</select>
+	
+	
 	
 </mapper>

@@ -12,18 +12,17 @@ import com.ch.nike.dto.UserOrder;
 @Mapper
 public interface UserOrderMapper {
 
-	List<UserOrder> orderlist();
-
-	List<UserOrder> userorderselect(String email);
-
+	// AccountCon
 	List<UserOrder> selectUserOrder(String email);
+	UserOrder selectOrderDetail(int orderNo);
+	
+	
+	// AdminCon
+	List<UserOrder> userorderselect(String email);
+	int getTotal();
+	List<UserOrder> paginglist(PagingBean pagingbean);
+	
 	
 
-	// UserOrder selectOrderDetail(int orderNo);
 
-	Product selectOrderDetail(int orderNo);
-
-	List<UserOrder> paginglist(PagingBean pagingbean);
-
-	int getTotal();
 }

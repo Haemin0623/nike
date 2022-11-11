@@ -6,11 +6,17 @@ import com.ch.nike.dto.Refund;
 
 @Mapper
 public interface RefundMapper {
-	String selectName(int orderDetailNo);
 	
+	// AccountCon
+	String selectName(int orderDetailNo);
 	int selectRefundNum();
-
 	int insertRefund(Refund refund);
-
 	void updateRefundChk(int orderDetailNo);
+	
+	
+	
+	
+	
+
+
 }

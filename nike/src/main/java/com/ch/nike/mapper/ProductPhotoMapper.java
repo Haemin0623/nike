@@ -12,25 +12,21 @@ import com.ch.nike.dto.ProductPhoto;
 @Mapper
 public interface ProductPhotoMapper {
 
+	// ProductCon
 	List<ProductPhoto> photoList(int productNo);
 
-	List<ProductPhoto> selectPP(int productNo);
-	List<ProductDetail> colorChange(HashMap<String, Object> map);
+	
+	
+	// AccountCon
 	ProductPhoto getPhoto(HashMap<String, Object> map);
-
+	
+	
+	
+	// AdminCon
 	int productinsert(Product product);
-
+	int productinsert2(Product product);
+	int selectproductPhotoNo(Product product);
+	int productdelete(Product product);
 	int productupdate(Product product);
 
-	int productinsert2(Product product);
-
-	int productinsert3(Product product);
-
-	int productupdate2(Product product);
-
-	int selectproductPhotoNo(Product product);
-
-	int selectproductPhotoNo2(Product product);
-
-	int productdelete(Product product);
 }

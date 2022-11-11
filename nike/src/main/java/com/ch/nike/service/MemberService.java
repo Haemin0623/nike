@@ -7,11 +7,29 @@ import com.ch.nike.dto.PagingBean;
 
 public interface MemberService {
 
+	
+	// MemberCon
+	// 회원 조회 (+AccountCon +AdminCon)
 	Member select(String email);
+	// 회원 등록
 	int insert(Member member);
-	List<Member> memberlist();
-	int update(Member member); //새비번변경
+	// 비번만 변경
+	int update(Member member);
+	
+	
+	
+	// AccountCon
+	// 회원 탈퇴
 	int deleteMember(String email);
-	int getTotal();
+	
+	
+	// AdminCon
+	// 모든 회원 조회(페이징)
 	List<Member> paginglist(PagingBean pagingbean);
+	// 회원 갯수
+	int getTotal();
+	
+	
+	
+	
 }

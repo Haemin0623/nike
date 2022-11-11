@@ -6,21 +6,17 @@ import com.ch.nike.dto.Cart;
 
 public interface CartService {
 	
-	Cart select(Cart cart);
-	int insert(Cart cart);
-	int update(Cart cart2);
+	// AccountCon
+	// 회원의 장바구니 전체
 	List<Cart> cartList(String email);
+	// 회원이 장바구니에 해당 상품을 담았는지 조회	
+	Cart select(Cart cart);
+	// 장바구니에 추가
+	int insert(Cart cart);
+	// 장바구니에 담겨있으면 재고 하나 추가
+	int update(Cart cart2);
+	// 장바구니에서 삭제
 	int deleteCart(int cartNo);
-
-	int getDetailNo(int productNo, String size, String color);
-	
-	int countCartNo(String email, int productDetailNo);
-	
-	void updateCartQuantity(String email, int productDetailNo);
-	
-	int cartCount();
-
-	void addCart(int newCartNo, String email, int productDetailNo);
 
 
 }

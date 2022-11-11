@@ -3,19 +3,15 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.ProductPhotoMapper">
 
-	
+	<!-- ProductCon -->
 	<select id ="photoList" parameterType="integer" resultType="ProductPhoto">
 		select 	* 
 		from 	product_photo 
 		where 	product_no=#{productNo}
 	</select>
-
-	<select id="selectPP" parameterType="integer" resultType="ProductPhoto">
-		select * from product_photo where product_no=#{productNo}
-	</select>
-		<select id="colorChange" parameterType="hashmap" resultType="ProductPhoto">
-		select * from product_photo where product_no=#{productNo} and color=#{color}
-	</select>
+	
+	
+	<!-- AccountCon -->
 	<select id="getPhoto" parameterType="hashmap" resultType="ProductPhoto">
 		select	* 
 		from	product_photo
@@ -23,13 +19,10 @@
 			and color=#{color}
 			and batch=1
 	</select>
-	<select id="photoList" parameterType="integer" resultType="ProductPhoto">
-		select	* 
-		from	product_photo 
-		where	product_no=#{productNo}
-			and batch=1
-	</select>
-
+	
+	
+	
+	<!-- AdminCon -->
 	<insert id="productinsert" parameterType="product">
 		<selectKey keyProperty="productPhotoNo" order="BEFORE" resultType="integer">
 			select 	nvl(max(product_photo_no),0) +1 productPhotoNo 
@@ -60,15 +53,11 @@
 		where 	product_no=#{productNo}
 			and	batch=1
 	</select>
-	<select id="selectproductPhotoNo2" parameterType="product" resultType="integer">
-		select 	product_photo_no 
-		from	product_photo
-		where 	product_no=#{productNo}
-			and	batch=2
-	</select>
 	<delete id="productdelete" parameterType="product">
 		delete	
 		from	product_photo
 		where	product_Photo_no=#{productPhotoNo}
 	</delete>
+	
+	
 </mapper>

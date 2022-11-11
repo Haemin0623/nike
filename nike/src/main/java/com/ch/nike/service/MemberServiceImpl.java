@@ -14,29 +14,34 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberMapper mm;
 
+	// MemberCon
 	public Member select(String email) {
 		return mm.select(email);
 	}
-
 	public int insert(Member member) {
 		return mm.insert(member);
 	}
-	public List<Member> memberlist() {
-		return mm.memberlist();
-	}
-
 	public int update(Member member) {
 		return mm.update(member);
 	}
+	
+	
+	
+	// AccountCon
 	public int deleteMember(String email) {
 		return mm.deleteMember(email);
+	}
+
+	
+	
+	// AdminCon
+	public List<Member> paginglist(PagingBean pagingbean) {
+		return mm.paginglist(pagingbean);
 	}
 	public int getTotal() {
 		return mm.getTotal();
 	}
 
-	public List<Member> paginglist(PagingBean pagingbean) {
-		return mm.paginglist(pagingbean);
-	}
+	
 
 }

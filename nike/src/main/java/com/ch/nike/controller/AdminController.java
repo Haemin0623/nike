@@ -297,6 +297,7 @@ public class AdminController {
 		FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
 		fos.write(mhr.getFile("file").getBytes());
 		fos.close();
+		// *******************************************************
 		result = ps.productupdate(product);
 		result = pps.productinsert(product);
 		List<MultipartFile> list = mhr.getFiles("file2");
@@ -314,6 +315,7 @@ public class AdminController {
 			result = pps.productinsert2(product);
 			
 		}
+		// **********************************
 		result = pds.productupdate(product);
 		model.addAttribute("result",result);
 	return "admin/adminProductUpdateResult";

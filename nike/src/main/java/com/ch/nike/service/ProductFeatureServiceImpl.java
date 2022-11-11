@@ -13,9 +13,12 @@ public class ProductFeatureServiceImpl implements ProductFeatureService{
 	@Autowired
 	private ProductFeatureMapper pfm;
 
+	// ProductCon
 	@Override
-	public List<ProductFeature> selectFeature(int productNo) {
-		return pfm.selectFeature(productNo);
+	public List<ProductFeature> featureList(int productNo) {
+		return pfm.featureList(productNo);
 	}
+
+	
 	
 }

@@ -9,39 +9,32 @@ import com.ch.nike.dto.UserOrderDetail;
 
 public interface ProductService {
 
+	// ProductCon
+	// 전체 상품리스트
 	List<Product> list();
+	// 특정 상품 정보 조회
 	Product selectsoo(int productNo);
 
-	List<Product> productlist(Category category);
-
-	Product count(Category category);
-
-	List<Product> color(Category category);
-
-	Product colorcount(Category category);
+	
+	
+	// AdminCon
+	// 전체 상품 갯수
+	int getTotal();
+	// 전체 상품 리스트(페이징)
+	List<Product> paginglist(PagingBean pagingbean);
+	// 상품 상세로 상품 정보 조회
+	Product select(int productDetailNo);
+	// 상품 최대 번호
+	int selectproductNo();
+	// 상품 등록
+	int productinsert(Product product);
+	// ******************************************************
+	int productupdate(Product product);
+	
+	
 	List<Product> adminproductlist();
 	
-	Product selectCartDetail(String email, int productDetailNo, String color);
-
-	List<Product> selectProduct();
-
-	Product selectProductOne(int productNo);
-
-	Product productInfo(int productNo, String color);
-
-
-	List<Product> paginglist(PagingBean pagingbean);
-
-	int productinsert(Product product);
-
-	int selectproductNo();
-
-	int getTotal();
-
-	Product select(int productDetailNo);
-
-	int productupdate(Product product);
-
-	Product selectproductname(UserOrderDetail uod);
+	
+	
 
 }

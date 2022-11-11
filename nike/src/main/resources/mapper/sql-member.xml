@@ -2,12 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.MemberMapper">
+
+	<!-- MemberCon -->
 	<select id="select" parameterType="string" resultType="member">
 		select	*
 		from	member
 		where	email = #{email}
 	</select>
-	
 	<insert id="insert" parameterType="member">
 		insert	into	member
 				values	(#{email},
@@ -24,20 +25,29 @@
 		set		password = #{password}
 		where	email = #{email}
 	</update>
+	
+	
+	
+	
+	<!-- AccountCon -->
 	<update id="deleteMember" parameterType="string">
 		update	member
 		set		member_del = 'Y'
 		where	email = #{email}
 	</update>
 	
-	<select id="getTotal" resultType="integer"> <!-- 페이징용 전체 회원 카운트 by창률 -->
-		select 	count(*) 
-		from	member
-	</select>
 	
+	
+	<!-- AdminCon -->
 	<select id="paginglist" parameterType="pagingbean" resultType="member">
 		select 	* 
 		from 	(select a.*, rowNum rn from (select * from member order by reg_date desc)a) 
 		where 	rn between #{startRow} and #{endRow}
 	</select>
+	<select id="getTotal" resultType="integer"> <!-- 페이징용 전체 회원 카운트 by창률 -->
+		select 	count(*) 
+		from	member
+	</select>	
+	
+	
 </mapper>

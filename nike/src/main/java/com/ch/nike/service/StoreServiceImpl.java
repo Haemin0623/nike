@@ -15,18 +15,14 @@ public class StoreServiceImpl implements StoreService{
 	@Autowired
 	private StoreMapper sm;
 
-	@Override
-	public List<Store> storelist() {
-		return sm.storelist();
-	}
-
-	@Override
-	public List<UserOrder> paginglist(PagingBean pagingbean) {
-		return sm.paginglist(pagingbean);
-	}
-
+	// AdminCon
 	@Override
 	public int getTotal() {
 		return sm.getTotal();
 	}
+	@Override
+	public List<UserOrder> paginglist(PagingBean pagingbean) {
+		return sm.paginglist(pagingbean);
+	}
+	
 }

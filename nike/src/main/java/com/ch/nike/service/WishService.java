@@ -8,12 +8,13 @@ import com.ch.nike.dto.Wish;
 
 public interface WishService {
 
+	// WishCon
+	Wish selectByEmail(Wish wish);
+	int insert(Wish wish);
+	void delete(int wishNo);
+	
+	
+	// AccountCon
+	// 회원의 위시리스트 전체
 	List<Wish> wishList(String email);
-	List<Wish> wishselect(String email);
-	List<Wish> selectWish(String email);
-	Product selectWishThum(int productNo, String color);
-	Wish selectWishResult(String email, int productNo, String color);
-	void deleteWish(String email, int productNo, String color);
-	int wishCount();
-	void addWish(Wish newWish);
 }

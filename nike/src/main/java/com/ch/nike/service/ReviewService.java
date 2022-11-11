@@ -7,19 +7,42 @@ import com.ch.nike.dto.Review;
 import com.ch.nike.dto.UserOrder;
 
 public interface ReviewService {
-	List<Review> reviewlist();
-	List<Review> reviewselect(String email);
-
+	
+	// ReviewCon
+	// 회원이 한 상품에 대해 작성한 리뷰
 	Review productReview(String email, int productNo, String color);
+	// 리뷰테이블 최대 번호
 	int countReview();
+	// 리뷰테이블에 추가
 	int insert(Review review);
-	List<Review> selectProductReview(int productNo);
+	// 해당 리뷰 삭제
 	int deleteReview(int reviewNo);
-	List<Review> memberReview(String email);
+	// 번호로 리뷰 조회
 	Review reviewInfo(int reviewNo);
+	// 해당 리뷰 수정
 	void update(Review review);
-
-	List<UserOrder> paginglist(PagingBean pagingbean);
+	
+	
+	
+	// ProductCon
+	// 해당 상품 리뷰 전체 조회
+	List<Review> selectProductReview(int productNo);
+	
+	
+	
+	// AccountCon
+	// 회원의 모든 리뷰	(삭제x 만)
+	List<Review> memberReview(String email);
+	
+	
+	
+	// AdminCon
+	// 회원의 모든 리뷰 (삭제 상관 x)
+	List<Review> reviewselect(String email);
+	// 리뷰 갯수
 	int getTotal();
+	// 모든 리뷰 조회(페이징)
+	List<UserOrder> paginglist(PagingBean pagingbean);	
+	
 
 }

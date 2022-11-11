@@ -2,16 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.ReviewPhotoMapper">
+
+	<!-- ReviewCon -->
 	<select id="countReviewPhoto" resultType="integer">
 		select	nvl(max(review_photo_no),0) + 1 reviewPhotoNo
 		from	review_photo
 	</select>
-	<insert id="insert" parameterType="ReviewPhoto">
-		insert into	review_photo 
-		values		(#{reviewPhotoNo}, 
-						#{reviewNo}, 
-						#{reviewPhoto})
-	</insert>
 	<select id="selectReviewPhoto" resultType="ReviewPhoto">
 		select	* 
 		from	review_photo 
@@ -20,5 +16,13 @@
 	<delete id="delete" parameterType="integer">
 		delete from	review_photo
 		where		review_no = #{reviewNo}
-	</delete>
+	</delete>	
+	<insert id="insert" parameterType="ReviewPhoto">
+		insert into	review_photo 
+		values		(#{reviewPhotoNo}, 
+						#{reviewNo}, 
+						#{reviewPhoto})
+	</insert>
+	
+	
 </mapper>

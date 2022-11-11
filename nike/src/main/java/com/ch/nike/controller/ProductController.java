@@ -40,10 +40,12 @@ public class ProductController {
 	@Autowired
 	private ReviewPhotoService rps;
 	
+	
 	@RequestMapping("/") //메인 최하단 하단 신발 리스트 by창률 // 로그아웃 위한 세션작업 by수인
 	public String main(Model model, HttpSession session) {
-		return "main";
+		return "nike_main";
 	}
+	
 	
 	@RequestMapping("/product/newReleases.do")
 	public String newReleases(Model model) {
@@ -59,12 +61,8 @@ public class ProductController {
 		List<ProductDetail> productDetailList  = pds.detailList(productNo);
 		List<ProductPhoto> productPhotoList = pps.photoList(productNo);		
 		List<ProductFeature> productFeatureList = pfs.featureList(productNo);
-		
-		model.addAttribute("product", product);
-		model.addAttribute("productDetailList",productDetailList);
-		model.addAttribute("productPhotoList",productPhotoList);
+
 		model.addAttribute("productFeatureList",productFeatureList);
-		model.addAttribute("color", color);
 		
 		//리뷰리스트
 		List<Review> rvList = rs.selectProductReview(productNo);
@@ -74,10 +72,15 @@ public class ProductController {
 			rvPhotos = rps.selectReviewPhoto(rv.getReviewNo());
 			rvPhotos2.addAll(rvPhotos);
 		}
+		
+		model.addAttribute("product", product);
+		model.addAttribute("productDetailList",productDetailList);
+		model.addAttribute("productPhotoList",productPhotoList);
+		model.addAttribute("color", color);
+		
 		model.addAttribute("rvPhotos", rvPhotos2);
 		model.addAttribute("rvList", rvList);
-		model.addAttribute("productNo", productNo);
-		
+		model.addAttribute("productNo", productNo);	
 
 		
 		return "product/productDetail";

@@ -13,6 +13,7 @@ public class AddressServiceImpl implements AddressService {
 	@Autowired
 	private AddressMapper am;
 
+	// AccountCon
 	public List<Address> selectAddr(String email) {
 		return am.selectAddr(email);
 	}

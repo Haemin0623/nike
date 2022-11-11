@@ -12,11 +12,13 @@ import com.ch.nike.dto.UserOrder;
 @Mapper
 public interface NoticeMapper {
 
-	List<Notice> noticelist();
-
+	// AdminCon
+	int getTotal();
 	List<UserOrder> paginglist(PagingBean pagingbean);
 
-	int getTotal();
+	
+
+	
 
 
 }

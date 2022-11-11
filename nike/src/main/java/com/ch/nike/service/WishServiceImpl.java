@@ -14,44 +14,26 @@ import com.ch.nike.mapper.WishMapper;
 public class WishServiceImpl implements WishService{
 	@Autowired
 	private WishMapper wm;
-
+	
+	// WishCon
 	@Override
-	public List<Wish> wishselect(String email) {
-		return wm.wishselect(email);
+	public Wish selectByEmail(Wish wish) {
+		return wm.selectByEmail(wish);
 	}
-	public List<Wish> selectWish(String email) {
-		return wm.selectWish(email);
+	@Override
+	public int insert(Wish wish) {
+		return wm.insert(wish);
+	}	
+	@Override
+	public void delete(int wishNo) {
+		wm.delete(wishNo);
 	}
 
-	public Product selectWishThum(int productNo, String color) {
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("productNo", productNo);
-		map.put("color", color);
-		return wm.selectWishThum(map);
-	}
-	public Wish selectWishResult(String email, int productNo, String color) {
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("email", email);
-		map.put("productNo", productNo);
-		map.put("color", color);
-		return wm.selectWishResult(map);
-	}
-	public void deleteWish(String email, int productNo, String color) {
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("email", email);
-		map.put("productNo", productNo);
-		map.put("color", color);
-		wm.deleteWish(map);
-	}
-	public int wishCount() {
-		return wm.wishCount();
-	}
-	public void addWish(Wish newWish) {
-		wm.addWish(newWish);
-	}
+	
+	// AccountCon
 	@Override
 	public List<Wish> wishList(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		return wm.wishList(email);
 	}
+	
 }

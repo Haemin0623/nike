@@ -15,18 +15,17 @@ public class NoticeServiceImpl implements NoticeService{
 	@Autowired
 	private NoticeMapper nm;
 
+	// AdminCon
 	@Override
-	public List<Notice> noticelist() {
-		return nm.noticelist();
+	public int getTotal() {
+		return nm.getTotal();
 	}
-
 	@Override
 	public List<UserOrder> paginglist(PagingBean pagingbean) {
 		return nm.paginglist(pagingbean);
 	}
 
-	@Override
-	public int getTotal() {
-		return nm.getTotal();
-	}
+	
+
+	
 }

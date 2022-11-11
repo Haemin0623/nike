@@ -14,15 +14,20 @@ public class UserOrderDetailServiceImpl implements UserOrderDetailService {
 	@Autowired
 	private UserOrderDetailMapper uodm;
 
+	
+	// AdminCon
 	@Override
 	public int getTotal() {
 		return uodm.getTotal();
 	}
-
 	@Override
 	public List<UserOrderDetail> paginglist(PagingBean pagingbean) {
 		return uodm.paginglist(pagingbean);
 	}
+	
+	
+
+	
 
 
 }

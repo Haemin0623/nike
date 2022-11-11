@@ -13,9 +13,12 @@ import com.ch.nike.dto.UserOrderDetail;
 @Mapper
 public interface UserOrderDetailMapper{
 
+	// AdminCon
 	int getTotal();
-
 	List<UserOrderDetail> paginglist(PagingBean pagingbean);
+	
+	
+
 
 
 }

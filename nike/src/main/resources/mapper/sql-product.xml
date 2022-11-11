@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.ProductMapper">
+
+	<!-- ProductCon -->
 	<select id = "list" resultType="Product"  >
 		select	p.*,
 				ph.product_photo,
@@ -12,108 +14,16 @@
 			and ph.batch = 1
 	order by	p.product_no desc
 	</select>
-
-	<select id="productlist" parameterType="category" resultType="product"><!-- 상품리스트 by창률 -->
-		select	p.*,
-				h.product_photo,
-				h.color
-		from	product p,
-				category c,
-				product_Photo h 
-  		where	p.category_no = c.category_no
-  			and p.product_no = h.product_no
-  			and large = '상의'
-  			and small = '후드'
-  			and batch ='1'
+	<select id="selectsoo" parameterType="integer" resultType="Product">
+		 select	* 
+		 from 	product 
+		 where 	product_no = #{productNo}
 	</select>
 	
-	<select id="count" parameterType="category" resultType="integer"> <!-- 상품리스트 상품수 체크 by창률 -->
-		select	count(*)
-		from	product p,
-				category c
-		where	p.category_no = c.category_no
-			and c.large = '상의'
-			and c.small = '후드'
-	</select>
 	
-
 	
-	<select id="adminproductlist" resultType="product"><!-- 관리자 상품 목록 -->
-		select	p.*,
-				d.color,
-				d.stock,
-				d.product_size,
-				h.product_photo,
-				d.product_detail_no 
-		from	product p,
-				product_detail d,
-				product_photo h
-		where	p.product_no = d.product_no
-			and p.product_no = h.product_no
-			and d.color = h.color
-			and h.batch = 1
-	order by	p.product_no
-	</select>
 	
-
-<!-- 	<select id="adminproductlist" resultType="product">관리자 상품 목록 -->
-<!-- 		select	p.*, -->
-<!-- 				d.color, -->
-<!-- 				d.stock, -->
-<!-- 				d.product_size, -->
-<!-- 				h.product_photo, -->
-<!-- 				d.product_detail_no  -->
-<!-- 		from	product p, -->
-<!-- 				product_detail d, -->
-<!-- 				product_photo h -->
-<!-- 		where	p.product_no = d.product_no -->
-<!-- 			and p.product_no = h.product_no -->
-<!-- 			and d.color = h.color -->
-<!-- 			and h.batch = 1 -->
-<!-- 	order by	p.product_no -->
-<!-- 	</select> -->
-	<select id="selectCartThum" parameterType="integer" resultType="product"> <!-- cartList by선희 -->
-		select	p.*,
-				pp.product_photo,
-				pp.color,
-				pd.product_size,
-				cart_quantity
-		from	product p,
-				(select	*
-				from	product_photo
-				where	product_no = (select	product_no
-										from	product_detail pd,
-												cart c
-										where	pd.product_detail_no = #{product_detail_no})
-					and batch = 1) pp,
-				product_detail pd,
-				cart c
-		where	p.product_no = pp.product_no
-			and p.product_no = pd.product_no
-			and #{product_detail_no} = pd.product_detail_no
-	</select>
-	
-	<select id="selectProduct" resultType="product">
-		select 	* 
-		from 	product p, 
-				product_photo h				 
-		where 	p.product_no = h.product_no
-			and	batch=1 
-	order by 	p.product_no desc 
-	</select>
-
-	<select id="productInfo" parameterType="hashmap" resultType="product">
-		select	p.*, 
-				pp.* 
-		from	product p, 
-				product_photo pp 
-		where	p.product_no=pp.product_no 
-			and p.product_no=#{productNo} 
-			and pp.color=#{color}
-			and pp.batch=1
-	</select>
-
-
+	<!-- Admincon -->
 	<select id="paginglist" parameterType="pagingbean" resultType="product">
 		select 	* 
 		from 	(select	a.*,
@@ -135,11 +45,69 @@
 				) 
 		where	rn between #{startRow} and #{endRow}
 	</select>
-
-
-	<select id="selectsoo" parameterType="integer" resultType="Product">
-		 select	* 
-		 from 	product 
-		 where 	product_no = #{productNo}
+	<select id="getTotal" resultType="integer"> <!-- 페이징용 전체 상품 카운트 by창률 -->
+		select 	count(*) 
+		from	product p,
+				product_detail d,
+				product_photo h
+		where	p.product_no = d.product_no
+			and p.product_no = h.product_no(+)
+			and d.color = h. color
+			and batch = 1
 	</select>
+	<select id="select" parameterType="integer" resultType="product">
+		select	p.*,
+				d.color,
+				d.stock,
+				d.product_size,
+				h.product_photo,
+				d.product_detail_no 
+		from	product p,
+				product_detail d,
+				product_photo h
+		where	p.product_no = d.product_no
+			and p.product_no = h.product_no(+)
+			and d.color = h.color
+			and d.product_Detail_No=#{productDetailNo}
+                        and batch=1
+	</select>
+	<select id="selectproductNo" resultType="integer">
+		select	nvl(max(product_no),0) + 1 productNo
+		from	product
+	</select>
+	<insert id="productinsert" parameterType="product">
+		insert into product 
+			values	(#{productNo}, 
+					#{productName}, 
+					#{categoryNo}, 
+					#{price}, 
+					#{detail}, 
+					#{gender})
+	</insert>
+	<update id="productupdate" parameterType="product">
+		update 	product 
+		set 	category_No=#{categoryNo}, 
+				product_Name=#{productName}, 
+				price=#{price}, 
+				detail=#{detail}, 
+				gender=#{gender}
+		where	product_No=#{productNo}
+	</update>	
+	<select id="adminproductlist" resultType="product"><!-- 관리자 상품 목록 -->
+		select	p.*,
+				d.color,
+				d.stock,
+				d.product_size,
+				h.product_photo,
+				d.product_detail_no 
+		from	product p,
+				product_detail d,
+				product_photo h
+		where	p.product_no = d.product_no
+			and p.product_no = h.product_no
+			and d.color = h.color
+			and h.batch = 1
+	order by	p.product_no
+	</select>
+	
 </mapper>

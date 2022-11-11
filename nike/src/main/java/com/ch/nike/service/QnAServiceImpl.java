@@ -15,18 +15,14 @@ public class QnAServiceImpl implements QnAService{
 	@Autowired
 	private QnAMapper qm;
 
+	// AdminCon
 	@Override
-	public List<QnA> qnalist() {
-		return qm.qnalist();
+	public int getTotal() {
+		return qm.getTotal();
 	}
-
 	@Override
 	public List<UserOrder> paginglist(PagingBean pagingbean) {
 		return qm.paginglist(pagingbean);
 	}
 
-	@Override
-	public int getTotal() {
-		return qm.getTotal();
-	}
 }

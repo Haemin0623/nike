@@ -11,18 +11,23 @@ public class RefundServiceImpl implements RefundService {
 	@Autowired
 	private RefundMapper rm;
 	
+	// AccountCon
 	public String selectName(int orderDetailNo) {
 		return rm.selectName(orderDetailNo);
+	}
+	public int selectRefundNum() {
+		return rm.selectRefundNum();
 	}
 	public int insertRefund(Refund refund) {
 		return rm.insertRefund(refund);
 	}
-
-	public int selectRefundNum() {
-		return rm.selectRefundNum();
-	}
-
 	public void updateRefundChk(int orderDetailNo) {
 		rm.updateRefundChk(orderDetailNo);
 	}
+	
+	
+	
+
+	
+
 }

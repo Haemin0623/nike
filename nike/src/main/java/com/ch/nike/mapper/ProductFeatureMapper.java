@@ -8,5 +8,8 @@ import com.ch.nike.dto.ProductFeature;
 
 @Mapper
 public interface ProductFeatureMapper {
-	List<ProductFeature> selectFeature(int productNo);
+	
+	// Product Con
+	List<ProductFeature> featureList(int productNo);
+
 }

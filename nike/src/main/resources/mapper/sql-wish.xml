@@ -2,52 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.WishMapper">
-	<select id="wishselect" parameterType="string" resultType="wish">
-		select	p.*,
-				h.*
-		from	wish w,
-				product p,
-				product_photo h
-		where	p.product_no = h.product_no
-			and p.product_no = w.product_no
-			and w.email = #{email}
-			and h.batch = 1
-	order by	w.wish_no desc
-	</select>
-	<!-- wishList -->
-	<select id="selectWish" parameterType="string" resultType="wish">
-		select	*
-		from	wish
-		where	email = #{email}
-	</select>
-	<select id="selectWishThum" parameterType="hashmap" resultType="product">
-		select p.*,pp.* 
-		from product p, product_photo pp 
-		where p.product_no=pp.product_no and pp.product_no=#{productNo} and color=#{color} and batch=1
-	</select>	
-	<!-- 위시리스트 추가용 -->
-	<select id="selectWishResult" parameterType="hashmap" resultType="wish">
-		select	*
+
+	<!-- WishCon -->
+	<select id="selectByEmail" parameterType="Wish" resultType="Wish">
+		select	* 
 		from	wish
 		where	product_no = #{productNo}
-		and		email = #{email}
-		and		color = #{color}
+		   and	email = #{email}
+		   and	color = #{color}
 	</select>
-	<delete id="deleteWish" parameterType="hashmap">
-		delete	from	wish
-		where			product_no = #{productNo}
-					and email = #{email}
-					and	color = #{color}
-	</delete>
-	<select id="wishCount" resultType="integer">
-		select	nvl(max(wish_no),0) + 1 wishNo
-		from	wish
-	</select>
-	<insert id="addWish" parameterType="wish">
-		insert	into	wish
-		values			(#{wishNo},
-						#{productNo},
-						#{email},
-						#{color})
+	
+	<insert id="insert" parameterType="Wish">
+		<!-- wishNo값을 채우기 위해 먼저 구하는 쿼리 -->
+		<selectKey keyProperty="wishNo" order="BEFORE" resultType="integer">
+		   select	nvl(max(wish_no),0)+1 wishNo 
+		   from	wish
+		</selectKey>
+		insert	into wish 
+		values	(#{wishNo}, 
+				#{productNo},
+				#{email},
+				#{color})
 	</insert>
+   
+	<delete id="delete" parameterType="integer">
+	   delete    from wish
+	   where    wish_no=#{wishNo}
+	</delete>
+	
+	<!-- AccountCon -->
+	 <select id="wishList" parameterType="String" resultType="Wish">
+      select   w.*,
+            p.product_name,
+            pp.product_photo
+      from   wish w,
+            product p,
+            product_photo pp
+      where   email = #{email}
+         and w.product_no = p.product_no
+         and p.product_no = pp.product_no
+         and pp.batch = 1
+         and w.color = pp.color
+   </select>
+	
+	
 </mapper>

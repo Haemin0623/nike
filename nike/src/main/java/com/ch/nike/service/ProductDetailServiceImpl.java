@@ -14,25 +14,22 @@ import com.ch.nike.mapper.ProductDetailMapper;
 public class ProductDetailServiceImpl implements ProductDetailService{
 	@Autowired
 	private ProductDetailMapper pdm;
-	public List<ProductDetail> productDetail(int productNo, String color) {
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("productNo", productNo);
-		map.put("color", color);
-		return pdm.productDetail(map);
-	}
 	
+	// ProductCon
 	@Override
 	public List<ProductDetail> detailList(int productNo) {
 		return pdm.detailList(productNo);
+	}	
+	
+	
+	// AdminCon
+	@Override
+	public int productinsert(Product product) {
+		return pdm.productinsert(product);
 	}
 	@Override
 	public int productupdate(Product product) {
 		return pdm.productupdate(product);
-	}
-
-	@Override
-	public int productinsert(Product product) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	}	
+	
 }

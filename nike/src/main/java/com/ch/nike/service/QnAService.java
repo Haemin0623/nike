@@ -7,9 +7,11 @@ import com.ch.nike.dto.QnA;
 import com.ch.nike.dto.UserOrder;
 
 public interface QnAService {
-	List<QnA> qnalist();
 
+	// AdminCon
+	// 문의 갯수
+	int getTotal();
+	// 전체 문의 조회(페이징)
 	List<UserOrder> paginglist(PagingBean pagingbean);
 
-	int getTotal();
 }

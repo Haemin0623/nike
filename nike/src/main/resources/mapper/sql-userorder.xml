@@ -2,6 +2,37 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.nike.mapper.UserOrderMapper">
+
+	<!-- AccountCon -->
+	<select id="selectUserOrder" parameterType="string" resultType="UserOrder"> <!-- mypage - orders -->
+		select	*
+		from	user_order
+		where	email = #{email}
+	order by	order_no desc
+	</select>
+	<select id="selectOrderDetail" parameterType="integer" resultType="UserOrder">
+      select   pd.*, 
+            uod.*, 
+            a.*, 
+            pp.*,
+            p.*
+      from   product p,
+            product_photo pp, 
+            product_detail pd, 
+            (select * from user_order_detail where order_no=#{orderNo}) uod, 
+            address a, 
+            (select * from user_order where order_no=#{orderNo}) uo 
+      where   pd.product_detail_no=uod.product_detail_no 
+         and uo.addr_no=a.addr_no 
+         and pd.product_no=pp.product_no 
+         and pd.product_no=p.product_no
+         and batch = 1 
+         and pd.color = pp.color
+   </select>
+   
+   
+
+	<!-- AdminCon -->
 	<select id="userorderselect" parameterType="string"	resultType="Userorder">
 		select	uo.*,
 				uod.*
@@ -11,21 +42,18 @@
 			and uo.email = #{email}
 	order by	uo.order_no desc
 	</select>
-	<select id="selectUserOrder" parameterType="string" resultType="UserOrder"> <!-- mypage - orders -->
-		select	*
+	<select id="getTotal" resultType="integer"> <!-- 페이징용 전체 주문 카운트 by창률 -->
+		select 	count(*) 
 		from	user_order
-		where	email = #{email}
-	order by	order_no desc
 	</select>
-
 	<select id="paginglist" parameterType="pagingbean" resultType="userorder">
 		select 	* 
 		from 	(select a.*, rowNum rn from (select uo.*,refund_chk from user_order uo, user_order_detail uod where uo.order_no=uod.order_no order by uo.order_no desc)a) 
 		where 	rn between #{startRow} and #{endRow}
 	</select>
-	<select id="getTotal" resultType="integer"> <!-- 페이징용 전체 주문 카운트 by창률 -->
-		select 	count(*) 
-		from	user_order
-	</select>
+	
+
+	
+	
 	
 </mapper>

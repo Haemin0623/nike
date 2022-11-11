@@ -15,31 +15,30 @@ public class UserOrderServiceImpl implements UserOrderService{
 	@Autowired
 	private UserOrderMapper uod;
 
-	@Override
-	public List<UserOrder> orderlist() {
-		return uod.orderlist();
-	}
-	@Override
-	public List<UserOrder> userorderselect(String email) {
-		return uod.userorderselect(email);
-	}
+	
+	// AccountCon
 	public List<UserOrder> selectUserOrder(String email) {
 		return uod.selectUserOrder(email);
 	}
-//	public UserOrder selectOrderDetail(int orderNo) {
-//		return uod.selectOrderDetail(orderNo);
-//	}
+	public UserOrder selectOrderDetail(int orderNo) {
+		return uod.selectOrderDetail(orderNo);
+	}
+	
+	
+	
+	// AdminCon
 	@Override
-	public List<UserOrder> paginglist(PagingBean pagingbean) {
-		return uod.paginglist(pagingbean);
+	public List<UserOrder> userorderselect(String email) {
+		return uod.userorderselect(email);
 	}
 	@Override
 	public int getTotal() {
 		return uod.getTotal();
 	}
 	@Override
-	public Product selectOrderDetail(int orderNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<UserOrder> paginglist(PagingBean pagingbean) {
+		return uod.paginglist(pagingbean);
 	}
+	
+
 }

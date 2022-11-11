@@ -9,6 +9,7 @@ import com.ch.nike.dto.Address;
 @Mapper
 public interface AddressMapper {
 
+	// AccountCon
 	List<Address> selectAddr(String email);
 
 }

@@ -12,32 +12,28 @@ import com.ch.nike.dto.UserOrder;
 @Mapper
 public interface ReviewMapper {
 
-	List<Review> reviewlist();
-
-	List<Review> reviewselect(String email);
-
-
+	// ReviewCon
 	Review productReview(HashMap<String, Object> map);
-
 	int countReview();
-
 	int insert(Review review);
-
-	List<Review> selectProductReview(int productNo);
-
 	int deleteReview(int reviewNo);
-
-	List<Review> memberReview(String email);
-
 	Review reviewInfo(int reviewNo);
-
 	void update(Review review);
-
+		
 	
-
-	List<UserOrder> paginglist(PagingBean pagingbean);
-
+	// ProductCon
+	List<Review> selectProductReview(int productNo);
+		
+	
+	// AccountCon
+	List<Review> memberReview(String email);
+	
+	
+	// AdminCon
+	List<Review> reviewselect(String email);
 	int getTotal();
+	List<UserOrder> paginglist(PagingBean pagingbean);
+	
 
 
 }

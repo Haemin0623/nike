@@ -11,12 +11,20 @@ import com.ch.nike.dto.PagingBean;
 @Mapper
 public interface MemberMapper {
 
+	// MemberCon
 	Member select(String email);
 	int insert(Member member);
-	List<Member> memberlist();
 	int update(Member member); //새비번변경
+	
+	
+	
+	// AccountCon
 	int deleteMember(String email);
-	int getTotal();
+	
+	
+	
+	// AdminCon
 	List<Member> paginglist(PagingBean pagingbean);
+	int getTotal();
 
 }

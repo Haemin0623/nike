@@ -52,6 +52,7 @@ public class ReviewController {
 		int result = 0;
 		String email = (String) session.getAttribute("email");
 		float star = 0;
+		
 		try {
 			star = Float.valueOf(ratevalue);
 		} catch (NumberFormatException e) {
@@ -60,18 +61,23 @@ public class ReviewController {
 		catch (Exception e) {
 			// TODO: handle exception
 		}
+		
 		Review review2 = rs.productReview(email, productNo, color);
+		
 		if (review2 == null || review2.getReviewDel().equals("Y")) {
 			// 한번에 여러개의 파일이 들어온다
 			List<MultipartFile> list = mhr.getFiles("file");
 			String real = "src/main/resources/static/images/review_photo";
 			// list의 사진을 하나씩 뽑아서 photos에 저장
+			
 			int reviewNo = rs.countReview();
+			
 			review.setReviewNo(reviewNo);
 			review.setProductNo(productNo);
 			review.setEmail(email);
 			review.setStar(star);
 			review.setColor(color);
+			
 			rs.insert(review);
 			
 			for(MultipartFile mf : list) {
@@ -79,6 +85,7 @@ public class ReviewController {
 				String reviewPhoto = mf.getOriginalFilename();
 				rp.setReviewPhoto(reviewPhoto);
 				rp.setReviewNo(reviewNo);
+				
 				int reviewPhotoNo = rps.countReviewPhoto();
 				rp.setReviewPhotoNo(reviewPhotoNo);
 				
@@ -106,6 +113,7 @@ public class ReviewController {
 	}
 	@RequestMapping("/product/reviewUpdateForm.do")
 	public String reviewUpdate(int reviewNo, Model model, HttpSession session) {
+		
 		Review review  = rs.reviewInfo(reviewNo);
 		List<ReviewPhoto> rvPhoto = rps.selectReviewPhoto(reviewNo);
 		model.addAttribute("review", review);

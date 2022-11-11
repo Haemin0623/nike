@@ -13,9 +13,13 @@ public class ReviewPhotoServiceImpl implements ReviewPhotoService {
 	@Autowired
 	private ReviewPhotoMapper rpm;
 
+	// ReviewCon
 	public int countReviewPhoto() {
 		return rpm.countReviewPhoto();
 	}
+	
+	
+	
 
 	public int insert(ReviewPhoto rp) {
 		return rpm.insert(rp);

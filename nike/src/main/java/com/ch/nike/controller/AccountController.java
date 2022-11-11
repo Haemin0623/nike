@@ -106,7 +106,7 @@ public class AccountController {
 	}
 	
 	@RequestMapping("/account/addCart.do") //장바구니 추가 by 수인
-	public String addCart(HttpSession session, ProductDetail productDetail, Model model, int cartNo) {
+	public String addCart(HttpSession session, ProductDetail productDetail, Model model) {
 		int result = 0;
 		if(session.getAttribute("email")== null) { //로그인x - 이메일로그인창 
 			result = -1;

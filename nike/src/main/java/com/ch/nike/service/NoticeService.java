@@ -7,9 +7,13 @@ import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.UserOrder;
 
 public interface NoticeService {
-	List<Notice> noticelist();
-
+	
+	// AdminCon
+	// 공지 갯수
+	int getTotal();
+	// 공지 전체 조회(페이징)
 	List<UserOrder> paginglist(PagingBean pagingbean);
 
-	int getTotal();
+
+	
 }

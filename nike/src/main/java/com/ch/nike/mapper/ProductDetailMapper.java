@@ -11,11 +11,13 @@ import com.ch.nike.dto.ProductDetail;
 @Mapper
 public interface ProductDetailMapper {
 
-	List<ProductDetail> productDetail(HashMap<String, Object> map);
-	
-	int productinsert(Product product);
-
+	// ProductCon
 	List<ProductDetail> detailList(int productNo);
-
+	
+	
+	// AdminCon
+	int productinsert(Product product);
+	int productupdate(Product product);
+	
 
 }
