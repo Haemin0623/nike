@@ -2,6 +2,8 @@
 drop table member cascade constraints;
 select * from member;
 
+		select * from product where gender='M' or gender='U';	
+
 
 create table member (
 	email			varchar2(50)		not null	primary key,

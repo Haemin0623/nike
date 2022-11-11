@@ -88,8 +88,6 @@ public class ProductController {
 	}
 	
 	
-	
-	
 	@RequestMapping("/product/men.do") //남성상품 by 수인
 	public String men(Model model) {
 		List<Product> menProductList = ps.menProductlist();
