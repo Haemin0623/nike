@@ -111,4 +111,12 @@
 
 	</select>
 	
+	<select id="menProductlist" resultType="product"> <!-- 남자(+유니) 상품목록 -->
+		select 	* 
+		from 	product 
+		where 	gender='M' 
+			or 	gender='U'	
+	</select>
+	
+	
 </mapper>

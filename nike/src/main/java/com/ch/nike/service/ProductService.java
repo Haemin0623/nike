@@ -33,6 +33,7 @@ public interface ProductService {
 	
 	
 	List<Product> adminproductlist();
+	List<Product> menProductlist();
 	
 
 

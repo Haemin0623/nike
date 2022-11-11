@@ -26,13 +26,6 @@ public interface ProductMapper {
 	int productupdate(Product product);
 	
 	List<Product> adminproductlist();
-	
-	
-	
-	
-
-
-
 	List<Product> menProductlist();
 
 }
