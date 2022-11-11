@@ -20,7 +20,6 @@
 			<th>주문날짜</th>
 			<th>주소번호</th>
 			<th>상태</th>
-			<th>환불여부</th>
 			<th></th>
 		</tr>
 		<tr th:each="lists:${list2}">
@@ -29,8 +28,7 @@
 			<td>[[${lists.orderDate}]]</td>
 			<td>[[${lists.addrNo}]]</td>
 			<td>[[${lists.status}]]</td>
-			<td>[[${lists.refundChk}]]
-			<td><a th:href="@{/adminOrderDetail.do(orderNo=${lists.orderNo})}">주문 상세 보기</a><td>
+			<td><a th:href="@{/adminOrderDetail.do(orderNo=${lists.orderNo})}">주문 상세 보기</a></td>
 		</tr>
 	</table>
 	<div>

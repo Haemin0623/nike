@@ -18,11 +18,41 @@
 			<th>주문 상세 번호</th>
 			<th>상품명</th>
 			<th>구매수량</th>
+			<th>환불여부</th>
+			<th>환불상태수정</th>
+			<th></th>
 		</tr>
 		<tr th:each="lists:${list2}">
-				<td>[[${lists.orderDetailNo}]]</td>
-				<td>[[${lists.productName}]]</td>
-				<td>[[${lists.orderQuantity}]]</td>
+			<td>[[${lists.orderDetailNo}]]</td>
+			<td>[[${lists.productName}]]</td>
+			<td>[[${lists.orderQuantity}]]</td>
+			<td>[[${lists.refundChk}]]</td>
+			<td>
+				<select th:if="${lists.refundChk}=='N'">
+					<option value="N" selected="selected">신청안함</option>
+					<option value="A">환불진행중</option>
+					<option value="Y">환불완료</option>
+					<option value="D">환불거절</option>
+				</select>
+				<select th:if="${lists.refundChk}=='A'">
+					<option value="N" >신청안함</option>
+					<option value="A" selected="selected">환불진행중</option>
+					<option value="Y">환불완료</option>
+					<option value="D">환불거절</option>
+				</select>
+				<select th:if="${lists.refundChk}=='Y'">
+					<option value="N" >신청안함</option>
+					<option value="A">환불진행중</option>
+					<option value="Y" selected="selected">환불완료</option>
+					<option value="D">환불거절</option>
+				</select>
+				<select th:if="${lists.refundChk}=='D'">
+					<option value="N" >신청안함</option>
+					<option value="A">환불진행중</option>
+					<option value="Y">환불완료</option>
+					<option value="D" selected="selected">환불거절</option>
+				</select>
+			</td>
 		</tr>
 	</table>
 	<div>
