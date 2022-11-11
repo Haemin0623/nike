@@ -34,7 +34,6 @@ public interface ProductService {
 	
 	List<Product> adminproductlist();
 	
-	
-	
+
 
 }

@@ -45,6 +45,7 @@ public class ProductPhotoServiceImpl implements ProductPhotoService {
 	public int productinsert2(Product product) {
 		return ppm.productinsert2(product);
 	}
+
 	@Override
 	public int selectproductPhotoNo(Product product) {
 		return ppm.selectproductPhotoNo(product);

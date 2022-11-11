@@ -108,6 +108,7 @@
 			and d.color = h.color
 			and h.batch = 1
 	order by	p.product_no
+
 	</select>
 	
 </mapper>

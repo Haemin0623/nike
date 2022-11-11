@@ -33,4 +33,6 @@ public interface ProductMapper {
 
 
 
+	List<Product> menProductlist();
+
 }

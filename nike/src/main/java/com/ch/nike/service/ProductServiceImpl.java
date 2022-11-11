@@ -63,10 +63,5 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> adminproductlist() {
 		return pm.adminproductlist();
 	}
-	
-	
-	
-	
-	
-	
+
 }

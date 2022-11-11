@@ -18,6 +18,7 @@ public interface ProductDetailMapper {
 	// AdminCon
 	int productinsert(Product product);
 	int productupdate(Product product);
-	
+
+
 
 }

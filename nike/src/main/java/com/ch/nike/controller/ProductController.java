@@ -80,10 +80,22 @@ public class ProductController {
 		
 		model.addAttribute("rvPhotos", rvPhotos2);
 		model.addAttribute("rvList", rvList);
-		model.addAttribute("productNo", productNo);	
+
+		model.addAttribute("productNo", productNo);
 
 		
 		return "product/productDetail";
+	}
+	
+	
+	
+	
+	@RequestMapping("/product/men.do") //남성상품 by 수인
+	public String men(Model model) {
+		List<Product> menProductList = ps.menProductlist();
+		model.addAttribute(menProductList);
+		return "product/men";
+		
 	}
 	
 }
