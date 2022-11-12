@@ -13,6 +13,9 @@ public interface NoticeService {
 	int getTotal();
 	// 공지 전체 조회(페이징)
 	List<UserOrder> paginglist(PagingBean pagingbean);
+	
+	//공지 등록 by수인
+	int insertNotice(Notice notice);
 
 
 	

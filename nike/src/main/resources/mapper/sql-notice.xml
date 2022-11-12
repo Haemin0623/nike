@@ -14,4 +14,20 @@
 		where 	rn between #{startRow} and #{endRow}
 	</select>
 	
+<!-- 		int insertNotice(Notice notice); -->
+	<insert id="insertNotice" parameterType="Notice">
+		<selectKey keyProperty="noticeNo" order="BEFORE" resultType="integer"><!--  noticeNo 최대값 먼저 구해서 글번호매기기(+1) -->
+			select 	nvl( max(notice_no), 0 )+1 noticeNo 
+			from 	notice		
+		</selectKey>
+		insert 	into notice 
+		values	(#{noticeNo}, 
+				#{noticeType}, 
+				#{noticeSubject}, 
+				#{content}, 
+				sysdate, 
+				0, 
+				'N')
+	</insert>
+	
 </mapper>

@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ch.nike.dto.Member;
+import com.ch.nike.dto.Notice;
 import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Product;
 import com.ch.nike.dto.ProductPhoto;
@@ -220,8 +221,16 @@ public class AdminController {
 		return "admin/adminNoticeDetail";
 	}
 	
-	@RequestMapping("/adminNoticeInsert.do") //관리자 공지 등록
-	public String adminNoticeInsert() {
+	@RequestMapping("/adminNoticeInsertForm.do") //관리자 공지 등록 by수인
+	public String adminNoticeInsertForm() {
+		return "admin/adminNoticeInsertForm";
+	}
+	
+	@RequestMapping("/adminNoticeInsert.do") //관리자 공지 등록 by수인
+	public String adminNoticeInsert(Notice notice, Model model) {
+		int result = 0;
+		result = ns.insertNotice(notice);
+		model.addAttribute("result", result);
 		return "admin/adminNoticeInsert";
 	}
 	@RequestMapping("/adminStoreList.do")	//관리자 매장 관리 by창률

@@ -25,7 +25,12 @@
 		</tr>
 		<tr th:each="lists:${list2}">
 			<td>[[${lists.noticeNo}]]</td>
-			<td>[[${lists.noticeType}]]</td>
+			<td th:if="${lists.noticeType} == 'order'">배송 및 주문</td>
+			<td th:if="${lists.noticeType} == 'refund'">반품 및 환불</td>
+			<td th:if="${lists.noticeType} == 'membership'">멤버십</td>
+			<td th:if="${lists.noticeType} == 'productinfo'">제품 정보</td>
+			<td th:if="${lists.noticeType} == 'etcNotice'">기타 공지</td>
+			<td th:if="${lists.noticeType} == 'faq'">FAQ</td>
 			<td>[[${lists.noticeSubject}]]</td>
 			<td>[[${lists.content}]]</td>
 			<td>[[${lists.regDate}]]</td>
@@ -84,7 +89,7 @@
 			</li>
 		</th:block>
 	</span>
-<a href="/adminNoticeInsert.do">공지 등록</a>
+<a href="/adminNoticeInsertForm.do">공지 등록</a>
 </div>
 </body>
 </html>

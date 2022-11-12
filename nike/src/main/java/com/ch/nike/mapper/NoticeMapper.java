@@ -15,6 +15,7 @@ public interface NoticeMapper {
 	// AdminCon
 	int getTotal();
 	List<UserOrder> paginglist(PagingBean pagingbean);
+	int insertNotice(Notice notice);
 
 	
 

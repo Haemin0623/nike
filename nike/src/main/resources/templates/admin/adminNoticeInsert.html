@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/adminLayout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content"> <!-- by수인 -->
+	<th:block th:if="${result} > 0">
+		<script type="text/javascript">
+			alert("공지등록 성공");
+			location.href="adminNoticeList.do";
+		</script>
+	</th:block>
+	
+	<th:block th:if="${result} == 0">
+		<script type="text/javascript">
+			alert("공지등록 실패");
+			history.go(-1);
+		</script>
+	</th:block>
+
+</div>
+</body>
+</html>

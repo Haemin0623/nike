@@ -7,8 +7,42 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div layout:fragment="content">
-공지 등록 페이지
+<div layout:fragment="content" align="center"> <!-- by 수인 -->
+
+	<h2>공지등록</h2>
+	<form action="adminNoticeInsert.do" method="post">
+	<table border="1" width="800px">
+		<tr>
+			<th>공지유형</th>
+			<td>
+				<select name="noticeType">
+					<option value="order">배송 및 주문</option>
+					<option value="refund">반품 및 환불</option>
+					<option value="membership">멤버십</option>
+					<option value="productinfo">제품 정보</option>
+					<option value="etcNotice">기타 공지</option>
+					<option value="faq">FAQ</option>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<th>제목</th>
+			<td>
+				<textarea rows="" cols="80" name="noticeSubject"></textarea>
+			</td>
+		</tr>
+		
+		<tr>
+			<th>내용</th>
+			<td>
+				<textarea rows="10px" cols="80px" name="content"></textarea>
+			</td>
+		</tr>
+		
+	</table><br>
+	<input type="submit" value="등록" >
+	</form>
 </div>
 </body>
 </html>

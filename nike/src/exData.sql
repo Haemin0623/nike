@@ -4,6 +4,7 @@ insert into member values ('soo@in.com', '박수인', '123', 'F', sysdate, 01012
 insert into member values ('chang@ryul.com', '김창률', '123', 'M', sysdate, 01012345678, sysdate, 'N');
 insert into member values ('sun@ny.com', '최선희', '123', 'F', sysdate, 01012345678, sysdate, 'N');
 
+select * from notice;
 
 -- 배송지
 insert into address values (1, 'hae@min.com', '집', 0311234567, '경기도 용인시 수지구 현암로54', '경기도 용인시 죽전동', 54637, '0동 0호');
