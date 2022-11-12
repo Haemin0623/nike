@@ -33,8 +33,8 @@ public class ProductServiceImpl implements ProductService{
 	
 	// AdminCon
 	@Override
-	public int getTotal() {
-		return pm.getTotal();
+	public int getTotal(PagingBean pagingbean) {
+		return pm.getTotal(pagingbean);
 	}
 	@Override
 	public List<Product> paginglist(PagingBean pagingbean) {

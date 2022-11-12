@@ -12,7 +12,7 @@ public class QnA {
 	private String email;
 	private int productNo;
 	private String qnaType;		/* 배송, 결제, 상품 ,기타 */
-	private String noticeSubject;
+	private String subject;
 	private String content;
 	private Date regDate;
 	private String qnaStatus;

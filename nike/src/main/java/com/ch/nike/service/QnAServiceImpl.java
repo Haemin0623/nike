@@ -17,8 +17,8 @@ public class QnAServiceImpl implements QnAService{
 
 	// AdminCon
 	@Override
-	public int getTotal() {
-		return qm.getTotal();
+	public int getTotal(PagingBean pagingbean) {
+		return qm.getTotal(pagingbean);
 	}
 	@Override
 	public List<UserOrder> paginglist(PagingBean pagingbean) {

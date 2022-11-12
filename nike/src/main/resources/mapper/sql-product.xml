@@ -37,23 +37,34 @@
 						from	product p,
 								product_detail d,
 								product_photo h
-						where	p.product_no = d.product_no
-							and p.product_no = h.product_no(+)
-							and d.color = h.color
-							and batch = 1
-					order by	p.product_no) a
+							<where>
+								<if test="keyword!=null and keyword!=''">
+										p.${keyword} like '%' || #{search} || '%' and
+								</if>
+									p.product_no = d.product_no
+								and p.product_no = h.product_no(+)
+								and d.color = h.color
+								and batch = 1
+							</where>
+							
+						order by	p.product_no) a
 				) 
 		where	rn between #{startRow} and #{endRow}
 	</select>
-	<select id="getTotal" resultType="integer"> <!-- 페이징용 전체 상품 카운트 by창률 -->
+	<select id="getTotal" parameterType="pagingbean" resultType="integer"> <!-- 페이징용 전체 상품 카운트 by창률 -->
 		select 	count(*) 
 		from	product p,
 				product_detail d,
 				product_photo h
-		where	p.product_no = d.product_no
+				<where>
+					<if test="keyword!=null and keyword!=''">
+							p.${keyword} like '%' || #{search} || '%' and
+					</if>
+				p.product_no = d.product_no
 			and p.product_no = h.product_no(+)
 			and d.color = h. color
 			and batch = 1
+			</where>
 	</select>
 	<select id="select" parameterType="integer" resultType="product">
 		select	p.*,

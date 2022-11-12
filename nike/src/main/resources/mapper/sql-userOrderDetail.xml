@@ -20,8 +20,12 @@
             and pd.product_no=p.product_no 
             and uo.order_no=uod.order_no 
             and uod.order_no = #{orderNo} 
-            order by order_detail_no desc)a)  
+            order by order_detail_no desc)a) 
 		where 	rn between #{startRow} and #{endRow}
 	</select>
-	
+	<update id="refundchkupdate" parameterType="userOrderDetail">
+		update 	user_order_detail 
+		set 	refund_chk=#{refundChk} 
+		where 	order_detail_no = #{orderDetailNo}
+	</update>
 </mapper>

@@ -41,12 +41,23 @@
 	<!-- AdminCon -->
 	<select id="paginglist" parameterType="pagingbean" resultType="member">
 		select 	* 
-		from 	(select a.*, rowNum rn from (select * from member order by reg_date desc)a) 
+		from 	(select a.*, rowNum rn from (select * from member 
+			<where>
+				<if test="keyword!=null and keyword!=''">
+						${keyword} like '%' || #{search} || '%'
+				</if>
+			</where>
+		order by reg_date desc)a) 
 		where 	rn between #{startRow} and #{endRow}
 	</select>
-	<select id="getTotal" resultType="integer"> <!-- 페이징용 전체 회원 카운트 by창률 -->
+	<select id="getTotal" parameterType="pagingbean" resultType="integer"> <!-- 페이징용 전체 회원 카운트 by창률 -->
 		select 	count(*) 
 		from	member
+		<where>
+				<if test="keyword!=null and keyword!=''">
+						${keyword} like '%' || #{search} || '%'
+				</if>
+			</where>
 	</select>	
 	
 	

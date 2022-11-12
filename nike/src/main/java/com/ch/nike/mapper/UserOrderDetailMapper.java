@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.ch.nike.dto.PagingBean;
-import com.ch.nike.dto.UserOrder;
 import com.ch.nike.dto.UserOrderDetail;
 
 
@@ -14,8 +13,9 @@ import com.ch.nike.dto.UserOrderDetail;
 public interface UserOrderDetailMapper{
 
 	// AdminCon
-	int getTotal();
+	int getTotal(PagingBean pagingbean);
 	List<UserOrderDetail> paginglist(PagingBean pagingbean);
+	int refundchkupdate(UserOrderDetail userOrderDetail);
 	
 	
 

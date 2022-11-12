@@ -13,7 +13,7 @@ import com.ch.nike.dto.UserOrder;
 public interface QnAMapper {
 
 	// AdminCon
-	int getTotal();
+	int getTotal(PagingBean pagingbean);
 	List<UserOrder> paginglist(PagingBean pagingbean);
 
 }

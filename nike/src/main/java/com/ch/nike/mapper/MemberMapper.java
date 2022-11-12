@@ -25,6 +25,6 @@ public interface MemberMapper {
 	
 	// AdminCon
 	List<Member> paginglist(PagingBean pagingbean);
-	int getTotal();
+	int getTotal(PagingBean pagingbean);
 
 }

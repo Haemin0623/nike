@@ -19,7 +19,7 @@ public interface ProductService {
 	
 	// AdminCon
 	// 전체 상품 갯수
-	int getTotal();
+	int getTotal(PagingBean pagingbean);
 	// 전체 상품 리스트(페이징)
 	List<Product> paginglist(PagingBean pagingbean);
 	// 상품 상세로 상품 정보 조회

@@ -18,7 +18,7 @@ public interface ProductMapper {
 	
 	
 	// AdminCon
-	int getTotal();
+	int getTotal(PagingBean pagingbean);
 	List<Product> paginglist(PagingBean pagingbean);
 	Product select(int productDetailNo);
 	int selectproductNo();

@@ -38,8 +38,8 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> paginglist(PagingBean pagingbean) {
 		return mm.paginglist(pagingbean);
 	}
-	public int getTotal() {
-		return mm.getTotal();
+	public int getTotal(PagingBean pagingbean) {
+		return mm.getTotal(pagingbean);
 	}
 
 	

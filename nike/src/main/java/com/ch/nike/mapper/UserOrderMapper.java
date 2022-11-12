@@ -21,8 +21,10 @@ public interface UserOrderMapper {
 	
 	// AdminCon
 	List<UserOrder> userorderselect(String email);
-	int getTotal();
+	int getTotal(PagingBean pagingbean);
 	List<UserOrder> paginglist(PagingBean pagingbean);
+	List<UserOrder> paginglistrefunchk(PagingBean pagingbean);
+	List<UserOrder> paginglistrefundchk(PagingBean pagingbean);
 	
 	
 	

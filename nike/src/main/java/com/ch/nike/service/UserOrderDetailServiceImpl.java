@@ -17,17 +17,16 @@ public class UserOrderDetailServiceImpl implements UserOrderDetailService {
 	
 	// AdminCon
 	@Override
-	public int getTotal() {
-		return uodm.getTotal();
+	public int getTotal(PagingBean pagingbean) {
+		return uodm.getTotal(pagingbean);
 	}
 	@Override
 	public List<UserOrderDetail> paginglist(PagingBean pagingbean) {
 		return uodm.paginglist(pagingbean);
 	}
-	
-	
-
-	
-
+	@Override
+	public int refundchkupdate(UserOrderDetail userOrderDetail) {
+		return uodm.refundchkupdate(userOrderDetail);
+	}
 
 }

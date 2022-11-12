@@ -339,13 +339,13 @@ insert into wish values (11, 17, 'sun@ny.com', '블랙');
 insert into wish values (12, 18, 'sun@ny.com', '블랙');
 
 --주문 목록
-insert into user_order values(1,'chang@ryul.com','2022-11-10',1,'출고대기')
-insert into user_order values(2,'chang@ryul.com','2022-11-10',3,'출고완료')
+insert into user_order values(1,'chang@ryul.com','2022-11-10',1,'출고대기');
+insert into user_order values(2,'chang@ryul.com','2022-11-10',3,'출고완료');
 
 --주문 상세
 
-insert into user_order_detail values(1,1,1,10,'Y')
-insert into user_order_detail values(2,1,2,5,'N')
+insert into user_order_detail values(1,1,1,10,'Y');
+insert into user_order_detail values(2,1,2,5,'N');
 
 -- 장바구니
 -- 기능 만들어서 구현 해야지 의미 있을듯
@@ -354,7 +354,10 @@ insert into user_order_detail values(2,1,2,5,'N')
 -- 문의
 -- 이거는 기능 만들어서 구현 해야지 의미 있을듯
 
-
+insert into qna values(1,'chang@ryul.com',1,'상품','상품문의입니다.','크게나온 사이즈인가요?',sysdate,'미답변','N');
+insert into qna values(2,'soo@in.com',1,'배송','배송문의입니다','언제 도착 하나요?',sysdate,'미답변','N');
+insert into qna values(3,'chang@ryul.com',1,'결제','결제 문의입니다','결제가 안돼요',sysdate,'답변완료','N');
+insert into qna values(4,'sun@ny.com',1,'기타','요즘 유행이 뭔가요?','유행하는 신발 알려주세요',sysdate,'답변완료','Y');
 -- 리뷰
 -- 이거는 기능 만들어서 구현 해야지 의미 있을듯
 

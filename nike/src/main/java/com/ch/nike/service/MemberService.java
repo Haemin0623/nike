@@ -27,9 +27,5 @@ public interface MemberService {
 	// 모든 회원 조회(페이징)
 	List<Member> paginglist(PagingBean pagingbean);
 	// 회원 갯수
-	int getTotal();
-	
-	
-	
-	
+	int getTotal(PagingBean pagingbean);
 }

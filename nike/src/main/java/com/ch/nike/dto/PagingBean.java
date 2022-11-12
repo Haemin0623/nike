@@ -14,6 +14,8 @@ public class PagingBean {
 	private int endPage;
 	private int startRow;
 	private int endRow;
+	private String search;
+	private String keyword;
 	private int orderNo;
 	
 	public PagingBean() {

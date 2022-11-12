@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.nike.dto.PagingBean;
-import com.ch.nike.dto.Product;
 import com.ch.nike.dto.UserOrder;
 import com.ch.nike.mapper.UserOrderMapper;
 
@@ -40,14 +39,17 @@ public class UserOrderServiceImpl implements UserOrderService{
 		return uod.userorderselect(email);
 	}
 	@Override
-	public int getTotal() {
-		return uod.getTotal();
+	public int getTotal(PagingBean pagingbean) {
+		return uod.getTotal(pagingbean);
 	}
 	@Override
 	public List<UserOrder> paginglist(PagingBean pagingbean) {
 		return uod.paginglist(pagingbean);
 	}
-
+	@Override
+	public List<UserOrder> paginglistrefundchk(PagingBean pagingbean) {
+		return uod.paginglistrefundchk(pagingbean);
+	}
 	
 
 }

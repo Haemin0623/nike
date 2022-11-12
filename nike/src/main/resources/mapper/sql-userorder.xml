@@ -68,18 +68,45 @@
 			and uo.email = #{email}
 	order by	uo.order_no desc
 	</select>
-	<select id="getTotal" resultType="integer"> <!-- 페이징용 전체 주문 카운트 by창률 -->
+	<select id="getTotal" parameterType="pagingbean" resultType="integer"> <!-- 페이징용 전체 주문 카운트 by창률 -->
 		select 	count(*) 
 		from	user_order
+		<where>
+			<if test="keyword!=null and keyword!=''">
+					${keyword} like '%' || #{search} || '%'
+			</if>
+		</where>
 	</select>
 	<select id="paginglist" parameterType="pagingbean" resultType="userorder">
 		select 	* 
-		from 	(select a.*, rowNum rn from (select * from user_order order by order_no desc)a) 
+		from 	(select a.*, rowNum rn from 
+					(select * from user_order 
+					<where>
+						<if test="keyword!=null and keyword!=''">
+								${keyword} like '%' || #{search} || '%'
+						</if>
+					</where>
+					order by order_no desc)
+				a) 
 		where 	rn between #{startRow} and #{endRow}
 	</select>
 	
-
-	
-	
-	
+	<select id="paginglistrefundchk" parameterType="pagingbean" resultType="userorder">
+		select 	* 
+		from 	(select a.*, rowNum rn from 
+					(select	uo.* 
+					from 	user_order uo, 
+							user_order_detail uod 
+						<where>
+							<if test="keyword!=null and keyword!=''">
+									${keyword} like '%' || #{search} || '%' and
+							</if>
+						
+					 		uo.order_no=uod.order_no 
+					 	and uod.refund_chk = 'A' 
+					 	</where>
+				order by 	uo.order_no desc)
+			 	a) 
+		where 	rn between #{startRow} and #{endRow}
+	</select>
 </mapper>

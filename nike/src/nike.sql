@@ -173,7 +173,7 @@ create table QnA (
 	email			varchar2(50)		not	null,
 	product_no		number(4)			not	null,
 	qna_type		varchar2(20)		not	null,	-- 배송, 결제, 상품 ,기타 ...
-	notice_subject	varchar2(100)		not	null,
+	subject			varchar2(100)		not	null,
 	content			varchar2(2000)		not	null,
 	reg_date		date				not	null,
 	qna_status		varchar2(30)		not null,

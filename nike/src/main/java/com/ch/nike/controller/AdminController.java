@@ -70,7 +70,7 @@ public class AdminController {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int total = ms.getTotal();		
+		int total = ms.getTotal(pagingbean);		
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		int num = total - startRow + 1;
@@ -103,7 +103,7 @@ public class AdminController {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int total = ps.getTotal();		
+		int total = ps.getTotal(pagingbean);		
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		int num = total - startRow + 1;
@@ -139,7 +139,7 @@ public class AdminController {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int total = uos.getTotal();		
+		int total = uos.getTotal(pagingbean);		
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		int num = total - startRow + 1;
@@ -158,7 +158,7 @@ public class AdminController {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int total = qs.getTotal();		
+		int total = qs.getTotal(pagingbean);		
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		int num = total - startRow + 1;
@@ -325,7 +325,7 @@ public class AdminController {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int total = uods.getTotal();		
+		int total = uods.getTotal(pagingbean);		
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		int num = total - startRow + 1;
@@ -337,6 +337,34 @@ public class AdminController {
 		model.addAttribute("num", num);
 		model.addAttribute("list2",list2);
 		model.addAttribute("pb", pb);
+		model.addAttribute("orderNo",orderNo);
 		return "admin/adminOrderDetail";
+	}
+	
+	@RequestMapping("/adminOrderListRefuntChk.do")
+	public String adminOrderListRefuntChk(String pageNum, Model model, PagingBean pagingbean) {
+		int rowPerPage = 10; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = uos.getTotal(pagingbean);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1; 
+		int num = total - startRow + 1;
+		pagingbean.setStartRow(startRow);
+		pagingbean.setEndRow(endRow);
+		List<UserOrder> list2 = uos.paginglistrefundchk(pagingbean);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		model.addAttribute("num", num);
+		model.addAttribute("list2",list2);
+		model.addAttribute("pb", pb);
+		return "admin/adminOrderListRefuntChk";
+	}
+	@RequestMapping("/adminRefundChkUpdate.do")
+	public String adminRefundChkUpdate(UserOrderDetail userOrderDetail, Model model) {
+		int result = 0;
+		result = uods.refundchkupdate(userOrderDetail);
+		model.addAttribute("orderNo",userOrderDetail.getOrderNo());
+		model.addAttribute("result",result);
+		return "forward:/adminOrderDetail.do";
 	}
 }

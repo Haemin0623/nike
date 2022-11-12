@@ -13,6 +13,12 @@
 </head>
 <body><!-- by창률 -->
 <div layout:fragment="content">
+	<br>
+	<div>
+		<a class="btn btn-success" href='adminOrderList.do'>주문 전체 목록</a>
+		<a class="btn btn-success" href='adminOrderListRefuntChk.do'>환불 신청 목록</a>
+	</div>
+	<h2>주문 전체 목록</h2>
 	<table>
 		<tr>
 			<th>주문번호</th>
@@ -34,7 +40,7 @@
 	<div>
 		<form action="adminOrderList.do">
 			<select name="keyword">
-				<option value="orderNum">주문번호</option>
+				<option value="order_no">주문번호</option>
 				<option value="email">이메일</option>
 			</select>
 			<input type="text" name="search">

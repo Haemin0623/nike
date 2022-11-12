@@ -10,7 +10,14 @@
 	</select>
 	<select id="paginglist" parameterType="pagingbean" resultType="qna">
 		select 	* 
-		from 	(select a.*, rowNum rn from (select * from qna order by qna_no desc)a) 
+		from 	(select a.*, rowNum rn from (select * from qna 
+		
+			<where>
+				<if test="keyword!=null and keyword!=''">
+						${keyword} like '%' || #{search} || '%'
+				</if>
+			</where>
+				order by qna_no desc)a) 
 		where 	rn between #{startRow} and #{endRow}
 	</select>
 	
