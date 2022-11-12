@@ -12,14 +12,14 @@ public class RefundServiceImpl implements RefundService {
 	private RefundMapper rm;
 	
 	// AccountCon
-	public String selectName(int orderDetailNo) {
-		return rm.selectName(orderDetailNo);
+	public Refund selectPro(int orderDetailNo) {
+		return rm.selectPro(orderDetailNo);
 	}
 	public int selectRefundNum() {
 		return rm.selectRefundNum();
 	}
-	public int insertRefund(Refund refund) {
-		return rm.insertRefund(refund);
+	public void insertRefund(Refund refund) {
+		rm.insertRefund(refund);
 	}
 	public void updateRefundChk(int orderDetailNo) {
 		rm.updateRefundChk(orderDetailNo);

@@ -17,5 +17,8 @@ public class AddressServiceImpl implements AddressService {
 	public List<Address> selectAddr(String email) {
 		return am.selectAddr(email);
 	}
+	public Address getAddr(int orderNo) {
+		return am.getAddr(orderNo);
+	}
 	
 }

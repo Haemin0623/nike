@@ -9,5 +9,13 @@
 		from	address
 		where	email = #{email}
 	</select>
-
+	<select id="getAddr" parameterType="integer" resultType="Address">
+		select	a.*,
+				order_date, 
+				status
+		from	address a, 
+				user_order uo  
+		where	a.addr_no=uo.addr_no 
+			and order_no=#{orderNo}
+	</select>
 </mapper>

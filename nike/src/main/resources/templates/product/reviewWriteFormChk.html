@@ -1,6 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head><meta charset="UTF-8">
 <title>Insert title here</title></head><body>
+<span th:if="${result} == 2">
+	<script type="text/javascript">
+		alert("이미 작성한 리뷰가 있습니다.");
+		history.back();
+	</script>
+</span>
 <span th:if="${result} == 1">
 	<script type="text/javascript">
 		location.href="reviewWriteForm.do?productNo=[[${productNo}]]&color=[[${color}]]";

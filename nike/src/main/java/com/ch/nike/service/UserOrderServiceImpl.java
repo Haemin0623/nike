@@ -22,15 +22,13 @@ public class UserOrderServiceImpl implements UserOrderService{
 	public List<UserOrder> selectOrderDetail(int orderNo) {
 		return uod.selectOrderDetail(orderNo);
 	}
-	public List<UserOrder> selectUserOrderDetail(int orderNo) {
-		return uod.selectUserOrderDetail(orderNo);
-	}
-	public List<UserOrder> orderInfoAll(int orderDetailNo) {
+	public UserOrder orderInfoAll(int orderDetailNo) {
 		return uod.orderInfoAll(orderDetailNo);
 	}
-	public List<Integer> orderCnt(int orderNo) {
-		return uod.orderCnt(orderNo);
+	public List<UserOrder> selectDate(String email) {
+		return uod.selectDate(email);
 	}
+
 	
 	
 	// AdminCon

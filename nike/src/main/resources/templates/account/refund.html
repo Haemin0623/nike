@@ -4,7 +4,7 @@
 <span th:if="${result} > 0">
 	<script type="text/javascript">
 		alert("환불 신청이 완료되었습니다.");
-		location.href="ordersDetail.do";
+		location.href="orderDetail.do?orderNo=[[${orderNo}]]";
 	</script>
 </span>
 <span th:if="${result} == 0">

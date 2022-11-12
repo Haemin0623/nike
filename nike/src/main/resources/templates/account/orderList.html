@@ -11,45 +11,44 @@
 
 <h2>주문내역</h2>
 <br><br>
-	<div th:if="${#lists.size(userOrders)} == 0">
+	<div th:if="${#lists.size(orderInfo)} == 0">
 		 주문내역 없음
 	</div>
+		<th:block  th:each="date:${orderDate}" >
 	<table style="width: 80%">
 		<tr>
-			<th>구매 정보</th>
-			<th>구매 날짜</th>
-			<th>배송지</th>
-			<th>상세보기</th>
-			<th>환불신청</th>
+			<th colspan="4">
+				[[${date.orderDate}]]
+			</th>
+			<th colspan="2">
+				<a th:href="@{/account/orderDetail.do(orderNo=${date.orderNo})}">
+					주문상세
+				</a>
+			</th>
 		</tr>
-	<th:block th:if="${#lists.size(userOrders)} != 0" th:each="order:${userOrders}" >
+	<th:block th:if="${date.orderDate} == ${detail.orderDate}" th:each="detail:${orderInfo}" >
 		<tr>
 			<td>
-				<a th:href="@{/product/productDetail.do(productNo=${order.productNo},color=${order.color})}">
-				
-				<th:block th:if="${#lists.size(userOrderDetails)} > 1" th:each="cnt:${userOrderDetails}">
-					[[${cnt.productName}]] 외 [[${cnt[#lists.size(cnt)]}]]건
-				</th:block>
-				<th:block th:if="${#lists.size(userOrderDetails)} == 1" th:each="cnt:${userOrderDetails}">
-					[[${cnt.productName}]]
-				</th:block>
+				<a th:href="@{/product/productDetail.do(productNo=${detail.productNo},color=${detail.color})}">
+					<img th:src="@{/images/product_photo/}+${detail.productPhoto}" width="50">
 				</a>
 			</td>
 			<td>
-				[[${order.orderDate}]]
+				[[${detail.productName}]]
 			</td>
 			<td>
-				[[${order.addrNo}]]
+				[[${detail.productSize}]]
 			</td>
 			<td>
-				<a th:href="@{/account/orderDetail.do(email=${order.email},orderDetailNo=${order.orderDetailNo})}">주문상세</a>
+				[[${detail.color}]]
 			</td>
 			<td>
-				<a th:href="@{/account/refundForm.do(orderDetailNo=${order.orderDetailNo})}">환불신청</a>
+				[[${detail.price}]]원
 			</td>
 		</tr>
 	</th:block>
 	</table>
+		</th:block>
 </div>
 </body>
 </html>

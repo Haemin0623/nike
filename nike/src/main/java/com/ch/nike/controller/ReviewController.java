@@ -31,7 +31,13 @@ public class ReviewController {
 	public String reviewWriteFormChk(int productNo, String color, Model model, HttpSession session) {
 		int result = 0;
 		if (session.getAttribute("email") != null) {
-			result = 1;
+			String email = (String) session.getAttribute("email");
+			Review review2 = rs.productReview(email, productNo, color);
+			if(review2 != null || review2.getReviewDel().equals("N")) {
+				result = 2;
+			} else {
+				result = 1;
+			}
 		} else {
 			result = -1;
 		}
@@ -141,7 +147,7 @@ public class ReviewController {
 		rs.update(review);
 		rps.delete(reviewNo);
 		
-		for(MultipartFile mf : list) {	// 리뷰 포토는 기존거 다 삭제하고 다시 저장해버릴까 ^^
+		for(MultipartFile mf : list) {	// 리뷰 포토는 기존거 다 삭제하고 다시 저장
 			ReviewPhoto rp = new ReviewPhoto();
 			String reviewPhoto = mf.getOriginalFilename();
 			rp.setReviewPhoto(reviewPhoto);

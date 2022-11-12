@@ -42,6 +42,11 @@ public class UserOrder {
 	private int orderDetailNo;
 	private int orderQuantity;
 	private String refundChk;		// N(default, 신청안함) / A(환불진행중) / Y(환불완료) / D(환불거절)
+	private int productDetailNo;
+	
+	//productDetail
+	private int stock;
+
 	
 	
 }

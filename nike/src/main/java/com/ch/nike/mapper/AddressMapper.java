@@ -12,4 +12,6 @@ public interface AddressMapper {
 	// AccountCon
 	List<Address> selectAddr(String email);
 
+	Address getAddr(int orderNo);
+
 }

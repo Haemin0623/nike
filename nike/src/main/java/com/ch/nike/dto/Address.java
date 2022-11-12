@@ -1,5 +1,7 @@
 package com.ch.nike.dto;
 
+import java.sql.Date;
+
 import org.apache.ibatis.type.Alias;
 
 import lombok.Data;
@@ -15,4 +17,9 @@ public class Address {
 	private String jibunaddress;
 	private int zonecode;
 	private String detailaddress;
+	
+	//UserOrder
+	private int orderNo;
+	private Date orderDate;	
+	private String status;
 }

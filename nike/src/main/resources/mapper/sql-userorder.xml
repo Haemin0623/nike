@@ -5,17 +5,19 @@
 
 	<!-- AccountCon -->
 	<select id="selectUserOrder" parameterType="string" resultType="UserOrder"> <!-- mypage - orders -->
-		select	*
-		from	user_order
-		where	email = #{email}
-	order by	order_no desc
+		select	* 
+		from	user_order uo, 
+				user_order_Detail uod 
+		where	uo.order_no=uod.order_no 
+			and email=#{email}
 	</select>
 	<select id="selectOrderDetail" parameterType="integer" resultType="UserOrder">
-      select	pd.*, 
-           		uod.*, 
-            	a.*, 
-            	pp.*,
-           		p.*
+      select	p.*,
+      			pd.*, 
+      			pp.*, 
+      			uod.*,
+      			uo.*, 
+      			a.*
       from		product p,
             	product_photo pp, 
            		product_detail pd, 
@@ -26,13 +28,8 @@
          and uo.addr_no=a.addr_no 
          and pd.product_no=pp.product_no 
          and pd.product_no=p.product_no
-         and batch = 1 
          and pd.color = pp.color
-   </select>
-   <select id="selectUserOrderDetail" parameterType="integer" resultType="UserOrder">
-   		select	* 
-   		from	user_order_detail 
-   		where	order_no=#{orderNo}
+         and batch = 1 
    </select>
    <select id="orderInfoAll" parameterType="integer" resultType="UserOrder">
    		select	* 
@@ -51,11 +48,12 @@
    			and pd.color=pp.color 
    			and batch = 1 
    </select>
-   <select id="orderCnt" parameterType="integer" resultType="integer">
-   		select	count(*)
-   		from	user_order_detail
-   		where	order_no=#{orderNo}
-   </select>
+	<select id="selectDate" parameterType="string" resultType="UserOrder">
+		select	* 
+		from	user_order 
+		where	email = #{email} 
+	order by	order_date
+	</select>
    
 
 	<!-- AdminCon -->

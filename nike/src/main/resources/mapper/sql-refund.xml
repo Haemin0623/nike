@@ -5,13 +5,15 @@
 
 	<!-- AccountCon -->
 <!-- mypage - orders - refund by선희 -->
-	<select id="selectName" parameterType="integer" resultType="string">
-		select	p.product_name
+	<select id="selectPro" parameterType="integer" resultType="Refund">
+		select	*
 		from	product p,
+				product_detail pd,
 				(select	*
 				from	user_order_detail
 				where	order_detail_no = #{orderDetailNo}) uod
-		where	p.product_no = uod.product_no
+		where	pd.product_detail_no = #{orderDetailNo} 
+			and p.product_no = pd.product_no
 	</select>	
 	<select id="selectRefundNum" resultType="integer">
 		select	nvl(max(refund_no),0) + 1 refundNum

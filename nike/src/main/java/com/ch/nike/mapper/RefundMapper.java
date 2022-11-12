@@ -8,9 +8,9 @@ import com.ch.nike.dto.Refund;
 public interface RefundMapper {
 	
 	// AccountCon
-	String selectName(int orderDetailNo);
+	Refund selectPro(int orderDetailNo);
 	int selectRefundNum();
-	int insertRefund(Refund refund);
+	void insertRefund(Refund refund);
 	void updateRefundChk(int orderDetailNo);
 	
 	

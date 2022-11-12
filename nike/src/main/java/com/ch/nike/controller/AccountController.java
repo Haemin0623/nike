@@ -3,6 +3,7 @@ package com.ch.nike.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ch.nike.dto.Address;
 import com.ch.nike.dto.Cart;
@@ -146,80 +148,56 @@ public class AccountController {
 	public String orders(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
 		List<UserOrder> userOrders = uos.selectUserOrder(email);
-		List<UserOrder> userOrderDetails = new ArrayList<>();
+		UserOrder userOrderDetails = null;
 		List<UserOrder> orderInfo = new ArrayList<>();
-		List<Integer> orderCnt = new ArrayList<>();
+		List<UserOrder> orderDate = new ArrayList<>();
 		for (UserOrder userOrder:userOrders) {
+			orderDate = uos.selectDate(email);
 			if (userOrder != null) {
-				// userOrderDetails = uos.selectUserOrderDetail(userOrder.getOrderNo());
-				userOrderDetails = uos.selectOrderDetail(userOrder.getOrderNo());
-				// 주문번호당 상품 주문 개수
-				 uos.orderCnt(userOrder.getOrderNo());
-				System.out.println("orderCnt"+orderCnt);
-				System.out.println("ffffffffffffffff"+userOrder.getOrderNo());
-				System.out.println(userOrderDetails.size());
-				
-				orderCnt.add(userOrderDetails.size());
-				orderInfo.addAll(userOrderDetails);
-				/*
-				 * for(UserOrder order:userOrderDetails) { orderInfo =
-				 * uos.orderInfoAll(order.getOrderDetailNo()); }
-				 */
-					
-				
-				//list.add(orderDetail);
-				
+				userOrderDetails = uos.orderInfoAll(userOrder.getOrderDetailNo());
+				orderInfo.add(userOrderDetails);
 			}
 		}
-		model.addAttribute("userOrderDetails", userOrderDetails);
-		model.addAttribute("userOrders", userOrders);
-		model.addAttribute("orderCnt", orderCnt);
 		model.addAttribute("orderInfo", orderInfo);
+		model.addAttribute("orderDate", orderDate);
 		return "account/orderList";
 	}
 	@RequestMapping("/account/orderDetail.do") 	// 로그인한 회원의 주문내역 상세 불러오기 by선희
-	public String orderDetail(Model model, HttpSession session) {
-		String email = (String) session.getAttribute("email");
-		List<UserOrder> userOrder = uos.selectUserOrder(email);
-		List<UserOrder> list = new ArrayList<>();
-		UserOrder orderDetail = null;
-		for (UserOrder user:userOrder) {
-			if (user != null) {
-				
-				//orderDetail = uos.selectOrderDetail(user.getOrderNo());
-				
-				list.add(orderDetail);
-			}
-		}
-		model.addAttribute("list", list);
-		model.addAttribute("userOrder", userOrder);
+	public String orderDetail(int orderNo, Model model, HttpSession session) {
+		Address address = as.getAddr(orderNo);
+		List<UserOrder> orderDetails = uos.selectOrderDetail(orderNo);
+		model.addAttribute("address", address);
+		model.addAttribute("orderDetails", orderDetails);
 		return "account/orderDetail";
 	}
 	@RequestMapping("/account/refundForm.do")		// 주문내역 - 환불신청으로 넘어가기 by선희
 	public String refundForm(int orderDetailNo, Model model, HttpSession session) {
-		String productName = rs.selectName(orderDetailNo);
-		model.addAttribute("productName", productName);
-		model.addAttribute("orderDetailNo", orderDetailNo);
+		Refund productInfo = rs.selectPro(orderDetailNo);
+		model.addAttribute("productInfo", productInfo);
 		return "account/refundForm";
 	}
 	@RequestMapping("/account/refund.do")	// 환불신청하기 by선희
-	public String refund(Refund refund, Model model, HttpSession session) throws IOException {
+	public String refund(Refund refund, int orderNo, Model model, HttpSession session
+			) throws IOException {
 		int result = 0;
-		// member는 화면 입력한 데이터, member2 DB에 있는 데이터 중복여부 체크
-		if (refund == null) {
-			String refundPhoto = refund.getFile().getOriginalFilename();
-			// 파일명을 변경하고 싶으면 UUID 또는 long으로 날자 데이터
-			refund.setRefundPhoto(refundPhoto);
-			String real = "src/main/resources/static/images/refund_photo";
-			FileOutputStream fos = new FileOutputStream(new File(real+"/"+refundPhoto));
-			fos.write(refund.getFile().getBytes());
-			fos.close();
-			int refundNum = rs.selectRefundNum();
-			refund.setRefundNo(refundNum);
-			result = rs.insertRefund(refund);
-			rs.updateRefundChk(refund.getOrderDetailNo());
-		} else result = -1;  // 이미 있으니 입력하지마
+		
+		String refundPhoto = refund.getFile().getOriginalFilename();
+		refund.setRefundPhoto(refundPhoto);
+		
+		String real = "src/main/resources/static/images/refund_photo";
+		FileOutputStream fos = new FileOutputStream(new File(real+"/"+refundPhoto));
+		fos.write(refund.getFile().getBytes());
+		fos.close();
+		
+		int refundNum = rs.selectRefundNum();
+		refund.setRefundNo(refundNum);
+		
+		rs.insertRefund(refund);
+		rs.updateRefundChk(refund.getOrderDetailNo());
+		result = 1;
+		
 		model.addAttribute("result", result);
+		model.addAttribute("orderNo", refund.getOrderNo());
 		return "account/refund";
 	}
 	@RequestMapping("/account/reviewList.do")		// 마이페이지 - 리뷰리스트 불러오기 by선희
