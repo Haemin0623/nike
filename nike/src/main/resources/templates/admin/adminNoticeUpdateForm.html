@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/adminLayout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content"> <!-- by 수인 -->
+
+	<h2>공지수정</h2>
+	<form action="adminNoticeUpdate.do" method="post">
+	<table border="1" width="800px">
+		<tr>
+			<th>공지유형</th>
+			<td>
+				<select name="noticeType">
+					<option value="order">배송 및 주문</option>
+					<option value="refund">반품 및 환불</option>
+					<option value="membership">멤버십</option>
+					<option value="productinfo">제품 정보</option>
+					<option value="etcNotice">기타 공지</option>
+					<option value="faq">FAQ</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>공개여부</th>
+			<td> <!-- 수정시 공개/비공개 상태 그대로 체크되어있게 -->
+				<label th:if="${notice.del} == 'N'"><input type="radio" name="del" value="N" checked="checked"> 공개 </label>
+				<label th:if="${notice.del} != 'N'"><input type="radio" name="del" value="N"> 공개 </label>
+				<label th:if="${notice.del} == 'Y'"><input type="radio" name="del" value="Y" checked="checked"> 비공개 </label>
+				<label th:if="${notice.del} == 'N'"><input type="radio" name="del" value="Y"> 비공개 </label>
+			</td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td>
+				<textarea rows="" cols="80" name="noticeSubject">[[${notice.noticeSubject}]]</textarea>
+			</td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td>
+				<textarea rows="10px" cols="80px" name="content">[[${notice.content}]]</textarea>
+			</td>
+		</tr>
+		
+	</table><br>
+	<input type="hidden" name="noticeNo" th:value="${notice.noticeNo}">
+	<input type="submit" value="수정완료">
+	</form>
+	<button th:onclick="|location.href='@{adminNoticeDetail.do(noticeNo=${notice.noticeNo})}'|">취소</button>
+</div>
+</body>
+</html>

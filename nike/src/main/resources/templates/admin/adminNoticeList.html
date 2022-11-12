@@ -6,13 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	table {width: 80%}
+	table {width: 80%; }
 	th {border:1px solid green;}
-	td {border:1px solid green;}
+	td {border:1px solid green; text-overflow: ellipsis;}
 </style>
 </head>
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content" align="center"> <!-- by 창률 + 수인 -->
+	<h2>공지사항</h2>
 	<table>
 		<tr>
 			<th>공지번호</th>
@@ -21,7 +22,9 @@
 			<th>내용</th>
 			<th>등록일</th>
 			<th>조회수</th>
-			<th>삭제여부</th>
+			<th>공개여부</th>
+			<th></th>
+			<th></th>
 		</tr>
 		<tr th:each="lists:${list2}">
 			<td>[[${lists.noticeNo}]]</td>
@@ -31,14 +34,19 @@
 			<td th:if="${lists.noticeType} == 'productinfo'">제품 정보</td>
 			<td th:if="${lists.noticeType} == 'etcNotice'">기타 공지</td>
 			<td th:if="${lists.noticeType} == 'faq'">FAQ</td>
-			<td>[[${lists.noticeSubject}]]</td>
-			<td>[[${lists.content}]]</td>
+			<td><a th:href="@{/adminNoticeDetail.do(noticeNo=${lists.noticeNo})}">[[${lists.noticeSubject}]]</a></td>
+			<td> [[${lists.content}]]</td>
 			<td>[[${lists.regDate}]]</td>
 			<td>[[${lists.readCount}]]</td>
-			<td>[[${lists.del}]]</td>
-			<td><a th:href="@{/adminNoticeDetail.do(noticeNo=${lists.noticeNo})}">공지상세</a>
+			
+			<td th:if="${lists.del} == 'N'" >공개</td> 
+			<td th:if="${lists.del} == 'Y'">비공개</td>
+			
+			<td><a th:href="@{/adminNoticeUpdateForm.do(noticeNo=${lists.noticeNo})}">수정</a></td>
+			<td><a th:href="@{/adminNoticeDelete.do(noticeNo=${lists.noticeNo})}">삭제</a></td>
 		</tr>
 	</table>
+	<p>
 	<div>
 		<form action="adminNoticeList.do">
 			<select name="keyword">
@@ -89,7 +97,7 @@
 			</li>
 		</th:block>
 	</span>
-<a href="/adminNoticeInsertForm.do">공지 등록</a>
+<button th:onclick="|location.href='@{/adminNoticeInsertForm.do}'|">공지 등록</button>
 </div>
 </body>
 </html>

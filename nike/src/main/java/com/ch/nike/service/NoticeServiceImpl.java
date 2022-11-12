@@ -28,6 +28,18 @@ public class NoticeServiceImpl implements NoticeService{
 	public int insertNotice(Notice notice) {
 		return nm.insertNotice(notice);
 	}
+	@Override
+	public Notice selectNotice(int noticeNo) {
+		return nm.selectNotice(noticeNo);
+	}
+	@Override
+	public int updateNotice(Notice notice) {
+		return nm.updateNotice(notice);
+	}
+	@Override
+	public int deleteNotice(int noticeNo) {
+		return nm.deleteNotice(noticeNo);
+	}
 	
 
 

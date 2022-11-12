@@ -7,8 +7,29 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div layout:fragment="content">
-공지상세페이지
+<div layout:fragment="content" > <!-- by 수인 -->
+	<h2>공지사항</h2>
+	<table border="1" width="800px">
+		<tr>
+			<th>공지유형</th>
+			<td>[[${notice.noticeType}]]</td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td>[[${notice.noticeSubject}]]</td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td>
+				<textarea rows="10px" cols="80px" name="content" readonly="readonly">[[${notice.content}]]</textarea>
+			</td>
+		</tr>
+		
+	</table><br>
+	
+	<button th:onclick="|location.href='@{/adminNoticeUpdateForm.do(noticeNo=${notice.noticeNo})}'|">수정</button>
+	<button th:onclick="|location.href='@{/adminNoticeDelete.do(noticeNo=${notice.noticeNo})}'|">삭제</button>
+	
 </div>
 </body>
 </html>

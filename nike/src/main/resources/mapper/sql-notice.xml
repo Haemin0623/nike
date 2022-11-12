@@ -14,7 +14,6 @@
 		where 	rn between #{startRow} and #{endRow}
 	</select>
 	
-<!-- 		int insertNotice(Notice notice); -->
 	<insert id="insertNotice" parameterType="Notice">
 		<selectKey keyProperty="noticeNo" order="BEFORE" resultType="integer"><!--  noticeNo 최대값 먼저 구해서 글번호매기기(+1) -->
 			select 	nvl( max(notice_no), 0 )+1 noticeNo 
@@ -29,5 +28,32 @@
 				0, 
 				'N')
 	</insert>
+	<select id="selectNotice" parameterType="integer" resultType="Notice">
+		select 	* 
+		from 	notice 
+		where 	notice_no = ${noticeNo}
+	</select>
+	
+	<update id="updateNotice" parameterType="Notice">
+		update 	notice 
+		set 	notice_type = #{noticeType}, 
+				notice_subject = #{noticeSubject}, 
+				content = #{content},
+				del = #{del} 
+		where 	notice_no = #{noticeNo}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="integer">
+		delete 	from notice
+		where 	noticae_no = #{noticeNo}
+	</delete>
+	
+<!-- 	<delete id="deleteNotice" parameterType="integer"> 공개/비공개 -->
+<!-- 		update 	notice  -->
+<!-- 		set 	del = 'Y'  -->
+<!-- 		where 	notice_no = #{noticeNo} -->
+<!-- 	</delete> -->
+	
+	
 	
 </mapper>

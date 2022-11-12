@@ -16,6 +16,9 @@ public interface NoticeMapper {
 	int getTotal();
 	List<UserOrder> paginglist(PagingBean pagingbean);
 	int insertNotice(Notice notice);
+	Notice selectNotice(int noticeNo);
+	int updateNotice(Notice notice);
+	int deleteNotice(int noticeNo);
 
 	
 

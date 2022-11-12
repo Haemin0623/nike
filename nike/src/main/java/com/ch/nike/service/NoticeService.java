@@ -16,6 +16,15 @@ public interface NoticeService {
 	
 	//공지 등록 by수인
 	int insertNotice(Notice notice);
+	
+	//공지상세페이지
+	Notice selectNotice(int noticeNo);
+	
+	//공지 수정 by 수인
+	int updateNotice(Notice notice);
+	
+	//공지 삭제 by 수인
+	int deleteNotice(int noticeNo);
 
 
 	

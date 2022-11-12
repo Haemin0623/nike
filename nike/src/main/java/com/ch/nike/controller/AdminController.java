@@ -1,5 +1,6 @@
 package com.ch.nike.controller;
 
+import java.awt.print.Printable;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -217,22 +218,48 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/adminNoticeDetail.do") //관리자 공지 상세 
-	public String adminNoticeDetail() {
+	public String adminNoticeDetail(int noticeNo, Model model) {
+		Notice notice = ns.selectNotice(noticeNo);
+		model.addAttribute("notice", notice);
 		return "admin/adminNoticeDetail";
 	}
 	
-	@RequestMapping("/adminNoticeInsertForm.do") //관리자 공지 등록 by수인
+	@RequestMapping("/adminNoticeInsertForm.do") //관리자 공지등록 by수인
 	public String adminNoticeInsertForm() {
 		return "admin/adminNoticeInsertForm";
 	}
 	
-	@RequestMapping("/adminNoticeInsert.do") //관리자 공지 등록 by수인
+	@RequestMapping("/adminNoticeInsert.do") //관리자 공지등록결과 by수인
 	public String adminNoticeInsert(Notice notice, Model model) {
 		int result = 0;
 		result = ns.insertNotice(notice);
 		model.addAttribute("result", result);
 		return "admin/adminNoticeInsert";
 	}
+	
+	@RequestMapping("/adminNoticeUpdateForm.do") //관리자 공지수정 by수인
+	public String adminNoticeUpdateForm(int noticeNo,Model model) {
+		Notice notice = ns.selectNotice(noticeNo);
+		model.addAttribute("notice",notice);
+		return "admin/adminNoticeUpdateForm";
+	}
+	
+	@RequestMapping("adminNoticeUpdate.do") //관리자 공지수정결과 by수인
+	public String adminNoticeUpdate(Notice notice, Model model) {
+		int result = 0;
+		result = ns.updateNotice(notice); 
+		model.addAttribute("result", result);
+		return "admin/adminNoticeUpdate";
+	}
+	
+	@RequestMapping("adminNoticeDelete.do") //관리자 공지삭제 by 수인 (noticeNo=${lists.noticeNo)
+	public String adminNoticeDelete(int noticeNo, Model model) {
+		int result = 0;
+		result = ns.deleteNotice(noticeNo);
+		model.addAttribute("result", result);
+		return "admin/adminNoticeDelete";
+	}
+	
 	@RequestMapping("/adminStoreList.do")	//관리자 매장 관리 by창률
 	public String adminStoreList(String pageNum, Model model, PagingBean pagingbean) {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수

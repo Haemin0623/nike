@@ -6,6 +6,8 @@ insert into member values ('sun@ny.com', '최선희', '123', 'F', sysdate, 01012
 
 select * from notice;
 
+
+
 -- 배송지
 insert into address values (1, 'hae@min.com', '집', 0311234567, '경기도 용인시 수지구 현암로54', '경기도 용인시 죽전동', 54637, '0동 0호');
 insert into address values (2, 'hae@min.com', '회사', 0311234321, '경기도 땡땡시 땡땡구 땡땡로12', '경기도 땡땡시 땡떙동', 12345, '1호');
