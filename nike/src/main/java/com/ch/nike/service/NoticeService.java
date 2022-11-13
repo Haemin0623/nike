@@ -25,6 +25,9 @@ public interface NoticeService {
 	
 	//공지 삭제 by 수인
 	int deleteNotice(int noticeNo);
+	
+	// 고객센터 - 모든공지 by 수인
+	List<Notice> selectNoticeForHelp();
 
 
 	

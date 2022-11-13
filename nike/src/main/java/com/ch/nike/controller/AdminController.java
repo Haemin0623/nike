@@ -67,6 +67,7 @@ public class AdminController {
 	public String adminMain() {
 		return "admin/adminMain";
 	}
+	
 	@RequestMapping("/adminMemberList.do")// 관리자 멤버리스트 by창률 
 	public String adminMemberList(String pageNum, Model model, PagingBean pagingbean) {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
@@ -85,6 +86,7 @@ public class AdminController {
 		model.addAttribute("pb", pb);
 		return "admin/adminMemberList";
 	} 
+	
 	@RequestMapping("/adminMemberDetail.do")// 관리자 멤버상세 
 	public String adminMemberDetail(String email, Model model) {
 		Member member = ms.select(email);
@@ -97,6 +99,7 @@ public class AdminController {
 		model.addAttribute("userorder",userorder);
 		return "admin/adminMemberDetail";
 	}
+	
 	@RequestMapping("/adminProductList.do")// 관리자 상품 리스트 by창률 
 	public String adminProductList(String pageNum, Model model, PagingBean pagingbean) {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
@@ -117,10 +120,12 @@ public class AdminController {
 		model.addAttribute("pb", pb);
 		return "admin/adminProductList";
 	}
+	
 	@RequestMapping("/adminProductInsert.do")// 관리자 상품 수정 
 	public String adminProductInsert() {
 		return "admin/adminProductInsert";
 	}
+	
 	@RequestMapping("/adminProductUpdate.do")// 관리자 상품 업데이트 
 	public String adminProductUpdate(int productDetailNo,Model model) {
 		Product product = ps.select(productDetailNo);
@@ -128,6 +133,7 @@ public class AdminController {
 		model.addAttribute("product",product);
 		return "admin/adminProductUpdate";
 	}
+	
 	@RequestMapping("/adminOrderList.do")// 관리자 주문 리스트 by창률 
 	public String adminOrderList(String pageNum, Model model, PagingBean pagingbean) {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
@@ -146,6 +152,7 @@ public class AdminController {
 		model.addAttribute("pb", pb);
 		return "admin/adminOrderList";
 	}
+	
 	@RequestMapping("/adminQnaList.do")// 관리자 문의 리스트 by창률 
 	public String adminQnaList(String pageNum, Model model, PagingBean pagingbean) {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
@@ -164,12 +171,14 @@ public class AdminController {
 		model.addAttribute("pb", pb);
 		return "admin/adminQnaList";
 	}
+	
 	@RequestMapping("/adminQnaDetail.do")// 관리자 문의 상세 
 	public String adminQnaDetail(Model model, QnA qna) {
 		QnA qna1 = qs.selectqna(qna);
 		model.addAttribute("qna1",qna1);
 		return "admin/adminQnaDetail";
 	}
+	
 	@RequestMapping("/adminReviewList.do") // 관리자 리뷰 리스트 by창률 
 	public String adminReviewList(String pageNum, Model model, PagingBean pagingbean) {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
@@ -188,6 +197,7 @@ public class AdminController {
 		model.addAttribute("pb", pb);
 		return "admin/adminReviewList";
 	}
+	
 	@RequestMapping("/adminNoticeList.do") //공지 리스트 by창률
 	public String adminNoticeList(String pageNum, Model model, PagingBean pagingbean) {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
@@ -206,6 +216,7 @@ public class AdminController {
 		model.addAttribute("pb", pb);
 		return "admin/adminNoticeList";
 	}
+	
 	@RequestMapping("/adminNoticeDetail.do") //관리자 공지 상세 
 	public String adminNoticeDetail(int noticeNo, Model model) {
 		Notice notice = ns.selectNotice(noticeNo);
@@ -267,10 +278,12 @@ public class AdminController {
 		model.addAttribute("pb", pb);
 		return "admin/adminStoreList";
 	}
+	
 	@RequestMapping("/adminStoreInsert.do") //관리자 매장 등록
 	public String adminStoreInsert() {
 		return "admin/adminStoreInsert";
 	}
+	
 	@RequestMapping("/adminProductInsertResult.do")
 	public String adminProductInsert(Product product, Model model, ProductPhoto productPhoto, MultipartHttpServletRequest mhr) throws IOException {
 		int result = 0;
@@ -302,6 +315,7 @@ public class AdminController {
 		model.addAttribute("result",result);
 		return "admin/adminProductInsertResult";
 	}
+	
 	@RequestMapping("/adminProductUpdateResult.do")
 	public String adminProductUpdateResult(Product product, Model model, ProductPhoto productPhoto, MultipartHttpServletRequest mhr) throws IOException {
 		int result =0;
@@ -336,6 +350,7 @@ public class AdminController {
 		model.addAttribute("result",result);
 	return "admin/adminProductUpdateResult";
 	}
+	
 	@RequestMapping("/adminOrderDetail.do")
 	public String adminOrderDetail(String pageNum, Model model, PagingBean pagingbean, int orderNo) {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
@@ -356,6 +371,7 @@ public class AdminController {
 		model.addAttribute("orderNo",orderNo);
 		return "admin/adminOrderDetail";
 	}
+	
 	@RequestMapping("/adminOrderListRefuntChk.do")
 	public String adminOrderListRefuntChk(String pageNum, Model model, PagingBean pagingbean) {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
@@ -374,6 +390,7 @@ public class AdminController {
 		model.addAttribute("pb", pb);
 		return "admin/adminOrderListRefuntChk";
 	}
+	
 	@RequestMapping("/adminRefundChkUpdate.do")
 	public String adminRefundChkUpdate(UserOrderDetail userOrderDetail, Model model) {
 		int result = 0;
@@ -397,9 +414,18 @@ public class AdminController {
 		model.addAttribute("qna1",qna1);
 		return "admin/adminQnaDetail";
 	}
-	@RequestMapping("/help.do")
-	public String help(){
+
+	@RequestMapping("/admin/help.do") //고객센터.공지목록 by 수인
+	public String help(Model model){
+		List<Notice> noticeList = ns.selectNoticeForHelp(); 
+		model.addAttribute(noticeList);
 		return "admin/help";
-		
+	}
+	
+	@RequestMapping("/admin/helpDetail.do") // 고객센터 - Type별 공지상세 by 수인
+	public String helpDetail(int noticeNo, Model model) {
+		Notice notice = ns.selectNotice(noticeNo);
+		model.addAttribute("notice", notice);
+		return "admin/helpDetail";
 	}
 }

@@ -47,5 +47,11 @@
 		delete 	from notice
 		where 	notice_no = #{noticeNo}
 	</delete>
+<!-- 		List<Notice> selectNotice(); -->
+	
+	<select id="selectNoticeForHelp" resultType="Notice">
+		select 	* 
+		from 	notice
+	</select>
 	
 </mapper>

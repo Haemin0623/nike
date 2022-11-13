@@ -8,25 +8,54 @@
 </head>
 <body>
 <div layout:fragment="content" > <!-- by 수인 -->
-	<h2>고객센터</h2>
-	<table border="1" width="800px">
-		<tr>
-			<th>고객센터</th>
-<!-- 			<td>[[${notice.noticeType}]]</td> -->
+	<h2 align="center">고객센터</h2>
+	
+	<form action="#" align="center">
+		<input name="search" value="" placeholder="Search" size="50px">
+	</form>
+	
+	<h4>배송 및 주문</h4>
+	<table width="800px" th:each="notice:${noticeList}">
+		<tr th:if="${notice.noticeType} == 'order'">
+			<td><a th:href="@{helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a></td>
 		</tr>
-		<tr>
-			<th>제목</th>
-<!-- 			<td>[[${notice.noticeSubject}]]</td> -->
-		</tr>
-		<tr>
-			<th>내용</th>
-			<!-- 			<td>[[${notice.noticeSubject}]]</td> -->
-		</tr>
-		
 	</table><br>
 	
-<!-- 	<button th:onclick="|location.href='@{/adminNoticeUpdateForm.do(noticeNo=${notice.noticeNo})}'|">수정</button> -->
-<!-- 	<button th:onclick="|location.href='@{/adminNoticeDelete.do(noticeNo=${notice.noticeNo})}'|">삭제</button> -->
+	<h4>반품 및 환불</h4>
+	<table width="800px" th:each="notice:${noticeList}">
+		<tr th:if="${notice.noticeType} == 'refund'">
+			<td><a th:href="@{helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a></td>
+		</tr>
+	</table><br>
+	
+	<h4>멤버십</h4>
+	<table width="800px" th:each="notice:${noticeList}">
+		<tr th:if="${notice.noticeType} == 'membership'">
+			<td><a th:href="@{helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a></td>
+		</tr>
+	</table><br>
+	
+	<h4>제품 정보</h4>
+	<table width="800px" th:each="notice:${noticeList}">
+		<tr th:if="${notice.noticeType} == 'productinfo'">
+			<td><a th:href="@{helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a></td>
+		</tr>
+	</table><br>
+	
+	<h4>기타 공지</h4>
+	<table width="800px" th:each="notice:${noticeList}">
+		<tr th:if="${notice.noticeType} == 'etcNotice'">
+			<td><a th:href="@{helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a></td>
+		</tr>
+	</table><br>
+	
+	<h4>FAQs</h4>
+	<table width="800px" th:each="notice:${noticeList}">
+		<tr th:if="${notice.noticeType} == 'faq'">
+			<td><a th:href="@{helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a></td>
+		</tr>
+	</table><br>
+	
 	
 </div>
 </body>

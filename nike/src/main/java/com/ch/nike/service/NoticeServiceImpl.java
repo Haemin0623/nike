@@ -40,6 +40,10 @@ public class NoticeServiceImpl implements NoticeService{
 	public int deleteNotice(int noticeNo) {
 		return nm.deleteNotice(noticeNo);
 	}
+	@Override
+	public List<Notice> selectNoticeForHelp() {
+		return nm.selectNoticeForHelp();
+	}
 	
 
 

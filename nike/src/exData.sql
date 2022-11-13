@@ -5,6 +5,7 @@ insert into member values ('chang@ryul.com', '김창률', '123', 'M', sysdate, 0
 insert into member values ('sun@ny.com', '최선희', '123', 'F', sysdate, 01012345678, sysdate, 'N');
 
 select * from member;
+select * from notice;
 
 
 
