@@ -21,18 +21,18 @@ public class MemberServiceImpl implements MemberService {
 	public int insert(Member member) {
 		return mm.insert(member);
 	}
-	public int update(Member member) {
-		return mm.update(member);
+	public int changePw(Member member) {
+		return mm.changePw(member);
 	}
-	
-	
 	
 	// AccountCon
 	public int deleteMember(String email) {
 		return mm.deleteMember(email);
 	}
+	public int updateProfile(Member member) {
+		return mm.updateProfile(member);
+	}
 
-	
 	
 	// AdminCon
 	public List<Member> paginglist(PagingBean pagingbean) {

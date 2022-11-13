@@ -14,7 +14,7 @@ public interface MemberService {
 	// 회원 등록
 	int insert(Member member);
 	// 비번만 변경
-	int update(Member member);
+	int changePw(Member member);
 	
 	
 	
@@ -28,4 +28,7 @@ public interface MemberService {
 	List<Member> paginglist(PagingBean pagingbean);
 	// 회원 갯수
 	int getTotal(PagingBean pagingbean);
+	
+	//회원정보 수정
+	int updateProfile(Member member);
 }

@@ -14,14 +14,11 @@ public interface MemberMapper {
 	// MemberCon
 	Member select(String email);
 	int insert(Member member);
-	int update(Member member); //새비번변경
-	
-	
+	int changePw(Member member); //새비번변경
 	
 	// AccountCon
 	int deleteMember(String email);
-	
-	
+	int updateProfile(Member member);
 	
 	// AdminCon
 	List<Member> paginglist(PagingBean pagingbean);

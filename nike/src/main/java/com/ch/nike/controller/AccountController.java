@@ -10,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,6 +62,8 @@ public class AccountController {
 	private ReviewPhotoService rps;
 	@Autowired
 	private QnAService qs;
+	@Autowired 
+	private BCryptPasswordEncoder bpe; //비번 암호화
 	
 	@RequestMapping("/account/mypageSessionChk.do")	// mypage로 이동 전 세션 체크 by선희
 	public String mypageSessionChk(Model model, HttpSession session) {
@@ -88,6 +91,37 @@ public class AccountController {
 		model.addAttribute("member", member);
 		return "account/profile";
 	}
+	
+	@RequestMapping("/account/profileUpdate.do") //마이페이지 - 프로필 - 수정 by수인
+	public String profileUpdate(HttpSession session, Member member, Model model) {
+		int result = 0;
+		result = ms.updateProfile(member); // 담아온 값을 넣어서 수정
+		model.addAttribute("result", result);
+		return "account/profileUpdate";
+	}
+	@RequestMapping("/account/pwUpdateProfileForm.do") //마이페이지 - 프로필 - 비밀번호 수정 by수인
+	public String pwUpdateProfileForm() {	
+		return "account/pwUpdateProfileForm";
+	}
+
+	@RequestMapping("/account/pwUpdateProfile.do")
+	public String pwUpdateProfile(HttpSession session, String password, String newPw1, String newPw2, Model model) {
+		int result = 0;
+		String email = (String) session.getAttribute("email");
+		Member member = ms.select(email);
+		if (bpe.matches(password, member.getPassword())) { // member의 비번(암호화된것 풀고) = 입력한 현재비번과 일치하면
+			if (newPw1.equals(newPw2)) {
+				member.setPassword(bpe.encode(newPw1)); //암호화해서 넣어준다
+				result = ms.changePw(member);
+			} else
+				result = -1; //비번=비번확인일치하지 않습니다 - 다시입력창
+		}else
+			result = -2; //member비번과 입력한 비번 일치하지 않으면 현재 비번을 다시입력해주세요
+		System.out.println("");
+		model.addAttribute("result",result);
+		return "account/pwUpdateProfile";
+	}
+	
 	@RequestMapping("/account/deleteMember.do")	// mypage - profile에서 회원탈퇴 by선희
 	public String deleteMember(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");

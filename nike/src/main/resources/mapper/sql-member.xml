@@ -20,7 +20,7 @@
 						sysdate,
 						'N')
 	</insert>
-	<update id="update" parameterType="member"> <!-- 새비밀번호 변경 -->
+	<update id="changePw" parameterType="member"> <!-- 새비밀번호 변경 -->
 		update	member
 		set		password = #{password}
 		where	email = #{email}
@@ -58,7 +58,14 @@
 						${keyword} like '%' || #{search} || '%'
 				</if>
 			</where>
-	</select>	
+	</select>
+	
+	<update id="updateProfile" parameterType="Member">
+		update 	member 
+		set 	member_tel=#{memberTel}, 
+				birthday=#{birthday} 
+		where 	email=#{email}
+	</update>
 	
 	
 </mapper>

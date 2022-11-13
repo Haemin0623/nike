@@ -91,7 +91,7 @@ public class MemberController {
 	public String login(Member member, Model model, HttpSession session) {
 		Member member2 = ms.select(member.getEmail());
 		if (member2 != null) {
-			if (bpe.matches(member.getPassword(),member2.getPassword())) {
+			if (bpe.matches(member.getPassword(),member2.getPassword())) { //(암호화된것과, 안된것)을 비교
 				session.setAttribute("email", member.getEmail());
 				return "redirect:/"; //redirect: (이 주소가 url로 ), forward: (/에서 요청한 주소가 url에 뜸) // ProductController의 @RequestMapping("/") 찾아감
 			} else  {
@@ -146,7 +146,7 @@ public class MemberController {
 			if (verifiCode == vCode) { // 사용자가 입력한 verifiCode, 메일발송한 vCode
 				String encPass = bpe.encode(newPw); // 새비번 암호화
 				member.setPassword(encPass);
-				result = ms.update(member);
+				result = ms.changePw(member);
 			} else { //인증코드 불일치
 				result = -1;
 			}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	 <th:block th:if="${result} > 0"> 
+		<script type="text/javascript">
+			alert("회원정보가 수정되었습니다");
+			location.href="/account/profile.do"; 
+		</script>
+	</th:block>
+	
+	 <th:block th:if="${result} == 0"> 
+		<script type="text/javascript">
+			alert("회원정보 수정실패");
+			history.go(-1); 
+		</script>
+	</th:block>
+</body>
+</html>

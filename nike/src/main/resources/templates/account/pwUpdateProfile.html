@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	 <th:block th:if="${result} > 0"> 
+		<script type="text/javascript">
+			alert("비밀번호가 수정되었습니다");
+			location.href="/account/profile.do"; 
+		</script>
+	</th:block>
+	
+	 <th:block th:if="${result} == -1"> 
+		<script type="text/javascript">
+			alert("비밀번호 확인이 일치하지 않습니다");
+			history.go(-1); 
+		</script>
+	</th:block>
+	
+	 <th:block th:if="${result} == -2"> 
+		<script type="text/javascript">
+			alert("현재 비밀번호를 다시 입력해주세요");
+			history.go(-1); 
+		</script>
+	</th:block>
+	
+</body>
+</html>

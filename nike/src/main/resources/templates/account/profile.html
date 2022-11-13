@@ -5,30 +5,42 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
+<script type="text/javascript"> /* by선희 */
 	function memberDel(email) {
-		var cf = confirm("정말로 삭제하시겠습니까?");
+		var cf = confirm("정말로 탈퇴하시겠습니까?");
 		if (cf) {
 			location.href="deleteMember.do?email="+email;
-		} else alert("삭제가 취소되었습니다.");
+		} else alert("탈퇴가 취소되었습니다.");
 	}
 </script>
 </head>
 <body>
-<div layout:fragment="content"> 정보 보여주고 수정가능한건 수정되도록
-	<div>사진 및 사진 수정</div>
-		<div>[[${member.email}]]</div>
-		<div>[[${member.password}]] + 확인 (나이키는 수정 팝업창)</div>
-		<div>[[${member.name}]]</div>
-		<div>[[${member.memberGender}]]</div>
-		<div>[[${member.birthday}]]</div>
-		<div>[[${member.memberTel}]] (나이키는 수정 팝업창)</div>
-		<div>[[${member.regDate}]]</div>
-		<div>
-			<button th:onclick="memberDel([[${member.email}]])" class="btn btn-danger">
-				회원탈퇴
-			</button>
-		</div>
-</div>
+<div layout:fragment="content" align="center"> <!-- by 선희 + 수인 -->
+	<form action="profileUpdate.do" method="post">
+		<h2>회원정보관리</h2> 	
+		<table border="1" width="800px">
+			<tr>
+				<th>이메일</th>
+				<td>[[${member.email}]]</td>
+			</tr>
+			<tr>
+				<th>비밀번호</th>
+				<td>********* <a th:href="pwUpdateProfileForm.do">수정</a></td>
+			</tr>
+			<tr>
+				<th>전화번호</th>
+				<td><input type="number" name="memberTel" th:value="${member.memberTel}"></td>
+			</tr>
+			<tr>
+				<th>생년월일</th>
+				<td><input type="date" name="birthday" th:value="${member.birthday}"></td>
+			</tr>
+			<input type="hidden" name="email" th:value="${member.email}">
+		</table>
+		<input type="submit" value="수정">
+	</form>
+	<button th:onclick="|location.href='@{/account/mypage.do}'|">취소</button>
+	<button th:onclick="memberDel([[${member.email}]])" class="btn btn-danger">회원탈퇴</button> <!-- by선희 -->
+</div>		
 </body>
 </html>
