@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content">
+	<br>
+	<br>
+<h2>문의 내역</h2>
+	
+	<br>
+	<br>
+	<div class="qnaList">
+		<table style="width: 80%">
+			<tr>
+				<th>질문유형</th>
+				<th>제목</th>
+				<th>내용</th>
+				<th>등록일</th>
+				<th>답변상태</th>
+				<th>삭제</th>
+			</tr>
+			<th:block th:if="${#lists.size(qnaList)} == 0">
+		 		<tr> <th colspan="6"> 문의 내역이 없습니다.</th></tr>
+			</th:block>
+			<th:block th:if="${#lists.size(qnaList)} != 0" th:each="qna:${qnaList}">
+				<tr>
+					<td>[[${qna.qnaType}]]</td>
+					<td>[[${qna.subject}]]</td>
+					<td>[[${qna.content}]]</td>
+					<td>[[${qna.regDate}]]</td>
+					<td>[[${qna.qnaStatus}]]</td>
+					<td>
+						<a th:href="@{/account/deleteQna.do(qnaNo=${qna.qnaNo})}">삭제</a>
+					</td>
+				</tr>
+			</th:block>
+		</table>
+	</div>
+	<br>
+	<br>
+</div>
+</body>
+</html>

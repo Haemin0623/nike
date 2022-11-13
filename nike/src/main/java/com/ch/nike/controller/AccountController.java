@@ -20,6 +20,7 @@ import com.ch.nike.dto.Cart;
 import com.ch.nike.dto.Member;
 import com.ch.nike.dto.ProductDetail;
 import com.ch.nike.dto.ProductPhoto;
+import com.ch.nike.dto.QnA;
 import com.ch.nike.dto.Refund;
 import com.ch.nike.dto.Review;
 import com.ch.nike.dto.UserOrder;
@@ -29,6 +30,7 @@ import com.ch.nike.service.CartService;
 import com.ch.nike.service.MemberService;
 import com.ch.nike.service.ProductPhotoService;
 import com.ch.nike.service.ProductService;
+import com.ch.nike.service.QnAService;
 import com.ch.nike.service.RefundService;
 import com.ch.nike.service.ReviewPhotoService;
 import com.ch.nike.service.ReviewService;
@@ -57,6 +59,8 @@ public class AccountController {
 	private ReviewService rvs;
 	@Autowired
 	private ReviewPhotoService rps;
+	@Autowired
+	private QnAService qs;
 	
 	@RequestMapping("/account/mypageSessionChk.do")	// mypage로 이동 전 세션 체크 by선희
 	public String mypageSessionChk(Model model, HttpSession session) {
@@ -226,5 +230,19 @@ public class AccountController {
 		
 		return "account/addAddr";
 	}
+	@RequestMapping("/account/qnaList.do")	// 문의 내역 불러오기 by 선희
+	public String qnaList(Model model, HttpSession session) {
+		String email = (String) session.getAttribute("email");
+		List<QnA> qnaList = qs.qnaListByEmail(email);
+		model.addAttribute("qnaList", qnaList);
+		return "account/qnaList";
+	}
+	
+		@RequestMapping("/account/deleteQna.do")	// 문의 내역 삭제하기 by 선희
+	public String deleteQna(int qnaNo, Model model, HttpSession session) {
+		int result = qs.deleteQna(qnaNo);
+		model.addAttribute("result", result);
+		return "account/deleteQna";
+		}
 	
 }

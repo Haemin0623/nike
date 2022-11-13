@@ -49,4 +49,15 @@
 					#{qnaStatus},
 					#{qnaDel})
 	</insert>
+	<select id="qnaListByEmail" parameterType="string" resultType="QnA">
+		select	*
+		from	qna
+		where	email = #{email}
+			and qna_del = 'N'
+	</select>
+	<update id="deleteQna" parameterType="integer">
+		update	qna
+		set		qna_del = 'Y'
+		where	qna_no = #{qnaNo}
+	</update>
 </mapper>

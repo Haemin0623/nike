@@ -16,5 +16,11 @@ public interface QnAService {
 	QnA selectqna(QnA qna);
 	int adminQnaStatusUpdate(QnA qna);
 	int adminqnareply(QnA qna);
+	
+	// AccountCon
+	// 해당 회원의 qnaList 불러오기
+	List<QnA> qnaListByEmail(String email);
+	// qna 삭제하기
+	int deleteQna(int qnaNo);
 
 }

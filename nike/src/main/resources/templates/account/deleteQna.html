@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8">
+<title>Insert title here</title></head><body>
+<span th:if="${result} > 0">
+	<script type="text/javascript">
+		alert("문의가 삭제되었습니다.");
+		location.href="/account/qnaList.do";
+	</script>
+</span>
+<span th:if="${result} == 0">
+	<script type="text/javascript">
+		alert("문의 삭제 실패");
+		history.back();
+	</script>
+</span>
+</body>
+</html>

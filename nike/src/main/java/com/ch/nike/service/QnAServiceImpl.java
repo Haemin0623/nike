@@ -36,5 +36,16 @@ public class QnAServiceImpl implements QnAService{
 	public int adminqnareply(QnA qna) {
 		return qm.adminqnareply(qna);
 	}
+	
+	
+	// AccountCon
+	@Override
+	public List<QnA> qnaListByEmail(String email) {
+		return qm.qnaListByEmail(email);
+	}
+	@Override
+	public int deleteQna(int qnaNo) {
+		return qm.deleteQna(qnaNo);
+	}
 
 }

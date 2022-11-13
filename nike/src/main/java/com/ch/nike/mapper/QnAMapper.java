@@ -18,5 +18,9 @@ public interface QnAMapper {
 	QnA selectqna(QnA qna);
 	int adminQnaStatusUpdate(QnA qna);
 	int adminqnareply(QnA qna);
+	
+	// AccountCon
+	List<QnA> qnaListByEmail(String email);
+	int deleteQna(int qnaNo);
 
 }
