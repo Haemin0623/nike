@@ -29,7 +29,11 @@
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td><input type="number" name="memberTel" th:value="${member.memberTel}"></td>
+				<td>																<!-- 0123 45678 9012 -->
+					<input type="text" name="tel1" value="010" readonly="readonly"> <!-- 010- 2222- 2222 -->
+					-<input type="text" name="tel2" th:value="${member.memberTel.substring(4,8)}" placeholder="4자리"> <!-- (인덱스 3~6번째 숫자만 잘라오기) -->
+					-<input type="text" name="tel3" th:value="${member.memberTel.substring(9,13)}" placeholder="4자리"> <!-- (인덱스 7~10번쨰 잘라오기) -->
+				</td>
 			</tr>
 			<tr>
 				<th>생년월일</th>
@@ -39,6 +43,7 @@
 		</table>
 		<input type="submit" value="수정">
 	</form>
+	<p>
 	<button th:onclick="|location.href='@{/account/mypage.do}'|">취소</button>
 	<button th:onclick="memberDel([[${member.email}]])" class="btn btn-danger">회원탈퇴</button> <!-- by선희 -->
 </div>		

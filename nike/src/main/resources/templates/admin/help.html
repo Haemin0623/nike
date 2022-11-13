@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content" > <!-- by 수인 -->
+	<h2>고객센터</h2>
+	<table border="1" width="800px">
+		<tr>
+			<th>고객센터</th>
+<!-- 			<td>[[${notice.noticeType}]]</td> -->
+		</tr>
+		<tr>
+			<th>제목</th>
+<!-- 			<td>[[${notice.noticeSubject}]]</td> -->
+		</tr>
+		<tr>
+			<th>내용</th>
+			<!-- 			<td>[[${notice.noticeSubject}]]</td> -->
+		</tr>
+		
+	</table><br>
+	
+<!-- 	<button th:onclick="|location.href='@{/adminNoticeUpdateForm.do(noticeNo=${notice.noticeNo})}'|">수정</button> -->
+<!-- 	<button th:onclick="|location.href='@{/adminNoticeDelete.do(noticeNo=${notice.noticeNo})}'|">삭제</button> -->
+	
+</div>
+</body>
+</html>

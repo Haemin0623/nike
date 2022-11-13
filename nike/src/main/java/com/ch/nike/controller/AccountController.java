@@ -93,8 +93,9 @@ public class AccountController {
 	}
 	
 	@RequestMapping("/account/profileUpdate.do") //마이페이지 - 프로필 - 수정 by수인
-	public String profileUpdate(HttpSession session, Member member, Model model) {
+	public String profileUpdate(HttpSession session, Member member, String tel1, String tel2, String tel3, Model model ) {
 		int result = 0;
+		member.setMemberTel(tel1+"-"+tel2+"-"+tel3);
 		result = ms.updateProfile(member); // 담아온 값을 넣어서 수정
 		model.addAttribute("result", result);
 		return "account/profileUpdate";

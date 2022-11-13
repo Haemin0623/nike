@@ -8,11 +8,14 @@
 <style>
 	table {width: 80%; }
 	th {border:1px solid green;}
-	td {border:1px solid green; text-overflow: ellipsis;}
+	td {border:1px solid green;}
+	/* 제목부분 글자수 제한해서 보여주기 */
+	.text-over-cut {max-width: 400px; height: 40px; overflow: hidden;}
 </style>
 </head>
 <body>
-<div layout:fragment="content" align="center"> <!-- by 창률 + 수인 -->
+
+<div layout:fragment="content" align="center" > <!-- by 창률 + 수인 -->
 	<h2>공지사항</h2>
 	<table>
 		<tr>
@@ -26,6 +29,7 @@
 			<th></th>
 			<th></th>
 		</tr>
+		
 		<tr th:each="lists:${list2}">
 			<td>[[${lists.noticeNo}]]</td>
 			<td th:if="${lists.noticeType} == 'order'">배송 및 주문</td>
@@ -35,7 +39,9 @@
 			<td th:if="${lists.noticeType} == 'etcNotice'">기타 공지</td>
 			<td th:if="${lists.noticeType} == 'faq'">FAQ</td>
 			<td><a th:href="@{/adminNoticeDetail.do(noticeNo=${lists.noticeNo})}">[[${lists.noticeSubject}]]</a></td>
-			<td> [[${lists.content}]]</td>
+			<td>
+				<div class="text-over-cut">[[${lists.content}]]</div> <!-- 제목부분 글자수 제한해서 보여주기 -->
+			</td> 
 			<td>[[${lists.regDate}]]</td>
 			<td>[[${lists.readCount}]]</td>
 			
@@ -97,7 +103,8 @@
 			</li>
 		</th:block>
 	</span>
-<button th:onclick="|location.href='@{/adminNoticeInsertForm.do}'|">공지 등록</button>
+	<button th:onclick="|location.href='@{/adminNoticeInsertForm.do}'|">공지 등록</button>
 </div>
+
 </body>
 </html>

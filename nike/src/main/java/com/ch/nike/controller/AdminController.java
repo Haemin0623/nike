@@ -241,7 +241,7 @@ public class AdminController {
 		return "admin/adminNoticeUpdate";
 	}
 	
-	@RequestMapping("adminNoticeDelete.do") //관리자 공지삭제 by 수인 (noticeNo=${lists.noticeNo)
+	@RequestMapping("adminNoticeDelete.do") //관리자 공지삭제 by 수인 
 	public String adminNoticeDelete(int noticeNo, Model model) {
 		int result = 0;
 		result = ns.deleteNotice(noticeNo);
@@ -396,5 +396,10 @@ public class AdminController {
 		model.addAttribute("qna2",qna2);
 		model.addAttribute("qna1",qna1);
 		return "admin/adminQnaDetail";
+	}
+	@RequestMapping("/help.do")
+	public String help(){
+		return "admin/help";
+		
 	}
 }

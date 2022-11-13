@@ -12,8 +12,12 @@
 	<table border="1" width="800px">
 		<tr>
 			<th>공지유형</th>
-			<td>[[${notice.noticeType}]]</td>
-		</tr>
+			<td th:if="${notice.noticeType} == 'order'">배송 및 주문</td>
+			<td th:if="${notice.noticeType} == 'refund'">반품 및 환불</td>
+			<td th:if="${notice.noticeType} == 'membership'">멤버십</td>
+			<td th:if="${notice.noticeType} == 'productinfo'">제품 정보</td>
+			<td th:if="${notice.noticeType} == 'etcNotice'">기타 공지</td>
+			<td th:if="${notice.noticeType} == 'faq'">FAQ</td>
 		<tr>
 			<th>제목</th>
 			<td>[[${notice.noticeSubject}]]</td>
@@ -29,6 +33,7 @@
 	
 	<button th:onclick="|location.href='@{/adminNoticeUpdateForm.do(noticeNo=${notice.noticeNo})}'|">수정</button>
 	<button th:onclick="|location.href='@{/adminNoticeDelete.do(noticeNo=${notice.noticeNo})}'|">삭제</button>
+	<a href="adminNoticeList.do">뒤로</a>
 	
 </div>
 </body>

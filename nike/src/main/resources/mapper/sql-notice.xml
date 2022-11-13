@@ -45,15 +45,7 @@
 	
 	<delete id="deleteNotice" parameterType="integer">
 		delete 	from notice
-		where 	noticae_no = #{noticeNo}
+		where 	notice_no = #{noticeNo}
 	</delete>
-	
-<!-- 	<delete id="deleteNotice" parameterType="integer"> 공개/비공개 -->
-<!-- 		update 	notice  -->
-<!-- 		set 	del = 'Y'  -->
-<!-- 		where 	notice_no = #{noticeNo} -->
-<!-- 	</delete> -->
-	
-	
 	
 </mapper>
