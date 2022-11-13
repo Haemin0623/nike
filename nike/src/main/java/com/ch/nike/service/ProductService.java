@@ -17,6 +17,12 @@ public interface ProductService {
 	Product selectsoo(int productNo);
 	// 검색 필터 상품리스트
 	List<Product> filterList(Filter filter);
+	// 전체 상품리스트 페이징
+	List<Product> listPaging(Filter filter);
+	// 검색 필터 상품리스트 페이징
+	List<Product> filterListPaging(Filter filter);
+	// 상품개수 (페이징)
+	int getTotal1(Filter filter);
 	
 	
 	// AdminCon
@@ -36,6 +42,7 @@ public interface ProductService {
 	
 	List<Product> adminproductlist();
 	List<Product> menProductlist();
+	int getTotal2(Filter filter);
 	
 
 

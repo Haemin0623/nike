@@ -16,6 +16,10 @@ public interface ProductMapper {
 	List<Product> list();
 	Product selectsoo(int productNo);
 	List<Product> filterList(Filter filter);
+	List<Product> listPaging(Filter filter);
+	List<Product> filterListPaging(Filter filter);
+	int getTotal1(Filter filter);
+	int getTotal2(Filter filter);
 	
 	
 	

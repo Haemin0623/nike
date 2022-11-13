@@ -66,8 +66,126 @@
 			</if>
 	order by	p.product_no desc
 	</select>
-	
-	
+	<select id = "listPaging" parameterType="filter" resultType="Product" >
+		select 	* 
+			from 	(select	a.*,
+							rowNum rn
+					from	(select	p.*,
+									ph.product_photo,
+									ph.color			
+							from	product p,
+									product_photo ph
+							where	p.product_no = ph.product_no
+								and ph.batch = 1
+						order by	p.product_no desc) a
+				) 
+		where	rn between #{startRow} and #{endRow}
+	</select>
+	<select id="filterListPaging" parameterType="filter" resultType="Product">
+		select 	* 
+			from 	(select	a.*,
+							rowNum rn
+					from	(select	distinct p.*, 
+									ph.product_photo,
+									ph.color
+							from	product p,
+									product_photo ph,
+									product_detail pd
+							where	p.product_no = ph.product_no
+								and p.product_no = pd.product_no
+								and ph.batch = 1
+								<if test="gender != null">
+									and gender in
+									<foreach collection="gender" item="g" open="(" close=")" separator=",">
+										#{g}
+									</foreach>
+								</if>
+								<if test="color != null">
+									and ph.color in
+									<foreach collection="color" item="c" open="(" close=")" separator=",">
+										 #{c}
+									</foreach>
+								</if>
+								<if test="productSize != null">
+								and product_size in
+									<foreach collection="productSize" item="s" open="(" close=")" separator=",">
+										#{s}
+									</foreach>
+								</if>
+								<if test="price != null">
+								and 
+									<foreach collection="price" item="p" open="(" close=")" separator="or">
+										<if test="p == 50000">
+											price between 0 and #{p}
+										</if>
+										<if test="p == 100000">
+											price between 50000 and #{p}
+										</if>
+										<if test="p == 150000">
+											price between 100000 and #{p}
+										</if>
+										<if test="p == 200000">
+											price between 150000 and #{p}
+										</if>
+									</foreach>
+								</if>
+						order by	p.product_no desc) a
+					) 
+		where	rn between #{startRow} and #{endRow}
+	</select>
+	<select id="getTotal1" parameterType="filter" resultType="integer">
+		select	count(*)			
+		from	product p,
+				product_photo ph
+		where	p.product_no = ph.product_no
+			and ph.batch = 1
+	order by	p.product_no desc
+	</select>
+	<select id="getTotal2" parameterType="filter" resultType="integer">
+		select	count(*)
+		from	product p,
+				product_photo ph,
+				product_detail pd
+		where	p.product_no = ph.product_no
+			and p.product_no = pd.product_no
+			and ph.batch = 1
+			<if test="gender != null">
+				and gender in
+				<foreach collection="gender" item="g" open="(" close=")" separator=",">
+					#{g}
+				</foreach>
+			</if>
+			<if test="color != null">
+				and ph.color in
+				<foreach collection="color" item="c" open="(" close=")" separator=",">
+					 #{c}
+				</foreach>
+			</if>
+			<if test="productSize != null">
+			and product_size in
+				<foreach collection="productSize" item="s" open="(" close=")" separator=",">
+					#{s}
+				</foreach>
+			</if>
+			<if test="price != null">
+			and 
+				<foreach collection="price" item="p" open="(" close=")" separator="or">
+					<if test="p == 50000">
+						price between 0 and #{p}
+					</if>
+					<if test="p == 100000">
+						price between 50000 and #{p}
+					</if>
+					<if test="p == 150000">
+						price between 100000 and #{p}
+					</if>
+					<if test="p == 200000">
+						price between 150000 and #{p}
+					</if>
+				</foreach>
+			</if>
+	order by	p.product_no desc
+	</select>
 	
 	<!-- Admincon -->
 	<select id="paginglist" parameterType="pagingbean" resultType="product">

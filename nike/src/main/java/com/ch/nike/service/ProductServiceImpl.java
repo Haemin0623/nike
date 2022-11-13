@@ -30,6 +30,22 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> filterList(Filter filter) {
 		return pm.filterList(filter);
 	}
+	@Override
+	public List<Product> listPaging(Filter filter) {
+		return pm.listPaging(filter);
+	}
+	@Override
+	public List<Product> filterListPaging(Filter filter) {
+		return pm.filterListPaging(filter);
+	}
+	@Override
+	public int getTotal1(Filter filter) {
+		return pm.getTotal1(filter);
+	}
+	@Override
+	public int getTotal2(Filter filter) {
+		return pm.getTotal2(filter);
+	}
 	
 	
 	// AdminCon
@@ -68,6 +84,7 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> menProductlist() {
 		return pm.menProductlist();
 	}
+
 
 
 }
