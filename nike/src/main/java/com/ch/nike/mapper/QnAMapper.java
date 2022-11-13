@@ -15,5 +15,8 @@ public interface QnAMapper {
 	// AdminCon
 	int getTotal(PagingBean pagingbean);
 	List<UserOrder> paginglist(PagingBean pagingbean);
+	QnA selectqna(QnA qna);
+	int adminQnaStatusUpdate(QnA qna);
+	int adminqnareply(QnA qna);
 
 }

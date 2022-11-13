@@ -13,5 +13,8 @@ public interface QnAService {
 	int getTotal(PagingBean pagingbean);
 	// 전체 문의 조회(페이징)
 	List<UserOrder> paginglist(PagingBean pagingbean);
+	QnA selectqna(QnA qna);
+	int adminQnaStatusUpdate(QnA qna);
+	int adminqnareply(QnA qna);
 
 }

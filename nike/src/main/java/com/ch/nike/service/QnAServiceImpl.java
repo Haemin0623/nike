@@ -24,5 +24,17 @@ public class QnAServiceImpl implements QnAService{
 	public List<UserOrder> paginglist(PagingBean pagingbean) {
 		return qm.paginglist(pagingbean);
 	}
+	@Override
+	public QnA selectqna(QnA qna) {
+		return qm.selectqna(qna);
+	}
+	@Override
+	public int adminQnaStatusUpdate(QnA qna) {
+		return qm.adminQnaStatusUpdate(qna);
+	}
+	@Override
+	public int adminqnareply(QnA qna) {
+		return qm.adminqnareply(qna);
+	}
 
 }

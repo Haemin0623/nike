@@ -170,6 +170,7 @@ drop table QnA cascade constraints;
 
 create table QnA (
 	qna_no			number(4)			not	null	primary key,
+	ref_no			number(4),			
 	email			varchar2(50)		not	null,
 	product_no		number(4)			not	null,
 	qna_type		varchar2(20)		not	null,	-- 배송, 결제, 상품 ,기타 ...

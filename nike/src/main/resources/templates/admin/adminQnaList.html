@@ -24,6 +24,7 @@
 		<th>등록일</th>
 		<th>처리상태</th>
 		<th>삭제여부</th>
+		<th></th>
 	</tr>
 	<tr th:each="lists:${list2}">
 		<td>[[${lists.qnaNo}]]</td>
@@ -35,7 +36,7 @@
 		<td>[[${lists.regDate}]]</td>
 		<td>[[${lists.qnaStatus}]]</td>
 		<td>[[${lists.qnaDel}]]</td>
-		<td><a th:href="@{/adminQnaDetail.do(qnaNo=${lists.qnaNo})}">문의 상세 보기</a><td>
+		<td><a th:href="@{/adminQnaDetail.do(qnaNo=${lists.qnaNo})}">문의 상세 보기</a></td>
 	</tr>
 </table>
 	<div>

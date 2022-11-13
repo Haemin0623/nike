@@ -14,13 +14,39 @@
 		
 			<where>
 				<if test="keyword!=null and keyword!=''">
-						${keyword} like '%' || #{search} || '%'
+						${keyword} like '%' || #{search} || '%' and
 				</if>
+				ref_no is null
 			</where>
 				order by qna_no desc)a) 
 		where 	rn between #{startRow} and #{endRow}
 	</select>
 	
+	<select id="selectqna" parameterType="qna" resultType="qna">
+		select * from qna where qna_no = #{qnaNo} 
+	</select>
 	
+	<update id="adminQnaStatusUpdate" parameterType="qna">
+		update 	QnA 
+		set 	qna_status= #{qnaStatus} 
+		where 	qna_no = #{qnaNo}
+	</update>
 	
+	<insert id="adminqnareply" parameterType="qna"> 
+		<selectKey keyProperty="newNo" order="BEFORE" resultType="integer">
+			select	nvl(max(qna_no),0) +1 newNo 
+			from 	QnA	
+		</selectKey>
+		insert into qna
+		values		(#{newNo},
+					#{qnaNo},
+					#{email},
+					#{productNo},
+					#{qnaType},
+					#{subject},
+					#{content},
+					#{regDate},
+					#{qnaStatus},
+					#{qnaDel})
+	</insert>
 </mapper>

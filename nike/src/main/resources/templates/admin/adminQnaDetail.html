@@ -5,10 +5,83 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	table {width: 80%}
+	th {border:1px solid green;}
+	td {border:1px solid green;}
+</style>
 </head>
-<body>
+<body><!-- by창률 -->
 <div layout:fragment="content">
-문의상세 페이지
+	<table>
+		<tr>
+			<th>문의번호</th>
+			<td>[[${qna1.qnaNo}]]</td>
+		</tr>
+		<tr>
+			<th>상품번호</th>
+			<td>[[${qna1.productNo}]]</td>
+		</tr>
+		<tr>
+			<th>이메일</th>
+			<td>[[${qna1.email}]]</td>
+		</tr>
+		<tr>
+			<th>문의유형</th>
+			<td>[[${qna1.qnaType}]]</td>
+		</tr>
+		<tr>
+			<th>등록일</th>
+			<td>[[${qna1.regDate}]]</td>
+		</tr>
+		<tr>
+			<th>처리상태</th>
+			<td>[[${qna1.qnaStatus}]]</td>
+		</tr>
+		<tr>
+			<th>삭제여부</th>
+			<td>[[${qna1.qnaDel}]]</td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td>[[${qna1.subject}]]</td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td>[[${qna1.content}]]</td>
+		</tr>
+		<tr th:if="${qna1.qnaNo} == ${qna1.refNo}">
+			<th>답글</th>
+			<td><input type="text" name="content" th:value="${qna2.content}"></td>
+	</table>
+	<div>
+		<form action="adminQnaReply.do">
+			<input type="hidden" name="qnaNo" th:value="${qna1.qnaNo}">
+			<input type="hidden" name="productNo" th:value="${qna1.productNo}">
+			<input type="hidden" name="email" th:value="${qna1.email}">
+			<input type="hidden" name="qnaType" th:value="${qna1.qnaType}">
+			<input type="hidden" name="regDate" th:value="${qna1.regDate}">
+			<input type="hidden" name="qnaStatus" th:value="${qna1.qnaStatus}">
+			<input type="hidden" name="qnaDel" th:value="${qna1.qnaDel}">
+			<input type="hidden" name="subject" th:value="${qna1.subject}">
+			<input type="hidden" name="refNo" th:value="${qna1.refNo}">
+			<input type="text" name="content" value="답글을 입력하세요">
+			<input type="submit" value="답글완료">
+		</form>
+	</div>
+	<div>
+		<form action="adminQnaStatusUpdate.do">
+		<input type="hidden" name="qnaNo" th:value="${qna1.qnaNo}">
+			<select name="qnaStatus">
+				<option value="미답변" th:if="${qna1.qnaStatus}=='미답변'" selected="selected">미답변</option>
+				<option value="미답변" th:if="${qna1.qnaStatus}!='미답변'" >미답변</option>
+				
+				<option value="답변완료" th:if="${qna1.qnaStatus}=='답변완료'" selected="selected">답변완료</option>
+				<option value="답변완료" th:if="${qna1.qnaStatus}!='답변완료'" >답변완료</option>
+			</select>
+			<input type="submit" value="확인">
+		</form>
+	</div>
 </div>
 </body>
 </html>
