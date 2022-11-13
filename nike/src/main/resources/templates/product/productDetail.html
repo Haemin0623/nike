@@ -11,7 +11,7 @@
 	}
 </style>
 <script type="text/javascript">
-
+	// 리뷰
 	$(function() {
 		$('.review').click(function() {
 			$('.reviewDetail').toggle();
@@ -76,7 +76,7 @@
 		</a><br>
 		<div class="reviewList">
 			<table>
-				<span th:each="review:${rvList}">
+				<th:block th:each="review:${rvList}">
 					<tr>
 						<th>[[${review.star}]]</th>
 						<td>[[${review.reviewDate}]]</td>
@@ -91,7 +91,7 @@
 							</span>
 						</td>
 					</tr>
-				</span>
+				</th:block>
 			</table>
 		</div>
 	</div>

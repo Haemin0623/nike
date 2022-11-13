@@ -3,6 +3,7 @@ package com.ch.nike.service;
 import java.util.List;
 
 import com.ch.nike.dto.Category;
+import com.ch.nike.dto.Filter;
 import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Product;
 import com.ch.nike.dto.UserOrderDetail;
@@ -14,7 +15,8 @@ public interface ProductService {
 	List<Product> list();
 	// 특정 상품 정보 조회
 	Product selectsoo(int productNo);
-
+	// 검색 필터 상품리스트
+	List<Product> filterList(Filter filter);
 	
 	
 	// AdminCon

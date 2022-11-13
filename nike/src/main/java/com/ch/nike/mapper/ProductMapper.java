@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.ch.nike.dto.Filter;
 import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Product;
 
@@ -14,6 +15,7 @@ public interface ProductMapper {
 	// productCon
 	List<Product> list();
 	Product selectsoo(int productNo);
+	List<Product> filterList(Filter filter);
 	
 	
 	

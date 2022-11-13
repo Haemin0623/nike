@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ch.nike.dto.Category;
+import com.ch.nike.dto.Filter;
 import com.ch.nike.dto.Product;
 import com.ch.nike.dto.ProductDetail;
 import com.ch.nike.dto.ProductFeature;
@@ -24,6 +24,8 @@ import com.ch.nike.service.ProductPhotoService;
 import com.ch.nike.service.ProductService;
 import com.ch.nike.service.ReviewPhotoService;
 import com.ch.nike.service.ReviewService;
+
+import groovyjarjarantlr4.v4.misc.EscapeSequenceParsing.Result;
 
 @Controller
 public class ProductController {
@@ -48,9 +50,18 @@ public class ProductController {
 	
 	
 	@RequestMapping("/product/newReleases.do")
-	public String newReleases(Model model) {
-		List<Product> productList = ps.list();
-		model.addAttribute("productList", productList);
+	public String newReleases(Model model, Filter filter) {
+		int result = 0;
+		if (filter.getGender() != null || filter.getColor() != null || filter.getPrice() != null || filter.getProductSize() != null) {
+			List<Product> filterList = ps.filterList(filter);
+			model.addAttribute("filterList", filterList);
+			result = 1;
+		} else {
+			List<Product> productList = ps.list();
+			model.addAttribute("productList", productList);
+			result = 2;
+		}
+		model.addAttribute("result", result);
 		return "product/newReleases";
 	}
 	

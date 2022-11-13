@@ -5,11 +5,130 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	//필터 전체 해제
+	$(function() {
+		$('.unChk').click(function() {
+			$("input:checkbox").prop("checked", false);
+		});
+	});
+	
+</script>
 </head>
 <body>
 
 <div layout:fragment="content">
+
 	<h3> 상품리스트 </h3>
+	<!-- 검색 필터 -->
+	<form>
+	<div class="block">
+		<p class="filer_title">성별</p>
+		<div class="filter_box">
+			<div class="button_box">
+				<input type="checkbox" name="gender" id="g1" value="M">
+				<label class="filter" for="g1">남성</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="gender" id="g2" value="F">
+				<label class="filter" for="g2">여성</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="gender" id="g3" value="U">
+				<label class="filter" for="g3">유니섹스</label>
+			</div>
+		</div>
+		
+		<p class="filer_title">색상</p>
+		<div class="filter_box">
+			<div class="button_box">
+				<input type="checkbox" name="color" id="c1" value="그레이">
+				<label class="filter" for="c1">그레이</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="color" id="c3" value="그린">
+				<label class="filter" for="c2">그린</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="color" id="c3" value="레드">
+				<label class="filter" for="c3">레드</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="color" id="c4" value="바이올렛">
+				<label class="filter" for="c4">바이올렛</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="color" id="c5" value="블랙">
+				<label class="filter" for="c5">블랙</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="color" id="c6" value="블루">
+				<label class="filter" for="c6">블루</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="color" id="c7" value="옐로우">
+				<label class="filter" for="c7">옐로우</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="color" id="c8" value="핑크">
+				<label class="filter" for="c8">핑크</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="color" id="c9" value="화이트">
+				<label class="filter" for="c9">화이트</label>
+			</div>
+		</div>
+
+
+
+		<p class="filer_title">가격대</p>
+		<div class="filter_box">
+			<div class="button_box">
+				<input type="checkbox" name="price" id="p1" value="50000">
+				<label class="filter" for="p1">0 - 50,000원</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="price" id="p2" value="100000">
+				<label class="filter" for="p2">50,000원 - 100,000원</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="price" id="p3" value="150000">
+				<label class="filter" for="p3">100,000원 - 150,000원</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="price" id="p4" value="200000">
+				<label class="filter" for="p4">150,000원 - 200,000원</label>
+			</div>
+		</div>
+		
+		<p class="filer_title">사이즈</p>
+		<div class="filter_box">
+			<div class="button_box">
+				<input type="checkbox" name="productSize" id="s1" value="S">
+				<label class="filter" for="s1">S</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="productSize" id="s2" value="M">
+				<label class="filter" for="s2">M</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="productSize" id="s3" value="L">
+				<label class="filter" for="s3">L</label>
+			</div>
+			<div class="button_box">
+				<input type="checkbox" name="productSize" id="s4" value="XL">
+				<label class="filter" for="s4">XL</label>
+			</div>
+		</div>
+		
+		<div class="btn_box">
+			<span class="unChk" style="color: white; background-color: black;">체크해제</span>
+			<input class="btn" type="submit" value="적용" style="color: white; background-color: black;">
+		</div>
+	</div>
+	</form>
+
+	<!-- 상품리스트 -->
 	<table>
 		<tr>
 			<th> 상품사진 </th>
@@ -18,7 +137,23 @@
 			<th> 가격 </th>	
 			<th> 상품상세 </th>
 		</tr>
-		
+	<th:block th:if="${result} == 1">
+		<tr th:if="${#lists.size(filterList)} == 0">
+			<td colspan ="4"> 일치하는 상품이 없습니다.</td>
+		</tr>
+		<tr th:if="${#lists.size(filterList)} > 0" th:each="product:${filterList}">
+			<td> 
+				<a th:href="@{productDetail.do(productNo=${product.productNo},color=${product.color})}">
+				<img alt="" th:src="@{/images/product_photo/}+${product.productPhoto}" height="150"></a>
+			</td>
+			<td>[[${product.productNo}]]</td>
+			<td>[[${product.productName}]]</td>
+			<td>[[${product.price}]]</td>
+			<td>[[${product.detail}]]</td>
+		</tr>
+	</th:block>
+	<th:block th:if="${result} == 2">
+	
 		<tr th:if="${#lists.size(productList)} == 0">
 			<td colspan ="4"> 상품리스트가 비었습니다</td>
 		</tr>
@@ -32,6 +167,7 @@
 			<td>[[${product.price}]]</td>
 			<td>[[${product.detail}]]</td>
 		</tr>
+	</th:block>
 	</table>
 	
 </div>

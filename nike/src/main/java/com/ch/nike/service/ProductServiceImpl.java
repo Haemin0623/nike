@@ -2,16 +2,14 @@ package com.ch.nike.service;
 
 
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ch.nike.dto.Category;
+import com.ch.nike.dto.Filter;
 import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Product;
-import com.ch.nike.dto.UserOrderDetail;
 import com.ch.nike.mapper.ProductMapper;
 
 @Service
@@ -28,7 +26,10 @@ public class ProductServiceImpl implements ProductService{
 	public Product selectsoo(int productNo) {
 		return pm.select(productNo);
 	}
-	
+	@Override
+	public List<Product> filterList(Filter filter) {
+		return pm.filterList(filter);
+	}
 	
 	
 	// AdminCon
@@ -67,5 +68,6 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> menProductlist() {
 		return pm.menProductlist();
 	}
+
 
 }

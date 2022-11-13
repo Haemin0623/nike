@@ -34,7 +34,5 @@ public class Product {
 	private int featurelNo;
 	private String feature;
 	
-	
-	
 	private int productPhotoNo;
 }
