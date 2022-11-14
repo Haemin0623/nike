@@ -60,4 +60,14 @@
 		set		qna_del = 'Y'
 		where	qna_no = #{qnaNo}
 	</update>
+	<select id="selectrefNo" parameterType="qna" resultType="qna">
+		select 	* 
+		from 	qna 
+		where	ref_no = #{qnaNo}
+	</select>
+	<update id="updatestatus" parameterType="qna" >
+		update qna 
+		set qna_status='답변완료'
+		where qna_no = #{qnaNo}
+	</update>
 </mapper>

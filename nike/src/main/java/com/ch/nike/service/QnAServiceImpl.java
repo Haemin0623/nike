@@ -47,5 +47,13 @@ public class QnAServiceImpl implements QnAService{
 	public int deleteQna(int qnaNo) {
 		return qm.deleteQna(qnaNo);
 	}
+	@Override
+	public QnA selectrefNo(QnA qna) {
+		return qm.selectrefNo(qna);
+	}
+	@Override
+	public int updatestatus(QnA qna) {
+		return qm.updatestatus(qna);
+	}
 
 }

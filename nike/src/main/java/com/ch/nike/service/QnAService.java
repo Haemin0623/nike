@@ -22,5 +22,7 @@ public interface QnAService {
 	List<QnA> qnaListByEmail(String email);
 	// qna 삭제하기
 	int deleteQna(int qnaNo);
+	QnA selectrefNo(QnA qna);
+	int updatestatus(QnA qna);
 
 }

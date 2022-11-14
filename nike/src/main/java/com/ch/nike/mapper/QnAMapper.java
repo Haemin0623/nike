@@ -22,5 +22,7 @@ public interface QnAMapper {
 	// AccountCon
 	List<QnA> qnaListByEmail(String email);
 	int deleteQna(int qnaNo);
+	QnA selectrefNo(QnA qna);
+	int updatestatus(QnA qna);
 
 }

@@ -50,11 +50,12 @@
 			<th>내용</th>
 			<td>[[${qna1.content}]]</td>
 		</tr>
-		<tr th:if="${qna1.qnaNo} == ${qna1.refNo}">
+		<tr th:if="${qna3} != null">
 			<th>답글</th>
-			<td><input type="text" name="content" th:value="${qna2.content}"></td>
+			<td><input type="text" th:value="${qna3.content}" readonly="readonly"></td>
+		</tr>
 	</table>
-	<div>
+	<div th:if="${qna3} == null">
 		<form action="adminQnaReply.do">
 			<input type="hidden" name="qnaNo" th:value="${qna1.qnaNo}">
 			<input type="hidden" name="productNo" th:value="${qna1.productNo}">
@@ -69,19 +70,19 @@
 			<input type="submit" value="답글완료">
 		</form>
 	</div>
-	<div>
-		<form action="adminQnaStatusUpdate.do">
-		<input type="hidden" name="qnaNo" th:value="${qna1.qnaNo}">
-			<select name="qnaStatus">
-				<option value="미답변" th:if="${qna1.qnaStatus}=='미답변'" selected="selected">미답변</option>
-				<option value="미답변" th:if="${qna1.qnaStatus}!='미답변'" >미답변</option>
+<!-- 	<div th:if="${qna3} == null"> -->
+<!-- 		<form action="adminQnaStatusUpdate.do"> -->
+<!-- 		<input type="hidden" name="qnaNo" th:value="${qna1.qnaNo}"> -->
+<!-- 			<select name="qnaStatus"> -->
+<!-- 				<option value="미답변" th:if="${qna1.qnaStatus}=='미답변'" selected="selected">미답변</option> -->
+<!-- 				<option value="미답변" th:if="${qna1.qnaStatus}!='미답변'" >미답변</option> -->
 				
-				<option value="답변완료" th:if="${qna1.qnaStatus}=='답변완료'" selected="selected">답변완료</option>
-				<option value="답변완료" th:if="${qna1.qnaStatus}!='답변완료'" >답변완료</option>
-			</select>
-			<input type="submit" value="확인">
-		</form>
-	</div>
+<!-- 				<option value="답변완료" th:if="${qna1.qnaStatus}=='답변완료'" selected="selected">답변완료</option> -->
+<!-- 				<option value="답변완료" th:if="${qna1.qnaStatus}!='답변완료'" >답변완료</option> -->
+<!-- 			</select> -->
+<!-- 			<input type="submit" value="확인"> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
 </div>
 </body>
 </html>

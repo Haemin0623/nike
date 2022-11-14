@@ -175,6 +175,9 @@ public class AdminController {
 	@RequestMapping("/adminQnaDetail.do")// 관리자 문의 상세 
 	public String adminQnaDetail(Model model, QnA qna) {
 		QnA qna1 = qs.selectqna(qna);
+		QnA qna3 = qs.selectrefNo(qna);
+
+		model.addAttribute("qna3",qna3);
 		model.addAttribute("qna1",qna1);
 		return "admin/adminQnaDetail";
 	}
@@ -408,17 +411,17 @@ public class AdminController {
 	}
 	@RequestMapping("/adminQnaReply.do")
 	public String adminQnaReply(QnA qna, Model model) {
-		int qna2 = qs.adminqnareply(qna);
 		QnA qna1 = qs.selectqna(qna);
-		model.addAttribute("qna2",qna2);
+		int qna2 = qs.adminqnareply(qna);
+		int qna3 = qs.updatestatus(qna);
 		model.addAttribute("qna1",qna1);
-		return "admin/adminQnaDetail";
+		return "admin/adminQnaReplyResult";
 	}
 
 	@RequestMapping("/admin/help.do") //고객센터.공지목록 by 수인
 	public String help(Model model){
-		List<Notice> noticeList = ns.selectNoticeForHelp(); 
-		model.addAttribute(noticeList);
+//		List<Notice> noticeList = ns.selectNoticeForHelp(); 
+//		model.addAttribute(noticeList);
 		return "admin/help";
 	}
 	
