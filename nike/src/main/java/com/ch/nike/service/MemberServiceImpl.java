@@ -41,6 +41,12 @@ public class MemberServiceImpl implements MemberService {
 	public int getTotal(PagingBean pagingbean) {
 		return mm.getTotal(pagingbean);
 	}
+	
+	
+	// NikeLogin
+	public int insertByNaver(Member member) {
+		return mm.insertByNaver(member);
+	}
 
 	
 

@@ -23,5 +23,8 @@ public interface MemberMapper {
 	// AdminCon
 	List<Member> paginglist(PagingBean pagingbean);
 	int getTotal(PagingBean pagingbean);
+	
+	// NikeLogin
+	int insertByNaver(Member member);
 
 }

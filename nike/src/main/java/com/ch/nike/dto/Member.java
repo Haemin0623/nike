@@ -17,4 +17,7 @@ public class Member {
 	private String memberTel;
 	private Date regDate;
 	private String memberDel;
+	
+	// naver
+	private String date;
 }
