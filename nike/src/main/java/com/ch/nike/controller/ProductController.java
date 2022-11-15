@@ -51,7 +51,7 @@ public class ProductController {
 	
 	
 	@RequestMapping("/product/newReleases.do")
-	public String newReleases(Model model, Filter filter, String pageNum) {
+	public String newReleases(Filter filter, String pageNum, Model model) {
 		int result = 0;
 		// 페이징
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
@@ -127,11 +127,83 @@ public class ProductController {
 	
 	
 	@RequestMapping("/product/men.do") //남성상품 by 수인
-	public String men(Model model) {
-		List<Product> menProductList = ps.menProductlist();
-		model.addAttribute("menProductList",menProductList);
-		return "product/men";
+	public String men(Filter filter, String pageNum, Model model, String[] gender) {
+		int result = 0;
+		// 페이징
+		int rowPerPage = 10; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
 		
+		int total = 0;
+		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		// int num = total - startRow + 1;
+		filter.setStartRow(startRow);
+		filter.setEndRow(endRow);
+		
+		if (filter.getGender() != null || filter.getColor() != null || filter.getPrice() != null || filter.getProductSize() != null) {
+			total = ps.getTotal2(filter);	// 예스필터
+			PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+			// List<Product> filterList = ps.filterList(filter);
+			List<Product> filterList = ps.filterListPaging(filter);
+			model.addAttribute("filterList", filterList);
+			model.addAttribute("pb", pb);
+			result = 1;
+		} else {
+			total = ps.getTotal1(filter);	// 노필터
+			PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+			// List<Product> productList = ps.list();
+			List<Product> productList = ps.listPaging(filter);
+			model.addAttribute("productList", productList);
+			model.addAttribute("pb", pb);
+			result = 2;
+		}
+		model.addAttribute("gender", gender);
+		model.addAttribute("total", total);
+		model.addAttribute("result", result);
+		
+		return "product/newReleases";
+	}
+	
+	@RequestMapping("/product/women.do") //여성상품 by 수인
+	public String women(Filter filter, String pageNum, Model model, String[] gender) {
+		int result = 0;
+		// 페이징
+		int rowPerPage = 10; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		
+		int total = 0;
+		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		// int num = total - startRow + 1;
+		filter.setStartRow(startRow);
+		filter.setEndRow(endRow);
+		
+		if (filter.getGender() != null || filter.getColor() != null || filter.getPrice() != null || filter.getProductSize() != null) {
+			total = ps.getTotal2(filter);	// 예스필터
+			PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+			// List<Product> filterList = ps.filterList(filter);
+			List<Product> filterList = ps.filterListPaging(filter);
+			model.addAttribute("filterList", filterList);
+			model.addAttribute("pb", pb);
+			result = 1;
+		} else {
+			total = ps.getTotal1(filter);	// 노필터
+			PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+			// List<Product> productList = ps.list();
+			List<Product> productList = ps.listPaging(filter);
+			model.addAttribute("productList", productList);
+			model.addAttribute("pb", pb);
+			result = 2;
+		}
+		model.addAttribute("gender", gender);
+		model.addAttribute("total", total);
+		model.addAttribute("result", result);
+		
+		return "product/newReleases";
 	}
 	
 }
