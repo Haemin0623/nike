@@ -88,13 +88,16 @@
 			</div>
 		</div>
 	</section>
-
-
+	
+	
+	
+	
+	
+	
+	
  <!-- Naver Login Image & Button -->
     <a onclick="naverLogin();"><img width="200" height="50" th:src="@{/images/btnG_완성형.png}"></a>
 <script>
-
-
     // 네이버 로그인을 위한 팝업창 생성
     function naverLogin(){
         let uri = 'https://nid.naver.com/oauth2.0/authorize?' +
@@ -102,13 +105,61 @@
             '&client_id=SLChQKPTdZVYH07OK_Rc' +     // 발급받은 client_id 를 입력
             '&state=NAVER_LOGIN_TEST' +             // CORS 를 방지하기 위한 특정 토큰값(임의값 사용)
             '&redirect_uri=http://localhost:8080/NaverLoginCallback';   // 어플케이션에서 등록했던 CallBack URL를 입력
-
         // 사용자가 사용하기 편하게끔 팝업창으로 띄어준다.
         //window.open(uri, "Naver Login Test PopupScreen", "width=450, height=600");
         location.href=uri;
     }
-
 </script>
 
+
+<!-- 	kakao Login Api -->
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<a id="kakao-login-btn"></a>
+	<div id="result"></div>
+<script type="text/javascript">
+  function unlinkApp() {
+    Kakao.API.request({
+      url: '/v1/user/unlink',
+      success: function(res) {
+        alert('success: ' + JSON.stringify(res))
+      },
+      fail: function(err) {
+        alert('fail: ' + JSON.stringify(err))
+      },
+    })
+  }
+</script>
+<script type="text/javascript">
+Kakao.init('2c40444a3249a32f06f25ad82e446b06');
+console.log(Kakao.isInitialized());
+  Kakao.Auth.createLoginButton({
+    container: '#kakao-login-btn',
+    success: function(authObj) {
+      Kakao.API.request({
+        url: '/v2/user/me',
+        success: function(result) {
+          id = result.id
+          connected_at = result.connected_at
+          kakao_account = result.kakao_account
+          email ="";
+          if(typeof kakao_account != 'undefined'){
+        	  email = kakao_account.email;
+          }
+          location.href='/member/kakaoLogin.do?account_email='+email+'&kakao_id='+id
+        },
+        fail: function(error) {
+          alert(
+            'login success, but failed to request user information: ' +
+              JSON.stringify(error)
+          )
+        },
+      })
+    },
+    fail: function(err) {
+      alert('failed to login: ' + JSON.stringify(err))
+    },
+  })
+</script>
 </body>
 </html>
