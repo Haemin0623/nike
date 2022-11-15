@@ -421,8 +421,8 @@ public class AdminController {
 
 	@RequestMapping("/admin/help.do") //고객센터.공지목록 by 수인
 	public String help(Model model){
-//		List<Notice> noticeList = ns.selectNoticeForHelp(); 
-//		model.addAttribute(noticeList);
+		List<Notice> noticeList = ns.selectNoticeForHelp(); 
+		model.addAttribute(noticeList);
 		return "admin/help";
 	}
 	
