@@ -88,6 +88,10 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> recommendList() {
 		return pm.recommendList();
 	}
+	@Override
+	public Product productCategory(int productNo) {
+		return pm.productCategory(productNo);
+	}
 
 
 

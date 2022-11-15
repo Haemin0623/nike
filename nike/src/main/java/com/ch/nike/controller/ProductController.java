@@ -93,12 +93,14 @@ public class ProductController {
 	@RequestMapping("/product/productDetail.do") //해당상품의 상세정보 by수인
 	public String productDetail(int productNo, String color, Model model) {
 		Product product = ps.selectsoo(productNo);
+		Product category = ps.productCategory(productNo);
 		product.setColor(color);
 		List<ProductDetail> productDetailList  = pds.detailList(productNo);
 		List<ProductPhoto> productPhotoList = pps.photoList(product);
 		List<ProductFeature> productFeatureList = pfs.featureList(productNo);
 		List<ProductPhoto> thumPhotoList = pps.thumPhotoList(productNo);
 		List<Product> productRecommendList = ps.recommendList();
+		
 		
 		model.addAttribute("productFeatureList",productFeatureList);
 		
@@ -117,6 +119,7 @@ public class ProductController {
 		model.addAttribute("thumPhotoList",thumPhotoList);
 		model.addAttribute("productRecommendList", productRecommendList);
 		model.addAttribute("color", color);
+		model.addAttribute("category", category);
 		
 		model.addAttribute("rvPhotos", rvPhotos2);
 		model.addAttribute("rvList", rvList);
@@ -124,86 +127,4 @@ public class ProductController {
 
 		return "product/productDetail";
 	}
-	
-	
-	@RequestMapping("/product/men.do") //남성상품 by 수인
-	public String men(Filter filter, String pageNum, Model model, String[] gender) {
-		int result = 0;
-		// 페이징
-		int rowPerPage = 10; // 한 화면에 보여주는 갯수
-		if (pageNum == null || pageNum.equals("")) pageNum = "1";
-		int currentPage = Integer.parseInt(pageNum);
-		
-		int total = 0;
-		
-		int startRow = (currentPage - 1) * rowPerPage + 1;
-		int endRow = startRow + rowPerPage - 1;
-		// int num = total - startRow + 1;
-		filter.setStartRow(startRow);
-		filter.setEndRow(endRow);
-		
-		if (filter.getGender() != null || filter.getColor() != null || filter.getPrice() != null || filter.getProductSize() != null) {
-			total = ps.getTotal2(filter);	// 예스필터
-			PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-			// List<Product> filterList = ps.filterList(filter);
-			List<Product> filterList = ps.filterListPaging(filter);
-			model.addAttribute("filterList", filterList);
-			model.addAttribute("pb", pb);
-			result = 1;
-		} else {
-			total = ps.getTotal1(filter);	// 노필터
-			PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-			// List<Product> productList = ps.list();
-			List<Product> productList = ps.listPaging(filter);
-			model.addAttribute("productList", productList);
-			model.addAttribute("pb", pb);
-			result = 2;
-		}
-		model.addAttribute("gender", gender);
-		model.addAttribute("total", total);
-		model.addAttribute("result", result);
-		
-		return "product/newReleases";
-	}
-	
-	@RequestMapping("/product/women.do") //여성상품 by 수인
-	public String women(Filter filter, String pageNum, Model model, String[] gender) {
-		int result = 0;
-		// 페이징
-		int rowPerPage = 10; // 한 화면에 보여주는 갯수
-		if (pageNum == null || pageNum.equals("")) pageNum = "1";
-		int currentPage = Integer.parseInt(pageNum);
-		
-		int total = 0;
-		
-		int startRow = (currentPage - 1) * rowPerPage + 1;
-		int endRow = startRow + rowPerPage - 1;
-		// int num = total - startRow + 1;
-		filter.setStartRow(startRow);
-		filter.setEndRow(endRow);
-		
-		if (filter.getGender() != null || filter.getColor() != null || filter.getPrice() != null || filter.getProductSize() != null) {
-			total = ps.getTotal2(filter);	// 예스필터
-			PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-			// List<Product> filterList = ps.filterList(filter);
-			List<Product> filterList = ps.filterListPaging(filter);
-			model.addAttribute("filterList", filterList);
-			model.addAttribute("pb", pb);
-			result = 1;
-		} else {
-			total = ps.getTotal1(filter);	// 노필터
-			PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-			// List<Product> productList = ps.list();
-			List<Product> productList = ps.listPaging(filter);
-			model.addAttribute("productList", productList);
-			model.addAttribute("pb", pb);
-			result = 2;
-		}
-		model.addAttribute("gender", gender);
-		model.addAttribute("total", total);
-		model.addAttribute("result", result);
-		
-		return "product/newReleases";
-	}
-	
 }

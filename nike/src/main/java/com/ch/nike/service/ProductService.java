@@ -47,6 +47,9 @@ public interface ProductService {
 	//상품상세페이지 - 추천상품
 	List<Product> recommendList();
 	
+	//상품상세페이지 - 카테고리
+	Product productCategory(int productNo);
+	
 
 
 }

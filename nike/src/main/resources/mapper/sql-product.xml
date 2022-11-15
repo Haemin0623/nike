@@ -302,6 +302,8 @@
 			and c.category_no = p.category_no
 			and pp.batch='1'
 	</select>
+<!-- 		Product productCategory(int productNo); -->
+	
 	
 	
 </mapper>
