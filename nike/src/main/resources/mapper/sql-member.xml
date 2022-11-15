@@ -84,4 +84,18 @@
 		from	member
 		where	email = #{account_email}
 	</select>
+
+	<!-- NikeLogin -->
+	<insert id="insertByNaver" parameterType="member">
+		insert	into	member
+				values	(#{email},
+						#{name},
+						#{password},
+						#{memberGender},
+						To_Date('1993-12-10','yy/mm/dd'),
+						#{memberTel},
+						sysdate,
+						'N')
+	</insert>
+
 </mapper>

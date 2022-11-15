@@ -15,7 +15,8 @@ public interface MemberService {
 	int insert(Member member);
 	// 비번만 변경
 	int changePw(Member member);
-	
+	// naver 로그인 회원등록
+	int insertByNaver(Member member);
 	
 	
 	// AccountCon

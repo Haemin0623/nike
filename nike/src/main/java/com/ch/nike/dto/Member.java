@@ -18,8 +18,13 @@ public class Member {
 	private Date regDate;
 	private String memberDel;
 	
+
 	//kakao member
 	private String profile_nickname;
 	private String account_email;
 	private String kakao_id;
+
+	// naver
+	private String date;
+
 }

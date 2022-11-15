@@ -1,5 +1,7 @@
 package com.ch.nike.controller;
 
+import java.util.Map;
+
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
@@ -9,10 +11,15 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ch.nike.dto.Member;
+import com.ch.nike.dto.NaverLoginProfile;
+import com.ch.nike.dto.NaverLoginVo;
 import com.ch.nike.service.MemberService;
+import com.ch.nike.service.NaverLoginService;
 
 @Controller
 public class MemberController {
@@ -22,6 +29,8 @@ public class MemberController {
 	private JavaMailSender jms;
 	@Autowired
 	private BCryptPasswordEncoder bpe; //비밀번호 암호화
+	@Autowired
+	private NaverLoginService service;
 	
 	@RequestMapping("/member/emailLoginForm.do")
 	public String emailLoginForm(Member member, Model model) {
@@ -157,10 +166,6 @@ public class MemberController {
 	}
 	
 	
-	
-	
-	
-	
 	@RequestMapping("/member/kakaoLogin.do")
 	public String kakaoLogin(Member member, Model model, HttpSession session) {
 		Member member2 = ms.kakaoselect(member);
@@ -179,4 +184,37 @@ public class MemberController {
 		session.setAttribute("email", member.getAccount_email());
 		return "redirect:/";
 	}
+
+
+    @GetMapping("/NaverLoginCallback")
+    public String NaverLoginCallback(@RequestParam Map<String, String> resValue, HttpSession session){
+        // code 를 받아오면 code 를 사용하여 access_token를 발급받는다.
+        final NaverLoginVo naverLoginVo = service.requestNaverLoginAcceccToken(resValue, "authorization_code");
+        // access_token를 사용하여 사용자의 고유 id값을 가져온다.
+        final NaverLoginProfile naverLoginProfile = service.requestNaverLoginProfile(naverLoginVo);
+
+        int result = 0;
+        Member member = new Member();
+        member.setPassword(naverLoginProfile.getId());
+        member.setEmail(naverLoginProfile.getEmail());
+        member.setName(naverLoginProfile.getName());
+        member.setMemberGender(naverLoginProfile.getGender());
+        member.setMemberTel(naverLoginProfile.getMobile());
+        String date = naverLoginProfile.getBirthyear()+"-"+naverLoginProfile.getBirthday();
+        member.setDate(date);
+        
+        Member member2 = ms.select(member.getEmail());
+        if (member2 == null) {
+        	result = ms.insertByNaver(member);
+        	if(result > 0) {
+        		session.setAttribute("email", member.getEmail());
+        		return "redirect:/";
+        	}
+        } else {
+        	session.setAttribute("email", member.getEmail());
+        	return "redirect:/";
+        }
+        return naverLoginProfile.toString();
+    }
 }
+

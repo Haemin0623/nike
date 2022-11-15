@@ -41,6 +41,7 @@ public class MemberServiceImpl implements MemberService {
 	public int getTotal(PagingBean pagingbean) {
 		return mm.getTotal(pagingbean);
 	}
+
 	@Override
 	public int kakaoinsert(Member member) {
 		return mm.kakaoinsert(member);
@@ -48,6 +49,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member kakaoselect(Member member) {
 		return mm.kakaoselect(member);
+	}
+	
+	
+	// NikeLogin
+	public int insertByNaver(Member member) {
+		return mm.insertByNaver(member);
+
 	}
 
 	

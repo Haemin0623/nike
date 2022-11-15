@@ -24,7 +24,12 @@ public interface MemberMapper {
 	List<Member> paginglist(PagingBean pagingbean);
 	int getTotal(PagingBean pagingbean);
 	
+
 	int kakaoinsert(Member member);
 	Member kakaoselect(Member member);
+
+	// NikeLogin
+	int insertByNaver(Member member);
+
 
 }
