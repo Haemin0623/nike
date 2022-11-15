@@ -283,7 +283,6 @@ public class AccountController {
 		model.addAttribute("result", result);
 		return "account/deleteQna";
 	}
-<<<<<<< HEAD
 	@RequestMapping("/account/addAddrForm.do")//  by창률 배송지 추가 페이지
 	public String addAddrForm(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");

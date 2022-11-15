@@ -37,14 +37,12 @@
 					'N'
 					)
 	</insert>
-<<<<<<< HEAD
 	<update id="Deleteaddr" parameterType="integer">
 		update 	address 
 		set 	addr_del='Y' 
 		where 	addr_no=${addrNo}
 			and def_addr = 'N'
 	</update>
-=======
 	
 	
 	<!-- UserOrderCon -->
@@ -53,5 +51,4 @@
 		from	address 
 		where	email = #{email}
 	</select>
->>>>>>> 75f4604 (카트리스트 상세정보 표기, 사이즈 변경, 수량 변경, 주문결제(paymentAPI) 완료)
 </mapper>
