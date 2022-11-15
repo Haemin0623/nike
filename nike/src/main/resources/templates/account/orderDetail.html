@@ -25,7 +25,7 @@
     <meta property="og:title" content="orderDetail">
     <meta property="og:type" content="website">
   </head>
-  <body class="u-body u-xl-mode" data-lang="en">
+  <body layout:fragment="content" class="u-body u-xl-mode" data-lang="en">
   
   <link rel="stylesheet" href="/nice/nicepage.css" media="screen">
 <link rel="stylesheet" href="/nice/orderDetail.css" media="screen">
@@ -64,7 +64,10 @@
     </section>
     <section class="u-clearfix u-section-2" id="sec-40ed">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <p class="u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-1"> 온라인 구매 - [[${address.orderDate}]]<br>2022092811121292485552643&nbsp;- [[${address.status}]]
+        <p class="u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-1"> 온라인 구매 - [[${address.orderDate}]]<br>2022092811121292485552643&nbsp;- 
+        	<th:block th:if="${address.status} == 'N'">배송 전</th:block>
+        	<th:block th:if="${address.status} == 'I'">배송 중</th:block>
+        	<th:block th:if="${address.status} == 'Y'">배송 완료</th:block>
         </p>
         <div class="u-border-1 u-border-grey-30 u-line u-line-horizontal u-line-1"></div>
         <div class="u-border-1 u-border-grey-30 u-line u-line-horizontal u-line-2"></div>
