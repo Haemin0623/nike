@@ -24,5 +24,9 @@ public class AddressServiceImpl implements AddressService {
 	public int insertaddress(Address address) {
 		return am.insertaddress(address);
 	}
+	@Override
+	public int Deleteaddr(int addrNo) {
+		return am.Deleteaddr(addrNo);
+	}
 	
 }

@@ -15,6 +15,8 @@ public interface MemberMapper {
 	Member select(String email);
 	int insert(Member member);
 	int changePw(Member member); //새비번변경
+	int kakaoinsert(Member member);
+	Member kakaoselect(Member member);
 	
 	// AccountCon
 	int deleteMember(String email);
@@ -23,10 +25,6 @@ public interface MemberMapper {
 	// AdminCon
 	List<Member> paginglist(PagingBean pagingbean);
 	int getTotal(PagingBean pagingbean);
-	
-
-	int kakaoinsert(Member member);
-	Member kakaoselect(Member member);
 
 	// NikeLogin
 	int insertByNaver(Member member);

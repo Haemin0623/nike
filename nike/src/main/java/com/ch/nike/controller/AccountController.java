@@ -258,12 +258,8 @@ public class AccountController {
 		String email = (String) session.getAttribute("email");
 		List<Address> addrList = as.selectAddr(email);
 		model.addAttribute("addrList", addrList);
+		model.addAttribute("email",email);
 		return "account/address";
-	}
-	@RequestMapping("/account/addAddr.do")	//  by선희
-	public String addAddr(Model model, HttpSession session) {
-		
-		return "account/addAddr";
 	}
 	@RequestMapping("/account/qnaList.do")	// 문의 내역 불러오기 by 선희
 	public String qnaList(Model model, HttpSession session) {
@@ -273,11 +269,30 @@ public class AccountController {
 		return "account/qnaList";
 	}
 	
-		@RequestMapping("/account/deleteQna.do")	// 문의 내역 삭제하기 by 선희
+	@RequestMapping("/account/deleteQna.do")	// 문의 내역 삭제하기 by 선희
 	public String deleteQna(int qnaNo, Model model, HttpSession session) {
 		int result = qs.deleteQna(qnaNo);
 		model.addAttribute("result", result);
 		return "account/deleteQna";
-		}
-	
+	}
+	@RequestMapping("/account/addAddrForm.do")//  by창률 배송지 추가 페이지
+	public String addAddrForm(Model model, HttpSession session) {
+		String email = (String) session.getAttribute("email");
+		model.addAttribute("email",email);
+		return "account/addAddrForm";
+	}
+	@RequestMapping("/account/addAddr.do")	//  by창률 배송지 추가
+	public String addAddr(Model model,Address address, HttpSession session) {
+		int result = 0;
+		result = as.insertaddress(address);
+		List<Address> addrList = as.selectAddr(address.getEmail());
+		model.addAttribute("addrList", addrList);
+		return "redirect:/account/address.do";
+	}
+	@RequestMapping("/account/addrDelete.do")
+	public String addrDelete(Model model,int addrNo) {
+		int result = 0;
+		result = as.Deleteaddr(addrNo);
+		return "redirect:/account/address.do";
+	}
 }

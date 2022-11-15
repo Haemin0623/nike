@@ -16,4 +16,7 @@ public interface AddressMapper {
 
 	int insertaddress(Address address);
 
+	int Deleteaddr(int addrNo);
+
+
 }

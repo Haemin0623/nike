@@ -8,6 +8,7 @@
 		select	*
 		from	address
 		where	email = #{email}
+			and	addr_del='N'	
 	</select>
 	<select id="getAddr" parameterType="integer" resultType="Address">
 		select	a.*,
@@ -18,7 +19,6 @@
 		where	a.addr_no=uo.addr_no 
 			and order_no=#{orderNo}
 	</select>
-	
 	<insert id="insertaddress" parameterType="address">
 		<selectKey keyProperty="addrNo" order="BEFORE" resultType="integer">
 			select	nvl(max(addr_no),0) +1 addrNo 
@@ -32,6 +32,15 @@
 					#{roadaddress},
 					#{jibunaddress},
 					#{zonecode},
-					#{detailaddress})
+					#{detailaddress},
+					'N',
+					'N'
+					)
 	</insert>
+	<update id="Deleteaddr" parameterType="integer">
+		update 	address 
+		set 	addr_del='Y' 
+		where 	addr_no=${addrNo}
+			and def_addr = 'N'
+	</update>
 </mapper>

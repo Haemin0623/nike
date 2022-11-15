@@ -17,9 +17,12 @@ public class Address {
 	private String jibunaddress;
 	private int zonecode;
 	private String detailaddress;
+	private String defAddr;
+	private String addrDel;
 	
 	//UserOrder
 	private int orderNo;
 	private Date orderDate;	
 	private String status;
+	
 }

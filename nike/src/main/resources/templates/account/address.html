@@ -8,21 +8,24 @@
 </head>
 <body>
 <div layout:fragment="content">
+<h2>저장된 배송지</h2>
 	<div th:if="${addrList} == 0">
 		 	배송지 없으면
 			현재 배송지 없음
 			
 	</div>
+	
 	<div th:if="${addrList} != 0" th:each="addr:${addrList}">
+		
 		[[${addr.addrName}]]
 		[[${addr.tel}]]
 		[[${addr.roadaddress}]]
 		[[${addr.jibunaddress}]]
 		[[${addr.detailaddress}]]
 		[[${addr.zonecode}]]
+	<a th:href="@{/account/addrDelete.do(addrNo=${addr.addrNo})}">삭제</a>
 	</div>
 	<a class="btn btn-info" th:href="@{/account/addAddrForm.do}">주소추가</a>
-
 </div>
 </body>
 </html>

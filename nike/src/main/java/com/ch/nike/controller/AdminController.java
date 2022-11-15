@@ -447,14 +447,8 @@ public class AdminController {
 		model.addAttribute("store",store);
 		return "admin/adminStoreUpdateForm";
 	}
-	
-	
-	
-	
-	@RequestMapping("/adminAddressTest.do")
-	public String adminaAddressTest(Address address, Model model) {
-		int result = 0;
-		result = as.insertaddress(address);
-		return "admin/adminmain";
+	@RequestMapping("/admin/storeSearch.do")
+	public String storeSearch() {
+		return "admin/storeSearch";
 	}
 }

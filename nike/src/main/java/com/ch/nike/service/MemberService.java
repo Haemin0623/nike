@@ -17,7 +17,10 @@ public interface MemberService {
 	int changePw(Member member);
 	// naver 로그인 회원등록
 	int insertByNaver(Member member);
-	
+	// kakao 회원가입
+	int kakaoinsert(Member member);
+	//kakao 아이디 중복 조회
+	Member kakaoselect(Member member);
 	
 	// AccountCon
 	// 회원 탈퇴
@@ -33,6 +36,6 @@ public interface MemberService {
 	//회원정보 수정
 	int updateProfile(Member member);
 	
-	int kakaoinsert(Member member);
-	Member kakaoselect(Member member);
+	
+	
 }

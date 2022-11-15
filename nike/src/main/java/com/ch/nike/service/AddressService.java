@@ -12,5 +12,6 @@ public interface AddressService {
 	// 해당 주문번호에 대한 배송지
 	Address getAddr(int orderNo);
 	int insertaddress(Address address);
+	int Deleteaddr(int addrNo);
 
 }

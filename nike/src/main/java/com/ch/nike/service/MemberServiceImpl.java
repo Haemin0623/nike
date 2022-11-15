@@ -24,6 +24,12 @@ public class MemberServiceImpl implements MemberService {
 	public int changePw(Member member) {
 		return mm.changePw(member);
 	}
+	public int kakaoinsert(Member member) {
+		return mm.kakaoinsert(member);
+	}
+	public Member kakaoselect(Member member) {
+		return mm.kakaoselect(member);
+	}
 	
 	// AccountCon
 	public int deleteMember(String email) {
@@ -41,15 +47,9 @@ public class MemberServiceImpl implements MemberService {
 	public int getTotal(PagingBean pagingbean) {
 		return mm.getTotal(pagingbean);
 	}
-
-	@Override
-	public int kakaoinsert(Member member) {
-		return mm.kakaoinsert(member);
-	}
-	@Override
-	public Member kakaoselect(Member member) {
-		return mm.kakaoselect(member);
-	}
+	
+	
+	
 	
 	
 	// NikeLogin

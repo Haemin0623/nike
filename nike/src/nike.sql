@@ -61,6 +61,8 @@ create table address (
 	jibunaddress	varchar2(100)	not	null,	
 	zonecode		number(5)		not	null,	
 	detailaddress	varchar2(100)	not	null,
+	def_addr		char(1)	default 'N'	not null,
+	addr_del		char(1)	default 'N'	not null,
 
 	constraint fk_address_email foreign key(email) references member(email)
 );
