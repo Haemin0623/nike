@@ -1,41 +1,70 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/layout}">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-<div layout:fragment="content" align="center">
-	<h3 > 위시리스트 </h3>
-	<table border="1" width="80%">
-		<tr>
-			<th> 번호 </th>
-			<th> 상품사진 </th>
-			<th> 상품명 </th>
-			<th> 컬러 </th>
-			<th></th>	
-		</tr>
-		
-		<tr th:if="${#lists.size(wishList)} == 0">
-			<td colspan ="5"> 위시리스트가 비었습니다</td>
-		</tr>
-		<tr th:if="${#lists.size(wishList)} > 0" th:each="wish:${wishList}" >
-			<td>[[${wish.wishNo}]]</td>
-			<td> 
-				<a th:href="@{/product/productDetail.do(productNo=${wish.productNo},color=${wish.color})}">
-				<img alt="" th:src="@{/images/product_photo/}+${wish.productPhoto}" height="150"></a>
-			</td>
-			<td>[[${wish.productName}]]</td>
-			<td>[[${wish.color}]]</td>
-			<td>&nbsp; <a th:href="@{/product/addWish.do(productNo=${wish.productNo},color=${wish.color},page=-3)}">삭제</a>
-		</tr>
-	</table>
-	
-</div>
-
-
-</body>
-</html>
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}" style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="위시리스트">
+    <meta name="description" content="">
+    <title>wishList</title>
+   
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="wishList">
+    <meta property="og:type" content="website">
+  </head>
+  <body layout:fragment="content" class="u-body u-xl-mode" data-lang="en">
+  
+  <link rel="stylesheet" href="/nice/nicepage.css" media="screen">
+	<link rel="stylesheet" href="/nice/wishList.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/nice/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/nice/nicepage.js" defer=""></script>
+  
+  
+    <section class="u-clearfix u-section-1" id="sec-b0bf">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-text u-text-default u-title u-text-1">위시리스트</h1>
+        <a href="https://nicepage.com/c/education-website-mockup" class="u-active-black u-border-2 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-hover-white u-radius-23 u-text-active-white u-text-black u-text-hover-black u-white u-btn-1">편집</a>
+        <div class="u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+          
+          	<div th:if="${#lists.size(wishList)} == 0">
+			위시리스트가 비었습니다
+			</div>
+          
+            <div class="u-container-style u-list-item u-repeater-item" th:each="wish:${wishList}"  th:if="${#lists.size(wishList)} > 0">
+              <div class="u-container-layout u-similar-container u-container-layout-1">
+              <a th:href="@{/product/productDetail.do(productNo=${wish.productNo},color=${wish.color})}">
+                <img class="u-image u-image-default u-image-1" th:src="@{/images/product_photo/}+${wish.productPhoto}" alt="" data-image-width="600" data-image-height="600">
+                </a>
+                <a th:href="@{/product/addWish.do(productNo=${wish.productNo},color=${wish.color},page=-3)}">
+                <span class="u-icon u-icon-circle u-white u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 51.997 51.997" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-ae2b"></use></svg><svg class="u-svg-content" viewBox="0 0 51.997 51.997" x="0px" y="0px" id="svg-ae2b" style="enable-background:new 0 0 51.997 51.997;"><path d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
+	c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478
+	c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014
+	C52.216,18.553,51.97,16.611,51.911,16.242z"></path></svg></span>
+				</a>
+                <p class="u-large-text u-text u-text-default u-text-variant u-text-2">[[${wish.productName}]]</p>
+                <p class="u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-3">[[${wish.color}]]</p>
+                <p class="u-small-text u-text u-text-default u-text-variant u-text-4">price,,,</p>
+                <a href="https://nicepage.com/c/education-website-mockup" class="u-active-white u-border-2 u-border-active-grey-10 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-hover-white u-radius-23 u-text-active-black u-text-black u-text-hover-black u-white u-btn-2">사이즈 선택</a>
+              </div>
+            </div>
+            
+           
+          </div>
+        </div>
+      </div>
+    </section>
+  
+</body></html>

@@ -93,10 +93,12 @@ public class ProductController {
 	@RequestMapping("/product/productDetail.do") //해당상품의 상세정보 by수인
 	public String productDetail(int productNo, String color, Model model) {
 		Product product = ps.selectsoo(productNo);
+		product.setColor(color);
 		
 		List<ProductDetail> productDetailList  = pds.detailList(productNo);
-		List<ProductPhoto> productPhotoList = pps.photoList(productNo);		
+		List<ProductPhoto> productPhotoList = pps.photoList(product);
 		List<ProductFeature> productFeatureList = pfs.featureList(productNo);
+		List<ProductPhoto> thumPhotoList = pps.thumPhotoList(productNo);
 
 		model.addAttribute("productFeatureList",productFeatureList);
 		
@@ -112,6 +114,7 @@ public class ProductController {
 		model.addAttribute("product", product);
 		model.addAttribute("productDetailList",productDetailList);
 		model.addAttribute("productPhotoList",productPhotoList);
+		model.addAttribute("thumPhotoList",thumPhotoList);
 		model.addAttribute("color", color);
 		
 		model.addAttribute("rvPhotos", rvPhotos2);

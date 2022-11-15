@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content" align="center"> <!-- by수인 -->
+	<form action="pwUpdateProfile.do" method="post">
+		<h2>비밀번호 변경</h2> 	
+		<table border="1" width="800px"> 
+			<tr>
+				<th>현재 비밀번호</th>
+				<td><input type="text" name="password"></td>
+			</tr>
+			<tr>
+				<th>새 비밀번호</th>
+				<td><input type="text" name="newPw1"></td>
+			</tr>
+			<tr>
+				<th>새 비밀번호 확인</th>
+				<td><input type="text" name="newPw2"></td>
+			</tr>
+
+		</table>
+		<input type="submit" value="저장">
+	</form>
+</div>		
+</body>
+</html>

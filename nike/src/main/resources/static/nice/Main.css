@@ -226,7 +226,6 @@
 
 .u-section-3 .u-repeater-1 {
   grid-gap: 10px 10px;
-  grid-auto-columns: calc(50% - 5px);
   grid-template-columns: calc(50% - 5px) calc(50% - 5px);
   min-height: 455px;
 }
@@ -283,7 +282,6 @@
 
 @media (max-width: 1199px) {
   .u-section-3 .u-repeater-1 {
-    grid-template-columns: repeat(2, calc(50% - 5px));
     min-height: 374px;
   }
 
@@ -308,7 +306,6 @@
 
 @media (max-width: 991px) {
   .u-section-3 .u-repeater-1 {
-    grid-auto-columns: calc(100% - 0px);
     grid-template-columns: 100%;
   }
 
@@ -322,10 +319,6 @@
 }
 
 @media (max-width: 767px) {
-  .u-section-3 .u-repeater-1 {
-    grid-auto-columns: 100%;
-  }
-
   .u-section-3 .u-image-1 {
     height: 430px;
   }

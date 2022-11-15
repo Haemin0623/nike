@@ -1,44 +1,155 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;"
+	lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="keywords" content="이제 나이키 멤버가 되어볼까요?">
+<meta name="description" content="">
+<title>join</title>
+<link rel="stylesheet" th:href="@{/nice/nicepage.css}" media="screen">
+<link rel="stylesheet" th:href="@{/nice/join.css}" media="screen">
+<script class="u-script" type="text/javascript"
+	th:src="@{/nice/jquery.js}" defer=""></script>
+<script class="u-script" type="text/javascript"
+	th:src="@{/nice/nicepage.js}" defer=""></script>
+<meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+<link id="u-theme-google-font" rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+<script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+<meta name="theme-color" content="#478ac9">
+<meta property="og:title" content="join">
+<meta property="og:type" content="website">
 </head>
-<body>
+<body class="u-body u-xl-mode" data-lang="en">
+	<section class="u-clearfix u-section-1" id="sec-d8d5">
+		<div class="u-clearfix u-sheet u-sheet-1">
+			<div class="u-container-style u-group u-shape-rectangle u-group-1">
+				<div class="u-container-layout u-container-layout-1">
+					<img class="u-image u-image-contain u-image-default u-image-1"
+						th:src="@{/nice/images/nilke-removebg-preview.png}" alt=""
+						data-image-width="480" data-image-height="317">
+					<h1 class="u-text u-text-body-color u-text-1">이제 나이키 멤버가
+						되어볼까요?</h1>
+					<p class="u-text u-text-body-color u-text-default u-text-2">
+						인증코드를 전송했습니다.<br>[[${member.email}]]&nbsp;&nbsp;<span
+							style="text-decoration: underline !important;"
+							class="u-text-grey-50"><a th:href="@{emailLoginForm.do(email=${member.email})}">편집</a></span>
+					</p>
+					<div class="u-form u-form-1">
+						<form action="join.do"
+							class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form"
+							name="form" style="padding: 10px;">
+							<input type="hidden" name="email" th:value="${member.email}">
+							<div class="u-form-group u-label-none">
+								<label for="email-8c47" class="u-label u-label-1">password</label>
+								<input type="text" placeholder="코드" id="email-8c47" name="verifiCode"
+									class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-1"
+									required="required" maxlength="50">
+							</div>
+							<p
+								class="u-align-right u-form-group u-form-text u-label-none u-text u-text-grey-50 u-text-3">
+								<span id="time"></span>초 후 코드 <a th:href = "@{emailLogin.do(email=${member.email})}">재전송</a></p>
+							<div class="u-form-group u-label-none u-form-group-3">
+								<label for="text-f620" class="u-label u-label-2">Input</label> <input
+									type="text" placeholder="이름" id="text-f620" name="name"
+									class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-2"
+									maxlength="30" required="required">
+							</div>
+							<div class="u-form-group u-label-none u-form-group-4">
+								<label for="text-3a5d" class="u-label u-label-3">Input</label> <input
+									type="password" placeholder="비밀번호" id="text-3a5d" name="password"
+									class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-3"
+									maxlength="100" required="required">
+							</div>
+							<p
+								class="u-form-group u-form-text u-label-none u-text u-text-grey-50 u-text-4">
+								&nbsp;X 최소 8자<br>&nbsp;X 알파벳 대문자 및 소문자 조합, 최소 1개 이상의 숫자
+							</p>
+							<div
+								class="u-form-group u-form-partition-factor-3 u-label-none u-form-group-6">
+								<label for="text-e786" class="u-label u-label-4">Input</label> <input
+									type="text" id="text-e786" name="tel1"
+									class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-4"
+									placeholder="전화번호를(3자리)" required="required">
+							</div>
+							<div
+								class="u-form-group u-form-partition-factor-3 u-label-none u-form-group-7">
+								<label for="text-dca4" class="u-label u-label-5">Input</label> <input
+									type="text" placeholder="입력하시고(4자리)" id="text-dca4" name="tel2"
+									class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-5">
+							</div>
+							<div
+								class="u-form-group u-form-partition-factor-3 u-label-none u-form-group-8">
+								<label for="text-be51" class="u-label u-label-6">Input</label> <input
+									type="text" placeholder="멤버쉽 혜택을 누리세요(4자리)" id="text-be51"
+									name="tel3"
+									class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-6"
+									required="required">
+							</div>
+							<div
+								class="u-form-group u-form-select u-label-none u-form-group-9">
+								<label for="select-d46b" class="u-label u-label-7">쇼핑 기본
+									설정</label>
+								<div class="u-form-select-wrapper">
+									<select id="select-d46b" name="memberGender"
+										class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-7"
+										required="required">
+										<option value="M">남성용</option>
+										<option value="F">여성용</option>
+									</select>
+									<svg class="u-caret u-caret-svg" version="1.1" id="Layer_1"
+										xmlns="http://www.w3.org/2000/svg"
+										xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+										width="16px" height="16px" viewBox="0 0 16 16"
+										style="fill: currentColor;" xml:space="preserve">
+										<polygon class="st0" points="8,12 2,4 14,4 "></polygon></svg>
+								</div>
+							</div>
+							<div
+								class="u-form-date u-form-group u-label-none u-form-group-10">
+								<label for="date-1b73" class="u-label u-label-8">Date</label> <input
+									type="date" placeholder="YYYY/MM/DD" id="date-1b73"
+									name="birthday"
+									class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-8"
+									required="">
+							</div>
+							<div
+								class="u-form-checkbox u-form-group u-label-none u-form-group-11">
+								<input type="checkbox" id="checkbox-e653" name="checkbox"
+									value="On" required="required"> <label
+									for="checkbox-e653" class="u-label u-label-9">나이키의 개인
+									정보 처리 방침 및 이용약관에 동의합니다.</label>
+							</div>
+							<div
+								class="u-align-center u-form-group u-form-submit u-label-none">
+								<input type="submit" value="submit"
+									class="u-form-control-hidden"> <a href="#"
+									class="u-black u-border-none u-btn u-btn-round u-btn-submit u-button-style u-radius-30 u-btn-1">계정
+									만들기<br>
+								</a>
+							</div>
+							<div class="u-form-send-message u-form-send-success">Thank
+								you! Your message has been sent.</div>
+							<div class="u-form-send-error u-form-send-message">Unable
+								to send your message. Please fix errors then try again.</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
-<h2>이제 나이키 멤버가 되어볼까요?</h2>
-<h4>인증코드를 전송했습니다</h4>
-<h4>[[${member.email}]] <a th:href="@{emailLoginForm.do(email=${member.email})}">편집</a></h4>
-
-<form action="join.do" name="frm" method="post">
-	<input type="hidden" name="email" th:value="${member.email}">
-	<input type="text" name="verifiCode" required="required" placeholder="이메일로 받은 인증코드" >
-	<div id="time"></div><p>
-	<a th:href = "@{emailLogin.do(email=${member.email})}">인증코드재전송</a><p> <!-- 무조건나오게 -->
-	
-	<input type="text" name="name" required="required" placeholder="이름"><p>
-	<input type="password" name="password" required="required" placeholder="비밀번호"><p> <!-- onchange=함수/비번조건추가(최소몇자, 대,소문자,최소1개숫자) -->
-	<span>※최소 8자</span><p>
-	<span>※알파벳 대문자 및 소문자 조합, 최소 1개 이상의 숫자</span><p>
-	
-	<select id="gender" name="memberGender" required="required">
-		<option id="female" value="F">여성</option>
-		<option id="male" value="M">남성</option>
-	</select><p>
-	
-	<input type="date" name="birthday" placeholder="생년월일"><p>
-	<span>생일에 나이키 멤버 리워드를 받으세요</span><p>
-	
-	<input type="text" name="tel1" value="010" readonly="readonly" placeholder="전화번호를">
-	-<input type="text" name="tel2" placeholder="입력하시고(4자리)">
-	-<input type="text" name="tel3" placeholder="멤버쉽 혜택을 누리세요(4자리)"><p>
-	
-	<input type="checkbox" required="required"> 나이키의 <a href="#">개인정보처리방침</a> 및 <a href="#">이용약관</a>에 동의합니다<p>
-	<input type="submit" value="계정만들기">
-	
-</form>
 </body>
-
-<script type="text/javascript" th:src="@{/js/project/verifyCodeTimer.js}"></script>
-
+<script type="text/javascript"
+	th:src="@{/js/project/verifyCodeTimer.js}"></script>
 </html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h2>이제 나이키 멤버가 되어볼까요?</h2>
+<h4>인증코드를 전송했습니다</h4>
+<h4>[[${member.email}]] <a th:href="@{emailLoginForm.do(email=${member.email})}">편집</a></h4>
+
+<form action="join.do" name="frm" method="post">
+	<input type="hidden" name="email" th:value="${member.email}">
+	<input type="text" name="verifiCode" required="required" placeholder="이메일로 받은 인증코드" >
+	<div id="time"></div><p>
+	<a th:href = "@{emailLogin.do(email=${member.email})}">인증코드재전송</a><p> <!-- 무조건나오게 -->
+	
+	<input type="text" name="name" required="required" placeholder="이름"><p>
+	<input type="password" name="password" required="required" placeholder="비밀번호"><p> <!-- onchange=함수/비번조건추가(최소몇자, 대,소문자,최소1개숫자) -->
+	<span>※최소 8자</span><p>
+	<span>※알파벳 대문자 및 소문자 조합, 최소 1개 이상의 숫자</span><p>
+	
+	<select id="gender" name="memberGender" required="required">
+		<option id="female" value="F">여성</option>
+		<option id="male" value="M">남성</option>
+	</select><p>
+	
+	<input type="date" name="birthday" placeholder="생년월일"><p>
+	<span>생일에 나이키 멤버 리워드를 받으세요</span><p>
+	
+	<input type="text" name="tel1" value="010" readonly="readonly" placeholder="전화번호를">
+	-<input type="text" name="tel2" placeholder="입력하시고(4자리)">
+	-<input type="text" name="tel3" placeholder="멤버쉽 혜택을 누리세요(4자리)"><p>
+	
+	<input type="checkbox" required="required"> 나이키의 <a href="#">개인정보처리방침</a> 및 <a href="#">이용약관</a>에 동의합니다<p>
+	<input type="submit" value="계정만들기">
+	
+</form>
+</body>
+
+<script type="text/javascript" th:src="@{/js/project/verifyCodeTimer.js}"></script>
+
+</html>

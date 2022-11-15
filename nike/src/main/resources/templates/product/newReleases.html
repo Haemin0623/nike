@@ -1,218 +1,201 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/layout}">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript">
-	//필터 전체 해제
-	$(function() {
-		$('.unChk').click(function() {
-			$("input:checkbox").prop("checked", false);
-		});
-	});
-	
-</script>
-</head>
-<body>
-
-<div layout:fragment="content">
-
-	<h3> 상품리스트 </h3>
-	<!-- 검색 필터 -->
-	<form>
-	<div class="block">
-		<p class="filer_title">성별</p>
-		<div class="filter_box">
-			<div class="button_box">
-				<input type="checkbox" name="gender" id="g1" value="M">
-				<label class="filter" for="g1">남성</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="gender" id="g2" value="F">
-				<label class="filter" for="g2">여성</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="gender" id="g3" value="U">
-				<label class="filter" for="g3">유니섹스</label>
-			</div>
-		</div>
-		
-		<p class="filer_title">색상</p>
-		<div class="filter_box">
-			<div class="button_box">
-				<input type="checkbox" name="color" id="c1" value="그레이">
-				<label class="filter" for="c1">그레이</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="color" id="c3" value="그린">
-				<label class="filter" for="c2">그린</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="color" id="c3" value="레드">
-				<label class="filter" for="c3">레드</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="color" id="c4" value="바이올렛">
-				<label class="filter" for="c4">바이올렛</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="color" id="c5" value="블랙">
-				<label class="filter" for="c5">블랙</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="color" id="c6" value="블루">
-				<label class="filter" for="c6">블루</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="color" id="c7" value="옐로우">
-				<label class="filter" for="c7">옐로우</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="color" id="c8" value="핑크">
-				<label class="filter" for="c8">핑크</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="color" id="c9" value="화이트">
-				<label class="filter" for="c9">화이트</label>
-			</div>
-		</div>
-
-
-
-		<p class="filer_title">가격대</p>
-		<div class="filter_box">
-			<div class="button_box">
-				<input type="checkbox" name="price" id="p1" value="50000">
-				<label class="filter" for="p1">0 - 50,000원</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="price" id="p2" value="100000">
-				<label class="filter" for="p2">50,000원 - 100,000원</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="price" id="p3" value="150000">
-				<label class="filter" for="p3">100,000원 - 150,000원</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="price" id="p4" value="200000">
-				<label class="filter" for="p4">150,000원 - 200,000원</label>
-			</div>
-		</div>
-		
-		<p class="filer_title">사이즈</p>
-		<div class="filter_box">
-			<div class="button_box">
-				<input type="checkbox" name="productSize" id="s1" value="S">
-				<label class="filter" for="s1">S</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="productSize" id="s2" value="M">
-				<label class="filter" for="s2">M</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="productSize" id="s3" value="L">
-				<label class="filter" for="s3">L</label>
-			</div>
-			<div class="button_box">
-				<input type="checkbox" name="productSize" id="s4" value="XL">
-				<label class="filter" for="s4">XL</label>
-			</div>
-		</div>
-		
-		<div class="btn_box">
-			<span class="unChk" style="color: white; background-color: black;">체크해제</span>
-			<input class="btn" type="submit" value="적용" style="color: white; background-color: black;">
-		</div>
-	</div>
-	</form>
-
-	<!-- 상품리스트 -->
-	<table>
-		<tr>
-			<th> 상품사진 </th>
-			<th> 상품번호 </th>
-			<th> 상품명 </th>
-			<th> 가격 </th>	
-			<th> 상품상세 </th>
-		</tr>
-	<th:block th:if="${result} == 1">
-		<tr th:if="${#lists.size(filterList)} == 0">
-			<td colspan ="4"> 일치하는 상품이 없습니다.</td>
-		</tr>
-		<tr th:if="${#lists.size(filterList)} > 0" th:each="product:${filterList}">
-			<td> 
-				<a th:href="@{productDetail.do(productNo=${product.productNo},color=${product.color})}">
-				<img alt="" th:src="@{/images/product_photo/}+${product.productPhoto}" height="150"></a>
-			</td>
-			<td>[[${product.productNo}]]</td>
-			<td>[[${product.productName}]]</td>
-			<td>[[${product.price}]]</td>
-			<td>[[${product.detail}]]</td>
-		</tr>
-	</th:block>
-	<th:block th:if="${result} == 2">
-	
-		<tr th:if="${#lists.size(productList)} == 0">
-			<td colspan ="4"> 상품리스트가 비었습니다</td>
-		</tr>
-		<tr th:if="${#lists.size(productList)} > 0" th:each="product:${productList}">
-			<td> 
-				<a th:href="@{productDetail.do(productNo=${product.productNo},color=${product.color})}">
-				<img alt="" th:src="@{/images/product_photo/}+${product.productPhoto}" height="150"></a>
-			</td>
-			<td>[[${product.productNo}]]</td>
-			<td>[[${product.productName}]]</td>
-			<td>[[${product.price}]]</td>
-			<td>[[${product.detail}]]</td>
-		</tr>
-	</th:block>
-	</table>
-	
-	
-	<span th:if="${total} != 0">
-		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
-		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
-			<li>
-				<a th:href="@{newReleases.do(pageNum=1)}">
-					<span class="glyphicon glyphicon-fast-backward"></span>
-				</a>
-			</li>
-			<li>
-				<a th:href="@{newReleases.do(pageNum=${pb.startPage-1 })}">
-					<span class="glyphicon glyphicon-triangle-left"></span>
-				</a>
-			</li>
-		</th:block>
-		<th:block th:each="i:${#numbers.sequence(pb.startPage, pb.endPage) }">
-			<th:block th:if="${pb.currentPage == i }">
-				<li class="active">
-					<a th:href="@{newReleases.do(pageNum=${i})}">[[${i}]]</a>
-				</li>
-			</th:block>
-			<th:block th:if="${pb.currentPage != i }">
-				<li>
-					<a th:href="@{newReleases.do(pageNum=${i})}">[[${i}]]</a>
-				</li>
-			</th:block>		
-		</th:block>
-		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
-		<th:block th:if="${pb.endPage < pb.totalPage}">
-			<li>
-				<a th:href="@{newReleases.do(pageNum=${pb.endPage+1})}">
-					<span class="glyphicon glyphicon-triangle-right"></span>
-				</a>
-			</li>
-			<li>
-				<a th:href="@{newReleases.do(pageNum=${pb.totalPage})}">
-					<span class="glyphicon glyphicon-fast-forward"></span>
-				</a>
-			</li>
-		</th:block>
-	</span>
-</div>
-
-
-</body>
-</html>
+	  layout:decorate="~{layouts/layout}" style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Product List</title>
+    
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Product List">
+    <meta property="og:type" content="website">
+  </head>
+  <body layout:fragment="content" class="u-body u-xl-mode" data-lang="en">
+  
+  <link rel="stylesheet" href="/nice/nicepage.css" media="screen">
+<link rel="stylesheet" href="/nice/Product-List.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/nice/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/nice/nicepage.js" defer=""></script>
+  
+    <section class="u-clearfix u-section-1" id="sec-9ce6">
+      
+      
+      <div class="u-list u-list-1">
+        <div class="u-repeater u-repeater-1">
+        
+          <div class="u-container-style u-list-item u-repeater-item" th:each="product:${productList}" th:if="${#lists.size(productList)} > 0 and ${result} == 2">
+            <div class="u-container-layout u-similar-container u-container-layout-1">
+            <a th:href="@{productDetail.do(productNo=${product.productNo},color=${product.color})}">
+              <img class="u-image u-image-default u-preserve-proportions u-image-1" th:src="@{/images/product_photo/}+${product.productPhoto}" alt="" data-image-width="600" data-image-height="600">
+            </a>  
+              <span class="u-icon u-icon-circle u-white u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 51.997 51.997" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-45b6"></use></svg><svg class="u-svg-content" viewBox="0 0 51.997 51.997" x="0px" y="0px" id="svg-45b6" style="enable-background:new 0 0 51.997 51.997;"><path d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
+	c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478
+	c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014
+	C52.216,18.553,51.97,16.611,51.911,16.242z"></path></svg></span>
+              <p class="u-large-text u-text u-text-default u-text-variant u-text-1">[[${product.productName}]]</p>
+              <p class="u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-2">Category</p>
+              <p class="u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-3">1개 색상</p>
+              <p class="u-small-text u-text u-text-default u-text-variant u-text-4">[[${product.price}]] 원</p>
+            </div>
+          </div>   
+          
+        <div class="u-container-style u-list-item u-repeater-item"  th:each="product:${filterList}" th:if="${#lists.size(filterList)} > 0 and ${result} == 1">
+          <div class="u-container-layout u-similar-container u-container-layout-1">
+            <a th:href="@{productDetail.do(productNo=${product.productNo},color=${product.color})}">
+              <img class="u-image u-image-default u-preserve-proportions u-image-1" th:src="@{/images/product_photo/}+${product.productPhoto}" alt="" data-image-width="600" data-image-height="600">
+            </a>  
+              <span class="u-icon u-icon-circle u-white u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 51.997 51.997" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-45b6"></use></svg><svg class="u-svg-content" viewBox="0 0 51.997 51.997" x="0px" y="0px" id="svg-45b6" style="enable-background:new 0 0 51.997 51.997;"><path d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
+	c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478
+	c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014
+	C52.216,18.553,51.97,16.611,51.911,16.242z"></path></svg></span>
+              <p class="u-large-text u-text u-text-default u-text-variant u-text-1">[[${product.productName}]]</p>
+              <p class="u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-2">Category</p>
+              <p class="u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-3">1개 색상</p>
+              <p class="u-small-text u-text u-text-default u-text-variant u-text-4">[[${product.price}]] 원</p>
+            </div>            
+          </div>
+        </div>  
+        
+      </div>
+      
+      
+      
+      
+      <div class="u-list u-list-2">
+        <div class="u-repeater u-repeater-2">
+          <div class="u-border-1 u-border-grey-15 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item u-list-item-10">
+            <div class="u-container-layout u-similar-container u-container-layout-10">
+              <p class="u-small-text u-text u-text-default u-text-variant u-text-37">라이프 스타일</p>
+              <p class="u-small-text u-text u-text-default u-text-variant u-text-38">조던</p>
+              <p class="u-small-text u-text u-text-default u-text-variant u-text-39">양말</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="u-form u-form-1">
+        <form class="u-clearfix u-form-spacing-25 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+          <div class="u-form-checkbox-group u-form-group u-form-input-layout-vertical u-label-top u-form-group-1">
+            <div class="u-form-checkbox-group-wrapper">
+              <div class="u-input-row">
+                <input id="field-4c8d" type="checkbox" value="M" name="gender">
+                <label class="u-label u-label-1" for="field-4c8d">남성</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-ce99" type="checkbox" value="F" name="gender">
+                <label class="u-label u-label-2" for="field-ce99">여성</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-4b84" type="checkbox" value="U" name="gender">
+                <label class="u-label u-label-3" for="field-4b84">유니섹스</label>
+              </div>
+            </div>
+          </div>
+          <div class="u-border-1 u-border-grey-10 u-form-group u-form-line u-line u-line-horizontal u-line-1"></div>
+          <div class="u-form-checkbox-group u-form-group u-form-input-layout-vertical u-label-top u-form-group-3">
+            <div class="u-form-checkbox-group-wrapper">
+              <div class="u-input-row">
+                <input id="field-d25e" type="checkbox" value="그레이" name="color">
+                <label class="u-label u-label-4" for="field-d25e">그레이</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-2233" type="checkbox" value="그린" name="color">
+                <label class="u-label u-label-5" for="field-2233">그린</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-baa7" type="checkbox" value="레드" name="color">
+                <label class="u-label u-label-6" for="field-baa7">레드</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-31a4" type="checkbox" value="바이올렛" name="color">
+                <label class="u-label u-label-7" for="field-31a4">바이올렛</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-3bd2" type="checkbox" value="블랙" name="color">
+                <label class="u-label u-label-8" for="field-3bd2">블랙</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-25b9" type="checkbox" value="블루" name="color">
+                <label class="u-label u-label-9" for="field-25b9">블루</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-1131" type="checkbox" value="옐로우" name="color">
+                <label class="u-label u-label-10" for="field-1131">옐로우</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-b622" type="checkbox" value="핑크" name="color">
+                <label class="u-label u-label-11" for="field-b622">핑크</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-f18c" type="checkbox" value="화이트" name="color">
+                <label class="u-label u-label-12" for="field-f18c">화이트</label>
+              </div>
+            </div>
+          </div>
+          <div class="u-border-1 u-border-grey-10 u-form-group u-form-line u-line u-line-horizontal u-line-2"></div>
+          <div class="u-form-checkbox-group u-form-group u-form-input-layout-vertical u-label-top u-form-group-5">
+            <div class="u-form-checkbox-group-wrapper">
+              <div class="u-input-row">
+                <input id="field-067e" type="checkbox" value="50000" name="price">
+                <label class="u-label u-label-13" for="field-067e">0 - 50,000 원</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-b724" type="checkbox" value="100000" name="price">
+                <label class="u-label u-label-14" for="field-b724">50,000 - 100,000 원</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-ffa9" type="checkbox" value="150000" name="price">
+                <label class="u-label u-label-15" for="field-ffa9">100,000 - 150,000 원</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-06eb" type="checkbox" value="200000" name="price">
+                <label class="u-label u-label-16" for="field-06eb">150,000 - 200,000 원</label>
+              </div>
+            </div>
+          </div>
+          <div class="u-border-1 u-border-grey-10 u-form-group u-form-line u-line u-line-horizontal u-line-3"></div>
+          <div class="u-form-checkbox-group u-form-group u-form-input-layout-vertical u-label-top u-form-group-7">
+            <div class="u-form-checkbox-group-wrapper">
+              <div class="u-input-row">
+                <input id="field-940f" type="checkbox" value="S" name="productSize">
+                <label class="u-label u-label-17" for="field-940f">S</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-3c4e" type="checkbox" value="M" name="productSize">
+                <label class="u-label u-label-18" for="field-3c4e">M</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-212a" type="checkbox" value="L" name="productSize">
+                <label class="u-label u-label-19" for="field-212a">L</label>
+              </div>
+              <div class="u-input-row">
+                <input id="field-212a123" type="checkbox" value="XL" name="productSize">
+                <label class="u-label u-label-20" for="field-212a123">XL</label>
+              </div>
+            </div>
+          </div>
+          <div class="u-align-right u-form-group u-form-submit u-label-top">
+            <input type="submit" value="submit" class="u-form-control-hidden">
+            <a href="#" class="u-black u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-grey-60 u-radius-20 u-btn-1">검색</a>
+          </div>
+          <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+          <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+          
+        </form>
+      </div>
+    </section>
+  
+</body></html>

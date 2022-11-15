@@ -13,7 +13,7 @@ import com.ch.nike.dto.ProductPhoto;
 public interface ProductPhotoMapper {
 
 	// ProductCon
-	List<ProductPhoto> photoList(int productNo);
+	List<ProductPhoto> photoList(Product product);
 
 	
 	
@@ -28,5 +28,9 @@ public interface ProductPhotoMapper {
 	int selectproductPhotoNo(Product product);
 	int productdelete(Product product);
 	int productupdate(Product product);
+
+
+
+	List<ProductPhoto> thumPhotoList(int productNo);
 
 }

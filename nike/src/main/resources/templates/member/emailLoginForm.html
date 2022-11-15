@@ -1,32 +1,92 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;"
+	lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-	
-	<script type="text/javascript">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="keywords" content="가입 또는 로그인을 위해 이메일을 입력하세요">
+<meta name="description" content="">
+<title>email login</title>
+<link rel="stylesheet" th:href="@{/nice/nicepage.css}" media="screen">
+<link rel="stylesheet" th:href="@{/nice/email-login.css}" media="screen">
+<script class="u-script" type="text/javascript"
+	th:src="@{/nice/jquery.js}" defer=""></script>
+<script class="u-script" type="text/javascript"
+	th:src="@{/nice/nicepage.js}" defer=""></script>
+<meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+<link id="u-theme-google-font" rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+<script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+
+<script type="text/javascript">
 		if("[[${result}]]" == "1") {
 			alert("탈퇴한 회원입니다. 다른 이메일주소를 입력하세요");
 		}
 	</script>
-</head>
-<body>
-[[${msg}]]
-<h2>가입 또는 로그인을 위해 이메일을 입력하세요</h2>
-<h4>국가 <a href="#">변경</a></h4>
-<form action="emailLogin.do" method="post">
-	<table>
-		<tr>
-			<td><input type="text" id="email" name="email" placeholder="이메일" required="required"
-			autofocus="autofocus" th:value="${member.email}"><p>
-			계속 진행하면 나이키의 <a href="#">개인정보처리방침</a> 및 <a href="#">이용약관</a>에 동의하게 됩니다.</td>
-		</tr>
-		<tr>
-			<td align="center"><input type="submit" value="다음"></td>
-		</tr>	 
-	</table>
 
-</form>
+<meta name="theme-color" content="#478ac9">
+<meta property="og:title" content="email login">
+<meta property="og:type" content="website">
+</head>
+<body class="u-body u-xl-mode" data-lang="en">
+	<section class="u-clearfix u-section-1" id="sec-a2db">
+		<div class="u-clearfix u-sheet u-sheet-1">
+			<div class="u-container-style u-group u-shape-rectangle u-group-1">
+				<div class="u-container-layout u-container-layout-1">
+					<img class="u-image u-image-contain u-image-default u-image-1"
+						src="/nice/images/nilke-removebg-preview.png" alt=""
+						data-image-width="480" data-image-height="317">
+					<h1 class="u-text u-text-body-color u-text-1">가입 또는 로그인을 위해
+						이메일을 입력하세요.</h1>
+					<p class="u-text u-text-body-color u-text-default u-text-2">
+						대한민국&nbsp;&nbsp;<span
+							style="text-decoration: underline !important;"
+							class="u-text-grey-50">변경</span>
+					</p>
+					<div class="u-form u-form-1">
+						<form action="emailLogin.do"
+							class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"
+							source="email" name="form" style="padding: 10px;">
+							<div class="u-form-email u-form-group u-label-none">
+								<label for="email-8c47" class="u-label">Email</label> <input
+									type="email" placeholder="이메일" id="email-8c47" name="email"
+									class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-1"
+									required="" maxlength="50" th:value="${member.email}">
+							</div>
+							<p
+								class="u-form-group u-form-text u-text u-text-grey-50 u-text-3">
+								계속 진행하면 나이키의&nbsp;&nbsp;<span
+									style="text-decoration: underline !important;">개인 정보 처리
+									방침</span>&nbsp;및&nbsp;및&nbsp;<span
+									style="text-decoration: underline !important;">이용약관</span>에
+								동의하게 됩니다
+							</p>
+							<div
+								class="u-align-center u-form-group u-form-submit u-label-none">
+								<input type="submit" value="submit"
+									class="u-form-control-hidden"> <a href="#"
+									class="u-black u-border-none u-btn u-btn-round u-btn-submit u-button-style u-radius-30 u-btn-1">계속<br>
+								</a>
+							</div>
+							<div class="u-form-send-message u-form-send-success">Thank
+								you! Your message has been sent.</div>
+							<div class="u-form-send-error u-form-send-message">Unable
+								to send your message. Please fix errors then try again.</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 </body>
 </html>

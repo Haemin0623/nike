@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}" style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="주문, 프로필, 주문, 위시리스트, 설정">
+    <meta name="description" content="">
+    <title>orderLIst</title>
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="orderLIst">
+    <meta property="og:type" content="website">
+  </head>
+  <body layout:fragment="content" class="u-body u-xl-mode" data-lang="en">
+  
+  <link rel="stylesheet" href="/nice/nicepage.css" media="screen">
+<link rel="stylesheet" href="/nice/orderLIst.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/nice/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/nice/nicepage.js" defer=""></script>
+    
+  
+    <section class="u-clearfix u-section-1" id="sec-d5ad">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-subtitle u-text u-text-default u-text-1">주문</h2>
+        <div class="u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-1">
+                <h2 class="u-subtitle u-text u-text-default u-text-2">프로필</h2>
+              </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-2">
+                <h2 class="u-subtitle u-text u-text-default u-text-3">주문</h2>
+              </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-3">
+                <h2 class="u-subtitle u-text u-text-default u-text-4">위시리스트</h2>
+              </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-4">
+                <h2 class="u-subtitle u-text u-text-default u-text-5">설정</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="u-border-1 u-border-grey-30 u-line u-line-horizontal u-line-1"></div>
+      </div>
+    </section>
+    <section class="u-clearfix u-section-2" id="sec-dea2">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            
+            
+            <th:block th:if="${date.orderDate} == ${detail.orderDate}" th:each="detail:${orderInfo}" >
+            <div class="u-border-2 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-1">
+              	
+              	<a th:href="@{/product/productDetail.do(productNo=${detail.productNo},color=${detail.color})}">
+                <img class="u-image u-image-default u-image-1" th:src="@{/images/product_photo/}+${detail.productPhoto}" alt="" data-image-width="864" data-image-height="1080">
+                </a>
+                <div class="u-container-style u-group u-group-1">
+                  <div class="u-container-layout u-container-layout-2">
+                  	<a th:href="@{/account/orderDetail.do(orderNo=${detail.orderNo})}">
+                    <p class="u-text u-text-default u-text-1"> [[${detail.productName}]]</p>
+                    </a>
+                    <p class="u-text u-text-default u-text-grey-50 u-text-2">[[${detail.color}]]</p>
+                    <p class="u-text u-text-default u-text-grey-50 u-text-3">[[${detail.productSize}]] 사이즈</p>
+                  </div>
+                </div>
+                <a href="https://nicepage.com/joomla-templates" class="u-border-1 u-border-grey-15 u-border-hover-black u-btn u-btn-round u-button-style u-none u-radius-50 u-text-black u-text-hover-black u-btn-1">주문 상세 보기</a>
+              </div>
+            </div>
+            </th:block>
+            
+            
+<!--             <div class="u-border-2 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item"> -->
+<!--               <div class="u-container-layout u-similar-container u-container-layout-3"> -->
+<!--                 <img class="u-image u-image-default u-image-2" src="/nice/images/c1.webp" alt="" data-image-width="864" data-image-height="1080"> -->
+<!--                 <div class="u-container-style u-group u-group-2"> -->
+<!--                   <div class="u-container-layout u-container-layout-4"> -->
+<!--                     <p class="u-text u-text-default u-text-4"> 조던 23 엔지니어드</p> -->
+<!--                     <p class="u-text u-text-default u-text-grey-50 u-text-5"> 블랙/스모크 그레이/화이트</p> -->
+<!--                     <p class="u-text u-text-default u-text-grey-50 u-text-6"> L 사이즈</p> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--                 <a href="https://nicepage.com/joomla-templates" class="u-border-1 u-border-grey-15 u-border-hover-black u-btn u-btn-round u-button-style u-none u-radius-50 u-text-black u-text-hover-black u-btn-2"> 주문 상세 보기</a> -->
+<!--               </div> -->
+<!--             </div> -->
+
+            
+          </div>
+        </div>
+      </div>
+      
+      
+    </section>
+</body></html>

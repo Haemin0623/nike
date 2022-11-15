@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content" > <!-- by 수인 -->
+	<h2 align="center">고객센터</h2>
+	
+	<form action="#" align="center">
+		<input name="search" value="" placeholder="무엇을 도와드릴까요?" size="50px">
+        <input type="submit" value="검색">
+	</form>
+	
+	<h4>배송 및 주문</h4>
+	<table width="800px" th:each="notice:${noticeList}">
+		<tr th:if="${notice.noticeType} == 'order'">
+			<td><a th:href="@{helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a></td>
+		</tr>
+	</table><br>
+	
+	<h4>반품 및 환불</h4>
+	<table width="800px" th:each="notice:${noticeList}">
+		<tr th:if="${notice.noticeType} == 'refund'">
+			<td><a th:href="@{helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a></td>
+		</tr>
+	</table><br>
+	
+	<h4>멤버십</h4>
+	<table width="800px" th:each="notice:${noticeList}">
+		<tr th:if="${notice.noticeType} == 'membership'">
+			<td><a th:href="@{helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a></td>
+		</tr>
+	</table><br>
+	
+	<h4>제품 정보</h4>
+	<table width="800px" th:each="notice:${noticeList}">
+		<tr th:if="${notice.noticeType} == 'productinfo'">
+			<td><a th:href="@{helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a></td>
+		</tr>
+	</table><br>
+	
+	<h4>기타 공지</h4>
+	<table width="800px" th:each="notice:${noticeList}">
+		<tr th:if="${notice.noticeType} == 'etcNotice'">
+			<td><a th:href="@{helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a></td>
+		</tr>
+	</table><br>
+	
+	<h4>FAQs</h4>
+	<table width="800px" th:each="notice:${noticeList}">
+		<tr th:if="${notice.noticeType} == 'faq'">
+			<td><a th:href="@{helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a></td>
+		</tr>
+	</table><br>
+	
+	
+</div>
+</body>
+</html>

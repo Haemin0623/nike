@@ -6,6 +6,7 @@ insert into member values ('sun@ny.com', '최선희', '123', 'F', sysdate, 01012
 
 select * from member;
 select * from notice;
+delete from member;
 
 
 
@@ -345,6 +346,8 @@ insert into wish values (12, 18, 'sun@ny.com', '블랙');
 --주문 목록
 insert into user_order values(1,'chang@ryul.com','2022-11-10',1,'출고대기');
 insert into user_order values(2,'chang@ryul.com','2022-11-10',3,'출고완료');
+insert into user_order values(3,'erer0623@naver.com','2022-11-10',1,'출고대기');
+insert into user_order values(4,'erer0623@naver.com','2022-11-10',3,'출고완료');
 
 --주문 상세
 
@@ -364,11 +367,11 @@ insert into qna values(3,null,'chang@ryul.com',1,'결제','결제 문의입니�
 insert into qna values(4,null,'sun@ny.com',1,'기타','요즘 유행이 뭔가요?','유행하는 신발 알려주세요',sysdate,'답변완료','Y');
 -- 리뷰
 -- 이거는 기능 만들어서 구현 해야지 의미 있을듯
-insert into review values(1,1,'chang@ryul.com','정사이즈가아니에요',4.3,2022-11-10,'N','블랙');
+insert into review values(1,1,'chang@ryul.com','정사이즈가아니에요',4.3,sysdate,'N','블랙');
 insert into review values(2,1,'soo@in.com','이게 뭐람 ㅋㅋ',1.3,2022-11-11,'N','화이트');
 insert into review values(3,2,'sun@ny.com','너무 이뻐요',5.0,2022-11-10,'N','블랙');
 insert into review values(4,2,'chang@ryul.com','선물해주니 좋아해요',4.8,2022-11-08,'Y','화이트');
-insert into review values(5,3,'sun@ny.com','가격대비 무난해요',2.5,2022-11-12,'N','화이트');
+insert into review values(5,3,'sun@ny.com','가격대비 무난해요',2.5,sysdate,'N','화이트');
 
 -- 리뷰 사진
 -- 이거는 기능 만들어서 구현 해야지 의미 있을듯

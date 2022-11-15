@@ -1,81 +1,198 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<div layout:fragment="content">
-<h2>주문 상세 정보</h2>
-			주문날짜 : [[${address.orderDate}]]
-			<br>
-			배송지 이름 : [[${address.addrName}]]
-			<br>
-			배송지 주소
-			([[${address.zonecode}]]) <br>
-			[[${address.roadaddress}]]
-			([[${address.jibunaddress}]])<br>
-			[[${address.detailaddress}]]<br>
-			<br>
-		 	배송상태
-		 	[[${address.status}]]
-<table style="width: 80%">
-		<tr>
-			<th>상품 사진</th>
-			<th>상품명</th>
-			<th>구매 사이즈</th>
-			<th>구매 컬러</th>
-			<th>금액</th>
-			<th>리뷰</th>
-			<th>환불 상태</th>
-		</tr>
-	<th:block  th:each="od:${orderDetails}" >
-			<tr>
-			<td>
-				<a th:href="@{/product/productDetail.do(productNo=${od.productNo},color=${od.color})}">
-					<img alt="" th:src="@{/images/product_photo/}+${od.productPhoto}" width="50">
-				</a>
-			</td>
-			<td>
-				[[${od.productName}]]
-			</td>
-			<td>
-				[[${od.productSize}]]
-			</td>
-			<td>
-				[[${od.color}]]
-			</td>
-			<td>
-				[[${od.price}]]
-			</td>
-			<td>
-			<th:block >
-				<a th:href="@{/product/reviewWriteFormChk.do(productNo=${od.productNo},color=${od.color})}">
-					리뷰 작성
-				</a>
-			</th:block>
-			</td>
-			<td>
-				<th:block th:if="${od.refundChk} == 'N'">
-					<a th:href="@{/account/refundForm.do(orderDetailNo=${od.orderDetailNo},orderNo=${od.orderNo})}">
-						환불신청
-					</a>
-				</th:block>
-				<th:block th:if="${od.refundChk} == 'A'">
-					환불 진행 중
+      layout:decorate="~{layouts/layout}" style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="주문, 프로필, 주문, 위시리스트, 설정">
+    <meta name="description" content="">
+    <title>orderDetail</title>
+    
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="orderDetail">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode" data-lang="en">
+  
+  <link rel="stylesheet" href="/nice/nicepage.css" media="screen">
+<link rel="stylesheet" href="/nice/orderDetail.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/nice/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/nice/nicepage.js" defer=""></script>
+  
+    <section class="u-clearfix u-section-1" id="sec-be79">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-subtitle u-text u-text-default u-text-1">주문</h2>
+        <div class="u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-1">
+                <h2 class="u-subtitle u-text u-text-default u-text-2">프로필</h2>
+              </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-2">
+                <h2 class="u-subtitle u-text u-text-default u-text-3">주문</h2>
+              </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-3">
+                <h2 class="u-subtitle u-text u-text-default u-text-4">위시리스트</h2>
+              </div>
+            </div>
+            <div class="u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-4">
+                <h2 class="u-subtitle u-text u-text-default u-text-5">설정</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="u-border-1 u-border-grey-30 u-line u-line-horizontal u-line-1"></div>
+      </div>
+    </section>
+    <section class="u-clearfix u-section-2" id="sec-40ed">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-1"> 온라인 구매 - [[${address.orderDate}]]<br>2022092811121292485552643&nbsp;- [[${address.status}]]
+        </p>
+        <div class="u-border-1 u-border-grey-30 u-line u-line-horizontal u-line-1"></div>
+        <div class="u-border-1 u-border-grey-30 u-line u-line-horizontal u-line-2"></div>
+        <div class="u-clearfix u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout" style="">
+            <div class="u-layout-col" style="">
+              <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-1">
+                <div class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-container-layout u-valign-top u-container-layout-1">
+                  <p class="u-large-text u-text u-text-default u-text-variant u-text-2">주 <span style="font-weight: 700;"></span>소
+                  </p>
+                  <p class="u-align-right u-large-text u-text u-text-grey-50 u-text-variant u-text-3"> [[${address.addrName}]]<br>[[${address.jibunaddress}]]<br>[[${address.roadaddress}]]<br>[[${address.detailaddress}]]<br>[[${address.zonecode}]]
+                  </p>
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-2">
+                <div class="u-border-1 u-border-grey-30 u-border-no-left u-border-no-right u-border-no-top u-container-layout u-container-layout-2">
+                  <p class="u-large-text u-text u-text-default u-text-variant u-text-4">PAYCO</p>
+                  <p class="u-large-text u-text u-text-default u-text-variant u-text-5">결제수단</p>
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-size-20 u-layout-cell-3">
+                <div class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-layout u-container-layout-3">
+                  <p class="u-large-text u-text u-text-default u-text-variant u-text-6">주문 내역</p>
+                  <p class="u-align-right u-large-text u-text u-text-grey-50 u-text-variant u-text-7">387,000 원<br>0 원<br>
+                  </p>
+                  <p class="u-align-left u-large-text u-text u-text-grey-50 u-text-variant u-text-8">상품금액<br>배송비
+                  </p>
+                  <p class="u-align-left u-large-text u-text u-text-variant u-text-9">총 결제 금액<br>
+                  </p>
+                  <p class="u-align-right u-large-text u-text u-text-variant u-text-10">387,000 원<br>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-11">주문 완료</p>
+        <div class="u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+          
+          <th:block  th:each="od:${orderDetails}" >
+            <div class="u-container-style u-list-item u-repeater-item u-shape-rectangle">
+              <div class="u-container-layout u-similar-container u-container-layout-4">
+              	<a th:href="@{/product/productDetail.do(productNo=${od.productNo},color=${od.color})}">
+                <img class="u-image u-image-default u-image-1" th:src="@{/images/product_photo/}+${od.productPhoto}" alt="" data-image-width="864" data-image-height="1080">
+               	</a>
+                <div class="u-container-style u-group u-group-1">
+                  <div class="u-container-layout u-container-layout-5">
+                    <p class="u-text u-text-default u-text-12">[[${od.productName}]]</p>
+                    <p class="u-small-text u-text u-text-default u-text-variant u-text-13">[[${od.price}]]</p>
+                    <p class="u-text u-text-default u-text-grey-50 u-text-14">[[${od.color}]]</p>
+                    <p class="u-text u-text-default u-text-grey-50 u-text-15">[[${od.productSize}]] 사이즈</p>
+                  </div>
+                </div>
+                <th:block th:if="${od.refundChk} == 'N'">
+	                <a th:href="@{/account/refundForm.do(orderDetailNo=${od.orderDetailNo},orderNo=${od.orderNo})}" class="u-black u-border-1 u-border-black u-border-hover-grey-40 u-btn u-btn-round u-button-style u-hover-grey-40 u-radius-50 u-text-body-alt-color u-text-hover-white u-btn-1">
+	                환불 신청</a>
+                </th:block>
+                <th:block th:if="${od.refundChk} == 'A'">
+					<a class="u-black u-border-1 u-border-black u-border-hover-grey-40 u-btn u-btn-round u-button-style u-hover-grey-40 u-radius-50 u-text-body-alt-color u-text-hover-white u-btn-1">
+	                환불 진행중</a>
 				</th:block>
 				<th:block th:if="${od.refundChk} == 'Y'">
-					환불 완료
+					<a class="u-black u-border-1 u-border-black u-border-hover-grey-40 u-btn u-btn-round u-button-style u-hover-grey-40 u-radius-50 u-text-body-alt-color u-text-hover-white u-btn-1">
+	                환불 완료</a>
 				</th:block>
 				<th:block th:if="${od.refundChk} == 'D'">
-					환불 불가
+					<a class="u-black u-border-1 u-border-black u-border-hover-grey-40 u-btn u-btn-round u-button-style u-hover-grey-40 u-radius-50 u-text-body-alt-color u-text-hover-white u-btn-1">
+	                환불 불가</a>
 				</th:block>
-			</td>
-		</tr>
-	</th:block>
-</table>
-</div>
-</body>
-</html>
+              
+              
+              </div>
+            </div>
+           </th:block>
+            
+<!--             <div class="u-container-style u-list-item u-repeater-item u-shape-rectangle"> -->
+<!--               <div class="u-container-layout u-similar-container u-container-layout-6"> -->
+<!--                 <img class="u-image u-image-default u-image-2" src="images/c1.webp" alt="" data-image-width="864" data-image-height="1080"> -->
+<!--                 <div class="u-container-style u-group u-group-2"> -->
+<!--                   <div class="u-container-layout u-container-layout-7"> -->
+<!--                     <p class="u-text u-text-default u-text-16"> 조던 23 엔지니어드</p> -->
+<!--                     <p class="u-small-text u-text u-text-default u-text-variant u-text-17"> 129,000 원</p> -->
+<!--                     <p class="u-text u-text-default u-text-grey-50 u-text-18"> 블랙/스모크 그레이/화이트</p> -->
+<!--                     <p class="u-text u-text-default u-text-grey-50 u-text-19"> L 사이즈</p> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--                 <a href="https://nicepage.com/joomla-templates" class="u-black u-border-1 u-border-black u-border-hover-grey-40 u-btn u-btn-round u-button-style u-hover-grey-40 u-radius-50 u-text-body-alt-color u-text-hover-white u-btn-2">환불 신청</a> -->
+<!--               </div> -->
+<!--             </div> -->
+            
+            
+<!--             <div class="u-container-style u-list-item u-repeater-item u-shape-rectangle"> -->
+<!--               <div class="u-container-layout u-similar-container u-container-layout-8"> -->
+<!--                 <img class="u-image u-image-default u-image-3" src="images/c1.webp" alt="" data-image-width="864" data-image-height="1080"> -->
+<!--                 <div class="u-container-style u-group u-group-3"> -->
+<!--                   <div class="u-container-layout u-container-layout-9"> -->
+<!--                     <p class="u-text u-text-default u-text-20"> 조던 23 엔지니어드</p> -->
+<!--                     <p class="u-small-text u-text u-text-default u-text-variant u-text-21"> 129,000 원</p> -->
+<!--                     <p class="u-text u-text-default u-text-grey-50 u-text-22"> 블랙/스모크 그레이/화이트</p> -->
+<!--                     <p class="u-text u-text-default u-text-grey-50 u-text-23"> L 사이즈</p> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--                 <a href="https://nicepage.com/joomla-templates" class="u-black u-border-1 u-border-black u-border-hover-grey-40 u-btn u-btn-round u-button-style u-hover-grey-40 u-radius-50 u-text-body-alt-color u-text-hover-white u-btn-3">환불 신청</a> -->
+<!--               </div> -->
+<!--             </div> -->
+            
+            
+          </div>
+        </div>
+        <div class="u-clearfix u-layout-wrap u-layout-wrap-2">
+          <div class="u-gutter-0 u-layout">
+            <div class="u-layout-col">
+              <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-4">
+                <div class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-layout u-valign-middle u-container-layout-10">
+                  <p class="u-large-text u-text u-text-default u-text-variant u-text-24">도움이 필요하세요?</p>
+                </div>
+              </div>
+              <div class="u-container-style u-layout-cell u-size-30 u-layout-cell-5">
+                <div class="u-container-layout u-container-layout-11">
+                  <p class="u-large-text u-text u-text-default u-text-variant u-text-25">지금 채팅하기</p><span class="u-file-icon u-flip-horizontal u-icon u-icon-1"><img src="images/3193015.png" alt=""></span>
+                  <p class="u-large-text u-text u-text-default u-text-variant u-text-26">문의하기</p><span class="u-file-icon u-flip-horizontal u-icon u-icon-2"><img src="images/2739899.png" alt=""></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+</body></html>

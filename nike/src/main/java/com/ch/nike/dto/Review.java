@@ -23,5 +23,6 @@ public class Review {
 	private int reviewPhotoNo;
 	private String reviewPhoto;
 	private String productName;
+	private String name;
 	
 }

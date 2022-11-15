@@ -192,11 +192,10 @@ create table review (
 	product_no	number(4)		not null,
 	email		varchar2(50)	not	null,
 	content		varchar2(2000)	not	null,
-	star		number(2,1)		not	null,
-    color	    varchar2(20)	not null,
+	star		number(2,1)		not	null,    
 	review_date	date			not	null,
 	review_del	char(1)			not	null,
-
+	color	    varchar2(20)	not null,
 
 	constraint fk_review_email foreign key(email) references member(email),
 	constraint fk_review_product_no foreign key(product_no) references product(product_no)

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div layout:fragment="content" > <!-- by 수인 -->
+	<h3>[[${notice.noticeSubject}]]</h3>
+	<table width="800px">
+	<tr>
+		<td> <!-- 원본 글 형식 그대로 갖고오려 textarea씀 -->
+			<textarea rows="25px" cols="100px" name="content" readonly="readonly">[[${notice.content}]]</textarea>
+		</td>
+	</tr>
+	</table>
+	<a href="help.do">뒤로</a>
+	
+</div>
+</body>
+</html>

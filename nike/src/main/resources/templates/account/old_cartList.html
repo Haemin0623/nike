@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div layout:fragment="content" align="center">
+	<h3> 장바구니 </h3>
+	<table border="1" width="80%">
+		<tr>
+			<th> 번호 </th>
+			<th> 상품사진 </th>
+			<th> 상품명 </th>
+			<th> 컬러 </th>
+			<th> 사이즈 </th>
+			<th> 수량 </th>
+			<th></th>	
+		</tr>
+		<!-- 		카트번호, 수량 /상품사진(배치1번), 상품명/ 사이즈, 컬러  -->
+		
+		<tr th:if="${#lists.size(cartList)} == 0">
+			<td colspan ="7"> 장바구니가 비었습니다</td>
+		</tr>
+		
+		<tr th:if="${#lists.size(cartList)} > 0" th:each="cartDetail:${cartList}" >
+			<td>[[${cartDetail.cartNo}]]</td>
+			<td> 
+				<a th:href="@{/product/productDetail.do(productNo=${cartDetail.productNo},color=${cartDetail.color})}">
+				<img alt="" th:src="@{/images/product_photo/}+${cartDetail.productPhoto}" height="150"></a>
+			</td>
+			<td>[[${cartDetail.productName}]]</td>
+			<td>[[${cartDetail.color}]]</td>
+			<td>[[${cartDetail.productSize}]]</td>
+			<td>[[${cartDetail.cartQuantity}]]</td>
+			<td>&nbsp; <a th:href="@{/account/deleteCart.do(cartNo=${cartDetail.cartNo})}">삭제</a>
+		</tr>
+	</table>
+	
+</div>
+
+
+</body>
+</html>

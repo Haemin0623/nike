@@ -18,8 +18,8 @@ public class ProductPhotoServiceImpl implements ProductPhotoService {
 	private ProductPhotoMapper ppm;	
 
 	// ProductCon
-	public List<ProductPhoto> photoList(int productNo) {
-		return ppm.photoList(productNo);
+	public List<ProductPhoto> photoList(Product product) {
+		return ppm.photoList(product);
 	}
 	
 	
@@ -57,5 +57,14 @@ public class ProductPhotoServiceImpl implements ProductPhotoService {
 	@Override
 	public int productupdate(Product product) {
 		return ppm.productupdate(product);
+	}
+
+
+
+
+	@Override
+	public List<ProductPhoto> thumPhotoList(int productNo) {
+		
+		return ppm.thumPhotoList(productNo);
 	}
 }

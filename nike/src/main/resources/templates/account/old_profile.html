@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"> /* by선희 */
+	function memberDel(email) {
+		var cf = confirm("정말로 탈퇴하시겠습니까?");
+		if (cf) {
+			location.href="deleteMember.do?email="+email;
+		} else alert("탈퇴가 취소되었습니다.");
+	}
+</script>
+</head>
+<body>
+<div layout:fragment="content" align="center"> <!-- by 선희 + 수인 -->
+	<form action="profileUpdate.do" method="post">
+		<h2>회원정보관리</h2> 	
+		<table border="1" width="800px">
+			<tr>
+				<th>이메일</th>
+				<td>[[${member.email}]]</td>
+			</tr>
+			<tr>
+				<th>비밀번호</th>
+				<td>********* <a th:href="pwUpdateProfileForm.do">수정</a></td>
+			</tr>
+			<tr>
+				<th>전화번호</th>
+				<td>																<!-- 0123 45678 9012 -->
+					<input type="text" name="tel1" value="010" readonly="readonly"> <!-- 010- 2222- 2222 -->
+					-<input type="text" name="tel2" th:value="${member.memberTel.substring(4,8)}" placeholder="4자리"> <!-- (인덱스 3~6번째 숫자만 잘라오기) -->
+					-<input type="text" name="tel3" th:value="${member.memberTel.substring(9,13)}" placeholder="4자리"> <!-- (인덱스 7~10번쨰 잘라오기) -->
+				</td>
+			</tr>
+			<tr>
+				<th>생년월일</th>
+				<td><input type="date" name="birthday" th:value="${member.birthday}"></td>
+			</tr>
+			<input type="hidden" name="email" th:value="${member.email}">
+		</table>
+		<input type="submit" value="수정">
+	</form>
+	<p>
+	<button th:onclick="|location.href='@{/account/mypage.do}'|">취소</button>
+	<button th:onclick="memberDel([[${member.email}]])" class="btn btn-danger">회원탈퇴</button> <!-- by선희 -->
+</div>		
+</body>
+</html>

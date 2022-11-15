@@ -1,102 +1,505 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/layout}">
+	  layout:decorate="~{layouts/layout}" style="font-size: 16px;" lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-	.reviewDetail {
-		display: none;
-	}
-</style>
-<script type="text/javascript">
-	// 리뷰
-	$(function() {
-		$('.review').click(function() {
-			$('.reviewDetail').toggle();
-		
-		});
-	});
-</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="keywords" content="조​​던 23 엔지니어드, 남성 플리스 풀오버 후디">
+<meta name="description" content="">
+<title>Product Detail</title>
+
+<meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+<link id="u-theme-google-font" rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+
+<script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+<meta name="theme-color" content="#478ac9">
+<meta property="og:title" content="Product Detail">
+<meta property="og:type" content="website">
 </head>
-<body>
+<body layout:fragment="content" class="u-body u-xl-mode" data-lang="en">
 
-<div layout:fragment="content">
-	<h2>[[${product.productName}]]</h2>
-	<h3>[[${color}]]</h3>
+<link rel="stylesheet" href="/nice/nicepage.css" media="screen">
+<link rel="stylesheet" href="/nice/Product-Detail.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/nice/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/nice/nicepage.js" defer=""></script>
 
-		<th:block th:if="${#lists.size(productPhotoList)} == 0">
-			<td colspan="#"> 상품사진이 없습니다 </td>
-		</th:block>
-		
-		<th:block th:if="${#lists.size(productPhotoList)} > 0 and ${color}==${productPhoto.color}" 
-				  th:each="productPhoto:${productPhotoList}">			
-			<img alt="" th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" height="200">
-		</th:block>
-		<p>
-		<th:block th:if="${#lists.size(productPhotoList)} > 0 and ${productPhoto.batch}==1" 
-					  th:each="productPhoto:${productPhotoList}">
-				<a th:href="@{productDetail.do(productNo=${productPhoto.productNo},color=${productPhoto.color})}">
-				<img alt="" th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" height="100"></a>
-		</th:block>
-		<p>
-		
-	<form action="/account/addCart.do" method="post">
-		<select name="productDetailNo">		
-			<option th:value="${productDetail.productDetailNo}" th:if="${color}== ${productDetail.color}" th:each="productDetail:${productDetailList}">[[${productDetail.productSize}]] (재고: [[${productDetail.stock}]])</option>		
-		</select><br>
-		<button type="submit">장바구니 추가</button>
-	</form><p>
-	<button th:onclick="|location.href='@{addWish.do(productNo=${productNo},color=${color})}'|">위시리스트</button><p> <!-- 양옆에 ||붙임 -->
-	
-	<table border="1">
-		<tr>
-			<th>상품명</th><td>[[${product.productName}]]</td>
-		</tr>
-		<tr>
-			<th>가격</th><td>[[${product.price}]]</td>
-		</tr>
-		<tr>
-			<th>상품상세</th><td>[[${product.detail}]]</td>
-		</tr>
-		<tr>
-			<th>성별</th><td>[[${product.gender}]]</td>
-		</tr>
-		<tr th:each="productFeature:${productFeatureList}">
-			<th>특징</th><td>[[${productFeature.feature}]]</td>
-		</tr>
-	</table>
-	
-	<div class="review" style="font-size: 20pt">리뷰</div><br>
-	
-	<div class="reviewDetail">
-		<a th:href="@{/product/reviewWriteFormChk.do(productNo=${product.productNo},color=${color})}">
-			리뷰 작성하기
-		</a><br>
-		<div class="reviewList">
-			<table>
-				<th:block th:each="review:${rvList}">
-					<tr>
-						<th>[[${review.star}]]</th>
-						<td>[[${review.reviewDate}]]</td>
-					</tr>
-					<tr>
-						<td colspan="2">[[${review.content}]]</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<span th:if="${review.reviewNo} == ${photo.reviewNo}" th:each="photo:${rvPhotos}">
-								<img th:src="@{/images/review_photo/}+${photo.reviewPhoto}" width="50">
-							</span>
-						</td>
-					</tr>
-				</th:block>
-			</table>
+	<section class="u-clearfix u-section-1" id="sec-e9b4">
+		<div class="u-clearfix u-sheet u-sheet-1">
+			<div class="u-clearfix u-gutter-10 u-layout-wrap u-layout-wrap-1">
+				<div class="u-layout">
+					<div class="u-layout-col">
+						<div class="u-size-20">
+							<div class="u-layout-row">
+							
+								<th:block th:if="${#lists.size(productPhotoList)} > 0" 
+				  							th:each="productPhoto:${productPhotoList}">
+				  							
+								<div th:if="${productPhotoStat.count} == 1"
+									class="u-container-style u-layout-cell u-size-30 u-layout-cell-1">
+									
+									<div
+										class="u-container-layout u-valign-top u-container-layout-1">
+										<img class="u-expanded-width u-image u-image-1"
+											th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" data-image-width="864"
+											data-image-height="1080">
+									</div>
+								</div>
+								<div th:if="${productPhotoStat.count} == 2"
+									class="u-container-style u-layout-cell u-size-30 u-layout-cell-2">
+									
+									<div
+										class="u-container-layout u-valign-top u-container-layout-2">
+										<img class="u-expanded-width u-image u-image-2"
+											th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" data-image-width="864"
+											data-image-height="1080">
+									</div>
+								</div>
+								</th:block>
+								
+							</div>
+						</div>
+						<div class="u-size-20">
+							<div class="u-layout-row">
+								<th:block th:if="${#lists.size(productPhotoList)} > 0" 
+				  							th:each="productPhoto:${productPhotoList}">
+				  							
+								<div th:if="${productPhotoStat.count} == 3"
+									class="u-container-style u-layout-cell u-size-30 u-layout-cell-3">
+									
+									<div
+										class="u-container-layout u-valign-top u-container-layout-3">
+										<img class="u-expanded-width u-image u-image-3"
+											th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" data-image-width="864"
+											data-image-height="1080">
+									</div>
+								</div>
+								<div th:if="${productPhotoStat.count} == 4"
+									class="u-container-style u-layout-cell u-size-30 u-layout-cell-4">
+									
+									<div
+										class="u-container-layout u-valign-top u-container-layout-4">
+										<img class="u-expanded-width u-image u-image-4"
+											th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" data-image-width="864"
+											data-image-height="1080">
+									</div>
+								</div>
+								</th:block>
+							</div>
+						</div>
+						<div class="u-size-20">
+							<div class="u-layout-row">
+								<th:block th:if="${#lists.size(productPhotoList)} > 0" 
+				  							th:each="productPhoto:${productPhotoList}">
+				  							
+								<div th:if="${productPhotoStat.count} == 5"
+									class="u-container-style u-layout-cell u-size-30 u-layout-cell-5">
+									
+									<div
+										class="u-container-layout u-valign-top u-container-layout-5">
+										<img class="u-expanded-width u-image u-image-5"
+											th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" data-image-width="864"
+											data-image-height="1080">
+									</div>
+								</div>
+								<div th:if="${productPhotoStat.count} == 6"
+									class="u-container-style u-layout-cell u-size-30 u-layout-cell-6">
+									
+									<div
+										class="u-container-layout u-valign-top u-container-layout-6">
+										<img class="u-expanded-width u-image u-image-6"
+											th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" data-image-width="864"
+											data-image-height="1080">
+									</div>
+								</div>
+								</th:block>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="u-container-style u-group u-shape-rectangle u-group-1">
+				<div class="u-container-layout u-container-layout-7">
+					<h1 class="u-text u-text-default u-title u-text-1">[[${product.productName}]]</h1>
+					<h2 class="u-subtitle u-text u-text-default u-text-2">Category,,,</h2>
+					<p
+						class="u-small-text u-text u-text-default u-text-variant u-text-3">[[${product.price}]] 원</p>
+					<div class="u-list u-list-1">
+						<div class="u-repeater u-repeater-1">
+							
+							<th:block th:if="${#lists.size(thumPhoto)} > 0 and ${thumPhoto.batch}==1" th:each="thumPhoto:${thumPhotoList}">
+							<div
+								class="u-container-style u-hover-feature u-list-item u-repeater-item u-shape-rectangle u-list-item-1"
+								data-animation-name="" data-animation-duration="0"
+								data-animation-direction="">
+								<div
+									class="u-container-layout u-similar-container u-container-layout-8">
+									<a th:href="@{productDetail.do(productNo=${thumPhoto.productNo},color=${thumPhoto.color})}">
+									<img class="u-image u-image-default u-image-7"
+										th:src="@{/images/product_photo/}+${thumPhoto.productPhoto}" alt="" data-image-width="864"
+										data-image-height="1080">
+										</a>
+								</div>
+							</div>
+							</th:block>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="u-container-style u-group u-shape-rectangle u-group-2">
+				<div class="u-container-layout u-container-layout-11">
+					<p
+						class="u-small-text u-text u-text-default u-text-variant u-text-4">사이즈
+						선택</p>
+					<p
+						class="u-align-right u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-5">사이즈
+						가이​드</p>
+					<a href="https://nicepage.app"
+						class="u-border-1 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-grey-5 u-hover-grey-5 u-radius-6 u-text-grey-15 u-btn-1">XS</a>
+					<a href="https://nicepage.app"
+						class="u-border-1 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-grey-5 u-hover-grey-5 u-radius-6 u-text-grey-15 u-btn-2">S</a>
+					<a href="https://nicepage.app"
+						class="u-border-1 u-border-active-black u-border-grey-10 u-border-hover-black u-btn u-btn-round u-button-style u-hover-white u-radius-6 u-text-body-color u-white u-btn-3">M</a>
+					<a href="https://nicepage.app"
+						class="u-border-1 u-border-active-black u-border-grey-10 u-border-hover-black u-btn u-btn-round u-button-style u-hover-white u-radius-6 u-text-body-color u-white u-btn-4">L</a>
+					<a href="https://nicepage.app"
+						class="u-border-1 u-border-active-black u-border-grey-10 u-border-hover-black u-btn u-btn-round u-button-style u-hover-white u-radius-6 u-text-body-color u-white u-btn-5">XL</a>
+				</div>
+			</div>
+			<a href="https://nicepage.app"
+				class="u-border-1 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-grey-5 u-hover-grey-5 u-radius-6 u-text-grey-15 u-btn-6">XS</a>
+			<a href="https://nicepage.app"
+				class="u-border-1 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-grey-5 u-hover-grey-5 u-radius-6 u-text-grey-15 u-btn-7">S</a>
+			<a href="https://nicepage.app"
+				class="u-border-1 u-border-active-black u-border-grey-10 u-border-hover-black u-btn u-btn-round u-button-style u-hover-white u-radius-6 u-text-body-color u-white u-btn-8">M</a>
+			<a href="https://nicepage.app"
+				class="u-border-1 u-border-active-black u-border-grey-10 u-border-hover-black u-btn u-btn-round u-button-style u-hover-white u-radius-6 u-text-body-color u-white u-btn-9">L</a>
+			<div class="u-list u-list-2">
+				<div class="u-repeater u-repeater-2">
+					<div
+						class="u-container-style u-custom-item u-list-item u-repeater-item">
+						<div
+							class="u-container-layout u-similar-container u-container-layout-12">
+							
+							
+							<a href="https://nicepage.com/k/teacher-website-templates"
+								class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-grey-40 u-radius-50 u-btn-10">장바구니<br>
+							</a>
+							
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="u-list u-list-3">
+				<div class="u-repeater u-repeater-3">
+					<div
+						class="u-container-style u-custom-item u-list-item u-repeater-item">
+						<div
+							class="u-container-layout u-similar-container u-container-layout-13">
+							<a th:href="@{addWish.do(productNo=${productNo},color=${color})}"
+								class="u-border-1 u-border-grey-10 u-border-hover-black u-btn u-btn-round u-button-style u-hover-white u-radius-50 u-white u-btn-11">위시리스트
+								♡<br>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="u-container-style u-group u-shape-rectangle u-group-3">
+				<div class="u-container-layout u-container-layout-14">
+					<p
+						class="u-large-text u-text u-text-default u-text-variant u-text-6">
+						[[${product.detail}]]</p>
+					<ul class="u-text u-text-default u-text-7">
+						<li>현재 컬러: [[${color}]]</li>
+						<li>스타일: DQ7882-010</li>
+					</ul>
+					<a href="https://nicepage.com/c/testimonials-html-templates"
+						class="u-active-none u-border-1 u-border-active-black u-border-black u-border-hover-grey-30 u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-hover-none u-none u-text-active-black u-text-black u-text-hover-grey-40 u-btn-12">상품
+						상세 정보 보기</a>
+				</div>
+			</div>
+			<div class="u-accordion u-accordion-1">
+				<div class="u-accordion-item">
+					<a
+						class="active u-accordion-link u-border-1 u-border-active-grey-10 u-border-grey-10 u-border-hover-grey-10 u-border-no-left u-border-no-right u-button-style u-text-body-color u-accordion-link-1"
+						id="link-5c71" aria-controls="5c71" aria-selected="true"> <span
+						class="u-accordion-link-text">사이즈 &amp; 팁</span><span
+						class="u-accordion-link-icon u-icon u-text-black u-icon-1"><svg
+								class="u-svg-link" preserveAspectRatio="xMidYMin slice"
+								viewBox="0 0 16 16" style="">
+								<use xmlns:xlink="http://www.w3.org/1999/xlink"
+									xlink:href="#svg-efc1"></use></svg>
+							<svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px"
+								id="svg-efc1">
+								<path
+									d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+					</a>
+					<div
+						class="u-accordion-active u-accordion-pane u-container-style u-accordion-pane-1"
+						id="5c71" aria-labelledby="link-5c71">
+						<div class="u-container-layout u-container-layout-15">
+							<ul class="u-text u-text-default u-text-8">
+								<li>스탠다드 핏: 편안한 착용감<br>
+								</li>
+								<li>사이즈 가이드</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="u-accordion-item">
+					<a
+						class="u-accordion-link u-border-1 u-border-active-grey-10 u-border-grey-10 u-border-hover-grey-10 u-border-no-left u-border-no-right u-button-style u-text-body-color u-accordion-link-2"
+						id="link-18b5" aria-controls="18b5" aria-selected="false"> <span
+						class="u-accordion-link-text">무료 배송 및 반품</span><span
+						class="u-accordion-link-icon u-icon u-text-black u-icon-2"><svg
+								class="u-svg-link" preserveAspectRatio="xMidYMin slice"
+								viewBox="0 0 16 16" style="">
+								<use xmlns:xlink="http://www.w3.org/1999/xlink"
+									xlink:href="#svg-7134"></use></svg>
+							<svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px"
+								id="svg-7134">
+								<path
+									d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+					</a>
+					<div class="u-accordion-pane u-container-style u-accordion-pane-2"
+						id="18b5" aria-labelledby="link-18b5">
+						<div class="u-container-layout u-container-layout-16">
+							<p class="u-text u-text-9">
+								일반 배송<br>• 배송지역: 전국 (일부 지역 제외)<br>• 배송비: 무료배송<br>•
+								제품 수령일로부터 14일 이내 제품에 대해서만 무료 반품 서비스가 가능합니다.<br>일반 배송&nbsp;<u>
+									<a href="https://www.nike.com/kr/help/a/shipping-delivery-kr"
+									class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-13">자세히
+										알아보기</a>
+								</u> <br>반품&nbsp;<u> <a
+									href="https://www.nike.com/kr/help/a/how-to-return-kr"
+									class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-14">자세히
+										알아보기</a></u> <br> <br>오늘도착 서비스<br>• 이용시간: 낮 12시까지 결제 시,
+								당일 도착 (일요일, 공휴일 제외)<br>• 서비스지역: 서울∙과천∙의왕∙군포∙수원∙성남∙안양시 전체,
+								용인시 수지구∙기흥구, 부천시 중동∙상동∙심곡동<br>• 서비스비용: 5,000원<br>
+								<u> <a
+									href="https://www.nike.com/kr/help/a/shipping-delivery-kr"
+									class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-15">자세히
+										알아보기</a></u>&nbsp;<br> <br>A/S 안내&nbsp;<br>• 나이키 온라인에서
+								구매하신 제품에 대한 A/S 는 나이키코리아 고객센터(<u><b> <a
+										href="tel:080-022-0182"
+										class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-16">080-022-0182</a></b></u>)에서
+								유선으로만 접수 가능합니다.<br>
+								<u> <a href="https://www.nike.com/kr/help/a/a-s-apply-kr"
+									class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-17">자세히
+										알아보기</a></u>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="u-accordion-item">
+					<a
+						class="u-accordion-link u-border-1 u-border-active-grey-10 u-border-grey-10 u-border-hover-grey-10 u-border-no-left u-border-no-right u-button-style u-text-body-color u-accordion-link-3"
+						id="link-a5ff" aria-controls="a5ff" aria-selected="false"> <span
+						class="u-accordion-link-text">리뷰 (count,,,)</span><span
+						class="u-accordion-link-icon u-icon u-text-black u-icon-3"><svg
+								class="u-svg-link" preserveAspectRatio="xMidYMin slice"
+								viewBox="0 0 16 16" style="">
+								<use xmlns:xlink="http://www.w3.org/1999/xlink"
+									xlink:href="#svg-34f1"></use></svg>
+							<svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px"
+								id="svg-34f1">
+								<path
+									d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+					</a>
+					<div class="u-accordion-pane u-container-style u-accordion-pane-3"
+						id="a5ff" aria-labelledby="link-a5ff">
+						<div class="u-container-layout u-container-layout-17">
+							<div
+								class="u-container-style u-group u-shape-rectangle u-group-4">
+								<div class="u-container-layout u-container-layout-18">
+									<p class="u-text u-text-default u-text-10">★★★★★</p>
+									<p class="u-text u-text-default u-text-11">4.9 점</p>
+									<a th:href="@{/product/reviewWriteFormChk.do(productNo=${product.productNo},color=${color})}"
+										class="u-active-none u-border-1 u-border-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-hover-none u-none u-text-body-color u-text-hover-grey-50 u-btn-18">리뷰
+										작성하기<span class="u-text-black"></span>
+									</a>
+								</div>
+							</div>
+							<div class="u-list u-list-4">
+								<div class="u-repeater u-repeater-4">
+								
+									<th:block th:each="review:${rvList}">
+									<div class="u-container-style u-list-item u-repeater-item">
+										<div
+											class="u-container-layout u-similar-container u-container-layout-19">
+											<p class="u-text u-text-default u-text-12">[[${review.name}]]</p>
+											<p
+												class="u-small-text u-text u-text-default u-text-variant u-text-13">
+												[[${review.star}]]</p>
+											<p
+												class="u-align-right u-text u-text-default u-text-grey-50 u-text-14">
+												[[${review.reviewDate}]]</p>
+											<p class="u-align-left u-text u-text-default u-text-15">
+												[[${review.content}]]</p>
+										</div>
+									</div>
+									</th:block>
+									
+								</div>
+							</div>
+							<a href="https://nicepage.com"
+								class="u-active-none u-border-1 u-border-black u-border-hover-black u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-hover-none u-none u-text-body-color u-text-hover-grey-50 u-btn-19">리뷰
+								더 보기<span class="u-text-black"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="u-accordion-item">
+					<a
+						class="u-accordion-link u-border-1 u-border-active-grey-10 u-border-grey-10 u-border-hover-grey-10 u-border-no-left u-border-no-right u-button-style u-text-body-color u-accordion-link-4"
+						id="link-a3a9" aria-controls="a3a9" aria-selected="false"> <span
+						class="u-accordion-link-text">추가 정보</span><span
+						class="u-accordion-link-icon u-icon u-text-black u-icon-4"><svg
+								class="u-svg-link" preserveAspectRatio="xMidYMin slice"
+								viewBox="0 0 16 16" style="">
+								<use xmlns:xlink="http://www.w3.org/1999/xlink"
+									xlink:href="#svg-b1bd"></use></svg>
+							<svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px"
+								id="svg-b1bd">
+								<path
+									d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+					</a>
+					<div class="u-accordion-pane u-container-style u-accordion-pane-4"
+						id="a3a9" aria-labelledby="link-a3a9">
+						<div class="u-container-layout u-valign-top u-container-layout-22">
+							<p class="u-text u-text-default u-text-24">상품정보제공고시</p>
+							<ul class="u-text u-text-default u-text-25">
+								<li>제조연월: 수입제품으로 각 상품별 입고 시기에 따라 상이하여 정확한 제조연월 제공이 어렵습니다.
+									제조연월을 확인하시려면 고객센터에 문의하시기 바라며, 정확한 제조연월은 배송받으신 제품의 라벨을 참고하시기
+									바랍니다.</li>
+								<li>A/S 책임자와 전화번호: (유)나이키코리아 온라인 스토어 고객센터 / 080-022-0182<br>
+								</li>
+								<li>세탁방법 및 취급시 주의사항: 자세한 내용은&nbsp;<a
+									href="https://www.nike.com/kr/help/a/product-handling-kr"
+									class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-20">'자세히
+										보기'</a>&nbsp;를 클릭하여 확인 부탁드립니다.<br>
+								</li>
+								<li>미성년자 권리 보호 안내: 자세한 내용은&nbsp;<a
+									href="https://www.nike.com/kr/help/a/underaged-consumers-info-kr"
+									class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-21">'자세히
+										보기'</a>&nbsp;를 클릭하여 확인 부탁드립니다.<br>
+								</li>
+								<li>품질보증기준: 품질보증기간-1년. 유통 중 손상되었거나 품질에 이상이 있는 제품에 한하여 소비자
+									피해 보상 규정에 의거 보상하여 드립니다. 단, 제품에 부착되어 있는 사용방법 및 취급 시 주의사항에 따라 제품을
+									관리해 주시고, 소비자 부주의로 인한 품질 이상 및 변형에 대해서는 책임을 지지 않습니다.<br>
+								</li>
+								<li>제조자/수입품의 경우 수입자를 함께 표기: Nike. Inc / (유)나이키코리아</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-	
-</div>
+
+
+
+	</section>
+	<section class="u-align-center u-clearfix u-section-2" id="sec-9f90">
+		<div class="u-clearfix u-sheet u-sheet-1">
+			<h2 class="u-text u-text-default u-text-1">추천 상품</h2>
+			<div class="u-expanded-width u-layout-horizontal u-list u-list-1">
+				<div class="u-repeater u-repeater-1">
+					<div class="u-container-style u-list-item u-repeater-item">
+						<div
+							class="u-container-layout u-similar-container u-container-layout-1">
+							<img class="u-expanded-width u-image u-image-default u-image-1"
+								alt="" data-image-width="600" data-image-height="600"
+								src="images/1.webp">
+							<h4 class="u-align-left u-text u-text-2">나이키 ACG 로우케이트</h4>
+							<h4 class="u-align-right u-text u-text-3">129,000 원</h4>
+							<p class="u-align-left u-text u-text-grey-40 u-text-4">남성 신발</p>
+						</div>
+					</div>
+					<div class="u-container-style u-list-item u-repeater-item">
+						<div
+							class="u-container-layout u-similar-container u-container-layout-2">
+							<img class="u-expanded-width u-image u-image-default u-image-2"
+								alt="" data-image-width="600" data-image-height="600"
+								src="images/2.webp">
+							<h4 class="u-align-left u-text u-text-5">나이키 에어맥스 97</h4>
+							<h4 class="u-align-right u-text u-text-6">219,000 원</h4>
+							<p class="u-align-left u-text u-text-grey-40 u-text-7">남성 신발</p>
+						</div>
+					</div>
+					<div class="u-container-style u-list-item u-repeater-item">
+						<div
+							class="u-container-layout u-similar-container u-container-layout-3">
+							<img class="u-expanded-width u-image u-image-default u-image-3"
+								alt="" data-image-width="600" data-image-height="600"
+								src="images/3.webp">
+							<h4 class="u-align-left u-text u-text-8">에어 조던 1 줌 Cmft</h4>
+							<h4 class="u-align-right u-text u-text-9">169,000 원</h4>
+							<p class="u-align-left u-text u-text-grey-40 u-text-10">신발</p>
+						</div>
+					</div>
+					<div class="u-container-style u-list-item u-repeater-item">
+						<div
+							class="u-container-layout u-similar-container u-container-layout-4">
+							<img class="u-expanded-width u-image u-image-default u-image-4"
+								alt="" data-image-width="600" data-image-height="600"
+								src="images/4.webp">
+							<h4 class="u-align-left u-text u-text-11">조던 .5 'Why Not?'</h4>
+							<h4 class="u-align-right u-text u-text-12">159,000 원</h4>
+							<p class="u-align-left u-text u-text-grey-40 u-text-13">남성
+								농구화</p>
+						</div>
+					</div>
+				</div>
+				<a
+					class="u-absolute-vcenter u-gallery-nav u-gallery-nav-prev u-grey-30 u-hover-grey-50 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-black u-text-hover-black u-gallery-nav-1"
+					href="#" role="button"> <span aria-hidden="true"> <svg
+							viewBox="0 0 451.847 451.847">
+							<path
+								d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+				</span> <span class="sr-only"> <svg viewBox="0 0 451.847 451.847">
+							<path
+								d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+				</span>
+				</a> <a
+					class="u-absolute-vcenter u-gallery-nav u-gallery-nav-next u-grey-30 u-hover-grey-50 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-black u-text-hover-black u-gallery-nav-2"
+					href="#" role="button"> <span aria-hidden="true"> <svg
+							viewBox="0 0 451.846 451.847">
+							<path
+								d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+				</span> <span class="sr-only"> <svg viewBox="0 0 451.846 451.847">
+							<path
+								d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+				</span>
+				</a>
+			</div>
+		</div>
+	</section>
+
+
 
 </body>
 </html>

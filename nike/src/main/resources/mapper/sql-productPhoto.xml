@@ -4,11 +4,19 @@
 <mapper namespace="com.ch.nike.mapper.ProductPhotoMapper">
 
 	<!-- ProductCon -->
-	<select id ="photoList" parameterType="integer" resultType="ProductPhoto">
+	<select id ="photoList" parameterType="product" resultType="ProductPhoto">
+		select 	* 
+		from 	product_photo 
+		where 	product_no=#{productNo}
+			and color=#{color}
+	</select>
+	<select id ="thumPhotoList" parameterType="integer" resultType="ProductPhoto">
 		select 	* 
 		from 	product_photo 
 		where 	product_no=#{productNo}
 	</select>
+	
+	
 	
 	
 	<!-- AccountCon -->

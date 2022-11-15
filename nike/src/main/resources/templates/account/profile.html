@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript"> /* by선희 */
+      layout:decorate="~{layouts/layout}" style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="계정 설정">
+    <meta name="description" content="">
+    <title>profileUpdate</title>
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="profileUpdate">
+    <meta property="og:type" content="website">
+    
+    <script type="text/javascript"> /* by선희 */
 	function memberDel(email) {
 		var cf = confirm("정말로 탈퇴하시겠습니까?");
 		if (cf) {
@@ -13,39 +31,68 @@
 		} else alert("탈퇴가 취소되었습니다.");
 	}
 </script>
-</head>
-<body>
-<div layout:fragment="content" align="center"> <!-- by 선희 + 수인 -->
-	<form action="profileUpdate.do" method="post">
-		<h2>회원정보관리</h2> 	
-		<table border="1" width="800px">
-			<tr>
-				<th>이메일</th>
-				<td>[[${member.email}]]</td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td>********* <a th:href="pwUpdateProfileForm.do">수정</a></td>
-			</tr>
-			<tr>
-				<th>전화번호</th>
-				<td>																<!-- 0123 45678 9012 -->
-					<input type="text" name="tel1" value="010" readonly="readonly"> <!-- 010- 2222- 2222 -->
-					-<input type="text" name="tel2" th:value="${member.memberTel.substring(4,8)}" placeholder="4자리"> <!-- (인덱스 3~6번째 숫자만 잘라오기) -->
-					-<input type="text" name="tel3" th:value="${member.memberTel.substring(9,13)}" placeholder="4자리"> <!-- (인덱스 7~10번쨰 잘라오기) -->
-				</td>
-			</tr>
-			<tr>
-				<th>생년월일</th>
-				<td><input type="date" name="birthday" th:value="${member.birthday}"></td>
-			</tr>
-			<input type="hidden" name="email" th:value="${member.email}">
-		</table>
-		<input type="submit" value="수정">
-	</form>
-	<p>
-	<button th:onclick="|location.href='@{/account/mypage.do}'|">취소</button>
-	<button th:onclick="memberDel([[${member.email}]])" class="btn btn-danger">회원탈퇴</button> <!-- by선희 -->
-</div>		
-</body>
-</html>
+    
+  </head>
+  <body layout:fragment="content" class="u-body u-xl-mode" data-lang="en">
+  
+  <link rel="stylesheet" href="/nice/nicepage.css" media="screen">
+<link rel="stylesheet" href="/nice/profileUpdate.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/nice/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/nice/nicepage.js" defer=""></script>
+    
+  
+    <section class="u-clearfix u-section-1" id="sec-bc03">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-text u-text-default u-text-1">설정</p>
+        <h1 class="u-text u-text-default u-title u-text-2">계정 설정</h1>
+        <div class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-form u-form-1">
+          <form action="profileUpdate.do" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+            <div class="u-form-email u-form-group u-label-top u-form-group-1">
+              <label for="email-4be8" class="u-label u-label-1">이메일</label>
+              <input readonly="readonly" th:value="${member.email}" type="email" id="email-4be8" name="email" class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-1" required="">
+            </div>
+            <p class="u-form-group u-form-partition-factor-2 u-form-text u-text u-text-3">비밀번호 <br>••••••••••••••••
+            </p>
+            <p class="u-align-right u-form-group u-form-partition-factor-2 u-form-text u-text u-text-4"><a th:href="pwUpdateProfileForm.do">수정</a><span style="text-decoration: underline !important;">
+                <span style="font-weight: 400;"></span>
+              </span>
+            </p>
+            <div class="u-form-group u-form-partition-factor-3 u-form-phone u-label-top">
+              <label for="email-8cbc" class="u-label u-label-2">전화번호</label>
+              <input type="tel" value="010" id="email-8cbc" name="tel1" class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-2" required="required" placeholder="10">
+            </div>
+            <div class="u-form-group u-form-partition-factor-3 u-form-phone u-label-top u-form-group-5">
+              <label for="phone-c5c4" class="u-form-control-hidden u-label u-label-3"></label>
+              <input type="tel" th:value="${member.memberTel.substring(4,8)}" id="phone-c5c4" name="tel2" class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-3" required="" placeholder="1234">
+            </div>
+            <div class="u-form-group u-form-partition-factor-3 u-form-phone u-label-top u-form-group-6">
+              <label for="phone-238b" class="u-form-control-hidden u-label u-label-4"></label>
+              <input type="tel" th:value="${member.memberTel.substring(9,13)}" id="phone-238b" name="tel3" class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-4" required="" placeholder="5678">
+            </div>
+            <div class="u-form-date u-form-group u-label-top">
+              <label for="message-8cbc" class="u-label u-label-5">생년월일</label>
+              <input rows="4" cols="50" id="message-8cbc" name="birthday" th:value="${member.birthday}" class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-5" required="required" type="date">
+            </div>
+            <div class="u-border-1 u-border-grey-10 u-form-group u-form-line u-line u-line-horizontal u-line-1"></div>
+            <div class="u-align-right u-form-group u-form-submit u-label-top">
+              <a href="#" class="u-black u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-grey-50 u-radius-30 u-btn-1">저장<br>
+              </a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
+            </div>
+            <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+            <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+            
+          </form>
+        </div>
+        <div class="u-container-style u-group u-shape-rectangle u-group-1">
+          <div class="u-container-layout u-container-layout-1"><span class="u-file-icon u-icon u-icon-1"><img src="/nice/images/3059416.png" alt=""></span>
+            <p class="u-text u-text-default u-text-5">계정 설정</p><span class="u-file-icon u-icon u-icon-2"><img src="/nice/images/3134241.png" alt=""></span>
+            <p class="u-text u-text-default u-text-6">배송지 관리</p>
+          </div>
+        </div>
+        <a th:onclick="memberDel([[${member.email}]])" class="u-border-1 u-border-grey-10 u-border-hover-black u-btn u-btn-round u-button-style u-hover-white u-radius-30 u-white u-btn-2">삭제</a>
+        <p class="u-small-text u-text u-text-default u-text-variant u-text-7">계정 삭제</p>
+      </div>
+    </section>
+  
+</body></html>

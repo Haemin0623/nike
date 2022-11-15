@@ -1,47 +1,315 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/layout}">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}" style="font-size: 16px;" lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="keywords" content="위시 리스트, 추천 상품">
+<meta name="description" content="">
+<title>cartList</title>
+
+<meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+<link id="u-theme-google-font" rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+<script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+<meta name="theme-color" content="#478ac9">
+<meta property="og:title" content="cartList">
+<meta property="og:type" content="website">
 </head>
-<body>
+<body layout:fragment="content" class="u-body u-xl-mode" data-lang="en">
 
-<div layout:fragment="content" align="center">
-	<h3> 장바구니 </h3>
-	<table border="1" width="80%">
-		<tr>
-			<th> 번호 </th>
-			<th> 상품사진 </th>
-			<th> 상품명 </th>
-			<th> 컬러 </th>
-			<th> 사이즈 </th>
-			<th> 수량 </th>
-			<th></th>	
-		</tr>
-		<!-- 		카트번호, 수량 /상품사진(배치1번), 상품명/ 사이즈, 컬러  -->
-		
-		<tr th:if="${#lists.size(cartList)} == 0">
-			<td colspan ="7"> 장바구니가 비었습니다</td>
-		</tr>
-		
-		<tr th:if="${#lists.size(cartList)} > 0" th:each="cartDetail:${cartList}" >
-			<td>[[${cartDetail.cartNo}]]</td>
-			<td> 
-				<a th:href="@{/product/productDetail.do(productNo=${cartDetail.productNo},color=${cartDetail.color})}">
-				<img alt="" th:src="@{/images/product_photo/}+${cartDetail.productPhoto}" height="150"></a>
-			</td>
-			<td>[[${cartDetail.productName}]]</td>
-			<td>[[${cartDetail.color}]]</td>
-			<td>[[${cartDetail.productSize}]]</td>
-			<td>[[${cartDetail.cartQuantity}]]</td>
-			<td>&nbsp; <a th:href="@{/account/deleteCart.do(cartNo=${cartDetail.cartNo})}">삭제</a>
-		</tr>
-	</table>
-	
-</div>
+	<link rel="stylesheet" href="/nice/nicepage.css" media="screen">
+	<link rel="stylesheet" href="/nice/cartList.css" media="screen">
+	<script class="u-script" type="text/javascript" src="/nice/jquery.js"
+		defer=""></script>
+	<script class="u-script" type="text/javascript" src="/nice/nicepage.js"
+		defer=""></script>
 
+	<section class="u-clearfix u-section-1" id="sec-e8c6">
+		<div class="u-clearfix u-sheet u-sheet-1">
+			<div
+				class="u-container-style u-expanded-width u-group u-shape-rectangle u-group-1">
+				<div class="u-container-layout u-container-layout-1">
+					<p
+						class="u-small-text u-text u-text-default u-text-variant u-text-1">장​바구니</p>
+					<div class="u-list u-list-1" >
+						<div class="u-repeater u-repeater-1">
+													
+							<div th:each="cartDetail:${cartList}"
+								class="u-border-2 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item">
+								<div
+									class="u-container-layout u-similar-container u-container-layout-4">
+									<a th:href="@{/product/productDetail.do(productNo=${cartDetail.productNo},color=${cartDetail.color})}">
+									<img class="u-image u-image-default u-image-2"
+										th:src="@{/images/product_photo/}+${cartDetail.productPhoto}" alt="" data-image-width="864"
+										data-image-height="1080">
+										</a>
+									<div class="u-container-style u-group u-group-3">
+										<div class="u-container-layout u-container-layout-5">
+											<p class="u-text u-text-default u-text-7">[[${cartDetail.productName}]]</p>
+											<p class="u-text u-text-default u-text-grey-50 u-text-8">
+												Categoty,,,,</p>
+											<p class="u-text u-text-default u-text-grey-50 u-text-9">
+												[[${cartDetail.color}]]</p>
+											<div class="u-clearfix u-custom-html u-custom-html-2">
+												사이즈<select>
+													<option th:if="${cartDetail.productSize} == M" selected="selected">M</option>
+													<option>M</option>
+													<option th:if="${cartDetail.productSize} == L" selected="selected">L</option>
+													<option>L</option>
+													<option th:if="${cartDetail.productSize} == XL" selected="selected">XL</option>
+													<option>XL</option>
+
+												</select> 수량<select>
+													<option th:if="${cartDetail.cartQuantity} == 1" selected="selected">1</option>
+													<option>1</option>
+													<option th:if="${cartDetail.cartQuantity} == 2" selected="selected">2</option>
+													<option>2</option>
+													<option th:if="${cartDetail.cartQuantity} == 3" selected="selected">3</option>
+													<option>3</option>
+													<option th:if="${cartDetail.cartQuantity} == 4" selected="selected">4</option>
+													<option>4</option>
+													<option th:if="${cartDetail.cartQuantity} == 5" selected="selected">5</option>
+													<option>5</option>
+													<option th:if="${cartDetail.cartQuantity} == 6" selected="selected">6</option>
+													<option>6</option>
+													<option th:if="${cartDetail.cartQuantity} == 7" selected="selected">7</option>
+													<option>7</option>
+													<option th:if="${cartDetail.cartQuantity} == 8" selected="selected">8</option>
+													<option>8</option>
+													<option th:if="${cartDetail.cartQuantity} == 9" selected="selected">9</option>
+													<option>9</option>
+												</select>
+											</div>
+											<span class="u-file-icon u-icon u-icon-3">
+											<a th:href="@{/account/deleteCart.do(cartNo=${cartDetail.cartNo})}">
+											<img
+												src="/nice/images/8369973.png" alt=""></a></span><span
+												class="u-hover-feature u-icon u-icon-circle u-icon-4"><svg
+													class="u-svg-link" preserveAspectRatio="xMidYMin slice"
+													viewBox="0 0 51.997 51.997" style="">
+													<use xmlns:xlink="http://www.w3.org/1999/xlink"
+														xlink:href="#svg-233e"></use></svg> <svg class="u-svg-content"
+													viewBox="0 0 51.997 51.997" x="0px" y="0px" id="svg-233e"
+													style="enable-background: new 0 0 51.997 51.997;">
+													<g>
+													<path
+														d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
+		c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478
+		c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014
+		C52.216,18.553,51.97,16.611,51.911,16.242z M49.521,21.261c-0.984,4.172-3.265,7.973-6.59,10.985L25.855,47.481L9.072,32.25
+		c-3.331-3.018-5.611-6.818-6.596-10.99c-0.708-2.997-0.417-4.69-0.416-4.701l0.015-0.101C2.725,9.139,7.806,3.826,14.158,3.826
+		c4.687,0,8.813,2.88,10.771,7.515l0.921,2.183l0.921-2.183c1.927-4.564,6.271-7.514,11.069-7.514
+		c6.351,0,11.433,5.313,12.096,12.727C49.938,16.57,50.229,18.264,49.521,21.261z"></path>
+</g></svg></span>
+										</div>
+									</div>
+									<p class="u-align-right u-text u-text-10">Price,,,</p>
+									<p class="u-text u-text-default u-text-11">
+										무료 배송<br>도착 예정일 : 11월 18일 (금) 배송 지역: 06126
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<p
+						class="u-small-text u-text u-text-default u-text-variant u-text-17">주문내역</p>
+					<div class="u-clearfix u-layout-wrap u-layout-wrap-1">
+						<div class="u-layout">
+							<div class="u-layout-col">
+								<div
+									class="u-container-style u-layout-cell u-size-20 u-layout-cell-1">
+									<div
+										class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-layout u-container-layout-8">
+										<p class="u-align-right u-text u-text-default u-text-18">1,327,000
+											원</p>
+										<p class="u-text u-text-default u-text-19">상품 금액</p>
+										<p class="u-align-right u-text u-text-default u-text-20">무료</p>
+										<p class="u-text u-text-default u-text-21">배송비</p>
+									</div>
+								</div>
+								<div
+									class="u-container-style u-layout-cell u-size-20 u-layout-cell-2">
+									<div
+										class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-layout u-container-layout-9">
+										<p class="u-align-right u-text u-text-default u-text-22">1,327,000
+											원</p>
+										<p class="u-text u-text-default u-text-23">총 결제 금액</p>
+									</div>
+								</div>
+								<div
+									class="u-container-style u-layout-cell u-size-20 u-layout-cell-3">
+									<div
+										class="u-container-layout u-valign-bottom u-container-layout-10">
+										<a href="https://nicepage.com/c/gallery-html-templates"
+											class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-grey-75 u-radius-50 u-btn-1">주문결제</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="u-container-style u-group u-shape-rectangle u-group-5">
+						<div class="u-container-layout u-container-layout-11">
+							<h2 class="u-text u-text-default u-text-24">위시 리스트</h2>
+							<div class="u-expanded-width u-list u-list-2">
+								<div class="u-repeater u-repeater-2">
+									<div
+										class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item">
+										<div
+											class="u-container-layout u-similar-container u-container-layout-12">
+											<img class="u-image u-image-default u-image-4"
+												src="images/c1.webp" alt="" data-image-width="864"
+												data-image-height="1080">
+											<div class="u-container-style u-group u-group-6">
+												<div class="u-container-layout u-container-layout-13">
+													<p class="u-text u-text-default u-text-25">조던 23 엔지니어드</p>
+													<p class="u-align-right u-text u-text-default u-text-26">105,000
+														원</p>
+													<p class="u-text u-text-default u-text-grey-50 u-text-27">
+														남성 플리스 풀오버 후디</p>
+													<p class="u-text u-text-default u-text-grey-50 u-text-28">사이즈
+														L</p>
+												</div>
+											</div>
+											<a href="https://nicepage.com/one-page-template"
+												class="u-border-1 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-hover-white u-radius-25 u-white u-btn-2"
+												data-animation-name="" data-animation-duration="0"
+												data-animation-delay="0" data-animation-direction="">장바구니에
+												추가</a>
+										</div>
+									</div>
+									<div
+										class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item">
+										<div
+											class="u-container-layout u-similar-container u-container-layout-14">
+											<img class="u-image u-image-default u-image-5"
+												src="images/c1.webp" alt="" data-image-width="864"
+												data-image-height="1080">
+											<div class="u-container-style u-group u-group-7">
+												<div class="u-container-layout u-container-layout-15">
+													<p class="u-text u-text-default u-text-29">조던 23 엔지니어드</p>
+													<p class="u-align-right u-text u-text-default u-text-30">
+														109,000 원</p>
+													<p class="u-text u-text-default u-text-grey-50 u-text-31">
+														남성 플리스 풀오버 후디</p>
+													<p class="u-text u-text-default u-text-grey-50 u-text-32">사이즈
+														선택</p>
+												</div>
+											</div>
+											<a href="https://nicepage.com/one-page-template"
+												class="u-border-1 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-hover-white u-radius-25 u-white u-btn-3"
+												data-animation-name="" data-animation-duration="0"
+												data-animation-delay="0" data-animation-direction="">
+												장바구니에 추가</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<a href="https://nicepage.review"
+								class="u-active-none u-border-1 u-border-grey-60 u-border-no-left u-border-no-right u-border-no-top u-bottom-left-radius-0 u-bottom-right-radius-0 u-btn u-btn-rectangle u-button-style u-hover-none u-none u-radius-0 u-top-left-radius-0 u-top-right-radius-0 u-btn-4">위시리스트
+								상품 더 보기</a>
+						</div>
+					</div>
+					<div class="u-expanded-width u-layout-horizontal u-list u-list-3">
+						<div class="u-repeater u-repeater-3">
+							<div class="u-container-style u-list-item u-repeater-item">
+								<div
+									class="u-container-layout u-similar-container u-container-layout-16">
+									<img class="u-expanded-width u-image u-image-default u-image-6"
+										alt="" data-image-width="600" data-image-height="600"
+										src="images/1.webp">
+									<h4 class="u-align-left u-text u-text-33">나이키 ACG 로우케이트</h4>
+									<h4 class="u-align-right u-text u-text-34">129,000 원</h4>
+									<p class="u-align-left u-text u-text-grey-40 u-text-35">남성
+										신발</p>
+								</div>
+							</div>
+							<div class="u-container-style u-list-item u-repeater-item">
+								<div
+									class="u-container-layout u-similar-container u-container-layout-17">
+									<img class="u-expanded-width u-image u-image-default u-image-7"
+										alt="" data-image-width="600" data-image-height="600"
+										src="images/2.webp">
+									<h4 class="u-align-left u-text u-text-36">나이키 에어맥스 97</h4>
+									<h4 class="u-align-right u-text u-text-37">219,000 원</h4>
+									<p class="u-align-left u-text u-text-grey-40 u-text-38">남성
+										신발</p>
+								</div>
+							</div>
+							<div class="u-container-style u-list-item u-repeater-item">
+								<div
+									class="u-container-layout u-similar-container u-container-layout-18">
+									<img class="u-expanded-width u-image u-image-default u-image-8"
+										alt="" data-image-width="600" data-image-height="600"
+										src="images/3.webp">
+									<h4 class="u-align-left u-text u-text-39">에어 조던 1 줌 Cmft</h4>
+									<h4 class="u-align-right u-text u-text-40">169,000 원</h4>
+									<p class="u-align-left u-text u-text-grey-40 u-text-41">신발</p>
+								</div>
+							</div>
+							<div class="u-container-style u-list-item u-repeater-item">
+								<div
+									class="u-container-layout u-similar-container u-container-layout-19">
+									<img class="u-expanded-width u-image u-image-default u-image-9"
+										alt="" data-image-width="600" data-image-height="600"
+										src="images/4.webp">
+									<h4 class="u-align-left u-text u-text-42">조던 .5 'Why Not?'</h4>
+									<h4 class="u-align-right u-text u-text-43">159,000 원</h4>
+									<p class="u-align-left u-text u-text-grey-40 u-text-44">남성
+										농구화</p>
+								</div>
+							</div>
+						</div>
+						<a
+							class="u-absolute-vcenter u-gallery-nav u-gallery-nav-prev u-grey-30 u-hover-grey-50 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-black u-text-hover-black u-gallery-nav-1"
+							href="#" role="button"> <span aria-hidden="true"> <svg
+									viewBox="0 0 451.847 451.847">
+									<path
+										d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+						</span> <span class="sr-only"> <svg viewBox="0 0 451.847 451.847">
+									<path
+										d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+						</span>
+						</a> <a
+							class="u-absolute-vcenter u-gallery-nav u-gallery-nav-next u-grey-30 u-hover-grey-50 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-black u-text-hover-black u-gallery-nav-2"
+							href="#" role="button"> <span aria-hidden="true"> <svg
+									viewBox="0 0 451.846 451.847">
+									<path
+										d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+						</span> <span class="sr-only"> <svg viewBox="0 0 451.846 451.847">
+									<path
+										d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+						</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<h2 class="u-text u-text-default u-text-45">추천 상품</h2>
+		</div>
+
+
+
+
+
+	</section>
 
 </body>
 </html>

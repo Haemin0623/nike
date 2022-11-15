@@ -1,0 +1,112 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
+
+<head><meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+    li {
+      list-style: none;
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+    }
+
+
+    .upload {
+      width: 200px;
+      height: 200px;
+      background-color: antiquewhite;
+    }
+
+    .image-preview {
+      width: 1300px;
+      height: 200px;
+      background-color: #dcdcdc;
+      display: flex;
+      gap: 20px;
+    }
+  </style>
+</head><body>
+<div class="container" align="center">
+	<h2 class="text-primary">환불신청</h2>
+<form action="refund.do" method="post" enctype="multipart/form-data" >
+	<input type="hidden" name="orderDetailNo" th:value="${productInfo.orderDetailNo}">
+	<input type="hidden" name="orderNo" th:value="${productInfo.orderNo}">
+<table class="table table-bordered">
+	<tr>
+		<th colspan="2">상품명 : [[${productInfo.productName}]]</th>
+	</tr>
+	<tr>
+		<th>사유 <span style="color: red;">*</span></th>
+		<td>
+			<textarea rows="5" cols="100" name="reason" required="required" placeholder="환불 사유를 입력해주세요." >
+			</textarea>
+		</td>
+	</tr>
+	<tr>
+		<th>사진 </th> 
+		<td><input type="file" name="file" class="real-upload" >
+				<ul class="image-preview"></ul>
+			  <script>
+			    function getImageFiles(e) {
+			      const uploadFiles = [];
+			      const files = e.currentTarget.files;
+			      const imagePreview = document.querySelector('.image-preview');
+			      const docFrag = new DocumentFragment();
+			
+			      if ([...files].length >= 7) {
+			        alert('이미지는 최대 6개 까지 업로드가 가능합니다.');
+			        return;
+			      }
+			
+			      // 파일 타입 검사
+			      [...files].forEach(file => {
+			        if (!file.type.match("image/.*")) {
+			          alert('이미지 파일만 업로드가 가능합니다.');
+			          return
+			        }
+			
+			        // 파일 갯수 검사
+			        if ([...files].length < 7) {
+			          uploadFiles.push(file);
+			          const reader = new FileReader();
+			          reader.onload = (e) => {
+			            const preview = createElement(e, file);
+			            imagePreview.appendChild(preview);
+			          };
+			          reader.readAsDataURL(file);
+			        }
+			      });
+			    }
+			
+			    function createElement(e, file) {
+			      const li = document.createElement('li');
+			      const img = document.createElement('img');
+			      img.setAttribute('src', e.target.result);
+			      img.setAttribute('data-file', file.name);
+			      li.appendChild(img);
+			
+			      return li;
+			    }
+			
+			    const realUpload = document.querySelector('.real-upload');
+			    const upload = document.querySelector('.upload');
+			
+			
+			    realUpload.addEventListener('change', getImageFiles);
+			  </script>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">
+			<input type="submit" value="환불신청" style="color: white; background-color: black; width: 100%">
+		</td>
+	</tr>	
+</table>
+<a th:href="@{/account/orderDetail.do(orderNo=${productInfo.orderNo})}">주문 상세</a>
+</form>
+<div id="disp"></div>
+</div>
+</body>
+</html>

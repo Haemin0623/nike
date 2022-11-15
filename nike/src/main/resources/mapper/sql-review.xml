@@ -48,9 +48,12 @@
 	
 	<!-- ProductCon -->
 	<select id="selectProductReview" parameterType="integer" resultType="Review">
-		select	distinct *
-		from	review
-		where	product_no = #{product_no} 
+		select	distinct r.*,
+				m.name
+		from	review r,
+				member m
+		where	r.email=m.email
+			and product_no = #{product_no} 
 			and review_del = 'N'
 	</select>
 	

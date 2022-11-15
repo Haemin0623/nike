@@ -1,23 +1,120 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/layout}">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<div layout:fragment="content" > <!-- by 수인 -->
-	<h3>[[${notice.noticeSubject}]]</h3>
-	<table width="800px">
-	<tr>
-		<td> <!-- 원본 글 형식 그대로 갖고오려 textarea씀 -->
+	  layout:decorate="~{layouts/layout}" style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="고객센터, ​주문을 취소하거나 주문 내용을 변경할 수 있나요?">
+    <meta name="description" content="">
+    <title>notice</title>
+    
+
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="notice">
+    <meta property="og:type" content="website">
+  </head>
+  <body layout:fragment="content" class="u-body u-xl-mode" data-lang="en">
+  
+  <link rel="stylesheet" href="/nice/nicepage.css" media="screen">
+  <link rel="stylesheet" href="/nice/notice.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/nice/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/nice/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+  
+    <section class="u-clearfix u-section-1" id="sec-c777">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-text u-text-default u-title u-text-1">고객센터</h1>
+        <div class="u-form u-form-1">
+          <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+            <div class="u-form-group u-label-none">
+              <label for="name-1261" class="u-label">Name</label>
+              <input type="text" placeholder="무엇을 도와드릴까요?" id="name-1261" name="search" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white u-input-1" required="required">
+            </div>
+            <div class="u-align-center u-form-group u-form-submit u-label-none">
+              <a href="#" class="u-black u-border-none u-btn u-btn-submit u-button-style u-btn-1"></a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
+            </div>
+            <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+            <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+            <input type="hidden" value="" name="recaptchaResponse">
+            <input type="hidden" name="formServices" value="">
+          </form>
+        </div>
+        <div class="u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            <div class="u-align-center u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1"><span class="u-file-icon u-icon u-icon-1"><img src="/nice/images/2739899.png" alt=""></span>
+                <p class="u-text u-text-default u-text-2">
+                  <span style="font-weight: 700;">제품 및 주문</span>
+                  <br>000-0000-0000<br>9:00~20:00<br>월요일~일요일
+                </p>
+              </div>
+            </div>
+            <div class="u-align-center u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2"><span class="u-file-icon u-icon u-icon-2"><img src="/nice/images/8191426.png" alt=""></span>
+                <p class="u-text u-text-default u-text-3">
+                  <span style="font-weight: 700;"> 제품 및 주문</span>
+                  <br>나이키와 채팅하기<br>9:00~20:00<br>월요일~일요일
+                </p>
+              </div>
+            </div>
+            <div class="u-align-center u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3"><span class="u-file-icon u-icon u-icon-3"><img src="/nice/images/484167.png" alt=""></span>
+                <p class="u-text u-text-default u-text-4">
+                  <span style="font-weight: 700;">매장 찾기</span>
+                  <br>가까운 나이키 리테일 매장 찾기
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="u-border-1 u-border-grey-10 u-border-no-bottom u-border-no-left u-border-no-top u-container-style u-group u-shape-rectangle u-group-1">
+          <div class="u-container-layout u-valign-top u-container-layout-4">
+            <h1 class="u-text u-text-default u-title u-text-5"> [[${notice.noticeSubject}]]</h1>
+            <p class="u-text u-text-default u-text-6">
+             <!-- 원본 글 형식 그대로 갖고오려 textarea씀 -->
 			<textarea rows="25px" cols="100px" name="content" readonly="readonly">[[${notice.content}]]</textarea>
-		</td>
-	</tr>
-	</table>
-	<a href="help.do">뒤로</a>
 	
-</div>
-</body>
-</html>
+<!--               <span style="font-weight: 700;"> 주문 취소</span> -->
+<!--               <br>주문 직후 혹은 주문취소 버튼이 활성화되어있을 때에만 온라인 또는 고객센터를 통해 주문취소가 가능합니다.<br> -->
+<!--               <br> -->
+<!--               <span style="font-weight: 700;">온라인에서 주문 취소하기</span> -->
+<!--               <br>로그인 후,&nbsp;<a target="false" href="https://www.nike.com/kr/orders" class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-2">주문 페이지</a>에 접속<br>취소하고자 하는 주문의 '주문 상세 보기' &gt; '주문 취소' 버튼 누르기<br> -->
+<!--               <br> -->
+<!--               <span style="font-weight: 700;">유의사항</span>:<br>비회원 혹은 로그인을 하지 않고 주문하신 경우에는 이메일 주소와 문자로 받으신 주문번호를 입력하면 로그인이 가능합니다.<br> -->
+<!--               <br> -->
+<!--               <br> -->
+<!--               <span style="font-weight: 700;">주문 취소 불가</span> -->
+<!--               <br>'주문 취소' 버튼이 활성화된 상태가 아니라면 해당 주문은 취소가 불가합니다. 이러한 경우에는 제품을 수령하신 후, 나이키가 제공하는&nbsp;<a href="https://www.nike.com/kr/help/a/returns-policy-kr" class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-3">무료 반품 서비스</a>를 이용하시기 바랍니다.<br> -->
+<!--               <br> -->
+<!--               <span style="font-weight: 700;">주문 변경</span> -->
+<!--               <br>이미 완료된 주문에 대해서는 제품 변경, 옵션 혹은 수량의 변경이 불가합니다. 기존 주문을 취소하신 후, 원하시는 제품으로 재주문해 주시기 바랍니다.<br> -->
+<!--               <br> -->
+<!--               <span style="font-weight: 700; font-size: 1.125rem;">FAQs</span> -->
+<!--               <br> -->
+<!--               <span style="font-weight: 700;">주문 및 결제 완료 후, 배송지 주소 변경이 가능한가요?</span> -->
+<!--               <br>배송지 주소 변경은 불가합니다. 배송지 주소 변경을 원하시는 경우에는 주문 취소 후, 해당 정보를 변경해 주시기 바랍니다.<br> -->
+<!--               <span style="font-weight: 700;">결제를 했으나 진행 상황이 결제 지연으로 조회됩니다. 이 경우에 결제가 완료된 것으로 봐도 될까요?</span> -->
+<!--               <br>아닙니다. 결제 지연으로 조회되는 경우에는 결제가 완료되지 않은 상태입니다. 시간이 더 경과된 후에 확인하시거나 계속 상태가 변경되지 않는다면&nbsp;<a href="https://www.nike.com/kr/help/#contact" class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-4">나이키코리아 고객센터</a>로 연락 주시기 바랍니다.<br> -->
+<!--               <span style="font-weight: 700;">한 번의 주문에 여러 개의 제품을 함께 주문한 경우, 일부분만 취소 처리가 가능한가요?</span> -->
+<!--               <br>부분 취소를 원하시는 경우에는&nbsp;<a href="https://www.nike.com/kr/help/#contact" class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5">나이키코리아 고객센터</a>로 연락 주시면 제품별로 취소 처리를 도와드리겠습니다. 온라인에서는 전체 주문에 대한 취소만 가능한 점 유의하시기 바랍니다.<br> -->
+<!--               <span style="font-weight: 700;">주문 취소 건에 대한 환불은 어떻게 진행되나요?</span> -->
+<!--               <br>주문을 취소하시면 결제 취소도 함께 진행됩니다. 그러나 결제 수단에 따라서 내역 확인까지 시간이 소요될 수 있는 점 참고하시기 바랍니다. -->
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+</body></html>

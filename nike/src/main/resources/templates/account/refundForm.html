@@ -1,8 +1,28 @@
-<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
-
-<head><meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="환불 신청">
+    <meta name="description" content="">
+    <title>refundForm</title>
+    
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="refundForm">
+    <meta property="og:type" content="website">
+    
+    <style>
     li {
       list-style: none;
     }
@@ -27,26 +47,33 @@
       gap: 20px;
     }
   </style>
-</head><body>
-<div class="container" align="center">
-	<h2 class="text-primary">환불신청</h2>
-<form action="refund.do" method="post" enctype="multipart/form-data" >
-	<input type="hidden" name="orderDetailNo" th:value="${productInfo.orderDetailNo}">
-	<input type="hidden" name="orderNo" th:value="${productInfo.orderNo}">
-<table class="table table-bordered">
-	<tr>
-		<th colspan="2">상품명 : [[${productInfo.productName}]]</th>
-	</tr>
-	<tr>
-		<th>사유 <span style="color: red;">*</span></th>
-		<td>
-			<textarea rows="5" cols="100" name="reason" required="required" placeholder="환불 사유를 입력해주세요." >
-			</textarea>
-		</td>
-	</tr>
-	<tr>
-		<th>사진 </th> 
-		<td><input type="file" name="file" class="real-upload" >
+    
+  </head>
+  <body class="u-body u-xl-mode" data-lang="en">
+  
+  <link rel="stylesheet" href="/nice/nicepage.css" media="screen">
+<link rel="stylesheet" href="/nice/refundForm.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/nice/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/nice/nicepage.js" defer=""></script>
+  
+    <section class="u-clearfix u-section-1" id="sec-8ab5">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-align-center u-text u-text-default u-title u-text-1">환불 신청</h1>
+        <p class="u-align-center u-large-text u-text u-text-default u-text-variant u-text-2">신청 사유를 작성해주세요</p>
+        <div class="u-form u-form-1">
+        
+          <form action="refund.do"  method="post" enctype="multipart/form-data"  class="u-clearfix u-form-spacing-27 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+            <input type="hidden" name="orderDetailNo" th:value="${productInfo.orderDetailNo}">
+			<input type="hidden" name="orderNo" th:value="${productInfo.orderNo}">
+            
+            <div class="u-form-group u-form-message u-label-none">
+              <label for="message-5b94" class="u-label">content</label>
+              <textarea rows="4" cols="50" id="message-5b94" name="reason" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""></textarea>
+            </div>
+            <p class="u-form-group u-form-text u-text u-text-grey-40 u-text-3">&nbsp; 환불 신청을 하시는 이유(최소 5자)를 작성해 주세요.</p>
+            <div class="u-form-group u-form-message u-label-none u-form-group-3">
+            
+              <input type="file" name="file" class="real-upload" >
 				<ul class="image-preview"></ul>
 			  <script>
 			    function getImageFiles(e) {
@@ -95,18 +122,27 @@
 			
 			
 			    realUpload.addEventListener('change', getImageFiles);
-			  </script>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" align="center">
-			<input type="submit" value="환불신청" style="color: white; background-color: black; width: 100%">
-		</td>
-	</tr>	
-</table>
-<a th:href="@{/account/orderDetail.do(orderNo=${productInfo.orderNo})}">주문 상세</a>
-</form>
-<div id="disp"></div>
-</div>
-</body>
-</html>
+			  </script>  
+			 </div>
+            <div class="u-align-left u-form-group u-form-submit u-label-none">
+              <a href="#" class="u-black u-border-none u-btn u-btn-submit u-button-style u-btn-1">등록<br>
+              </a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
+            </div>
+            <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+            <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+
+          </form>
+          
+        </div>
+        <div class="u-container-style u-group u-shape-rectangle u-group-1">
+          <div class="u-container-layout u-valign-top u-container-layout-1">
+            <p class="u-large-text u-text u-text-default u-text-variant u-text-4">사유</p>
+            <p class="u-large-text u-text u-text-default u-text-variant u-text-5">사진</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+</body></html>

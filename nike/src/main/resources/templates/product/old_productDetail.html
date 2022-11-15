@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.reviewDetail {
+		display: none;
+	}
+</style>
+<script type="text/javascript">
+	// 리뷰
+	$(function() {
+		$('.review').click(function() {
+			$('.reviewDetail').toggle();
+		
+		});
+	});
+</script>
+</head>
+<body>
+
+<div layout:fragment="content">
+	<h2>[[${product.productName}]]</h2>
+	<h3>[[${color}]]</h3>
+
+		<th:block th:if="${#lists.size(productPhotoList)} == 0">
+			<td colspan="#"> 상품사진이 없습니다 </td>
+		</th:block>
+		
+		<th:block th:if="${#lists.size(productPhotoList)} > 0 and ${color}==${productPhoto.color}" 
+				  th:each="productPhoto:${productPhotoList}">			
+			<img alt="" th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" height="200">
+		</th:block>
+		<p>
+		<th:block th:if="${#lists.size(productPhotoList)} > 0 and ${productPhoto.batch}==1" 
+					  th:each="productPhoto:${productPhotoList}">
+				<a th:href="@{productDetail.do(productNo=${productPhoto.productNo},color=${productPhoto.color})}">
+				<img alt="" th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" height="100"></a>
+		</th:block>
+		<p>
+		
+	<form action="/account/addCart.do" method="post">
+		<select name="productDetailNo">		
+			<option th:value="${productDetail.productDetailNo}" th:if="${color}== ${productDetail.color}" th:each="productDetail:${productDetailList}">[[${productDetail.productSize}]] (재고: [[${productDetail.stock}]])</option>		
+		</select><br>
+		<button type="submit">장바구니 추가</button>
+	</form><p>
+	<button th:onclick="|location.href='@{addWish.do(productNo=${productNo},color=${color})}'|">위시리스트</button><p> <!-- 양옆에 ||붙임 -->
+	
+	<table border="1">
+		<tr>
+			<th>상품명</th><td>[[${product.productName}]]</td>
+		</tr>
+		<tr>
+			<th>가격</th><td>[[${product.price}]]</td>
+		</tr>
+		<tr>
+			<th>상품상세</th><td>[[${product.detail}]]</td>
+		</tr>
+		<tr>
+			<th>성별</th><td>[[${product.gender}]]</td>
+		</tr>
+		<tr th:each="productFeature:${productFeatureList}">
+			<th>특징</th><td>[[${productFeature.feature}]]</td>
+		</tr>
+	</table>
+	
+	<div class="review" style="font-size: 20pt">리뷰</div><br>
+	
+	<div class="reviewDetail">
+		<a th:href="@{/product/reviewWriteFormChk.do(productNo=${product.productNo},color=${color})}">
+			리뷰 작성하기
+		</a><br>
+		<div class="reviewList">
+			<table>
+				<th:block th:each="review:${rvList}">
+					<tr>
+						<th>[[${review.star}]]</th>
+						<td>[[${review.reviewDate}]]</td>
+					</tr>
+					<tr>
+						<td colspan="2">[[${review.content}]]</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<span th:if="${review.reviewNo} == ${photo.reviewNo}" th:each="photo:${rvPhotos}">
+								<img th:src="@{/images/review_photo/}+${photo.reviewPhoto}" width="50">
+							</span>
+						</td>
+					</tr>
+				</th:block>
+			</table>
+		</div>
+	</div>
+	
+</div>
+
+</body>
+</html>

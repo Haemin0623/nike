@@ -1,156 +1,153 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
- <style>
-        body{
-            background-color: #f0f0f0;
-        }
-        input[type=number]{
-            margin-bottom: 0;
-            margin-left: 8px;
-            padding: 6px 8px;
-            font-size: 1em;
-            border: none;
-            border-radius: 4px;
-        }
-        .rating-wrap{
-            padding: 10px;
-            display: flex;
-        }
-        .rating {
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-        .star {
-            width: 30px;
-            height: 30px;
-            margin-right: 2px;
-        }
-        .starcolor{
-            fill: #ff8844;
-        }
-        .star:last-of-type {
-            margin-right: 0;
-        }
-        .overlay {
-            background-color: #000;
-            opacity: 0.5;
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1;
-            transition: all 0.3s ease-in-out;
-        }
-        @supports (mix-blend-mode: color) {
-            .overlay{
-                mix-blend-mode: color;
-                opacity: unset;
-            }
-        }
-    </style>
-    <script>
-        const starSize = 30, maxStar = 5, gutter = 2;//별 크기, 별 개수
-        let maskMax = 0; //오버레이 마스크 최대 너비
-        window.addEventListener('DOMContentLoaded',()=>{
-            //별 이미지 SVG 개수만큼 생성
-            for(let i = 0;i < maxStar;i++){
-                let el = document.createElement('div');
-                //el.classList.add('star');
-                el.style.width = starSize + 'px';
-                el.style.height = starSize + 'px';
-                el.style.marginRight = gutter + 'px';
-                //인라인 SVG 이미지 부착
-                el.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="none" class="starcolor" d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"/></svg>';
-                document.querySelector('.rating').appendChild(el);
-            }
+<html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="리뷰 작성">
+    <meta name="description" content="">
+    <title>reviewForm</title>
+    <link rel="stylesheet" href="nicepage.css" media="screen">
+<link rel="stylesheet" href="reviewForm.css" media="screen">
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="reviewForm">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode" data-lang="en">
+    <section class="u-clearfix u-section-1" id="sec-c3d7">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-align-center u-text u-text-default u-title u-text-1">리뷰 작성</h1>
+        <p class="u-align-center u-large-text u-text u-text-default u-text-variant u-text-2">상품에 대한 리뷰를 작성해주세요</p>
+        <div class="u-form u-form-1">
+          <form action="reviewWrite.do" method="post" enctype="multipart/form-data" class="u-clearfix u-form-spacing-27 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+            <input type="hidden" name="productNo" th:value="${productNo}">
+<input type="hidden" name="color" th:value="${color}">	
             
-            maskMax = parseInt(starSize * maxStar + gutter * (maxStar-1));//최대 마스크 너비 계산
-            document.querySelector('input[name=ratevalue]').max = maxStar;//입력 필드 최대값 재설정
-            setRating(document.querySelector('input[name=ratevalue]').value);//초기 별점 마킹
-
-            //별점 숫자 입력 값 변경 이벤트 리스너
-            document.querySelector('input[name=ratevalue]').addEventListener('change',(e)=>{
-                const val = e.target.value;
-                //계산식 - 마스크 최대 너비에서 별점x별크기를 빼고, 추가로 별점 버림 정수값x거터 크기를 빼서 마스크 너비를 맞춤
-                setRating(val);
-            })
-            
-            //별점 마킹 함수
-            function setRating(val = 0){
-                document.querySelector('.overlay').style.width = parseInt(maskMax - val * starSize - Math.floor(val) * gutter) + 'px';//마스크 크기 변경해서 별점 마킹
-            }
-            
-            //마우스 클릭 별점 변경 이벤트 리스너
-            document.querySelector('.rating').addEventListener('click',(e)=>{
-                //closest()로 .rating 요소의 왼쪽 위치를 찾아서 현재 클릭한 위치에서 빼야 상대 클릭 위치를 찾을 수 있음.
-                const maskSize = parseInt(maskMax - parseInt(e.clientX) + e.target.closest('.rating').getBoundingClientRect().left);//클릭한 위치 기준 마스크 크기 재계산
-                document.querySelector('.overlay').style.width = maskSize + 'px'; //오버레이 마스크 크기 변경해서 별점 마킹
-                document.querySelector('input[name=ratevalue]').value = Math.floor((maskMax - maskSize) / (starSize + gutter)) + parseFloat(((maskMax - maskSize) % (starSize + gutter) / starSize).toFixed(1));
-            })
-        })
-    </script>
-<style>
-    li {
-      list-style: none;
-    }
-
-    img {
-      width: 200px;
-      height: 200px;
-    }
-
-
-    .upload {
-      width: 200px;
-      height: 200px;
-      background-color: antiquewhite;
-    }
-
-    .image-preview {
-      width: 1300px;
-      height: 200px;
-      background-color: #dcdcdc;
-      display: flex;
-      gap: 20px;
-    }
-  </style>
-</head>
-<body>
-<form action="reviewWrite.do" method="post" enctype="multipart/form-data">
-<input type="hidden" name="productNo" th:value="${productNo}">
-<input type="hidden" name="color" th:value="${color}">
-	<h2>리뷰 작성</h2>
-	<table>
-	<tr>
-		<th>평점 <span style="color: red;">*</span></th>
-		<td>
-			<div class="container">
-				<label>
-					<input type="number" name="ratevalue" value="5" step="0.1" min="0" max="5" required="required"/>
-				</label>
-				<div class="rating-wrap">
-					<div class="rating">
-						<div class="overlay"></div>
-					</div>
-				</div>
-			</div>
-		</td>
-	</tr>
-	<tr>
-		<th>리뷰 <span style="color: red;">*</span></th>
-		<td>
-			<textarea rows="" cols="" name="content" required="required" placeholder="리뷰를 작성해 주세요. 좋았던 점, 안 좋았던 점, 다른 구매자들에게 도움이 될 내용 등(최소 5자)를 작성해 주세요.">
-			</textarea>
-		</td>
-	</tr>
-	<tr>
-		<th>사진</th>
-		<td>
-			<input type="file" name="file" class="real-upload" multiple="multiple">
+            <div class="u-form-group u-form-rating u-label-none u-form-group-1">
+              <label for="form-rating-4a5c" class="u-label">Rating</label>
+              <input type="hidden" id="form-rating-4a5c" name="ratevalue" value="0" required="">
+              <div class="u-rating-icons u-spacing-12">
+                <span class="u-active-icon u-form-rating-item u-text-black" style="height: 24px; width: 24px;">
+                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 49.94 49.94" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-0ebd"></use></svg>
+                  <svg class="u-svg-content" viewBox="0 0 49.94 49.94" x="0px" y="0px" id="svg-0ebd" style="enable-background:new 0 0 49.94 49.94;"><path d="M48.856,22.73c0.983-0.958,1.33-2.364,0.906-3.671c-0.425-1.307-1.532-2.24-2.892-2.438l-12.092-1.757
+	c-0.515-0.075-0.96-0.398-1.19-0.865L28.182,3.043c-0.607-1.231-1.839-1.996-3.212-1.996c-1.372,0-2.604,0.765-3.211,1.996
+	L16.352,14c-0.23,0.467-0.676,0.79-1.191,0.865L3.069,16.622c-1.359,0.197-2.467,1.131-2.892,2.438
+	c-0.424,1.307-0.077,2.713,0.906,3.671l8.749,8.528c0.373,0.364,0.544,0.888,0.456,1.4L8.224,44.701
+	c-0.183,1.06,0.095,2.091,0.781,2.904c1.066,1.267,2.927,1.653,4.415,0.871l10.814-5.686c0.452-0.237,1.021-0.235,1.472,0
+	l10.815,5.686c0.526,0.277,1.087,0.417,1.666,0.417c1.057,0,2.059-0.47,2.748-1.288c0.687-0.813,0.964-1.846,0.781-2.904
+	l-2.065-12.042c-0.088-0.513,0.083-1.036,0.456-1.4L48.856,22.73z"></path></svg>
+                </span>
+                <span class="u-active-icon u-form-rating-item u-text-black" style="height: 24px; width: 24px;">
+                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 49.94 49.94" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-e686"></use></svg>
+                  <svg class="u-svg-content" viewBox="0 0 49.94 49.94" x="0px" y="0px" id="svg-e686" style="enable-background:new 0 0 49.94 49.94;"><path d="M48.856,22.73c0.983-0.958,1.33-2.364,0.906-3.671c-0.425-1.307-1.532-2.24-2.892-2.438l-12.092-1.757
+	c-0.515-0.075-0.96-0.398-1.19-0.865L28.182,3.043c-0.607-1.231-1.839-1.996-3.212-1.996c-1.372,0-2.604,0.765-3.211,1.996
+	L16.352,14c-0.23,0.467-0.676,0.79-1.191,0.865L3.069,16.622c-1.359,0.197-2.467,1.131-2.892,2.438
+	c-0.424,1.307-0.077,2.713,0.906,3.671l8.749,8.528c0.373,0.364,0.544,0.888,0.456,1.4L8.224,44.701
+	c-0.183,1.06,0.095,2.091,0.781,2.904c1.066,1.267,2.927,1.653,4.415,0.871l10.814-5.686c0.452-0.237,1.021-0.235,1.472,0
+	l10.815,5.686c0.526,0.277,1.087,0.417,1.666,0.417c1.057,0,2.059-0.47,2.748-1.288c0.687-0.813,0.964-1.846,0.781-2.904
+	l-2.065-12.042c-0.088-0.513,0.083-1.036,0.456-1.4L48.856,22.73z"></path></svg>
+                </span>
+                <span class="u-active-icon u-form-rating-item u-text-black" style="height: 24px; width: 24px;">
+                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 49.94 49.94" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-b19b"></use></svg>
+                  <svg class="u-svg-content" viewBox="0 0 49.94 49.94" x="0px" y="0px" id="svg-b19b" style="enable-background:new 0 0 49.94 49.94;"><path d="M48.856,22.73c0.983-0.958,1.33-2.364,0.906-3.671c-0.425-1.307-1.532-2.24-2.892-2.438l-12.092-1.757
+	c-0.515-0.075-0.96-0.398-1.19-0.865L28.182,3.043c-0.607-1.231-1.839-1.996-3.212-1.996c-1.372,0-2.604,0.765-3.211,1.996
+	L16.352,14c-0.23,0.467-0.676,0.79-1.191,0.865L3.069,16.622c-1.359,0.197-2.467,1.131-2.892,2.438
+	c-0.424,1.307-0.077,2.713,0.906,3.671l8.749,8.528c0.373,0.364,0.544,0.888,0.456,1.4L8.224,44.701
+	c-0.183,1.06,0.095,2.091,0.781,2.904c1.066,1.267,2.927,1.653,4.415,0.871l10.814-5.686c0.452-0.237,1.021-0.235,1.472,0
+	l10.815,5.686c0.526,0.277,1.087,0.417,1.666,0.417c1.057,0,2.059-0.47,2.748-1.288c0.687-0.813,0.964-1.846,0.781-2.904
+	l-2.065-12.042c-0.088-0.513,0.083-1.036,0.456-1.4L48.856,22.73z"></path></svg>
+                </span>
+                <span class="u-active-icon u-form-rating-item u-text-black" style="display: none; height: 24px; width: 24px;">
+                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 49.94 49.94" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-8e25"></use></svg>
+                  <svg class="u-svg-content" viewBox="0 0 49.94 49.94" x="0px" y="0px" id="svg-8e25" style="enable-background:new 0 0 49.94 49.94;"><path d="M48.856,22.73c0.983-0.958,1.33-2.364,0.906-3.671c-0.425-1.307-1.532-2.24-2.892-2.438l-12.092-1.757
+	c-0.515-0.075-0.96-0.398-1.19-0.865L28.182,3.043c-0.607-1.231-1.839-1.996-3.212-1.996c-1.372,0-2.604,0.765-3.211,1.996
+	L16.352,14c-0.23,0.467-0.676,0.79-1.191,0.865L3.069,16.622c-1.359,0.197-2.467,1.131-2.892,2.438
+	c-0.424,1.307-0.077,2.713,0.906,3.671l8.749,8.528c0.373,0.364,0.544,0.888,0.456,1.4L8.224,44.701
+	c-0.183,1.06,0.095,2.091,0.781,2.904c1.066,1.267,2.927,1.653,4.415,0.871l10.814-5.686c0.452-0.237,1.021-0.235,1.472,0
+	l10.815,5.686c0.526,0.277,1.087,0.417,1.666,0.417c1.057,0,2.059-0.47,2.748-1.288c0.687-0.813,0.964-1.846,0.781-2.904
+	l-2.065-12.042c-0.088-0.513,0.083-1.036,0.456-1.4L48.856,22.73z"></path></svg>
+                </span>
+                <span class="u-active-icon u-form-rating-item u-text-black" style="display: none; height: 24px; width: 24px;">
+                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 49.94 49.94" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-a7af"></use></svg>
+                  <svg class="u-svg-content" viewBox="0 0 49.94 49.94" x="0px" y="0px" id="svg-a7af" style="enable-background:new 0 0 49.94 49.94;"><path d="M48.856,22.73c0.983-0.958,1.33-2.364,0.906-3.671c-0.425-1.307-1.532-2.24-2.892-2.438l-12.092-1.757
+	c-0.515-0.075-0.96-0.398-1.19-0.865L28.182,3.043c-0.607-1.231-1.839-1.996-3.212-1.996c-1.372,0-2.604,0.765-3.211,1.996
+	L16.352,14c-0.23,0.467-0.676,0.79-1.191,0.865L3.069,16.622c-1.359,0.197-2.467,1.131-2.892,2.438
+	c-0.424,1.307-0.077,2.713,0.906,3.671l8.749,8.528c0.373,0.364,0.544,0.888,0.456,1.4L8.224,44.701
+	c-0.183,1.06,0.095,2.091,0.781,2.904c1.066,1.267,2.927,1.653,4.415,0.871l10.814-5.686c0.452-0.237,1.021-0.235,1.472,0
+	l10.815,5.686c0.526,0.277,1.087,0.417,1.666,0.417c1.057,0,2.059-0.47,2.748-1.288c0.687-0.813,0.964-1.846,0.781-2.904
+	l-2.065-12.042c-0.088-0.513,0.083-1.036,0.456-1.4L48.856,22.73z"></path></svg>
+                </span>
+                <span class="u-form-rating-item u-passive-icon u-text-grey-10 u-passive-icon-1">
+                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 49.94 49.94" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-4990"></use></svg>
+                  <svg class="u-svg-content" viewBox="0 0 49.94 49.94" x="0px" y="0px" id="svg-4990" style="enable-background:new 0 0 49.94 49.94;"><path d="M48.856,22.73c0.983-0.958,1.33-2.364,0.906-3.671c-0.425-1.307-1.532-2.24-2.892-2.438l-12.092-1.757
+	c-0.515-0.075-0.96-0.398-1.19-0.865L28.182,3.043c-0.607-1.231-1.839-1.996-3.212-1.996c-1.372,0-2.604,0.765-3.211,1.996
+	L16.352,14c-0.23,0.467-0.676,0.79-1.191,0.865L3.069,16.622c-1.359,0.197-2.467,1.131-2.892,2.438
+	c-0.424,1.307-0.077,2.713,0.906,3.671l8.749,8.528c0.373,0.364,0.544,0.888,0.456,1.4L8.224,44.701
+	c-0.183,1.06,0.095,2.091,0.781,2.904c1.066,1.267,2.927,1.653,4.415,0.871l10.814-5.686c0.452-0.237,1.021-0.235,1.472,0
+	l10.815,5.686c0.526,0.277,1.087,0.417,1.666,0.417c1.057,0,2.059-0.47,2.748-1.288c0.687-0.813,0.964-1.846,0.781-2.904
+	l-2.065-12.042c-0.088-0.513,0.083-1.036,0.456-1.4L48.856,22.73z"></path></svg>
+                </span>
+                <span class="u-form-rating-item u-passive-icon u-text-grey-10 u-passive-icon-2">
+                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 49.94 49.94" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-1152"></use></svg>
+                  <svg class="u-svg-content" viewBox="0 0 49.94 49.94" x="0px" y="0px" id="svg-1152" style="enable-background:new 0 0 49.94 49.94;"><path d="M48.856,22.73c0.983-0.958,1.33-2.364,0.906-3.671c-0.425-1.307-1.532-2.24-2.892-2.438l-12.092-1.757
+	c-0.515-0.075-0.96-0.398-1.19-0.865L28.182,3.043c-0.607-1.231-1.839-1.996-3.212-1.996c-1.372,0-2.604,0.765-3.211,1.996
+	L16.352,14c-0.23,0.467-0.676,0.79-1.191,0.865L3.069,16.622c-1.359,0.197-2.467,1.131-2.892,2.438
+	c-0.424,1.307-0.077,2.713,0.906,3.671l8.749,8.528c0.373,0.364,0.544,0.888,0.456,1.4L8.224,44.701
+	c-0.183,1.06,0.095,2.091,0.781,2.904c1.066,1.267,2.927,1.653,4.415,0.871l10.814-5.686c0.452-0.237,1.021-0.235,1.472,0
+	l10.815,5.686c0.526,0.277,1.087,0.417,1.666,0.417c1.057,0,2.059-0.47,2.748-1.288c0.687-0.813,0.964-1.846,0.781-2.904
+	l-2.065-12.042c-0.088-0.513,0.083-1.036,0.456-1.4L48.856,22.73z"></path></svg>
+                </span>
+                <span class="u-form-rating-item u-passive-icon u-text-grey-10 u-passive-icon-3">
+                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 49.94 49.94" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-906b"></use></svg>
+                  <svg class="u-svg-content" viewBox="0 0 49.94 49.94" x="0px" y="0px" id="svg-906b" style="enable-background:new 0 0 49.94 49.94;"><path d="M48.856,22.73c0.983-0.958,1.33-2.364,0.906-3.671c-0.425-1.307-1.532-2.24-2.892-2.438l-12.092-1.757
+	c-0.515-0.075-0.96-0.398-1.19-0.865L28.182,3.043c-0.607-1.231-1.839-1.996-3.212-1.996c-1.372,0-2.604,0.765-3.211,1.996
+	L16.352,14c-0.23,0.467-0.676,0.79-1.191,0.865L3.069,16.622c-1.359,0.197-2.467,1.131-2.892,2.438
+	c-0.424,1.307-0.077,2.713,0.906,3.671l8.749,8.528c0.373,0.364,0.544,0.888,0.456,1.4L8.224,44.701
+	c-0.183,1.06,0.095,2.091,0.781,2.904c1.066,1.267,2.927,1.653,4.415,0.871l10.814-5.686c0.452-0.237,1.021-0.235,1.472,0
+	l10.815,5.686c0.526,0.277,1.087,0.417,1.666,0.417c1.057,0,2.059-0.47,2.748-1.288c0.687-0.813,0.964-1.846,0.781-2.904
+	l-2.065-12.042c-0.088-0.513,0.083-1.036,0.456-1.4L48.856,22.73z"></path></svg>
+                </span>
+                <span class="u-form-rating-item u-passive-icon u-text-grey-10 u-passive-icon-4">
+                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 49.94 49.94" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-10e8"></use></svg>
+                  <svg class="u-svg-content" viewBox="0 0 49.94 49.94" x="0px" y="0px" id="svg-10e8" style="enable-background:new 0 0 49.94 49.94;"><path d="M48.856,22.73c0.983-0.958,1.33-2.364,0.906-3.671c-0.425-1.307-1.532-2.24-2.892-2.438l-12.092-1.757
+	c-0.515-0.075-0.96-0.398-1.19-0.865L28.182,3.043c-0.607-1.231-1.839-1.996-3.212-1.996c-1.372,0-2.604,0.765-3.211,1.996
+	L16.352,14c-0.23,0.467-0.676,0.79-1.191,0.865L3.069,16.622c-1.359,0.197-2.467,1.131-2.892,2.438
+	c-0.424,1.307-0.077,2.713,0.906,3.671l8.749,8.528c0.373,0.364,0.544,0.888,0.456,1.4L8.224,44.701
+	c-0.183,1.06,0.095,2.091,0.781,2.904c1.066,1.267,2.927,1.653,4.415,0.871l10.814-5.686c0.452-0.237,1.021-0.235,1.472,0
+	l10.815,5.686c0.526,0.277,1.087,0.417,1.666,0.417c1.057,0,2.059-0.47,2.748-1.288c0.687-0.813,0.964-1.846,0.781-2.904
+	l-2.065-12.042c-0.088-0.513,0.083-1.036,0.456-1.4L48.856,22.73z"></path></svg>
+                </span>
+                <span class="u-form-rating-item u-passive-icon u-text-grey-10 u-passive-icon-5">
+                  <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 49.94 49.94" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-b06b"></use></svg>
+                  <svg class="u-svg-content" viewBox="0 0 49.94 49.94" x="0px" y="0px" id="svg-b06b" style="enable-background:new 0 0 49.94 49.94;"><path d="M48.856,22.73c0.983-0.958,1.33-2.364,0.906-3.671c-0.425-1.307-1.532-2.24-2.892-2.438l-12.092-1.757
+	c-0.515-0.075-0.96-0.398-1.19-0.865L28.182,3.043c-0.607-1.231-1.839-1.996-3.212-1.996c-1.372,0-2.604,0.765-3.211,1.996
+	L16.352,14c-0.23,0.467-0.676,0.79-1.191,0.865L3.069,16.622c-1.359,0.197-2.467,1.131-2.892,2.438
+	c-0.424,1.307-0.077,2.713,0.906,3.671l8.749,8.528c0.373,0.364,0.544,0.888,0.456,1.4L8.224,44.701
+	c-0.183,1.06,0.095,2.091,0.781,2.904c1.066,1.267,2.927,1.653,4.415,0.871l10.814-5.686c0.452-0.237,1.021-0.235,1.472,0
+	l10.815,5.686c0.526,0.277,1.087,0.417,1.666,0.417c1.057,0,2.059-0.47,2.748-1.288c0.687-0.813,0.964-1.846,0.781-2.904
+	l-2.065-12.042c-0.088-0.513,0.083-1.036,0.456-1.4L48.856,22.73z"></path></svg>
+                </span>
+              </div>
+            </div>
+            <div class="u-form-group u-form-message u-label-none">
+              <label for="message-5b94" class="u-label">content</label>
+              <textarea rows="4" cols="50" id="message-5b94" name="content" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""></textarea>
+            </div>
+            <p class="u-form-group u-form-text u-text u-text-grey-40 u-text-3"> 리뷰를 작성해 주세요. 좋았던 점, 안 좋았던 점, 다른 구매자들에게 도움이 될 내용 등(최소 5자)를 작성해 주세요.</p>
+            <div class="u-form-group u-form-message u-label-none u-form-group-4">
+            <input type="file" name="file" class="real-upload" multiple="multiple">
 			  <ul class="image-preview"></ul>
 			  <script>
 			    function getImageFiles(e) {
@@ -200,14 +197,29 @@
 			
 			    realUpload.addEventListener('change', getImageFiles);
 			  </script>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" align="center">
-			<input type="submit" value="등록" style="color: white; background-color: black; width: 100%">
-		</td>
-	</tr>	
-	</table>
-</form>	
-</body>
-</html>
+<!--               <label for="message-9799" class="u-label">Message</label> -->
+<!--               <textarea placeholder="Enter your message" rows="4" cols="50" id="message-9799" name="message" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required=""></textarea> -->
+            
+            </div>
+            <div class="u-align-left u-form-group u-form-submit u-label-none">
+              <a href="#" class="u-black u-border-none u-btn u-btn-submit u-button-style u-btn-1">등록<br>
+              </a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
+            </div>
+            <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+            <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+            <input type="hidden" value="" name="recaptchaResponse">
+            <input type="hidden" name="formServices" value="">
+          </form>
+        </div>
+        <div class="u-container-style u-group u-shape-rectangle u-group-1">
+          <div class="u-container-layout u-container-layout-1">
+            <p class="u-large-text u-text u-text-default u-text-variant u-text-4">평점</p>
+            <p class="u-large-text u-text u-text-default u-text-variant u-text-5">리뷰</p>
+            <p class="u-large-text u-text u-text-default u-text-variant u-text-6">사진</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+</body></html>

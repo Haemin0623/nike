@@ -10,7 +10,7 @@ public interface ProductPhotoService {
 
 	// ProductCon
 	// 특정 상품 사진 전체 조회
-	List<ProductPhoto> photoList(int productNo);
+	List<ProductPhoto> photoList(Product product);
 	
 	
 	
@@ -31,5 +31,9 @@ public interface ProductPhotoService {
 	int productdelete(Product product);
 	// ******************
 	int productupdate(Product product);
+
+
+
+	List<ProductPhoto> thumPhotoList(int productNo);
 	
 }
