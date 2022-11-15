@@ -190,6 +190,7 @@ public class MemberController {
         		return "redirect:/";
         	}
         } else {
+        	session.setAttribute("email", member.getEmail());
         	return "redirect:/";
         }
         return naverLoginProfile.toString();
