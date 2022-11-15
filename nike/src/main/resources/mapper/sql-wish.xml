@@ -34,6 +34,7 @@
 	 <select id="wishList" parameterType="String" resultType="Wish">
       select   w.*,
             p.product_name,
+            p.price,
             pp.product_photo
       from   wish w,
             product p,

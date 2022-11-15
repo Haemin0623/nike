@@ -15,4 +15,5 @@ public class Wish {
 	//조인용
 	private String productName;
 	private String productPhoto;
+	private int price;
 }
