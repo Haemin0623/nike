@@ -27,6 +27,10 @@ public interface UserOrderService {
 	List<UserOrder> paginglist(PagingBean pagingbean);
 	List<UserOrder> paginglistrefundchk(PagingBean pagingbean);
 	
+	// UserOrderCon
+	int currentCount();
+	void insert(UserOrder userOrder);
+	
 	
 	
 

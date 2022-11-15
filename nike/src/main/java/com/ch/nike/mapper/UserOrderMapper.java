@@ -27,6 +27,12 @@ public interface UserOrderMapper {
 	
 	
 	
+	// UserOrderCon
+	int currentCount();
+	void insert(UserOrder userOrder);
+	
+	
+	
 
 
 }

@@ -33,5 +33,22 @@ public class CartServiceImpl implements CartService {
 	public int deleteCart(int cartNo) {
 		return cm.deleteCart(cartNo);
 	}
+	public Cart selectBy(int cartNo) {
+		return cm.selectBy(cartNo);
+	}
+	public void updateQuantity(Cart cart) {
+		cm.updateQuantity(cart);
+	}
+	public void updateSize(Cart cart) {
+		cm.updateSize(cart);
+	}
+	
+	// UserOrderCon
+	public int totalPriceByEmail(String email) {
+		return cm.totalPriceByEmail(email);
+	}
+	public void deleteAfterOrder(String email) {
+		cm.deleteAfterOrder(email);
+	}
 	
 }

@@ -21,4 +21,10 @@ public class Cart {
 	private int productNo;
 
 	private int stock;
+	
+	private int categoryNo;
+	private String large;
+	private String small;
+	
+	
 }

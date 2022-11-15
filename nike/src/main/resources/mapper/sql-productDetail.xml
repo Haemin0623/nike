@@ -30,7 +30,15 @@
 				stock=#{stock}
 		where	product_no=#{productNo}
 	</update>
-
+	
+	<!-- AccountCon -->
+	<select id="getProductDetailNo" parameterType="ProductDetail" resultType="integer">
+		select	product_detail_no
+		from	product_detail
+		where	color = #{color}
+			and product_size = #{productSize}
+			and product_no = #{productNo}
+	</select>
 	
 	
 </mapper>

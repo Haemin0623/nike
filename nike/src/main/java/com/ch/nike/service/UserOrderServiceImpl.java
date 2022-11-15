@@ -12,21 +12,21 @@ import com.ch.nike.mapper.UserOrderMapper;
 @Service
 public class UserOrderServiceImpl implements UserOrderService{
 	@Autowired
-	private UserOrderMapper uod;
+	private UserOrderMapper uom;
 
 	
 	// AccountCon
 	public List<UserOrder> selectUserOrder(String email) {
-		return uod.selectUserOrder(email);
+		return uom.selectUserOrder(email);
 	}
 	public List<UserOrder> selectOrderDetail(int orderNo) {
-		return uod.selectOrderDetail(orderNo);
+		return uom.selectOrderDetail(orderNo);
 	}
 	public UserOrder orderInfoAll(int orderDetailNo) {
-		return uod.orderInfoAll(orderDetailNo);
+		return uom.orderInfoAll(orderDetailNo);
 	}
 	public List<UserOrder> selectDate(String email) {
-		return uod.selectDate(email);
+		return uom.selectDate(email);
 	}
 
 	
@@ -34,19 +34,29 @@ public class UserOrderServiceImpl implements UserOrderService{
 	// AdminCon
 	@Override
 	public List<UserOrder> userorderselect(String email) {
-		return uod.userorderselect(email);
+		return uom.userorderselect(email);
 	}
 	@Override
 	public int getTotal(PagingBean pagingbean) {
-		return uod.getTotal(pagingbean);
+		return uom.getTotal(pagingbean);
 	}
 	@Override
 	public List<UserOrder> paginglist(PagingBean pagingbean) {
-		return uod.paginglist(pagingbean);
+		return uom.paginglist(pagingbean);
 	}
 	@Override
 	public List<UserOrder> paginglistrefundchk(PagingBean pagingbean) {
-		return uod.paginglistrefundchk(pagingbean);
+		return uom.paginglistrefundchk(pagingbean);
+	}
+
+	
+	// UserOrderCon
+	public int currentCount() {
+		return uom.currentCount();
+	}
+	public void insert(UserOrder userOrder) {
+		uom.insert(userOrder);
+		
 	}
 	
 

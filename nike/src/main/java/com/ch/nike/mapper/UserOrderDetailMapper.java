@@ -18,6 +18,10 @@ public interface UserOrderDetailMapper{
 	int refundchkupdate(UserOrderDetail userOrderDetail);
 	
 	
+	// UserOrderCon
+	int currentCount();
+	void insert(UserOrderDetail userOrderDetail);
+	
 
 
 

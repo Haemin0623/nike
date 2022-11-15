@@ -107,4 +107,19 @@
 			 	a) 
 		where 	rn between #{startRow} and #{endRow}
 	</select>
+	
+	<!-- UserOrderCon -->
+	<select id="currentCount" resultType="integer">
+		select	nvl(max(order_no),0)+1 orderNo 
+		from	user_order
+	</select>
+	<insert id="insert" parameterType="UserOrder">
+		insert into	user_order
+		values		(#{orderNo},
+					#{email},
+					sysdate,
+					#{addrNo},
+					'N')
+	</insert>
+	
 </mapper>

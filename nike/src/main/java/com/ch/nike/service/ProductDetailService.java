@@ -19,4 +19,8 @@ public interface ProductDetailService {
 	int productinsert(Product product);
 	// 
 	int productupdate(Product product);
+
+
+	// AccountCon
+	int getProductDetailNo(ProductDetail productDetailr);
 }

@@ -13,6 +13,10 @@ public interface UserOrderDetailService {
 	// 주문 상세 전체 조회(페이징)
 	List<UserOrderDetail> paginglist(PagingBean pagingbean);
 	int refundchkupdate(UserOrderDetail userOrderDetail);
+	
+	// UserOrderCon
+	int currentCount();
+	void insert(UserOrderDetail userOrderDetail);
 
 
 }

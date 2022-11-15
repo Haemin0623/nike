@@ -29,4 +29,12 @@ public class UserOrderDetailServiceImpl implements UserOrderDetailService {
 		return uodm.refundchkupdate(userOrderDetail);
 	}
 
+	// UserOrderCon
+	public int currentCount() {
+		return uodm.currentCount();
+	}
+	public void insert(UserOrderDetail userOrderDetail) {
+		uodm.insert(userOrderDetail);
+	}
+
 }

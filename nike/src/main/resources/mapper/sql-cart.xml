@@ -9,15 +9,18 @@
 				p.*,
 				pp.product_photo,
 				pd.product_size, 
-				pd.color 
+				pd.color,
+				cg.* 
 		from 	cart c, 
 				product p, 
 				product_photo pp, 
-				product_detail pd
+				product_detail pd,
+				category cg
 		where 	c.email=#{email}
 			and	c.product_detail_no = pd.product_detail_no
 			and p.product_no = pd.product_no
 			and p.product_no = pp.product_no
+			and p.category_no = cg.category_no
 			and pp.batch = 1
 	order by 	cart_no desc
 	</select>
@@ -47,6 +50,36 @@
 		delete 	from cart 
 		where 	cart_no = #{cartNo}
 	</delete>
+	<select id="selectBy" parameterType="integer" resultType="Cart">
+		select	*
+		from	cart
+		where	cart_no = #{cartNo}
+	</select>
+	<update id="updateQuantity" parameterType="Cart">
+		update 	cart 
+		set 	cart_quantity = #{cartQuantity}
+		where	cart_no=#{cartNo}
+	</update>
+	<update id="updateSize" parameterType="Cart">
+		update 	cart 
+		set 	product_detail_no = #{productDetailNo}
+		where	cart_no=#{cartNo}
+	</update>
 	
 	
+	
+	<!-- UserOrderCon -->
+	<select id="totalPriceByEmail" parameterType="String" resultType="integer">
+		select	sum(price) totalPrice 
+		from	cart c, 
+				product p, 
+				product_detail pd
+		where	c.email=#{email}
+			and	c.product_detail_no = pd.product_detail_no
+			and p.product_no = pd.product_no
+	</select>
+	<delete id="deleteAfterOrder">
+		delete	from cart
+		where	email=#{email}
+	</delete>
 </mapper>

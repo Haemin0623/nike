@@ -29,6 +29,7 @@ import com.ch.nike.dto.Wish;
 import com.ch.nike.service.AddressService;
 import com.ch.nike.service.CartService;
 import com.ch.nike.service.MemberService;
+import com.ch.nike.service.ProductDetailService;
 import com.ch.nike.service.ProductPhotoService;
 import com.ch.nike.service.ProductService;
 import com.ch.nike.service.QnAService;
@@ -64,6 +65,8 @@ public class AccountController {
 	private QnAService qs;
 	@Autowired 
 	private BCryptPasswordEncoder bpe; //비번 암호화
+	@Autowired
+	private ProductDetailService pds;
 	
 	@RequestMapping("/account/mypageSessionChk.do")	// mypage로 이동 전 세션 체크 by선희
 	public String mypageSessionChk(Model model, HttpSession session) {
@@ -142,7 +145,12 @@ public class AccountController {
 	public String cartList(HttpSession session, Model model) {
 		String email = (String) session.getAttribute("email");
 		List <Cart> cartList = cs.cartList(email);
+		int totalPrice = 0;
+		for(Cart cart:cartList) {
+			totalPrice += (cart.getPrice()*cart.getCartQuantity());
+		}
 		model.addAttribute("cartList",cartList);
+		model.addAttribute("totalPrice", totalPrice);
 		return "account/cartList";
 	}
 	
@@ -275,6 +283,7 @@ public class AccountController {
 		model.addAttribute("result", result);
 		return "account/deleteQna";
 	}
+<<<<<<< HEAD
 	@RequestMapping("/account/addAddrForm.do")//  by창률 배송지 추가 페이지
 	public String addAddrForm(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
@@ -295,4 +304,23 @@ public class AccountController {
 		result = as.Deleteaddr(addrNo);
 		return "redirect:/account/address.do";
 	}
+
+	
+	@RequestMapping("/account/changeSize.do")	// cartList에서 사이즈 변경 by 선희
+	public String changeSize(int cartNo, ProductDetail productDetail, Model model, HttpSession session) {
+		int productDetailNo = pds.getProductDetailNo(productDetail);
+		Cart cart = cs.selectBy(cartNo);
+		cart.setProductDetailNo(productDetailNo);
+		cs.updateSize(cart);
+		return "redirect:/account/cartList.do";
+	}
+	@RequestMapping("/account/changeQuantity.do")	// cartList에서 수량 변경 by 선희
+	public String changeQuantity(int quantity, int cartNo, Model model, HttpSession session) {
+		Cart cart = cs.selectBy(cartNo);
+		cart.setCartQuantity(quantity);
+		cs.updateQuantity(cart);
+		return "redirect:/account/cartList.do";
+	}
+	
+
 }

@@ -8,7 +8,19 @@
 <meta name="keywords" content="위시 리스트, 추천 상품">
 <meta name="description" content="">
 <title>cartList</title>
+<script type="text/javascript">
+function changeSize(cartNo, color, productNo) {
+	let selectedSize = document.getElementById("sizeBox");
+	location.href="/account/changeSize.do?productSize="+selectedSize.value+"&cartNo="
+				+cartNo+"&color="+color+"&productNo="+productNo;
+}
+function changeQuantity(cartNo) {
+	let selectedQuantity = document.getElementById("quantityBox");
+	location.href="/account/changeQuantity.do?quantity="+selectedQuantity.value+"&cartNo="+cartNo;
+}
+	
 
+</script>
 <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
 <link id="u-theme-google-font" rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
@@ -58,11 +70,11 @@
 										<div class="u-container-layout u-container-layout-5">
 											<p class="u-text u-text-default u-text-7">[[${cartDetail.productName}]]</p>
 											<p class="u-text u-text-default u-text-grey-50 u-text-8">
-												Categoty,,,,</p>
+												[[${cartDetail.large}]] / [[${cartDetail.small}]]</p>
 											<p class="u-text u-text-default u-text-grey-50 u-text-9">
 												[[${cartDetail.color}]]</p>
 											<div class="u-clearfix u-custom-html u-custom-html-2">
-												사이즈<select>
+												사이즈<select id="sizeBox" th:onchange="changeSize([[${cartDetail.cartNo}]],[[${cartDetail.color}]],[[${cartDetail.productNo}]])">
 													<option th:if="${cartDetail.productSize} == M" selected="selected">M</option>
 													<option>M</option>
 													<option th:if="${cartDetail.productSize} == L" selected="selected">L</option>
@@ -70,7 +82,7 @@
 													<option th:if="${cartDetail.productSize} == XL" selected="selected">XL</option>
 													<option>XL</option>
 
-												</select> 수량<select>
+												</select> 수량<select id="quantityBox" th:onchange="changeQuantity([[${cartDetail.cartNo}]])">
 													<option th:if="${cartDetail.cartQuantity} == 1" selected="selected">1</option>
 													<option>1</option>
 													<option th:if="${cartDetail.cartQuantity} == 2" selected="selected">2</option>
@@ -114,7 +126,7 @@
 </g></svg></span>
 										</div>
 									</div>
-									<p class="u-align-right u-text u-text-10">Price,,,</p>
+									<p class="u-align-right u-text u-text-10">[[${cartDetail.price}]]</p>
 									<p class="u-text u-text-default u-text-11">
 										무료 배송<br>도착 예정일 : 11월 18일 (금) 배송 지역: 06126
 									</p>
@@ -131,7 +143,7 @@
 									class="u-container-style u-layout-cell u-size-20 u-layout-cell-1">
 									<div
 										class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-layout u-container-layout-8">
-										<p class="u-align-right u-text u-text-default u-text-18">1,327,000
+										<p class="u-align-right u-text u-text-default u-text-18">[[${totalPrice}]]
 											원</p>
 										<p class="u-text u-text-default u-text-19">상품 금액</p>
 										<p class="u-align-right u-text u-text-default u-text-20">무료</p>
@@ -142,16 +154,17 @@
 									class="u-container-style u-layout-cell u-size-20 u-layout-cell-2">
 									<div
 										class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-layout u-container-layout-9">
-										<p class="u-align-right u-text u-text-default u-text-22">1,327,000
+										<p class="u-align-right u-text u-text-default u-text-22">[[${totalPrice}]]
 											원</p>
 										<p class="u-text u-text-default u-text-23">총 결제 금액</p>
 									</div>
 								</div>
 								<div
-									class="u-container-style u-layout-cell u-size-20 u-layout-cell-3">
+									class="u-container-style u-layout-cell u-size-20 u-layout-cell-3" >
 									<div
 										class="u-container-layout u-valign-bottom u-container-layout-10">
-										<a href="https://nicepage.com/c/gallery-html-templates"
+										
+										<a th:href="@{/product/paymentForm.do}"
 											class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-grey-75 u-radius-50 u-btn-1">주문결제</a>
 									</div>
 								</div>
@@ -310,6 +323,11 @@ c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,24
 
 
 	</section>
+	
+	
+	
+
+
 
 </body>
 </html>

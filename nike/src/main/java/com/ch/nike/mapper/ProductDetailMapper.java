@@ -19,6 +19,9 @@ public interface ProductDetailMapper {
 	int productinsert(Product product);
 	int productupdate(Product product);
 
+	// AccountCon
+	int getProductDetailNo(ProductDetail productDetail);
+
 
 
 }

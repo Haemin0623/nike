@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	let selectedAddrNo
+	function getAddr(event) {
+		selectedAddrNo = event.target.value;
+		document.getElementById("result").innerText = selectedAddrNo;
+	  
+	  
+	}
+</script>
+</head>
+<body>
+<th:block th:each="addr:${addrList}">
+	<input type="radio" name="address" th:value="${addr.addrNo}" onclick="getAddr(event)">
+		[[${addr.addrName}]] /
+		[[${addr.tel}]] /
+		[[${addr.roadaddress}]] /
+		[[${addr.jibunaddress}]] /
+		[[${addr.detailaddress}]] /
+		[[${addr.zonecode}]]<br>
+</th:block>
+<br>
+<br>
+<th:block th:each="addrs:${addrList}">
+	<th:block th:if="selectedAddrNo == ${addrs.addrNo}">
+	선택한 배송지 : 
+			[[${addrs.addrName}]] /
+			[[${addrs.tel}]] /
+			[[${addrs.roadaddress}]] /
+			[[${addrs.jibunaddress}]] /
+			[[${addrs.detailaddress}]] /
+			[[${addrs.zonecode}]]<br>
+	</th:block>
+</th:block>
+	<span id="result"></span><br>
+<br>
+<br>
+결제 금액 : [[${totalPrice}]]
+<br>
+<br>
+<br>
+[[${member.name}]]
+
+<br>
+<br>
+	
+	
+<!-- import payment api -->
+
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" type="text/javascript"></script>
+
+------------------------------------------------
+
+<button onclick="requestPay()">결제하기</button>
+  ...
+  <script>
+    function requestPay() {
+    	
+    	IMP.init('imp01060756'); 
+    	
+      // IMP.request_pay(param, callback) 결제창 호출
+      IMP.request_pay({ // param
+          pg: "kakaopay",
+          pay_method: "card",
+          merchant_uid : 'merchant_' + new Date().getTime(),
+          name: "NIKE",
+          amount: "[[${totalPrice}]]",
+          buyer_email: "[[${member.email}]]",
+          buyer_name: "[[${member.name}]]",
+          buyer_tel: "[[${member.memberTel}]]",
+          buyer_addr: selectedAddrNo,
+      }, function (rsp) { // callback
+            console.log(rsp);
+            if (rsp.success) {
+            	var payState = 1;
+            	var merchant_uid = rsp.merchant_uid;
+            	var	imp_uid = rsp.imp_uid;
+                var msg = '결제가 완료되었습니다.';
+                var sendData = {
+            		"merchant_uid":merchant_uid, "imp_uid":imp_uid,
+            		
+                }
+                
+                $.ajax({
+                    url:'payComplete.do'
+                    , method : 'POST'
+                    , data: JSON.stringify(sendData)
+                    ,contentType : 'application/json; charset=UTF-8'
+                    ,dataType : 'json'
+                    , success :function(resp){
+                       /*  alert( JSON.stringify(sendData)); */
+                        
+                    }
+                })	
+                location.href="/product/paymentAPI.do?selectedAddrNo="+selectedAddrNo;
+                
+            } else {
+                var msg = '결제에 실패하였습니다.';
+                msg += '에러내용 : ' + rsp.error_msg;
+               location.href="/account/cartList.do";
+            }
+      		alert(msg);
+      		/* location.href="houseContent.do?houseNo=1";  */
+      		
+        }
+        
+        );
+      };
+</script>
+
+</body>
+</html>

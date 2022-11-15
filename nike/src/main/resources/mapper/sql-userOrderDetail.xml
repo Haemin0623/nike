@@ -28,4 +28,18 @@
 		set 	refund_chk=#{refundChk} 
 		where 	order_detail_no = #{orderDetailNo}
 	</update>
+	
+	<!-- UserOrderCon -->
+	<select id="currentCount" resultType="integer">
+		select	nvl(max(order_detail_no),0)+1 orderDetailNo 
+		from	user_order_detail
+	</select>
+	<insert id="insert" parameterType="UserOrderDetail">
+		insert into	user_order_detail
+		values		(#{orderDetailNo},
+					#{orderNo},
+					#{productDetailNo},
+					#{orderQuantity},
+					'N')
+	</insert>
 </mapper>

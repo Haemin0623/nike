@@ -15,6 +15,11 @@ public interface AddressMapper {
 	Address getAddr(int orderNo);
 
 	int insertaddress(Address address);
+	
+	
+	
+	// UserOrderCon
+	List<Address> addrListByEmail(String email);
 
 	int Deleteaddr(int addrNo);
 

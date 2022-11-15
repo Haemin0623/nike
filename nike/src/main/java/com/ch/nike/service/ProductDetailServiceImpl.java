@@ -30,6 +30,11 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 	@Override
 	public int productupdate(Product product) {
 		return pdm.productupdate(product);
+	}
+
+	// AccountCon
+	public int getProductDetailNo(ProductDetail productDetail) {
+		return pdm.getProductDetailNo(productDetail);
 	}	
 	
 }
