@@ -264,7 +264,9 @@ create table store (
 	store_addr	varchar2(300)	not	null,	
 	store_close	varchar2(30)	not	null,	
 	store_open	varchar2(30)	not	null,	
-	store_tel	number(15)		not	null	
+	store_tel	varchar2(15)	not	null,
+	latitude	number(10,7)		not null,
+	longitude	number(10,7)		not null
 );
 
 -- 공지사항
