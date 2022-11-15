@@ -124,10 +124,10 @@ public class AccountController {
 	}
 	
 	@RequestMapping("/account/deleteMember.do")	// mypage - profile에서 회원탈퇴 by선희
-	public String deleteMember(Model model, HttpSession session) {
-		String email = (String) session.getAttribute("email");
+	public String deleteMember(String email, Model model, HttpSession session) {
 		int result = ms.deleteMember(email);
 		model.addAttribute("result", result);
+		session.invalidate();
 		return "account/deleteMember";
 	}
 
