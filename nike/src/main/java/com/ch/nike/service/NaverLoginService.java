@@ -1,15 +1,16 @@
-package com.ch.nike.naver.login;
+package com.ch.nike.service;
 
-import com.ch.nike.naver.login.vo.NaverLoginProfile;
-import com.ch.nike.naver.login.vo.NaverLoginProfileResponse;
-import com.ch.nike.naver.login.vo.NaverLoginVo;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.Map;
+import com.ch.nike.dto.NaverLoginProfile;
+import com.ch.nike.dto.NaverLoginProfileResponse;
+import com.ch.nike.dto.NaverLoginVo;
 
 @Service
 public class NaverLoginService {

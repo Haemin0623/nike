@@ -1,4 +1,4 @@
-package com.ch.nike.naver.login.vo;
+package com.ch.nike.dto;
 
 import lombok.Data;
 

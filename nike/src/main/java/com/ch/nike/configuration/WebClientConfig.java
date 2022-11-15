@@ -1,4 +1,4 @@
-package com.ch.nike.naver.config;
+package com.ch.nike.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
