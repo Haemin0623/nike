@@ -84,6 +84,10 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> menProductlist() {
 		return pm.menProductlist();
 	}
+	@Override
+	public List<Product> recommendList() {
+		return pm.recommendList();
+	}
 
 
 

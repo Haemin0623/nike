@@ -94,12 +94,12 @@ public class ProductController {
 	public String productDetail(int productNo, String color, Model model) {
 		Product product = ps.selectsoo(productNo);
 		product.setColor(color);
-		
 		List<ProductDetail> productDetailList  = pds.detailList(productNo);
 		List<ProductPhoto> productPhotoList = pps.photoList(product);
 		List<ProductFeature> productFeatureList = pfs.featureList(productNo);
 		List<ProductPhoto> thumPhotoList = pps.thumPhotoList(productNo);
-
+		List<Product> productRecommendList = ps.recommendList();
+		
 		model.addAttribute("productFeatureList",productFeatureList);
 		
 		//리뷰리스트
@@ -115,14 +115,13 @@ public class ProductController {
 		model.addAttribute("productDetailList",productDetailList);
 		model.addAttribute("productPhotoList",productPhotoList);
 		model.addAttribute("thumPhotoList",thumPhotoList);
+		model.addAttribute("productRecommendList", productRecommendList);
 		model.addAttribute("color", color);
 		
 		model.addAttribute("rvPhotos", rvPhotos2);
 		model.addAttribute("rvList", rvList);
-
 		model.addAttribute("productNo", productNo);
 
-		
 		return "product/productDetail";
 	}
 	
@@ -130,7 +129,7 @@ public class ProductController {
 	@RequestMapping("/product/men.do") //남성상품 by 수인
 	public String men(Model model) {
 		List<Product> menProductList = ps.menProductlist();
-		model.addAttribute(menProductList);
+		model.addAttribute("menProductList",menProductList);
 		return "product/men";
 		
 	}

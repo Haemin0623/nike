@@ -33,5 +33,6 @@ public interface ProductMapper {
 	
 	List<Product> adminproductlist();
 	List<Product> menProductlist();
+	List<Product> recommendList();
 
 }

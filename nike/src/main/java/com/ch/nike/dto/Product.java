@@ -29,8 +29,8 @@ public class Product {
 	private int productDetailNo;
 	private int stock;
 	private int photoNo;
-	private int large;
-	private int small;
+	private String large;
+	private String small;
 	private int featurelNo;
 	private String feature;
 	

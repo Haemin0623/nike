@@ -8,7 +8,7 @@ import lombok.Data;
 @Alias("Category")
 public class Category {
 	private int categoryNo;
-	private int large;
-	private int small;
+	private String large;
+	private String small;
 
 }

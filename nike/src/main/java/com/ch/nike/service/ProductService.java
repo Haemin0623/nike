@@ -44,6 +44,9 @@ public interface ProductService {
 	List<Product> menProductlist();
 	int getTotal2(Filter filter);
 	
+	//상품상세페이지 - 추천상품
+	List<Product> recommendList();
+	
 
 
 }
