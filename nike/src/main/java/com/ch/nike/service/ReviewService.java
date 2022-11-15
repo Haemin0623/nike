@@ -42,7 +42,8 @@ public interface ReviewService {
 	// 리뷰 갯수
 	int getTotal();
 	// 모든 리뷰 조회(페이징)
-	List<UserOrder> paginglist(PagingBean pagingbean);	
+	List<UserOrder> paginglist(PagingBean pagingbean);
+	int admindeleteReview(int reviewNo);	
 	
 
 }

@@ -8,6 +8,7 @@
 </head>
 <body>
 <div layout:fragment="content">
+	<h2>상품 수정</h2>
 	<form action="adminProductUpdateResult.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="productDetailNo" th:value="${productDetailNo}">
 		<input type="hidden" name="productNo" th:value="${product.productNo}">

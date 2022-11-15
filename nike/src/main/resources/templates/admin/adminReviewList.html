@@ -13,6 +13,7 @@
 </head>
 <body><!-- by창률 -->
 <div layout:fragment="content">
+	<h2>리뷰 목록</h2>
 	<table>
 		<tr>
 			<th>리뷰번호</th>
@@ -22,6 +23,7 @@
 			<th>별점</th>
 			<th>등록일</th>
 			<th>삭제여부</th>
+			<th></th>
 		</tr>
 		<tr th:each="lists:${list2}">
 			<td>[[${lists.reviewNo}]]</td>
@@ -31,14 +33,14 @@
 			<td>[[${lists.star}]]</td>
 			<td>[[${lists.reviewDate}]]</td>
 			<td>[[${lists.reviewDel}]]</td>
-			<td><a>삭제</a></td>
+			<td><a th:href="@{/adminReviewDelete.do(reviewNo=${lists.reviewNo})}">삭제</a></td>
 		</tr>
 	</table>
 	<div>
 		<form action="adminReviewList.do">
 			<select name="keyword">
-				<option value="reviewNo">리뷰번호</option>
-				<option value="productNo">상품번호</option>
+				<option value="review_no">리뷰번호</option>
+				<option value="product_no">상품번호</option>
 				<option value="email">이메일</option>
 			</select>
 			<input type="text" name="search">

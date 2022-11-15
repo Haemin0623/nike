@@ -13,6 +13,7 @@ public interface StoreService {
 	int getTotal();
 	// 매장 전체 조회(페이징)
 	List<UserOrder> paginglist(PagingBean pagingbean);
+	Store selectstoreno(int storeNo);
 
 
 }

@@ -13,85 +13,86 @@
 </head>
 <body><!-- by창률 -->
 <div layout:fragment="content">
-<table>
-	<tr>
-		<th>문의번호</th>
-		<th>이메일</th>
-		<th>상품번호</th>
-		<th>문의유형</th>
-		<th>제목</th>
-		<th>내용</th>
-		<th>등록일</th>
-		<th>처리상태</th>
-		<th>삭제여부</th>
-		<th></th>
-	</tr>
-	<tr th:each="lists:${list2}">
-		<td>[[${lists.qnaNo}]]</td>
-		<td>[[${lists.email}]]</td>
-		<td>[[${lists.productNo}]]</td>
-		<td>[[${lists.qnaType}]]</td>
-		<td>[[${lists.subject}]]</td>
-		<td>[[${lists.content}]]</td>
-		<td>[[${lists.regDate}]]</td>
-		<td>[[${lists.qnaStatus}]]</td>
-		<td>[[${lists.qnaDel}]]</td>
-		<td><a th:href="@{/adminQnaDetail.do(qnaNo=${lists.qnaNo})}">문의 상세 보기</a></td>
-	</tr>
-</table>
-	<div>
-		<form action="adminQnaList.do">
-			<select name="keyword">
-				<option value="qna_no">문의번호</option>
-				<option value="product_no">상품번호</option>
-				<option value="email">이메일</option>
-				<option value="qna_type">문의유형</option>
-				<option value="qna_status">처리상태</option>
-			</select>
-			<input type="text" name="search">
-			<input type="submit" value="검색">
-		</form>
-	</div>
-	<span>
-		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
-		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
-			<li>
-				<a th:href="@{/adminQnaList.do(pageNum=1)}">
-					<span class="glyphicon glyphicon-fast-backward"></span>
-				</a>
-			</li>
-			<li>
-				<a th:href="@{/adminQnaList.do(pageNum=${pb.startPage-1 })}">
-					<span class="glyphicon glyphicon-triangle-left"></span>
-				</a>
-			</li>
-		</th:block>
-		<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
-			<th:block th:if="${pb.currentPage == i }">
-				<li class="active">
-					<a th:href="@{/adminQnaList.do(pageNum=${i})}">[[${i}]]</a>
+<h2>문의 목록</h2>
+	<table>
+		<tr>
+			<th>문의번호</th>
+			<th>이메일</th>
+			<th>상품번호</th>
+			<th>문의유형</th>
+			<th>제목</th>
+			<th>내용</th>
+			<th>등록일</th>
+			<th>처리상태</th>
+			<th>삭제여부</th>
+			<th></th>
+		</tr>
+		<tr th:each="lists:${list2}">
+			<td>[[${lists.qnaNo}]]</td>
+			<td>[[${lists.email}]]</td>
+			<td>[[${lists.productNo}]]</td>
+			<td>[[${lists.qnaType}]]</td>
+			<td>[[${lists.subject}]]</td>
+			<td>[[${lists.content}]]</td>
+			<td>[[${lists.regDate}]]</td>
+			<td>[[${lists.qnaStatus}]]</td>
+			<td>[[${lists.qnaDel}]]</td>
+			<td><a th:href="@{/adminQnaDetail.do(qnaNo=${lists.qnaNo})}">문의 상세 보기</a></td>
+		</tr>
+	</table>
+		<div>
+			<form action="adminQnaList.do">
+				<select name="keyword">
+					<option value="qna_no">문의번호</option>
+					<option value="product_no">상품번호</option>
+					<option value="email">이메일</option>
+					<option value="qna_type">문의유형</option>
+					<option value="qna_status">처리상태</option>
+				</select>
+				<input type="text" name="search">
+				<input type="submit" value="검색">
+			</form>
+		</div>
+		<span>
+			<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
+			<th:block th:if="${pb.startPage > pb.pagePerBlock}">
+				<li>
+					<a th:href="@{/adminQnaList.do(pageNum=1)}">
+						<span class="glyphicon glyphicon-fast-backward"></span>
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/adminQnaList.do(pageNum=${pb.startPage-1 })}">
+						<span class="glyphicon glyphicon-triangle-left"></span>
+					</a>
 				</li>
 			</th:block>
-			<th:block th:if="${pb.currentPage != i }">
+			<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
+				<th:block th:if="${pb.currentPage == i }">
+					<li class="active">
+						<a th:href="@{/adminQnaList.do(pageNum=${i})}">[[${i}]]</a>
+					</li>
+				</th:block>
+				<th:block th:if="${pb.currentPage != i }">
+					<li>
+						<a th:href="@{/adminQnaList.do(pageNum=${i})}">[[${i}]]</a>
+					</li>
+				</th:block>		
+			</th:block>
+			<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
+			<th:block th:if="${pb.endPage < pb.totalPage}">
 				<li>
-					<a th:href="@{/adminQnaList.do(pageNum=${i})}">[[${i}]]</a>
+					<a th:href="@{/adminQnaList.do(pageNum=${pb.endPage+1})}">
+						<span class="glyphicon glyphicon-triangle-right"></span>
+					</a>
 				</li>
-			</th:block>		
-		</th:block>
-		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
-		<th:block th:if="${pb.endPage < pb.totalPage}">
-			<li>
-				<a th:href="@{/adminQnaList.do(pageNum=${pb.endPage+1})}">
-					<span class="glyphicon glyphicon-triangle-right"></span>
-				</a>
-			</li>
-			<li>
-				<a th:href="@{/adminQnaList.do(pageNum=${pb.totalPage})}">
-					<span class="glyphicon glyphicon-fast-forward"></span>
-				</a>
-			</li>
-		</th:block>
-	</span>
-</div>
+				<li>
+					<a th:href="@{/adminQnaList.do(pageNum=${pb.totalPage})}">
+						<span class="glyphicon glyphicon-fast-forward"></span>
+					</a>
+				</li>
+			</th:block>
+		</span>
+	</div>
 </body>
 </html>

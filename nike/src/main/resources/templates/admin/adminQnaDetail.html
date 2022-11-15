@@ -13,6 +13,7 @@
 </head>
 <body><!-- by창률 -->
 <div layout:fragment="content">
+	<h2>문의 상세</h2>
 	<table>
 		<tr>
 			<th>문의번호</th>
@@ -47,12 +48,12 @@
 			<td>[[${qna1.subject}]]</td>
 		</tr>
 		<tr>
-			<th>내용</th>
+			<th>문의내용</th>
 			<td>[[${qna1.content}]]</td>
 		</tr>
 		<tr th:if="${qna3} != null">
 			<th>답글</th>
-			<td><input type="text" th:value="${qna3.content}" readonly="readonly"></td>
+			<td><input type="text" th:value="${qna3.content}" readonly="readonly" style="width: 500px; height: 300px;" ></td>
 		</tr>
 	</table>
 	<div th:if="${qna3} == null">
@@ -66,7 +67,7 @@
 			<input type="hidden" name="qnaDel" th:value="${qna1.qnaDel}">
 			<input type="hidden" name="subject" th:value="${qna1.subject}">
 			<input type="hidden" name="refNo" th:value="${qna1.refNo}">
-			<input type="text" name="content" value="답글을 입력하세요">
+			<textarea rows="10px" cols="80px" name="content" ></textarea>
 			<input type="submit" value="답글완료">
 		</form>
 	</div>

@@ -87,15 +87,19 @@
 	</select>
 	<select id="paginglist" parameterType="pagingbean" resultType="review">
 		select 	* 
-		from 	(select a.*, rowNum rn from (select * from review order by review_no desc)a) 
-		where 	rn between #{startRow} and #{endRow}
+		from 	(select a.*, rowNum rn from (select * from review 
+			<where>
+				<if test="keyword!=null and keyword!=''">
+						${keyword} like '%' || #{search} || '%'
+				</if>
+			</where>
+		order by review_no desc)a) 
+		where 	rn between #{startRow} 
+			and #{endRow}
 	</select>
-	
-
-	
-	
-	
-
-	
-	
+	<update id="admindeleteReview" parameterType="integer">
+		update 	review 
+		set 	review_del = 'Y' 
+		where 	review_no = #{reviewNo}			
+	</update>
 </mapper>

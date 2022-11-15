@@ -20,5 +20,9 @@ public class AddressServiceImpl implements AddressService {
 	public Address getAddr(int orderNo) {
 		return am.getAddr(orderNo);
 	}
+	@Override
+	public int insertaddress(Address address) {
+		return am.insertaddress(address);
+	}
 	
 }

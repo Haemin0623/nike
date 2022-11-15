@@ -146,6 +146,7 @@ public class MemberController {
 			if (verifiCode == vCode) { // 사용자가 입력한 verifiCode, 메일발송한 vCode
 				String encPass = bpe.encode(newPw); // 새비번 암호화
 				member.setPassword(encPass);
+				
 				result = ms.changePw(member);
 			} else { //인증코드 불일치
 				result = -1;
@@ -155,4 +156,27 @@ public class MemberController {
 		return "member/changePw";
 	}
 	
+	
+	
+	
+	
+	
+	@RequestMapping("/member/kakaoLogin.do")
+	public String kakaoLogin(Member member, Model model, HttpSession session) {
+		Member member2 = ms.kakaoselect(member);
+		// 가입되어있을때
+		if (member2 != null) { // 이미 있는 회원
+			if (member2.getMemberDel().equals("Y")) { // 탈퇴한 회원
+				int result = 1;
+				model.addAttribute("result", result);
+				return "member/emailLoginForm";
+			}
+		}else {
+			ms.kakaoinsert(member);
+			session.setAttribute("email", member.getAccount_email());
+			return "redirect:/";
+		}
+		session.setAttribute("email", member.getAccount_email());
+		return "redirect:/";
+	}
 }

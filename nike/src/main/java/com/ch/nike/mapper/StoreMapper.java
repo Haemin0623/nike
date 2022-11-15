@@ -15,5 +15,6 @@ public interface StoreMapper {
 	// AdminCon
 	int getTotal();
 	List<UserOrder> paginglist(PagingBean pagingbean);
+	Store selectstoreno(int storeNo);
 
 }

@@ -33,6 +33,7 @@ public interface ReviewMapper {
 	List<Review> reviewselect(String email);
 	int getTotal();
 	List<UserOrder> paginglist(PagingBean pagingbean);
+	int admindeleteReview(int reviewNo);
 	
 
 

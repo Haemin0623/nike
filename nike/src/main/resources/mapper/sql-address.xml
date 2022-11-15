@@ -18,4 +18,20 @@
 		where	a.addr_no=uo.addr_no 
 			and order_no=#{orderNo}
 	</select>
+	
+	<insert id="insertaddress" parameterType="address">
+		<selectKey keyProperty="addrNo" order="BEFORE" resultType="integer">
+			select	nvl(max(addr_no),0) +1 addrNo 
+			from 	address	
+		</selectKey>
+		insert into address
+		values		(#{addrNo},
+					#{email},
+					#{addrName},
+					#{tel},
+					#{roadaddress},
+					#{jibunaddress},
+					#{zonecode},
+					#{detailaddress})
+	</insert>
 </mapper>

@@ -1,6 +1,5 @@
 package com.ch.nike.controller;
 
-import java.awt.print.Printable;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.ch.nike.dto.Address;
 import com.ch.nike.dto.Member;
 import com.ch.nike.dto.Notice;
 import com.ch.nike.dto.PagingBean;
@@ -20,10 +20,11 @@ import com.ch.nike.dto.Product;
 import com.ch.nike.dto.ProductPhoto;
 import com.ch.nike.dto.QnA;
 import com.ch.nike.dto.Review;
+import com.ch.nike.dto.Store;
 import com.ch.nike.dto.UserOrder;
 import com.ch.nike.dto.UserOrderDetail;
 import com.ch.nike.dto.Wish;
-import com.ch.nike.service.AdminService;
+import com.ch.nike.service.AddressService;
 import com.ch.nike.service.MemberService;
 import com.ch.nike.service.NoticeService;
 import com.ch.nike.service.ProductDetailService;
@@ -39,7 +40,7 @@ import com.ch.nike.service.WishService;
 @Controller
 public class AdminController {
 	@Autowired
-	private AdminService as;
+	private AddressService as;
 	@Autowired
 	private MemberService ms;
 	@Autowired
@@ -430,5 +431,30 @@ public class AdminController {
 		Notice notice = ns.selectNotice(noticeNo);
 		model.addAttribute("notice", notice);
 		return "admin/helpDetail";
+	}
+	
+	@RequestMapping("/adminReviewDelete.do")
+	public String adminReviewDelete(int reviewNo, Model model) {
+		int result = 0;
+		result = rs.admindeleteReview(reviewNo);
+		model.addAttribute("result",result);
+		return "admin/adminReviewDelete";
+	}
+	
+	@RequestMapping("/adminStoreUpdateForm.do")
+	public String adminStoreUpdateForm(int storeNo,Model model) {
+		Store store = ss.selectstoreno(storeNo);
+		model.addAttribute("store",store);
+		return "admin/adminStoreUpdateForm";
+	}
+	
+	
+	
+	
+	@RequestMapping("/adminAddressTest.do")
+	public String adminaAddressTest(Address address, Model model) {
+		int result = 0;
+		result = as.insertaddress(address);
+		return "admin/adminmain";
 	}
 }

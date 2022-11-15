@@ -31,4 +31,7 @@ public interface MemberService {
 	
 	//회원정보 수정
 	int updateProfile(Member member);
+	
+	int kakaoinsert(Member member);
+	Member kakaoselect(Member member);
 }

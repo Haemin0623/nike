@@ -13,5 +13,9 @@
 		from 	(select a.*, rowNum rn from (select * from store order by store_no desc)a) 
 		where 	rn between #{startRow} and #{endRow}
 	</select>
-	
+	<select id="selectstoreno" parameterType="integer" resultType="store">
+		select 	*
+		from 	store
+		where 	store_no = #{storeNo}
+	</select>
 </mapper>

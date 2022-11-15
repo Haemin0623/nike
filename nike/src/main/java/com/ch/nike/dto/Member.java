@@ -17,4 +17,9 @@ public class Member {
 	private String memberTel;
 	private Date regDate;
 	private String memberDel;
+	
+	//kakao member
+	private String profile_nickname;
+	private String account_email;
+	private String kakao_id;
 }

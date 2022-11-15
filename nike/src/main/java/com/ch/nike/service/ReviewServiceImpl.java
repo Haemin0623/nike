@@ -71,5 +71,9 @@ public class ReviewServiceImpl implements ReviewService{
 	public List<UserOrder> paginglist(PagingBean pagingbean) {
 		return rm.paginglist(pagingbean);
 	}
+	@Override
+	public int admindeleteReview(int reviewNo) {
+		return rm.admindeleteReview(reviewNo);
+	}
 	
 }

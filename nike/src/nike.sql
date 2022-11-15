@@ -15,7 +15,7 @@ create table member (
 	reg_date		date				not null,
 	member_del		char(1)	default 'N'	not null,
 
-	constraint check_gender check(member_gender in ('M', 'F')),
+	constraint check_gender check(member_gender in ('M', 'F', 'U')),
 	constraint check_del check(member_del in ('N', 'Y'))
 );
 alter table member
@@ -56,7 +56,7 @@ create table address (
 	addr_no			number(4)		not	null 	primary key,
 	email			varchar2(50)	not	null,
 	addr_name		varchar2(20)	not	null,
-	tel				number(15)		not	null,	
+	tel				varchar2(15)	not	null,	
 	roadaddress		varchar2(100)	not	null,	
 	jibunaddress	varchar2(100)	not	null,	
 	zonecode		number(5)		not	null,	

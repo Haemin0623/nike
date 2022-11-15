@@ -14,4 +14,6 @@ public interface AddressMapper {
 
 	Address getAddr(int orderNo);
 
+	int insertaddress(Address address);
+
 }
