@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{layouts/adminLayout}">
+	  layout:decorate="~{layouts/layout}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -9,6 +9,13 @@
 <body>
 <div layout:fragment="content">
 	<h2>매장 찾기</h2>
+	<div th:each="item:${list}">
+		<a th:lat="${item.latitude}" th:lon="${item.longitude}" th:onclick="setMarker(this.getAttribute('lat'),this.getAttribute('lon'))">[[${item.storeName}]]</a>
+		[[${item.storeAddr}]]
+		[[${item.storeOpen}]]
+		[[${item.storeClose}]]
+		[[${item.storeTel}]]
+	</div>
     <!-- 카카오 지도 api -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2c40444a3249a32f06f25ad82e446b06"></script>
     <div id="map" style="width:800px; height:500px;"></div>
@@ -38,11 +45,19 @@
             var resultDiv = document.getElementById('clickLatlng'); 
             resultDiv.innerHTML = message;
         });
+       function setMarker(lat, lon) {
+    	// 이동할 위도 경도 위치를 생성합니다 
+    	    var moveLatLon = new kakao.maps.LatLng(lat, lon);
+    	    var markerPosition  = new kakao.maps.LatLng(lat, lon); 
+    	    // 지도 중심을 이동 시킵니다
+    	    var marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+	        // 마커가 지도 위에 표시되도록 설정합니다
+	        marker.setMap(map);
+    	    map.setCenter(moveLatLon);
+       }
 	</script>
-	
-	<div>
-	
-	</div>
 </div>
 </body>
 </html>

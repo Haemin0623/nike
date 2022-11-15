@@ -21,12 +21,20 @@ public class StoreServiceImpl implements StoreService{
 		return sm.getTotal();
 	}
 	@Override
-	public List<UserOrder> paginglist(PagingBean pagingbean) {
+	public List<Store> paginglist(PagingBean pagingbean) {
 		return sm.paginglist(pagingbean);
 	}
 	@Override
 	public Store selectstoreno(int storeNo) {
 		return sm.selectstoreno(storeNo);
+	}
+	@Override
+	public List<Store> storelist(Store store) {
+		return sm.storelist(store);
+	}
+	@Override
+	public int storedelete(int storeNo) {
+		return sm.storedelete(storeNo);
 	}
 	
 }

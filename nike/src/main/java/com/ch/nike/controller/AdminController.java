@@ -275,7 +275,7 @@ public class AdminController {
 		int num = total - startRow + 1;
 		pagingbean.setStartRow(startRow);
 		pagingbean.setEndRow(endRow);
-		List<UserOrder> list2 = ss.paginglist(pagingbean);
+		List<Store> list2 = ss.paginglist(pagingbean);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		model.addAttribute("num", num);
 		model.addAttribute("list2",list2);
@@ -448,7 +448,16 @@ public class AdminController {
 		return "admin/adminStoreUpdateForm";
 	}
 	@RequestMapping("/admin/storeSearch.do")
-	public String storeSearch() {
+	public String storeSearch(Model model, Store store) {
+		List<Store> list = ss.storelist(store);
+		model.addAttribute("list",list);
 		return "admin/storeSearch";
+	}
+	@RequestMapping("/adminStoreDelete.do")
+	public String adminStoreDelete(int storeNo, Model model) {
+		int result = 0;
+		result = ss.storedelete(storeNo);
+		model.addAttribute("result",result);
+		return "admin/adminStoreDelete";
 	}
 }

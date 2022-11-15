@@ -12,5 +12,7 @@ public class Store {
 	private String storeAddr;
 	private String storeClose;
 	private String storeOpen;
-	private int storeTel;
+	private String storeTel;
+	private float latitude;
+	private float longitude;
 }

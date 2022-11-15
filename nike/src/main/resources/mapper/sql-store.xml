@@ -10,12 +10,30 @@
 	</select>	
 	<select id="paginglist" parameterType="pagingbean" resultType="store">
 		select 	* 
-		from 	(select a.*, rowNum rn from (select * from store order by store_no desc)a) 
-		where 	rn between #{startRow} and #{endRow}
+		from 	(select a.*, rowNum rn from 
+			(select 	* 
+			from 	store 
+					<where>
+						<if test="keyword!=null and keyword!=''">
+							${keyword} like '%' || #{search} || '%' 
+						</if>
+					</where>
+			order by store_no desc)a) 
+			where 	rn 
+			between #{startRow} 
+			and 	#{endRow}
 	</select>
 	<select id="selectstoreno" parameterType="integer" resultType="store">
 		select 	*
 		from 	store
 		where 	store_no = #{storeNo}
 	</select>
+	<select id="storelist" parameterType="store" resultType="store">
+		select 	* 
+		from 	store
+	</select>
+	<delete id="storedelete" parameterType="integer">
+		delete 	store 
+		where 	store_no = #{storeNo}
+	</delete>
 </mapper>

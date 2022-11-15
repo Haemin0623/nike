@@ -12,8 +12,10 @@ public interface StoreService {
 	// 매장 정보 갯수
 	int getTotal();
 	// 매장 전체 조회(페이징)
-	List<UserOrder> paginglist(PagingBean pagingbean);
+	List<Store> paginglist(PagingBean pagingbean);
 	Store selectstoreno(int storeNo);
+	List<Store> storelist(Store store);
+	int storedelete(int storeNo);
 
 
 }
