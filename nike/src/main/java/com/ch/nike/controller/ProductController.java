@@ -130,7 +130,7 @@ public class ProductController {
 				break;
 			}
 		}
-
+		
 		for (Review rv:rvList) {
 			starTotal += rv.getStar(); 
 		}

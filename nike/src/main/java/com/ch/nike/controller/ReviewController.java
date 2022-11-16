@@ -33,8 +33,14 @@ public class ReviewController {
 		if (session.getAttribute("email") != null) {
 			String email = (String) session.getAttribute("email");
 			Review review2 = rs.productReview(email, productNo, color);
-			if(review2 != null || review2.getReviewDel().equals("N")) {
-				result = 2;
+			if(review2 != null) {
+				if (review2.getReviewDel().equals("N"))	{
+					result = 2;
+				}
+				else {
+					result = 1;
+				}
+				
 			} else {
 				result = 1;
 			}
