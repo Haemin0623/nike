@@ -35,6 +35,6 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 	// AccountCon
 	public int getProductDetailNo(ProductDetail productDetail) {
 		return pdm.getProductDetailNo(productDetail);
-	}	
+	}
 	
 }

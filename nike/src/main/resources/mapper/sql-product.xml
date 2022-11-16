@@ -14,7 +14,7 @@
 			and ph.batch = 1
 	order by	p.product_no desc
 	</select>
-	<select id="selectsoo" parameterType="integer" resultType="Product">
+	<select id="selectProduct" parameterType="integer" resultType="Product">
 		 select	* 
 		 from 	product 
 		 where 	product_no = #{productNo}
@@ -302,8 +302,7 @@
 			and c.category_no = p.category_no
 			and pp.batch='1'
 	</select>
-<!-- 		Product productCategory(int productNo); -->
 	
-	
+
 	
 </mapper>

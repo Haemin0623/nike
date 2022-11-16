@@ -2,7 +2,9 @@
 drop table member cascade constraints;
 select * from member;
 
-		select * from product where gender='M' or gender='U';	
+		select 	* 
+		from 	category 
+		where 	category_no=1;
 
 
 create table member (

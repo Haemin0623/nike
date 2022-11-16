@@ -14,7 +14,7 @@ public interface ProductService {
 	// 전체 상품리스트
 	List<Product> list();
 	// 특정 상품 정보 조회
-	Product selectsoo(int productNo);
+	Product selectProduct(int productNo);
 	// 검색 필터 상품리스트
 	List<Product> filterList(Filter filter);
 	// 전체 상품리스트 페이징
@@ -47,8 +47,6 @@ public interface ProductService {
 	//상품상세페이지 - 추천상품
 	List<Product> recommendList();
 	
-	//상품상세페이지 - 카테고리
-	Product productCategory(int productNo);
 	
 
 

@@ -40,5 +40,4 @@
 			and product_no = #{productNo}
 	</select>
 	
-	
 </mapper>

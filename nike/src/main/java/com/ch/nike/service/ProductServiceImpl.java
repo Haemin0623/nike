@@ -1,12 +1,8 @@
 package com.ch.nike.service;
 
-
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.ch.nike.dto.Filter;
 import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Product;
@@ -23,8 +19,8 @@ public class ProductServiceImpl implements ProductService{
 		return pm.list();
 	}
 	@Override
-	public Product selectsoo(int productNo) {
-		return pm.selectsoo(productNo);
+	public Product selectProduct(int productNo) {
+		return pm.selectProduct(productNo);
 	}
 	@Override
 	public List<Product> filterList(Filter filter) {
@@ -88,11 +84,4 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> recommendList() {
 		return pm.recommendList();
 	}
-	@Override
-	public Product productCategory(int productNo) {
-		return pm.productCategory(productNo);
-	}
-
-
-
 }

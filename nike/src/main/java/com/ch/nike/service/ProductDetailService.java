@@ -23,4 +23,5 @@ public interface ProductDetailService {
 
 	// AccountCon
 	int getProductDetailNo(ProductDetail productDetailr);
+
 }

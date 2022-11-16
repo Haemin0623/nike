@@ -14,7 +14,7 @@ public interface ProductMapper {
 
 	// productCon
 	List<Product> list();
-	Product selectsoo(int productNo);
+	Product selectProduct(int productNo);
 	List<Product> filterList(Filter filter);
 	List<Product> listPaging(Filter filter);
 	List<Product> filterListPaging(Filter filter);
@@ -34,6 +34,5 @@ public interface ProductMapper {
 	List<Product> adminproductlist();
 	List<Product> menProductlist();
 	List<Product> recommendList();
-	Product productCategory(int productNo);
 
 }

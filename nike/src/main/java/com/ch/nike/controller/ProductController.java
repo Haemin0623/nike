@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ch.nike.dto.Category;
 import com.ch.nike.dto.Filter;
 import com.ch.nike.dto.PagingBean;
 import com.ch.nike.dto.Product;
@@ -19,6 +20,7 @@ import com.ch.nike.dto.ProductFeature;
 import com.ch.nike.dto.ProductPhoto;
 import com.ch.nike.dto.Review;
 import com.ch.nike.dto.ReviewPhoto;
+import com.ch.nike.service.CategoryService;
 import com.ch.nike.service.ProductDetailService;
 import com.ch.nike.service.ProductFeatureService;
 import com.ch.nike.service.ProductPhotoService;
@@ -42,6 +44,8 @@ public class ProductController {
 	private ReviewService rs;
 	@Autowired
 	private ReviewPhotoService rps;
+	@Autowired
+	private CategoryService cs;
 	
 	
 	@RequestMapping("/") //메인 최하단 하단 신발 리스트 by창률 // 로그아웃 위한 세션작업 by수인
@@ -92,15 +96,14 @@ public class ProductController {
 	
 	@RequestMapping("/product/productDetail.do") //해당상품의 상세정보 by수인
 	public String productDetail(int productNo, String color, Model model) {
-		Product product = ps.selectsoo(productNo);
-		Product category = ps.productCategory(productNo);
+		Product product = ps.selectProduct(productNo);
 		product.setColor(color);
 		List<ProductDetail> productDetailList  = pds.detailList(productNo);
 		List<ProductPhoto> productPhotoList = pps.photoList(product);
 		List<ProductFeature> productFeatureList = pfs.featureList(productNo);
 		List<ProductPhoto> thumPhotoList = pps.thumPhotoList(productNo);
 		List<Product> productRecommendList = ps.recommendList();
-		
+		Category category = cs.selectCategory(product.getCategoryNo());
 		
 		model.addAttribute("productFeatureList",productFeatureList);
 		
@@ -118,8 +121,8 @@ public class ProductController {
 		model.addAttribute("productPhotoList",productPhotoList);
 		model.addAttribute("thumPhotoList",thumPhotoList);
 		model.addAttribute("productRecommendList", productRecommendList);
-		model.addAttribute("color", color);
 		model.addAttribute("category", category);
+		model.addAttribute("color", color);
 		
 		model.addAttribute("rvPhotos", rvPhotos2);
 		model.addAttribute("rvList", rvList);

@@ -131,7 +131,9 @@
 			<div class="u-container-style u-group u-shape-rectangle u-group-1">
 				<div class="u-container-layout u-container-layout-7">
 					<h1 class="u-text u-text-default u-title u-text-1">[[${product.productName}]]</h1>
-					<h2 class="u-subtitle u-text u-text-default u-text-2">Category,,,</h2>
+					<h2 class="u-subtitle u-text u-text-default u-text-2" th:if="${product.gender} == 'M'" > 남성 [[${category.large}]]</h2>
+					<h2 class="u-subtitle u-text u-text-default u-text-2" th:if="${product.gender} == 'F'" > 여성 [[${category.large}]]</h2>
+					<h2 class="u-subtitle u-text u-text-default u-text-2" th:if="${product.gender} == 'U'" > 유니섹스 [[${category.large}]]</h2>
 					<p
 						class="u-small-text u-text u-text-default u-text-variant u-text-3">[[${product.price}]] 원</p>
 					<div class="u-list u-list-1">
