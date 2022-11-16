@@ -8,7 +8,7 @@ import lombok.Data;
 public class Filter {
 	private String[] gender;
 	private String[] color;
-	private int[] price;
+	private Integer[] price;
 	private String[] productSize;
 	
 	// 페이징
