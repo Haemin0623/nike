@@ -36,5 +36,9 @@ public class StoreServiceImpl implements StoreService{
 	public int storedelete(int storeNo) {
 		return sm.storedelete(storeNo);
 	}
+	@Override
+	public int adminstoreinsert(Store store) {
+		return sm.adminstoreinsert(store);
+	}
 	
 }

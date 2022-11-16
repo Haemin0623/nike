@@ -6,9 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	table {width: 80%}
+	h2 {width: 90%; margin-left: 5%;}
+	table {width: 90%; margin-left: 5%;}
 	th {border:1px solid green;}
 	td {border:1px solid green;}
+	#search {width: 100%; margin-left:35%; margin-top: 10px;}
+	#paging {width: 100%; margin-left:40%}
+	
 </style>
 </head>
 <body> <!-- by창률 -->
@@ -38,7 +42,7 @@
 			</td>
 		</tr>
 	</table>
-	<div>
+	<div id="search">
 		<form action="adminMemberList.do">
 			<select name="keyword">
 				<option value="email">이메일</option>
@@ -49,44 +53,32 @@
 			<input type="submit" value="검색">
 		</form>
 	</div>
-	<span>
+	<span id="paging">
 		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
 		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
-			<li>
 				<a th:href="@{/adminMemberList.do(pageNum=1)}">
 					<span class="glyphicon glyphicon-fast-backward"></span>
 				</a>
-			</li>
-			<li>
 				<a th:href="@{/adminMemberList.do(pageNum=${pb.startPage-1 })}">
 					<span class="glyphicon glyphicon-triangle-left"></span>
 				</a>
-			</li>
 		</th:block>
 		<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
 			<th:block th:if="${pb.currentPage == i }">
-				<li class="active">
 					<a th:href="@{/adminMemberList.do(pageNum=${i})}">[[${i}]]</a>
-				</li>
 			</th:block>
 			<th:block th:if="${pb.currentPage != i }">
-				<li>
 					<a th:href="@{/adminMemberList.do(pageNum=${i})}">[[${i}]]</a>
-				</li>
 			</th:block>		
 		</th:block>
 		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
 		<th:block th:if="${pb.endPage < pb.totalPage}">
-			<li>
 				<a th:href="@{/adminMemberList.do(pageNum=${pb.endPage+1})}">
 					<span class="glyphicon glyphicon-triangle-right"></span>
 				</a>
-			</li>
-			<li>
 				<a th:href="@{/adminMemberList.do(pageNum=${pb.totalPage})}">
 					<span class="glyphicon glyphicon-fast-forward"></span>
 				</a>
-			</li>
 		</th:block>
 	</span>
 </div>

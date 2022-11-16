@@ -8,36 +8,36 @@
 </head>
 <body>
 <div layout:fragment="content">
-	<h2>매장 정보 수정</h2>
-	<form action="adminStoreUpdate.do">
+	<h2>매장 정보 입력</h2>
+	<form action="adminStoreInsertResult.do">
 		<table>
 			<tr>
 				<th>매장이름</th>
-				<td><input type="text" name="storeName" th:value="${store.storeName}"></td>
+				<td><input type="text" name="storeName" required="required" autofocus="autofocus"></td>
 			</tr>
 			<tr>
 				<th>매장주소</th>
-				<td><input type="text" name="storeAddr" th:value="${store.storeAddr}"></td>
+				<td><input type="text" name="storeAddr" required="required"></td>
 			</tr>
 			<tr>
 				<th>개점시간</th>
-				<td><input type="text" name="storeOpen" th:value="${store.storeOpen}"></td>
+				<td><input type="text" name="storeOpen" required="required"></td>
 			</tr>
 			<tr>
 				<th>폐점시간</th>
-				<td><input type="text" name="storeClose" th:value="${store.storeClose}"></td>
+				<td><input type="text" name="storeClose" required="required"></td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td><input type="tel" name="storeTel" th:value="${store.storeTel}"></td>
+				<td><input type="tel" name="storeTel" required="required"></td>
 			</tr>
 			<tr>
 				<th>위도</th>
-				<td><input type="number" step="0.0000001" name="latitude" required="required" th:value="${store.latitude}"></td>
+				<td><input type="number" step="0.0000001" name="latitude" required="required"></td>
 			</tr>
 			<tr>
 				<th>경도</th>
-				<td><input type="number" step="0.0000001" name="longitude" required="required" th:value="${longitude}"></td>
+				<td><input type="number" step="0.0000001" name="longitude" required="required"></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="확인"></td>

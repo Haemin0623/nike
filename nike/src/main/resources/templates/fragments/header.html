@@ -92,9 +92,13 @@
 														<li class="u-nav-item"><a
 															class="u-button-style u-nav-link u-text-grey-60 u-text-hover-grey-90">개인정보처리방침</a>
 														</li>
-														<li class="u-nav-item"><a
-															class="u-button-style u-nav-link u-text-grey-60 u-text-hover-grey-90">이용약관</a>
-														</li>
+														<th:block th:if="${session.email} == 'ok_chang@naver.com'">
+															<!-- 세션에 이메일 없으면 -->
+															<li class="u-nav-item"><a href="/adminMemberList.do"
+																class="u-button-style u-nav-link u-text-grey-60 u-text-hover-grey-90">관리자페이지</a>
+															</li>
+														</th:block>
+														
 													</ul>
 												</div></li>
 										</ul>

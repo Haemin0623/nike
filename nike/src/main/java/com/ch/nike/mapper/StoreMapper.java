@@ -18,5 +18,6 @@ public interface StoreMapper {
 	Store selectstoreno(int storeNo);
 	List<Store> storelist(Store store);
 	int storedelete(int storeNo);
+	int adminstoreinsert(Store store);
 
 }

@@ -64,10 +64,10 @@ public class AdminController {
 	@Autowired
 	private UserOrderDetailService uods;
 	
-	@RequestMapping("/adminMain.do")// 관리자 메인으로 이동
-	public String adminMain() {
-		return "admin/adminMain";
-	}
+//	@RequestMapping("/adminMain.do")// 관리자 메인으로 이동
+//	public String adminMain() {
+//		return "admin/adminMain";
+//	}
 	
 	@RequestMapping("/adminMemberList.do")// 관리자 멤버리스트 by창률 
 	public String adminMemberList(String pageNum, Model model, PagingBean pagingbean) {
@@ -283,10 +283,7 @@ public class AdminController {
 		return "admin/adminStoreList";
 	}
 	
-	@RequestMapping("/adminStoreInsert.do") //관리자 매장 등록
-	public String adminStoreInsert() {
-		return "admin/adminStoreInsert";
-	}
+
 	
 	@RequestMapping("/adminProductInsertResult.do")
 	public String adminProductInsert(Product product, Model model, ProductPhoto productPhoto, MultipartHttpServletRequest mhr) throws IOException {
@@ -459,5 +456,17 @@ public class AdminController {
 		result = ss.storedelete(storeNo);
 		model.addAttribute("result",result);
 		return "admin/adminStoreDelete";
+	}
+	@RequestMapping("/adminStoreInsertForm.do") //관리자 매장 등록
+	public String adminStoreInsert() {
+		return "admin/adminStoreInsertForm";
+	}
+	
+	@RequestMapping("/adminStoreInsertResult.do")
+	public String adminStoreInsertResult(Store store, Model model) {
+		int result =0;
+		result = ss.adminstoreinsert(store);
+		model.addAttribute("result",result);
+		return "admin/adminStoreInsertResult";
 	}
 }

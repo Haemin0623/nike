@@ -8,7 +8,18 @@
 </head>
 <body>
 <div layout:fragment="content">
-메인페이지
+	<span th:if="${result} > 0">
+	<script type="text/javascript">
+		alert("매장 등록 성공");
+		location.href="adminStoreList.do";
+	</script>
+</span>
+<span th:if="${result} == 0">
+	<script type="text/javascript">
+		alert("매장 등록 실패");
+		history.back();
+	</script>
+</span>
 </div>
 </body>
 </html>

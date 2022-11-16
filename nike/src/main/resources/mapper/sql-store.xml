@@ -36,4 +36,20 @@
 		delete 	store 
 		where 	store_no = #{storeNo}
 	</delete>
+	<insert id="adminstoreinsert" parameterType="store">
+		<selectKey keyProperty="storeNo" order="BEFORE" resultType="integer">
+			select 	nvl(max(store_no),0)+1 storeNo 
+			from 	store
+		</selectKey>
+		insert into store 
+		values		(#{storeNo},
+					#{storeName},
+					#{storeAddr},
+					#{storeClose},
+					#{storeOpen},
+					#{storeTel},
+					#{latitude},
+					#{longitude}
+					)
+	</insert>
 </mapper>
