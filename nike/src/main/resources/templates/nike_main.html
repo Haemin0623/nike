@@ -184,54 +184,30 @@
 	</section>
 	<section class="u-align-center u-clearfix u-section-5" id="sec-98fe">
 		<div class="u-clearfix u-sheet u-sheet-1">
-			<h2 class="u-text u-text-default u-text-1">Featured Shoes</h2>
+		
+			<h2 class="u-text u-text-default u-text-1">Featured Shoes</h2> <!-- 수정해야함 -->
+			
 			<div class="u-expanded-width u-layout-horizontal u-list u-list-1">
 				<div class="u-repeater u-repeater-1">
+				
+					<th:block th:each="mrproduct:${mainrecommendList}">
 					<div class="u-container-style u-list-item u-repeater-item">
 						<div
 							class="u-container-layout u-similar-container u-container-layout-1">
 							<img class="u-expanded-width u-image u-image-default u-image-1"
 								alt="" data-image-width="600" data-image-height="600"
-								th:src="@{/nice/images/1.webp}">
-							<h4 class="u-align-left u-text u-text-2">나이키 ACG 로우케이트</h4>
-							<h4 class="u-align-right u-text u-text-3">129,000 원</h4>
-							<p class="u-align-left u-text u-text-grey-40 u-text-4">남성 신발</p>
+								th:src="@{/images/product_photo/}+${mrproduct.productPhoto}"> <!-- 티셔츠(카테고리.small)만 나오는 상태 -->
+							<h4 class="u-align-left u-text u-text-2">[[${mrproduct.productName}]]</h4>
+							<h4 class="u-align-right u-text u-text-3">[[${mrproduct.price}]]원</h4>
+							<p class="u-align-left u-text u-text-grey-40 u-text-4">
+								<th:block th:if="${mrproduct.gender} == 'M'">남성</th:block>
+								<th:block th:if="${mrproduct.gender} == 'F'">여성</th:block>
+								<th:block th:if="${mrproduct.gender} == 'U'">유니섹스</th:block>
+							[[${mrproduct.large}]] </p>
 						</div>
 					</div>
-					<div class="u-container-style u-list-item u-repeater-item">
-						<div
-							class="u-container-layout u-similar-container u-container-layout-2">
-							<img class="u-expanded-width u-image u-image-default u-image-2"
-								alt="" data-image-width="600" data-image-height="600"
-								th:src="@{/nice/images/2.webp}">
-							<h4 class="u-align-left u-text u-text-5">나이키 에어맥스 97</h4>
-							<h4 class="u-align-right u-text u-text-6">219,000 원</h4>
-							<p class="u-align-left u-text u-text-grey-40 u-text-7">남성 신발</p>
-						</div>
-					</div>
-					<div class="u-container-style u-list-item u-repeater-item">
-						<div
-							class="u-container-layout u-similar-container u-container-layout-3">
-							<img class="u-expanded-width u-image u-image-default u-image-3"
-								alt="" data-image-width="600" data-image-height="600"
-								th:src="@{/nice/images/3.webp}">
-							<h4 class="u-align-left u-text u-text-8">에어 조던 1 줌 Cmft</h4>
-							<h4 class="u-align-right u-text u-text-9">169,000 원</h4>
-							<p class="u-align-left u-text u-text-grey-40 u-text-10">신발</p>
-						</div>
-					</div>
-					<div class="u-container-style u-list-item u-repeater-item">
-						<div
-							class="u-container-layout u-similar-container u-container-layout-4">
-							<img class="u-expanded-width u-image u-image-default u-image-4"
-								alt="" data-image-width="600" data-image-height="600"
-								th:src="@{/nice/images/4.webp}">
-							<h4 class="u-align-left u-text u-text-11">조던 .5 'Why Not?'</h4>
-							<h4 class="u-align-right u-text u-text-12">159,000 원</h4>
-							<p class="u-align-left u-text u-text-grey-40 u-text-13">남성
-								농구화</p>
-						</div>
-					</div>
+					</th:block>
+					
 				</div>
 				<a
 					class="u-absolute-vcenter u-gallery-nav u-gallery-nav-prev u-grey-30 u-hover-grey-50 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-black u-text-hover-black u-gallery-nav-1"

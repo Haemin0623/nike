@@ -7,6 +7,12 @@ insert into member values ('sun@ny.com', '최선희', '123', 'F', sysdate, 01012
 select * from member;
 select * from notice;
 
+select 	* 
+		from 	PRODUCT p, 
+				CATEGORY c, PRODUCT_PHOTO pp
+				 
+		where 	p.category_no = c.category_no and p.product_no = pp.product_no
+			and c.small='티셔츠' and pp.batch=1;
 
 
 -- 배송지

@@ -42,6 +42,14 @@ public class ProductServiceImpl implements ProductService{
 	public int getTotal2(Filter filter) {
 		return pm.getTotal2(filter);
 	}
+	@Override
+	public List<Product> recommendList() {
+		return pm.recommendList();
+	}
+	@Override
+	public List<Product> mainrecommendList() {
+		return pm.mainrecommendList();
+	}
 	
 	
 	// AdminCon
@@ -70,18 +78,9 @@ public class ProductServiceImpl implements ProductService{
 		return pm.productupdate(product);
 	}
 	
-	
-	
 	@Override
 	public List<Product> adminproductlist() {
 		return pm.adminproductlist();
 	}
-	@Override
-	public List<Product> menProductlist() {
-		return pm.menProductlist();
-	}
-	@Override
-	public List<Product> recommendList() {
-		return pm.recommendList();
-	}
+
 }

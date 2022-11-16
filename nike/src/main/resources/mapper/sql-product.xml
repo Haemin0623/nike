@@ -186,6 +186,25 @@
 			</if>
 	order by	p.product_no desc
 	</select>
+	<select id="recommendList" resultType="Product"> <!-- 추천상품 -->
+		select 	* 
+		from 	PRODUCT p, 
+				PRODUCT_PHOTO pp,
+				CATEGORY c
+		where 	p.product_no = pp.product_no
+			and c.category_no = p.category_no
+			and pp.batch='1'
+	</select>
+	<select id="mainrecommendList" resultType="Product"> <!-- 메인페이지-하단 추천상품 -->
+		select 	* 
+		from 	PRODUCT p, 
+				CATEGORY c, 
+				PRODUCT_PHOTO pp
+		where 	p.category_no = c.category_no 
+			and p.product_no = pp.product_no
+			and c.small='티셔츠' 
+			and pp.batch=1
+	</select>
 	
 	<!-- Admincon -->
 	<select id="paginglist" parameterType="pagingbean" resultType="product">
@@ -286,23 +305,5 @@
 
 	</select>
 	
-	<select id="menProductlist" resultType="product"> <!-- 남자(+유니) 상품목록 -->
-		select 	* 
-		from 	product 
-		where 	gender='M' 
-			or 	gender='U'	
-	</select>
-	
-	<select id="recommendList" resultType="Product"> <!-- 추천상품 -->
- 		select 	* 
-		from 	PRODUCT p, 
-				PRODUCT_PHOTO pp,
-				CATEGORY c
-		where 	p.product_no = pp.product_no
-			and c.category_no = p.category_no
-			and pp.batch='1'
-	</select>
-	
-
 	
 </mapper>

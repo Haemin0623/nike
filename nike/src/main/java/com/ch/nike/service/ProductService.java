@@ -23,6 +23,11 @@ public interface ProductService {
 	List<Product> filterListPaging(Filter filter);
 	// 상품개수 (페이징)
 	int getTotal1(Filter filter);
+	//상품상세페이지 - 추천상품
+	List<Product> recommendList();
+	//메인페이지 - 하단 추천상품
+	List<Product> mainrecommendList();
+	
 	
 	
 	// AdminCon
@@ -39,13 +44,8 @@ public interface ProductService {
 	// 
 	int productupdate(Product product);
 	
-	
 	List<Product> adminproductlist();
-	List<Product> menProductlist();
 	int getTotal2(Filter filter);
-	
-	//상품상세페이지 - 추천상품
-	List<Product> recommendList();
 	
 	
 

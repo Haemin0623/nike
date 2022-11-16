@@ -20,6 +20,8 @@ public interface ProductMapper {
 	List<Product> filterListPaging(Filter filter);
 	int getTotal1(Filter filter);
 	int getTotal2(Filter filter);
+	List<Product> recommendList();
+	List<Product> mainrecommendList();
 	
 	
 	
@@ -30,9 +32,6 @@ public interface ProductMapper {
 	int selectproductNo();
 	int productinsert(Product product);
 	int productupdate(Product product);
-	
 	List<Product> adminproductlist();
-	List<Product> menProductlist();
-	List<Product> recommendList();
 
 }

@@ -2,10 +2,10 @@
 drop table member cascade constraints;
 select * from member;
 
-		select 	* 
-		from 	category 
-		where 	category_no=1;
+		
 
+카테고리 large, 
+product - 상품이름, 가격
 
 create table member (
 	email			varchar2(50)		not null	primary key,
