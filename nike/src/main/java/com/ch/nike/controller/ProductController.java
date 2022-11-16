@@ -28,8 +28,6 @@ import com.ch.nike.service.ProductService;
 import com.ch.nike.service.ReviewPhotoService;
 import com.ch.nike.service.ReviewService;
 
-import groovyjarjarantlr4.v4.misc.EscapeSequenceParsing.Result;
-
 @Controller
 public class ProductController {
 	@Autowired
@@ -121,14 +119,22 @@ public class ProductController {
 		
 		model.addAttribute("productFeatureList",productFeatureList);
 		
-		//리뷰리스트
+		//리뷰 by 선희
+		float starTotal = 0;
 		List<Review> rvList = rs.selectProductReview(productNo);
-		List<ReviewPhoto> rvPhotos = new ArrayList<>();	
-		List<ReviewPhoto> rvPhotos2 = new ArrayList<>();
-		for (Review rv:rvList) {
-			rvPhotos = rps.selectReviewPhoto(rv.getReviewNo());
-			rvPhotos2.addAll(rvPhotos);
+		List<Review> rv3 = new ArrayList<>();
+		
+		for(int i=0 ; i < rvList.size() ; i++) {
+			rv3.add(rvList.get(i));
+			if (i==3) {
+				break;
+			}
 		}
+
+		for (Review rv:rvList) {
+			starTotal += rv.getStar(); 
+		}
+		float starAverage = starTotal/rvList.size();
 		
 		model.addAttribute("product", product);
 		model.addAttribute("productDetailList",productDetailList);
@@ -138,10 +144,31 @@ public class ProductController {
 		model.addAttribute("category", category);
 		model.addAttribute("color", color);
 		
-		model.addAttribute("rvPhotos", rvPhotos2);
+		model.addAttribute("starAverage", starAverage);
 		model.addAttribute("rvList", rvList);
+		model.addAttribute("rv3", rv3);
 		model.addAttribute("productNo", productNo);
 
 		return "product/productDetail";
+	}
+	
+	@RequestMapping("/product/allReviewList.do")	// 리뷰 by 선희
+	public String allReviewList(int productNo, Model model) {
+		float starTotal = 0;
+		List<Review> rvList = rs.selectProductReview(productNo);
+		List<ReviewPhoto> rvPhotos = new ArrayList<>();	
+		List<ReviewPhoto> rvPhotos2 = new ArrayList<>();
+		for (Review rv:rvList) {
+			rvPhotos = rps.selectReviewPhoto(rv.getReviewNo());
+			rvPhotos2.addAll(rvPhotos);
+			
+			starTotal += rv.getStar(); 
+		}
+		float starAverage = starTotal/rvList.size();
+		model.addAttribute("starAverage", starAverage);
+		model.addAttribute("rvPhotos", rvPhotos2);
+		model.addAttribute("rvList", rvList);
+		model.addAttribute("productNo", productNo);
+		return "product/allReviewList.do";
 	}
 }

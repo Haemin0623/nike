@@ -55,6 +55,7 @@
 		where	r.email=m.email
 			and product_no = #{product_no} 
 			and review_del = 'N'
+	order by	review_no desc	
 	</select>
 	
 	
