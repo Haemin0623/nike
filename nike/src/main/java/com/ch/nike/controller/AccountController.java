@@ -3,7 +3,6 @@ package com.ch.nike.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.ch.nike.dto.Address;
 import com.ch.nike.dto.Cart;
@@ -135,7 +133,7 @@ public class AccountController {
 	}
 
 	@RequestMapping("/account/wishList.do") //마이페이지-위시리스트 by 수인
-	public String wishList(HttpSession session, Model model) {
+	public String wishList(HttpSession session, Model model, ProductDetail productdetail) {
 		String email = (String) session.getAttribute("email");
 		List<Wish> wishList = ws.wishList(email);
 		model.addAttribute("wishList",wishList);

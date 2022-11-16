@@ -40,4 +40,10 @@
 			and product_no = #{productNo}
 	</select>
 	
+	<select id="selectsize" parameterType="productdetail" resultType="productdetail">
+	select 	* 
+	from 	product_detail 
+	where 	product_no=#{productNo}
+	</select>
+	
 </mapper>

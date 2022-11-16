@@ -24,4 +24,8 @@ public interface ProductDetailService {
 	// AccountCon
 	int getProductDetailNo(ProductDetail productDetailr);
 
+
+
+	List<ProductDetail> selectsize(ProductDetail productdetail);
+
 }

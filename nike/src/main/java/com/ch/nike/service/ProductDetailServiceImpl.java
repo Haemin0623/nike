@@ -36,5 +36,11 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 	public int getProductDetailNo(ProductDetail productDetail) {
 		return pdm.getProductDetailNo(productDetail);
 	}
+
+
+	@Override
+	public List<ProductDetail> selectsize(ProductDetail productdetail) {
+		return pdm.selectsize(productdetail);
+	}
 	
 }

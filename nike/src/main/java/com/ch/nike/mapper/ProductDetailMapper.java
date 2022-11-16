@@ -20,4 +20,7 @@ public interface ProductDetailMapper {
 	int getProductDetailNo(ProductDetail productDetail);
 
 
+	List<ProductDetail> selectsize(ProductDetail productdetail);
+
+
 }
