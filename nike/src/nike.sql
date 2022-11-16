@@ -2,11 +2,6 @@
 drop table member cascade constraints;
 select * from member;
 
-		select 	*
-		from 	product_detail 
-		where 	product_no=${productNo} and color=#{color};	
-
-select * from product_detail;
 
 create table member (
 	email			varchar2(50)		not null	primary key,
@@ -21,36 +16,6 @@ create table member (
 	constraint check_gender check(member_gender in ('M', 'F', 'U')),
 	constraint check_del check(member_del in ('N', 'Y'))
 );
-alter table member
-modify (
-	member_tel varchar2(15)	
-);
-
-		select 	c.*, 
-				pp.product_photo, 
-				p.product_name, 
-				p.price, 
-				pd.product_size, 
-				pd.color 
-		from 	cart c, 
-				product p, 
-				product_photo pp, 
-				product_detail pd
-		where 	c.email='hae@min.com'
-			and	c.product_detail_no = pd.product_detail_no
-			and p.product_no = pd.product_no
-			and p.product_no = pp.product_no
-			and pp.batch = 1
-	order by 	cart_no desc;
-
-select c.*, pp.product_photo, p.product_name, p.price, pd.product_size, pd.color 
-from cart c, product p, product_photo pp, product_detail pd
-where c.product_detail_no = pd.product_detail_no
-and p.product_no = pd.product_no
-and p.product_no = pp.product_no
-and pp.batch = 1
-and email = 'hae@min.com'
-order by cart_no desc;
 
 -- 배송지
 drop table address cascade constraints;
