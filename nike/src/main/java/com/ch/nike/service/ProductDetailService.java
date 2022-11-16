@@ -28,9 +28,6 @@ public interface ProductDetailService {
 
 
 
-<<<<<<< HEAD
 	List<ProductDetail> selectsize(ProductDetail productdetail);
-=======
->>>>>>> b946501 (상품상세페이지 사이즈 구현)
 
 }

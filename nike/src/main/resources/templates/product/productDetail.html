@@ -258,8 +258,8 @@
 						
 						<th:block th:each="size:${productSizeList}">
 						<div class="form-check form-check-inline">
-	  						<input class="form-check-input" name="productSize" type="checkbox" id="inlineCheckbox1" th:value="${size.productSize}">
-							<label class="form-check-label" for="inlineCheckbox1">[[${size.productSize}]]</label>
+	  						<input class="form-check-input" name="productDetailNo" type="radio" th:id="${sizeStat.index}" th:value="${size.productDetailNo}">
+							<label class="form-check-label" th:for="${sizeStat.index}">[[${size.productSize}]]</label>
 						</div>
 						</th:block>
 					</div>
@@ -271,8 +271,6 @@
 						class="u-container-style u-custom-item u-list-item u-repeater-item">
 						<div
 							class="u-container-layout u-similar-container u-container-layout-12">
-								<input type="hidden" name="productNo" th:value="${productDetail.productNo}">
-								<input type="hidden" name="color" th:value="${productDetail.color}">
 							<input type="submit"
 								class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-grey-40 u-radius-50 u-btn-10" value="장바구니"><br>
 							
