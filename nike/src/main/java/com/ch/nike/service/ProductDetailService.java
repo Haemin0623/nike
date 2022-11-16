@@ -29,5 +29,7 @@ public interface ProductDetailService {
 
 
 	List<ProductDetail> selectsize(ProductDetail productdetail);
+	int getProductNoByDetailNo(int detailNo);
+	List<ProductDetail> distinctSizeList(ProductDetail detail);
 
 }

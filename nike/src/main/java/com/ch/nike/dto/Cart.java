@@ -26,5 +26,4 @@ public class Cart {
 	private String large;
 	private String small;
 	
-	
 }

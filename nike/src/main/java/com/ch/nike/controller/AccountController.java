@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ch.nike.dto.Address;
 import com.ch.nike.dto.Cart;
 import com.ch.nike.dto.Member;
+import com.ch.nike.dto.Product;
 import com.ch.nike.dto.ProductDetail;
 import com.ch.nike.dto.ProductPhoto;
 import com.ch.nike.dto.QnA;
@@ -144,9 +145,31 @@ public class AccountController {
 		String email = (String) session.getAttribute("email");
 		List <Cart> cartList = cs.cartList(email); 
 		int totalPrice = 0;
+		int detailNo = 0;
+		int productNo = 0;
+		List<ProductDetail> detailListForSize = new ArrayList<>();
+		List<ProductDetail> sizeList = new ArrayList<>();
+		ProductDetail detail = new ProductDetail();
 		for(Cart cart:cartList) {
 			totalPrice += (cart.getPrice()*cart.getCartQuantity());
+			detailNo = cart.getProductDetailNo();
+			productNo = pds.getProductNoByDetailNo(detailNo);
+			detail.setProductNo(productNo);
+			detail.setColor(cart.getColor());
+			sizeList = pds.distinctSizeList(detail);
+			int check = 0;
+			for (ProductDetail size : sizeList) {
+				for (ProductDetail ds : detailListForSize) {
+					if (size.getProductNo() == ds.getProductNo()) {
+						check++;
+					}					
+				}
+			}
+			if (check == 0) {
+				detailListForSize.addAll(sizeList);
+			}
 		}
+		model.addAttribute("sizeList", detailListForSize);
 		model.addAttribute("cartList",cartList);
 		model.addAttribute("totalPrice", totalPrice);
 		return "account/cartList";

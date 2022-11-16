@@ -54,4 +54,17 @@
 	where 	product_no=#{productNo}
 	</select>
 	
+	<select id="getProductNoByDetailNo" parameterType="integer" resultType="integer">
+		select	product_no
+		from	product_detail
+		where 	product_detail_no = #{detailNo}
+	</select>
+	
+	<select id="distinctSizeList" parameterType="productdetail" resultType="productdetail">
+		select 	distinct * 
+		from 	product_detail 
+		where 	product_no=#{productNo}
+			and color=#{color}
+	</select>
+	
 </mapper>

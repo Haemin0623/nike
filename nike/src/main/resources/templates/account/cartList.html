@@ -9,13 +9,15 @@
 <meta name="description" content="">
 <title>cartList</title>
 <script type="text/javascript">
+
+
 function changeSize(cartNo, color, productNo) {
-	let selectedSize = document.getElementById("sizeBox");
+	let selectedSize = document.getElementById('s'+cartNo);
 	location.href="/account/changeSize.do?productSize="+selectedSize.value+"&cartNo="
 				+cartNo+"&color="+color+"&productNo="+productNo;
 }
 function changeQuantity(cartNo) {
-	let selectedQuantity = document.getElementById("quantityBox");
+	let selectedQuantity = document.getElementById('q'+cartNo);
 	location.href="/account/changeQuantity.do?quantity="+selectedQuantity.value+"&cartNo="+cartNo;
 }
 	
@@ -74,15 +76,17 @@ function changeQuantity(cartNo) {
 											<p class="u-text u-text-default u-text-grey-50 u-text-9">
 												[[${cartDetail.color}]]</p>
 											<div class="u-clearfix u-custom-html u-custom-html-2">
-												사이즈<select id="sizeBox" th:onchange="changeSize([[${cartDetail.cartNo}]],[[${cartDetail.color}]],[[${cartDetail.productNo}]])">
-													<option th:if="${cartDetail.productSize} == M" selected="selected">M</option>
-													<option>M</option>
-													<option th:if="${cartDetail.productSize} == L" selected="selected">L</option>
-													<option>L</option>
-													<option th:if="${cartDetail.productSize} == XL" selected="selected">XL</option>
-													<option>XL</option>
-
-												</select> 수량<select id="quantityBox" th:onchange="changeQuantity([[${cartDetail.cartNo}]])">
+												사이즈
+												
+												<select th:id="'s'+${cartDetail.cartNo}" th:onchange="changeSize([[${cartDetail.cartNo}]],[[${cartDetail.color}]],[[${cartDetail.productNo}]])">
+													<th:block th:each="size:${sizeList}" th:if="${size.productNo} == ${cartDetail.productNo}"> 
+													
+														<option th:if="${cartDetail.productDetailNo} == ${size.productDetailNo}" selected="selected" th:value="${size.productSize}">[[${size.productSize}]]</option>
+														<option th:if="${cartDetail.productDetailNo} != ${size.productDetailNo}" th:value="${size.productSize}">[[${size.productSize}]]</option>
+													</th:block>
+												</select>
+												
+												수량<select th:id="'q'+${cartDetail.cartNo}" th:onchange="changeQuantity([[${cartDetail.cartNo}]])">
 													<option th:if="${cartDetail.cartQuantity} == 1" selected="selected">1</option>
 													<option>1</option>
 													<option th:if="${cartDetail.cartQuantity} == 2" selected="selected">2</option>
