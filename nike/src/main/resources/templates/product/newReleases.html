@@ -78,7 +78,49 @@
         
       </div>
       
+      <span th:if="${total} != 0">
       
+		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
+		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
+			<li>
+				<a th:href="@{newReleases.do(pageNum=1)}">
+					<span class="glyphicon glyphicon-fast-backward"></span>
+				</a>
+			</li>
+			<li>
+				<a th:href="@{newReleases.do(pageNum=${pb.startPage-1 })}">
+					<span class="glyphicon glyphicon-triangle-left"></span>
+				</a>
+			</li>
+		</th:block>
+		
+		<th:block th:each="i:${#numbers.sequence(pb.startPage, pb.endPage) }">
+			<th:block th:if="${pb.currentPage == i }">
+				<li class="active">
+					<a th:href="@{newReleases.do(pageNum=${i})}">[[${i}]]</a>
+				</li>
+			</th:block>
+			<th:block th:if="${pb.currentPage != i }">
+				<li>
+					<a th:href="@{newReleases.do(pageNum=${i})}">[[${i}]]</a>
+				</li>
+			</th:block>		
+		</th:block>
+		
+		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
+		<th:block th:if="${pb.endPage < pb.totalPage}">
+			<li>
+				<a th:href="@{newReleases.do(pageNum=${pb.endPage+1})}">
+					<span class="glyphicon glyphicon-triangle-right"></span>
+				</a>
+			</li>
+			<li>
+				<a th:href="@{newReleases.do(pageNum=${pb.totalPage})}">
+					<span class="glyphicon glyphicon-fast-forward"></span>
+				</a>
+			</li>
+		</th:block>
+	</span>
       
       
       <div class="u-list u-list-2">
@@ -194,6 +236,7 @@
             </div>
           </div>
           <div class="u-align-right u-form-group u-form-submit u-label-top">
+          	<span class="unChk" style="color: white; background-color: black;">체크해제</span>
             <input type="submit" value="submit" class="u-form-control-hidden">
             <a href="#" class="u-black u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-grey-60 u-radius-20 u-btn-1">검색</a>
           </div>
