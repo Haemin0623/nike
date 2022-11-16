@@ -77,6 +77,11 @@ public class ProductController {
 			PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 			// List<Product> filterList = ps.filterList(filter);
 			List<Product> filterList = ps.filterListPaging(filter);
+			for(Product fproduct: filterList) { //필터된 상품1개에서 카테고리번호을 가져와서 카페고리정보 조회
+				Category category = cs.selectCategory(fproduct.getCategoryNo()); //by 수인 
+				fproduct.setLarge(category.getLarge()); //조회된 카테고리테이블에서 large값 가져와서 필터된 상품정보에 담아줌
+			}
+			
 			model.addAttribute("filterList", filterList);
 			model.addAttribute("pb", pb);
 			result = 1;
@@ -85,6 +90,10 @@ public class ProductController {
 			PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 			// List<Product> productList = ps.list();
 			List<Product> productList = ps.listPaging(filter);
+			for(Product product:productList) {
+				Category category = cs.selectCategory(product.getCategoryNo());
+				product.setLarge(category.getLarge());
+			}
 			model.addAttribute("productList", productList);
 			model.addAttribute("pb", pb);
 			result = 2;
