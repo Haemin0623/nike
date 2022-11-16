@@ -10,7 +10,37 @@
     
     <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    
+	<script th:inline="javascript">
+	window.onload = function(){
+	 /*[# th:each="f : ${filter}"]*/
+		let color =  '블랙';
+		let gender = /*[[${f.gender}]]*/;
+		let price = /*[[${f.price}]]*/;
+		let productSize = /*[[${f.productSize}]]*/;
+		$("input[type=checkbox][value="+color+"]").prop("checked",true);
+		$("input[type=checkbox][value='/*[[${f.gender}]]*/']").prop("checked",true);
+		$("input[type=checkbox][value='price']").prop("checked",true);
+		$("input[type=checkbox][value='productSize']").prop("checked",true);
+		 /*[/]*/
+	}
+ 		
+
+
+	</script>
+	<script type="text/javascript">
+	window.onload = function(){
+		$("input[type=checkbox][value='color']").prop("checked",true);
+		$("input[type=checkbox][value='/*[[${filter.gender}]]*/']").prop("checked",true);
+		$("input[type=checkbox][value='/*[[${filter.price}]]*/']").prop("checked",true);
+		}
+		//필터 전체 해제
+		$(function() {
+			$('#unChk').click(function() {
+				$("input:checkbox").prop("checked", false);
+			});
+		});
+		
+	</script>
     
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
@@ -236,7 +266,7 @@
             </div>
           </div>
           <div class="u-align-right u-form-group u-form-submit u-label-top">
-          	<span class="unChk" style="color: white; background-color: black;">체크해제</span>
+          	<span id="unChk" class="u-grey u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-grey-60 u-radius-20 u-btn-1">체크해제</span>
             <input type="submit" value="submit" class="u-form-control-hidden">
             <a href="#" class="u-black u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-grey-60 u-radius-20 u-btn-1">검색</a>
           </div>
