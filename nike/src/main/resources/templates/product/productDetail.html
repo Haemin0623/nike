@@ -214,7 +214,7 @@
 				</div>
 			</div>
 			<div class="u-container-style u-group u-shape-rectangle u-group-1">
-				<div class="u-container-layout u-container-layout-7">
+				<div class="u-container-layout u-container-layout-7"> <!-- 카테고리 by수인 -->
 					<h1 class="u-text u-text-default u-title u-text-1">[[${product.productName}]]</h1>
 					<h2 class="u-subtitle u-text u-text-default u-text-2" th:if="${product.gender} == 'M'" > 남성 [[${category.large}]]</h2>
 					<h2 class="u-subtitle u-text u-text-default u-text-2" th:if="${product.gender} == 'F'" > 여성 [[${category.large}]]</h2>
@@ -244,51 +244,46 @@
 					</div>
 				</div>
 			</div>
+			
+			<form action="/account/addCart.do" method="post">
 			<div class="u-container-style u-group u-shape-rectangle u-group-2">
+			
 				<div class="u-container-layout u-container-layout-11">
 					<p
 						class="u-small-text u-text u-text-default u-text-variant u-text-4">사이즈
-						선택</p>
+						선택<!--  1개만 체크되게, 모두 클릭시 첫번째 체크되는문제 해결해야함 --></p>
 					<p
 						class="u-align-right u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-5">사이즈
 						가이​드</p>
-					<a href="https://nicepage.app"
-						class="u-border-1 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-grey-5 u-hover-grey-5 u-radius-6 u-text-grey-15 u-btn-1">XS</a>
-					<a href="https://nicepage.app"
-						class="u-border-1 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-grey-5 u-hover-grey-5 u-radius-6 u-text-grey-15 u-btn-2">S</a>
-					<a href="https://nicepage.app"
-						class="u-border-1 u-border-active-black u-border-grey-10 u-border-hover-black u-btn u-btn-round u-button-style u-hover-white u-radius-6 u-text-body-color u-white u-btn-3">M</a>
-					<a href="https://nicepage.app"
-						class="u-border-1 u-border-active-black u-border-grey-10 u-border-hover-black u-btn u-btn-round u-button-style u-hover-white u-radius-6 u-text-body-color u-white u-btn-4">L</a>
-					<a href="https://nicepage.app"
-						class="u-border-1 u-border-active-black u-border-grey-10 u-border-hover-black u-btn u-btn-round u-button-style u-hover-white u-radius-6 u-text-body-color u-white u-btn-5">XL</a>
-				</div>
+						
+						<th:block th:each="size:${productSizeList}">
+						<div class="form-check form-check-inline">
+	  						<input class="form-check-input" name="productSize" type="checkbox" id="inlineCheckbox1" th:value="${size.productSize}">
+							<label class="form-check-label" for="inlineCheckbox1">[[${size.productSize}]]</label>
+						</div>
+						</th:block>
+					</div>
 			</div>
-			<a href="https://nicepage.app"
-				class="u-border-1 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-grey-5 u-hover-grey-5 u-radius-6 u-text-grey-15 u-btn-6">XS</a>
-			<a href="https://nicepage.app"
-				class="u-border-1 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-grey-5 u-hover-grey-5 u-radius-6 u-text-grey-15 u-btn-7">S</a>
-			<a href="https://nicepage.app"
-				class="u-border-1 u-border-active-black u-border-grey-10 u-border-hover-black u-btn u-btn-round u-button-style u-hover-white u-radius-6 u-text-body-color u-white u-btn-8">M</a>
-			<a href="https://nicepage.app"
-				class="u-border-1 u-border-active-black u-border-grey-10 u-border-hover-black u-btn u-btn-round u-button-style u-hover-white u-radius-6 u-text-body-color u-white u-btn-9">L</a>
+			
 			<div class="u-list u-list-2">
 				<div class="u-repeater u-repeater-2">
 					<div
 						class="u-container-style u-custom-item u-list-item u-repeater-item">
 						<div
 							class="u-container-layout u-similar-container u-container-layout-12">
-							
-							
-							<a href="https://nicepage.com/k/teacher-website-templates"
-								class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-grey-40 u-radius-50 u-btn-10">장바구니<br>
-							</a>
+								<input type="hidden" name="productNo" th:value="${productDetail.productNo}">
+								<input type="hidden" name="color" th:value="${productDetail.color}">
+							<input type="submit"
+								class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-grey-40 u-radius-50 u-btn-10" value="장바구니"><br>
 							
 							
 						</div>
 					</div>
 				</div>
 			</div>
+			
+			</form>
+			
 			<div class="u-list u-list-3">
 				<div class="u-repeater u-repeater-3">
 					<div
@@ -524,11 +519,11 @@
 	</section>
 	<section class="u-align-center u-clearfix u-section-2" id="sec-9f90">
 		<div class="u-clearfix u-sheet u-sheet-1">
-			<h2 class="u-text u-text-default u-text-1">추천 상품</h2> <!-- by 수인 -->
+			<h2 class="u-text u-text-default u-text-1">추천 상품</h2> 
 			<div class="u-expanded-width u-layout-horizontal u-list u-list-1">
 				<div class="u-repeater u-repeater-1">
 				
-					<th:block th:each= "recommend : ${productRecommendList}">
+					<th:block th:each= "recommend : ${productRecommendList}"> <!-- 추천상품리스트 by 수인 -->
 					<div class="u-container-style u-list-item u-repeater-item">
 						<div
 							class="u-container-layout u-similar-container u-container-layout-1">

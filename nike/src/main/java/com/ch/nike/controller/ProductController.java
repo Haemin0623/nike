@@ -48,14 +48,10 @@ public class ProductController {
 	
 	@RequestMapping("/") //메인 최하단 하단 신발 리스트 by창률 // 로그아웃 위한 세션작업 by수인
 	public String main(HttpSession session, Model model) {
-		List<Product> mainrecommendList = ps.mainrecommendList(); //메인페이지-하단 추천(신발)
-		
-		//사진, 상품명, 가격, 카테고리-large, 성별
-		
+		List<Product> mainrecommendList = ps.mainrecommendList(); //메인페이지-하단 추천(신발) ->xml 수정해야함(카테고리 부분)
 		model.addAttribute("mainrecommendList", mainrecommendList);
 		return "nike_main";
 	}
-	
 	
 	@RequestMapping("/product/newReleases.do")
 	public String newReleases(Filter filter, String pageNum, Model model) {
@@ -116,7 +112,9 @@ public class ProductController {
 		List<ProductPhoto> thumPhotoList = pps.thumPhotoList(productNo);
 		List<Product> productRecommendList = ps.recommendList();
 		Category category = cs.selectCategory(product.getCategoryNo());
+		List<ProductDetail> productSizeList = pds.productSizeList(product); //상품상세-사이즈만(Product에 ProductNo, color 있음)
 		
+		model.addAttribute("productSizeList", productSizeList);
 		model.addAttribute("productFeatureList",productFeatureList);
 		
 		//리뷰 by 선희

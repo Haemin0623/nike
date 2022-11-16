@@ -142,7 +142,7 @@ public class AccountController {
 	@RequestMapping("/account/cartList.do") //마이페이지 - 장바구니리스트 by 수인
 	public String cartList(HttpSession session, Model model) {
 		String email = (String) session.getAttribute("email");
-		List <Cart> cartList = cs.cartList(email);
+		List <Cart> cartList = cs.cartList(email); 
 		int totalPrice = 0;
 		for(Cart cart:cartList) {
 			totalPrice += (cart.getPrice()*cart.getCartQuantity());

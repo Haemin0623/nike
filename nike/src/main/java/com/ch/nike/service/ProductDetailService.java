@@ -11,6 +11,8 @@ public interface ProductDetailService {
 	// ProductCon
 	// 특정 상품 특징 전체 조회
 	List<ProductDetail> detailList(int productNo);
+	//특정상품상세 - 사이즈만
+	List<ProductDetail> productSizeList(Product product);
 	
 	
 	
@@ -26,6 +28,9 @@ public interface ProductDetailService {
 
 
 
+<<<<<<< HEAD
 	List<ProductDetail> selectsize(ProductDetail productdetail);
+=======
+>>>>>>> b946501 (상품상세페이지 사이즈 구현)
 
 }

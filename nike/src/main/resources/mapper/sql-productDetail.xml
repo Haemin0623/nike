@@ -9,6 +9,14 @@
 		from 	product_detail 
 		where 	product_no=#{productNo}	
 	</select>
+<!-- 		List<ProductDetail> productSizeList(Product product); -->
+	
+	<select id="productSizeList" resultType="ProductDetail" parameterType="Product">
+		select 	*
+		from 	product_detail 
+		where 	product_no=#{productNo} and color=#{color}	
+	</select>
+	
 	
 	
 	<!-- AdminCon -->

@@ -5,15 +5,6 @@ insert into member values ('chang@ryul.com', '김창률', '123', 'M', sysdate, 0
 insert into member values ('sun@ny.com', '최선희', '123', 'F', sysdate, 01012345678, sysdate, 'N');
 insert into member values ('admin@admin.com', '관리자', '123', 'M', sysdate, 01012345678, sysdate, 'Y');
 
-select * from member;
-select * from notice;
-
-select 	* 
-		from 	PRODUCT p, 
-				CATEGORY c, PRODUCT_PHOTO pp
-				 
-		where 	p.category_no = c.category_no and p.product_no = pp.product_no
-			and c.small='티셔츠' and pp.batch=1;
 
 
 -- 배송지

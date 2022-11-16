@@ -20,6 +20,10 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 	public List<ProductDetail> detailList(int productNo) {
 		return pdm.detailList(productNo);
 	}	
+	@Override
+	public List<ProductDetail> productSizeList(Product product) {
+		return pdm.productSizeList(product);
+	}
 	
 	
 	// AdminCon
@@ -35,6 +39,7 @@ public class ProductDetailServiceImpl implements ProductDetailService{
 	// AccountCon
 	public int getProductDetailNo(ProductDetail productDetail) {
 		return pdm.getProductDetailNo(productDetail);
+
 	}
 
 

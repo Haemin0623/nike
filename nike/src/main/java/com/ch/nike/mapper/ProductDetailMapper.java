@@ -10,6 +10,7 @@ public interface ProductDetailMapper {
 
 	// ProductCon
 	List<ProductDetail> detailList(int productNo);
+	List<ProductDetail> productSizeList(Product product);
 	
 	
 	// AdminCon
@@ -18,7 +19,6 @@ public interface ProductDetailMapper {
 
 	// AccountCon
 	int getProductDetailNo(ProductDetail productDetail);
-
 
 	List<ProductDetail> selectsize(ProductDetail productdetail);
 

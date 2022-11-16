@@ -2,10 +2,11 @@
 drop table member cascade constraints;
 select * from member;
 
-		
+		select 	*
+		from 	product_detail 
+		where 	product_no=${productNo} and color=#{color};	
 
-카테고리 large, 
-product - 상품이름, 가격
+select * from product_detail;
 
 create table member (
 	email			varchar2(50)		not null	primary key,
