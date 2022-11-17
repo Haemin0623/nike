@@ -122,7 +122,6 @@ public class AccountController {
 				result = -1; //비번=비번확인일치하지 않습니다 - 다시입력창
 		}else
 			result = -2; //member비번과 입력한 비번 일치하지 않으면 현재 비번을 다시입력해주세요
-		System.out.println("");
 		model.addAttribute("result",result);
 		return "account/pwUpdateProfile";
 	}

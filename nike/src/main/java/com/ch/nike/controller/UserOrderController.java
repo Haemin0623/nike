@@ -62,7 +62,6 @@ public class UserOrderController {
 	
 	   @RequestMapping("/product/paymentAPI.do")
 	   public String paymentAPI(int selectedAddrNo, Model model, HttpSession session) {
-		   System.out.println("결제 성공?!!!!");
 		   // 먼저 카트리스에 있는 프로덕트 디테일 넘버 가져오기
 		   String email = (String) session.getAttribute("email");
 		   // orderNo 구해서 userOrder에 저장하고 그 오더 넘버에 해당하는 
