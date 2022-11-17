@@ -157,11 +157,14 @@ public class ProductController {
 		List<Review> rvList = rs.selectProductReview(product.getProductNo());
 		List<ReviewPhoto> rvPhotos = new ArrayList<>();	
 		List<ReviewPhoto> rvPhotos2 = new ArrayList<>();
+		float starTotal = 0;
 		for (Review rv:rvList) {
 			rvPhotos = rps.selectReviewPhoto(rv.getReviewNo());
 			rvPhotos2.addAll(rvPhotos);
-			
+			starTotal += rv.getStar(); 
 		}
+		float starAverage = starTotal/rvList.size();
+		model.addAttribute("starAverage", starAverage);
 		model.addAttribute("rvPhotos", rvPhotos2);
 		model.addAttribute("rvList", rvList);
 		model.addAttribute("product", productAndPhoto);
