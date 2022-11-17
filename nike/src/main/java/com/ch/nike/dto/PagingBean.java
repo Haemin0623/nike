@@ -18,6 +18,8 @@ public class PagingBean {
 	private String keyword;
 	private int orderNo;
 	
+	private String helpSearch;
+	
 	public PagingBean() {
 		
 	}

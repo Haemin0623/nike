@@ -13,7 +13,6 @@
 		from 	(select a.*, rowNum rn from (select * from notice order by notice_no desc)a) 
 		where 	rn between #{startRow} and #{endRow}
 	</select>
-	
 	<insert id="insertNotice" parameterType="Notice">
 		<selectKey keyProperty="noticeNo" order="BEFORE" resultType="integer"><!--  noticeNo 최대값 먼저 구해서 글번호매기기(+1) -->
 			select 	nvl( max(notice_no), 0 )+1 noticeNo 
@@ -33,7 +32,6 @@
 		from 	notice 
 		where 	notice_no = ${noticeNo}
 	</select>
-	
 	<update id="updateNotice" parameterType="Notice">
 		update 	notice 
 		set 	notice_type = #{noticeType}, 
@@ -42,22 +40,29 @@
 				del = #{del} 
 		where 	notice_no = #{noticeNo}
 	</update>
-	
 	<delete id="deleteNotice" parameterType="integer">
 		delete 	from notice
 		where 	notice_no = #{noticeNo}
 	</delete>
-	
 	<select id="selectNoticeForHelp" resultType="Notice">
 		select 	* 
 		from 	notice
 	</select>
-<!-- 	#{search} 가 들어간 모든 단어 검색 -->
-	<select id="searchNotice" resultType="Notice" parameterType="String">
-		select 	* 
-		from 	NOTICE 
-		where 	notice_subject like '%' || #{search} || '%' 
-			or	content like '%' || #{search} || '%'
+	<select id="searchNotice" resultType="Notice" parameterType="pagingbean"> <!-- 	#{search} 가 들어간 모든 단어 검색 -->
+		select	*
+		from	(select a.*,
+						rowNum rn
+				from	(select 	* 
+						from 	NOTICE 
+						where 	notice_subject like '%' || #{helpSearch} || '%' 
+							or	content like '%' || #{helpSearch} || '%')a
+				)
+		where 	rn between #{startRow} and #{endRow}
 	</select>
-	
+	<select id="getTotal2" parameterType="pagingbean" resultType="integer"> <!-- 페이징용 공지사항 토탈  -->
+		select	count(*) 
+		from	notice
+		where	notice_subject like '%' || #{helpSearch} || '%' 
+		or	content like '%' || #{helpSearch} || '%'
+	</select>
 </mapper>

@@ -30,7 +30,8 @@ public interface NoticeService {
 	List<Notice> selectNoticeForHelp();
 	
 	// 고객센터 - 검색 by수인
-	List<Notice> searchNotice(String search);
+	List<Notice> searchNotice(PagingBean pagingbean);
+	int getTotal2(PagingBean pagingbean); //페이징
 
 
 	

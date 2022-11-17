@@ -431,9 +431,24 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin/helpSearch.do") //고객센터- 검색결과 by수인
-	public String helpSearch(String search, Model model) {
-		List<Notice> searchedNotice = ns.searchNotice(search);
+	public String helpSearch(String pageNum, PagingBean pagingbean, Model model) {
+		int rowPerPage = 5; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) { //처음화면 - page1
+			pageNum = "1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		int total = ns.getTotal2(pagingbean);
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		pagingbean.setStartRow(startRow);
+		pagingbean.setEndRow(endRow);
+		System.out.println(pagingbean.getHelpSearch());
+		List<Notice> searchedNotice = ns.searchNotice(pagingbean);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		
 		model.addAttribute("searchedNotice", searchedNotice);
+		model.addAttribute("pagingbean", pagingbean);
+		model.addAttribute("pb", pb);
 		return "admin/helpSearch";
 	}
 	

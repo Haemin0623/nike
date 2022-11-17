@@ -45,8 +45,12 @@ public class NoticeServiceImpl implements NoticeService{
 		return nm.selectNoticeForHelp();
 	}
 	@Override
-	public List<Notice> searchNotice(String search) {
-		return nm.searchNotice(search);
+	public List<Notice> searchNotice(PagingBean pagingbean) {
+		return nm.searchNotice(pagingbean);
+	}
+	@Override
+	public int getTotal2(PagingBean pagingbean) {
+		return nm.getTotal2(pagingbean);
 	}
 	
 
