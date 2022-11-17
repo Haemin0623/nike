@@ -73,7 +73,6 @@ public class ReviewController {
 		catch (Exception e) {
 			// TODO: handle exception
 		}
-		System.out.println(email);
 		Review review2 = rs.productReview(email, productNo, color);
 		
 		if (review2 == null || review2.getReviewDel().equals("Y")) {
