@@ -47,6 +47,8 @@
 						data-image-height="950">
 				</div>
 			</div>
+			
+			
 			<div class="u-container-style u-group u-white u-group-2">
 				<div class="u-container-layout u-container-layout-2">
 					<h1 class="u-text u-text-default u-title u-text-1">따뜻함을 더한 스타일</h1>
@@ -54,10 +56,11 @@
 						class="u-align-center u-large-text u-text u-text-body-color u-text-default u-text-variant u-text-2">
 						올 겨울 모든 순간을 따뜻하고 스타일리시 하게.<br>새로운 나이키 윈터 컬렉션을 만나보세요.
 					</p>
-					<a href="https://nicepage.cc"
+					<a th:href="@{/product/newReleases.do(large='상의')}"
 						class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-grey-30 u-radius-50 u-btn-1">구매하기</a>
 				</div>
 			</div>
+			
 		</div>
 	</section>
 	<section class="u-clearfix u-section-2" id="carousel_5fc4">
@@ -79,7 +82,7 @@
 					<p
 						class="u-align-center u-large-text u-text u-text-body-color u-text-default u-text-variant u-text-3">움직이는
 						모든 순간에 편안함을 제공합니다.</p>
-					<a href="https://nicepage.cc"
+					<a th:href="@{/product/newReleases.do(small='타이즈',small='쇼츠')}"
 						class="u-black u-border-none u-btn u-btn-round u-button-style u-hover-grey-30 u-radius-50 u-btn-1">구매하기</a>
 				</div>
 			</div>
@@ -94,13 +97,13 @@
 							class="u-container-layout u-similar-container u-container-layout-1">
 							<img class="u-expanded-width u-image u-image-default u-image-1"
 								th:src="@{/nice/images/11.webp}" alt="" data-image-width="906"
-								data-image-height="884"> <a href="https://nicepage.cc"
+								data-image-height="884"> <a th:href="@{/product/newReleases.do(large='신발',gender='M')}"
 								class="u-border-none u-btn u-btn-round u-button-style u-hover-grey-30 u-radius-50 u-text-hover-black u-white u-btn-1"
 								data-animation-name="" data-animation-duration="0"
 								data-animation-delay="0" data-animation-direction="">구매하기</a>
 							<p
-								class="u-small-text u-text u-text-body-alt-color u-text-default u-text-variant u-text-1">Blazer
-								Low</p>
+								class="u-small-text u-text u-text-body-alt-color u-text-default u-text-variant u-text-1">Men
+								Shoes</p>
 						</div>
 					</div>
 					<div class="u-container-style u-list-item u-repeater-item">
@@ -108,13 +111,13 @@
 							class="u-container-layout u-similar-container u-container-layout-2">
 							<img class="u-expanded-width u-image u-image-default u-image-2"
 								th:src="@{/nice/images/21.webp}" alt="" data-image-width="906"
-								data-image-height="884"> <a href="https://nicepage.cc"
+								data-image-height="884"> <a th:href="@{/product/newReleases.do(large='신발',gender='F')}"
 								class="u-border-none u-btn u-btn-round u-button-style u-hover-grey-30 u-radius-50 u-white u-btn-2"
 								data-animation-name="" data-animation-duration="0"
 								data-animation-delay="0" data-animation-direction="">구매하기</a>
 							<p
-								class="u-small-text u-text u-text-body-alt-color u-text-default u-text-variant u-text-2">나이키
-								메트콘</p>
+								class="u-small-text u-text u-text-body-alt-color u-text-default u-text-variant u-text-2">Women
+								Shoes</p>
 						</div>
 					</div>
 				</div>
@@ -123,7 +126,7 @@
 	</section>
 	<section class="u-clearfix u-section-4" id="sec-866c">
 		<div class="u-clearfix u-sheet u-sheet-1">
-			<h2 class="u-text u-text-default u-text-1">러닝화 / 러닝 스타일 가이드</h2>
+			<h2 class="u-text u-text-default u-text-1">러닝화 / 러닝 스타일 </h2>
 			<div class="u-clearfix u-layout-wrap u-layout-wrap-1">
 				<div class="u-layout">
 					<div class="u-layout-row">
@@ -135,8 +138,8 @@
 									data-image-height="1016">
 								<p
 									class="u-small-text u-text u-text-body-alt-color u-text-default u-text-variant u-text-2">나이키
-									러닝화 가이드</p>
-								<a href="https://nicepage.cc"
+									러닝화 </p>
+								<a th:href="@{/product/newReleases.do(large='신발')}"
 									class="u-border-none u-btn u-btn-round u-button-style u-hover-grey-30 u-radius-50 u-text-hover-black u-white u-btn-1"
 									data-animation-name="" data-animation-duration="0"
 									data-animation-delay="0" data-animation-direction="">자세히 보기</a>
@@ -156,8 +159,8 @@
 									data-image-height="500">
 								<p
 									class="u-small-text u-text u-text-body-alt-color u-text-default u-text-variant u-text-3">남성
-									러닝 스타일 가이드</p>
-								<a href="https://nicepage.cc"
+									러닝 스타일 </p>
+								<a th:href="@{/product/newReleases.do(small='티셔츠',small='후드',small='쇼츠',gender='M')}"
 									class="u-border-none u-btn u-btn-round u-button-style u-hover-grey-30 u-radius-50 u-text-hover-black u-white u-btn-2"
 									data-animation-name="" data-animation-duration="0"
 									data-animation-delay="0" data-animation-direction="">자세히 보기</a>
@@ -168,13 +171,13 @@
 							<div class="u-container-layout u-container-layout-3">
 								<img class="u-expanded-width u-image u-image-default u-image-3"
 									th:src="@{/nice/images/51.webp}" alt="" data-image-width="854"
-									data-image-height="500"> <a href="https://nicepage.cc"
+									data-image-height="500"> <a th:href="@{/product/newReleases.do(small='모자',small='양말',small='타이즈',gender='F',gender='U')}"
 									class="u-border-none u-btn u-btn-round u-button-style u-hover-grey-30 u-radius-50 u-text-hover-black u-white u-btn-3"
 									data-animation-name="" data-animation-duration="0"
 									data-animation-delay="0" data-animation-direction="">자세히 보기</a>
 								<p
 									class="u-small-text u-text u-text-body-alt-color u-text-default u-text-variant u-text-4">여성
-									러닝 스타일 가이드</p>
+									러닝 스타일 </p>
 							</div>
 						</div>
 					</div>
