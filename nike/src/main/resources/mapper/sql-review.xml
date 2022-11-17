@@ -22,9 +22,9 @@
 						#{email},
 						#{content},
 						#{star},
-						#{color},
 						sysdate,
-						'N')
+						'N',
+						#{color})
 	</insert>
 	<update id="deleteReview" parameterType="integer">
 		update	review
