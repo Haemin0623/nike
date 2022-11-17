@@ -453,7 +453,9 @@ public class AdminController {
 	}
 	@RequestMapping("/admin/storeSearch.do")
 	public String storeSearch(Model model, Store store) {
+		System.out.println(store.getSearch());
 		List<Store> list = ss.storelist(store);
+		System.out.println(store.getSearch());
 		model.addAttribute("list",list);
 		return "admin/storeSearch";
 	}
@@ -476,4 +478,5 @@ public class AdminController {
 		model.addAttribute("result",result);
 		return "admin/adminStoreInsertResult";
 	}
+	
 }

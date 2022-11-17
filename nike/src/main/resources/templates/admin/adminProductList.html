@@ -6,17 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	h2 {width: 90%; margin-left: 5%;}
-	table {width: 90%; margin-left: 5%;}
+	h2 {width: 90%; }
+	table {width: 90%; }
 	th {border:1px solid green;}
 	td {border:1px solid green;}
-	#search {width: 100%; margin-left:35%; margin-top: 10px;}
-	#paging {width: 100%; margin-left:40%}
 	
 </style>
 </head>
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content" align="center">
 	<h2>상품 목록</h2>
 	<table>
 		<tr>
@@ -49,7 +47,7 @@
 		</tr>
 	</table>
 	<div id="search">
-		<form action="adminProductList.do" style="width: 100px;">
+		<form action="adminProductList.do" >
 			<select name="keyword">
 				<option value="product_no">상품번호</option>
 				<option value="product_name">상품명</option>
@@ -86,7 +84,9 @@
 				</a>
 		</th:block>
 	</span>
-	<a href="/adminProductInsert.do">상품 등록</a>
+	<div>
+		<a href="/adminProductInsert.do">상품 등록</a>
+	</div>
 </div>
 </body>
 </html>

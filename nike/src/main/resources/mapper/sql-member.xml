@@ -72,7 +72,7 @@
 		insert into 	member 
 		values			(#{account_email}, 
 						'user1',
-						#{kakao_id},
+						'SOCIAL',
 						'U',
 						'2000-01-01',
 						'010-0000-0000',

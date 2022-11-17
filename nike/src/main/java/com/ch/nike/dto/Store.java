@@ -15,4 +15,6 @@ public class Store {
 	private String storeTel;
 	private float latitude;
 	private float longitude;
+	
+	private String search;
 }

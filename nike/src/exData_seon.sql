@@ -197,3 +197,16 @@ insert into product values (132, '나이키 에어 써마 핏 코듀로이', 10,
 	'티','F');
 insert into product_detail values (143, 132, 'XL', '브라운', 10);
 insert into product_photo values (132, 132, '132.webp', 1, '브라운');
+
+
+update product set category_no=9 where product_no=112;
+update product set gender='U' where product_no=112;
+update product set category_no=9 where product_no=113;
+update product set gender='U' where product_no=113;
+update product_detail set color='옐로우' where product_no=113;
+update product_detail set product_size='원사이즈' where product_no=108;
+update product_detail set product_size='원사이즈' where product_no=109;
+update product_detail set product_size='원사이즈' where product_no=110;
+update product_detail set product_size='원사이즈' where product_no=111;
+update product_detail set product_size='원사이즈' where product_no=118;
+update product_detail set product_size='원사이즈' where product_no=119;

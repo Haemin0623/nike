@@ -6,11 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	table {width: 80%; }
+	table {width: 90%; }
 	th {border:1px solid green;}
 	td {border:1px solid green;}
-	/* 제목부분 글자수 제한해서 보여주기 */
-	.text-over-cut {max-width: 400px; height: 40px; overflow: hidden;}
 </style>
 </head>
 <body>
@@ -38,8 +36,8 @@
 			<td th:if="${lists.noticeType} == 'productinfo'">제품 정보</td>
 			<td th:if="${lists.noticeType} == 'etcNotice'">기타 공지</td>
 			<td th:if="${lists.noticeType} == 'faq'">FAQ</td>
-			<td><a th:href="@{/adminNoticeDetail.do(noticeNo=${lists.noticeNo})}">[[${lists.noticeSubject}]]</a></td>
-			<td>
+			<td style="width: 200px;"><a th:href="@{/adminNoticeDetail.do(noticeNo=${lists.noticeNo})}" >[[${lists.noticeSubject}]]</a></td>
+			<td >
 				<div class="text-over-cut">[[${lists.content}]]</div> <!-- 제목부분 글자수 제한해서 보여주기 -->
 			</td> 
 			<td>[[${lists.regDate}]]</td>
@@ -53,7 +51,7 @@
 		</tr>
 	</table>
 	<p>
-	<div>
+	<div id="search">
 		<form action="adminNoticeList.do">
 			<select name="keyword">
 				<option value="noticeNo">공지번호</option>
@@ -63,47 +61,37 @@
 			<input type="submit" value="검색">
 		</form>
 	</div>
-	<span>
+	<span id="paging">
 		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
 		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
-			<li>
 				<a th:href="@{/adminNoticeList.do(pageNum=1)}">
 					<span class="glyphicon glyphicon-fast-backward"></span>
 				</a>
-			</li>
-			<li>
 				<a th:href="@{/adminNoticeList.do(pageNum=${pb.startPage-1 })}">
 					<span class="glyphicon glyphicon-triangle-left"></span>
 				</a>
-			</li>
 		</th:block>
 		<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
 			<th:block th:if="${pb.currentPage == i }">
-				<li class="active">
 					<a th:href="@{/adminNoticeList.do(pageNum=${i})}">[[${i}]]</a>
-				</li>
 			</th:block>
 			<th:block th:if="${pb.currentPage != i }">
-				<li>
 					<a th:href="@{/adminNoticeList.do(pageNum=${i})}">[[${i}]]</a>
-				</li>
 			</th:block>		
 		</th:block>
 		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
 		<th:block th:if="${pb.endPage < pb.totalPage}">
-			<li>
 				<a th:href="@{/adminNoticeList.do(pageNum=${pb.endPage+1})}">
 					<span class="glyphicon glyphicon-triangle-right"></span>
 				</a>
-			</li>
-			<li>
 				<a th:href="@{/adminNoticeList.do(pageNum=${pb.totalPage})}">
 					<span class="glyphicon glyphicon-fast-forward"></span>
 				</a>
-			</li>
 		</th:block>
 	</span>
-	<button th:onclick="|location.href='@{/adminNoticeInsertForm.do}'|">공지 등록</button>
+	<div>
+		<button th:onclick="|location.href='@{/adminNoticeInsertForm.do}'|">공지 등록</button>
+	</div>
 </div>
 
 </body>

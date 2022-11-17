@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content" align="center">
 	<h2>매장 정보 수정</h2>
 	<form action="adminStoreUpdate.do">
 		<table>
@@ -37,7 +37,7 @@
 			</tr>
 			<tr>
 				<th>경도</th>
-				<td><input type="number" step="0.0000001" name="longitude" required="required" th:value="${longitude}"></td>
+				<td><input type="number" step="0.0000001" name="longitude" required="required" th:value="${store.longitude}"></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="확인"></td>

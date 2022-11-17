@@ -6,14 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	h2 {width: 90%; margin-left: 5%;}
-	table {width: 90%; margin-left: 5%;}
+	table {width: 90%; }
 	th {border:1px solid green;}
 	td {border:1px solid green;}
 </style>
 </head>
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content" align="center">
 	<h2>회원 정보</h2>
 	<table>
 		<caption>위시리스트</caption>
@@ -29,7 +28,7 @@
 			<td>[[${wishs.productName}]]</td>
 			<td>[[${wishs.color}]]</td>
 			<td><img alt="" th:src="@{images/product_photo/} + ${wishs.productPhoto}" height="200"></td>
-			<td><a th:href="@{/productDetail.do(productNo=${wishs.productNo})}">상품바로가기</a></td>
+			<td><a th:href="@{/product/productDetail.do?(productNo=${wishs.productNo},color=${wishs.color})}">상품바로가기</a></td>
 		</tr>
 	</table>
 	<table>
