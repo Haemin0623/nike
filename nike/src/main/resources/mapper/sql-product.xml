@@ -62,6 +62,9 @@
 					<if test="p == 200000">
 						price between 150000 and #{p}
 					</if>
+					<if test="p == 200001">
+						price >= 200000
+					</if>
 				</foreach>
 			</if>
 	order by	p.product_no desc
@@ -127,6 +130,9 @@
 										<if test="p == 200000">
 											price between 150000 and #{p}
 										</if>
+										<if test="p == 200001">
+											price >= 200000
+										</if>
 									</foreach>
 								</if>
 						order by	p.product_no desc) a
@@ -181,6 +187,9 @@
 					</if>
 					<if test="p == 200000">
 						price between 150000 and #{p}
+					</if>
+					<if test="p == 200001">
+						price >= 200000
 					</if>
 				</foreach>
 			</if>

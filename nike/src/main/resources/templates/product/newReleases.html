@@ -296,6 +296,11 @@
 	                <input id="field-06eb" type="checkbox" value="200000" name="price">
 	                <label class="u-label u-label-16" for="field-06eb">150,000 - 200,000 원</label>
 	              </div>
+	              <div class="u-input-row">
+	                <input id="field-07eb" type="checkbox" value="200001" name="price">
+	                <label class="u-label u-label-17" for="field-07eb">200,000 원 +</label>
+	              </div>
+	              
               </th:block>
               
                <th:block th:if="!${#arrays.isEmpty(filter.price)}">
@@ -318,6 +323,11 @@
 	                <input id="field-06eb" type="checkbox" value="200000" name="price" checked="checked" th:if="${#arrays.contains(filter.price, 200000)}">
 	                <input id="field-06eb" type="checkbox" value="200000" name="price" th:if="!${#arrays.contains(filter.price, 200000)}">
 	                <label class="u-label u-label-16" for="field-06eb">150,000 - 200,000 원</label>
+	              </div>
+	              <div class="u-input-row">
+	                <input id="field-07eb" type="checkbox" value="200000" name="price" checked="checked" th:if="${#arrays.contains(filter.price, 200001)}">
+	                <input id="field-07eb" type="checkbox" value="200000" name="price" th:if="!${#arrays.contains(filter.price, 200001)}">
+	                <label class="u-label u-label-17" for="field-07eb">200,000 원 +</label>
 	              </div>
               </th:block>
               
