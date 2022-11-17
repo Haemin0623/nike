@@ -100,6 +100,8 @@ insert into product_detail values (328, 328, 'M', '레드', 21);
 insert into product_detail values (329, 329, 'XL', '그린', 23);
 insert into product_detail values (330, 330, 'L', '레드', 16);
 
+
+
 -- 상품 사진
 insert into product_photo values (300, 300, '300.webp', 1, '레드');
 insert into product_photo values (301, 301, '301.webp', 1, '블루');
