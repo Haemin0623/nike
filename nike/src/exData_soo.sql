@@ -86,7 +86,7 @@ insert into product_detail values (316, 316, '원사이즈', '브라운', 10);
 insert into product_detail values (317, 317, 'S', '그레이', 2);
 insert into product_detail values (318, 318, 'L', '화이트', 13);
 insert into product_detail values (319, 319, 'XL', '블랙', 4);
-insert into product_detail values (320, 320, 'S', '퍼플', 15);
+insert into product_detail values (320, 320, 'S', '바이올렛', 15);
 
 insert into product_detail values (321, 321, 'XL', '블루', 5);
 insert into product_detail values (322, 322, 'L', '블루', 3);
@@ -124,7 +124,7 @@ insert into product_photo values (316, 316, '316.webp', 1, '브라운');
 insert into product_photo values (317, 317, '317.webp', 1, '그레이');
 insert into product_photo values (318, 318, '318.webp', 1, '화이트');
 insert into product_photo values (319, 319, '319.webp', 1, '블랙');
-insert into product_photo values (320, 320, '320.webp', 1, '퍼플');
+insert into product_photo values (320, 320, '320.webp', 1, '바이올렛');
 
 insert into product_photo values (321, 321, '321.webp', 1, '블루');
 insert into product_photo values (322, 322, '322.webp', 1, '블루');
@@ -133,7 +133,7 @@ insert into product_photo values (324, 324, '324.webp', 1, '그린');
 insert into product_photo values (325, 325, '325.webp', 1, '화이트');
 
 insert into product_photo values (326, 326, '326.webp', 1, '옐로우');
-insert into product_photo values (327, 327, '327.webp', 1, '퍼플');
+insert into product_photo values (327, 327, '327.webp', 1, '바이올렛');
 insert into product_photo values (328, 328, '328.webp', 1, '레드');
 insert into product_photo values (329, 329, '329.webp', 1, '그린');
 insert into product_photo values (330, 330, '330.webp', 1, '레드');
