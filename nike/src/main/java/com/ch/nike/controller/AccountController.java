@@ -137,6 +137,18 @@ public class AccountController {
 	public String wishList(HttpSession session, Model model, ProductDetail productdetail) {
 		String email = (String) session.getAttribute("email");
 		List<Wish> wishList = ws.wishList(email);
+		
+		ProductDetail detail = new ProductDetail();
+		List<ProductDetail> detailListForSize = new ArrayList<>();
+		List<ProductDetail> sizeList = new ArrayList<>();
+		for (Wish wish : wishList) {
+			detail.setProductNo(wish.getProductNo());
+			detail.setColor(wish.getColor());
+			sizeList = pds.distinctSizeList(detail);			
+			
+			detailListForSize.addAll(sizeList);
+		}
+		model.addAttribute("sizeList", detailListForSize);
 		model.addAttribute("wishList",wishList);
 		return "account/wishList";
 	}
@@ -150,7 +162,7 @@ public class AccountController {
 		List<ProductDetail> detailListForSize = new ArrayList<>();
 		List<ProductDetail> sizeList = new ArrayList<>();
 		ProductDetail detail = new ProductDetail();
-		for(Cart cart:cartList) {
+		for (Cart cart:cartList) {
 			totalPrice += (cart.getPrice()*cart.getCartQuantity());
 			detailNo = cart.getProductDetailNo();
 			productNo = pds.getProductNoByDetailNo(detailNo);
