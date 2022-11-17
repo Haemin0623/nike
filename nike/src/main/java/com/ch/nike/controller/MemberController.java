@@ -195,7 +195,7 @@ public class MemberController {
 
         int result = 0;
         Member member = new Member();
-        member.setPassword(naverLoginProfile.getId());
+        member.setPassword("SOCIAL");
         member.setEmail(naverLoginProfile.getEmail());
         member.setName(naverLoginProfile.getName());
         member.setMemberGender(naverLoginProfile.getGender());
