@@ -65,16 +65,7 @@
             z-index: 1;
             transition: all 0.3s ease-in-out;
         }
-        .overlay {
-            background-color: #000;
-            opacity: 0.5;
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1;
-            transition: all 0.3s ease-in-out;
-        }
+
          @supports (mix-blend-mode: color) {
             .overlay{
                 mix-blend-mode: color;
@@ -159,7 +150,7 @@
                 <div class="u-container-style u-group u-shape-rectangle u-group-4">
                   <div class="u-container-layout u-container-layout-5">
                   <th:block th:each="photo:${rvPhotos}">
-                    <img class="u-expanded-height u-image u-image-default u-image-2" th:src="@{/images/review_photo/}+${photo.productPhoto}" alt="" data-image-width="864" data-image-height="1080">
+                    <img class="u-expanded-height u-image u-image-default u-image-2" th:src="@{/images/review_photo/}+${photo.reviewPhoto}" alt="" data-image-width="864" data-image-height="1080">
                    </th:block>
               	  </div>
                 </div>

@@ -150,14 +150,14 @@ public class ProductController {
 		return "product/productDetail";
 	}
 	
-	@RequestMapping("/product/allReviewList.do")	// 리뷰 by 선희
+	@RequestMapping("/product/reviewList.do")	// 리뷰 by 선희
 	public String allReviewList(int productNo, Model model, String color) {
 		Product product = ps.selectProduct(productNo);
+		ProductPhoto productPhoto = pps.getPhoto(productNo, color);
 		float starTotal = 0;
 		List<Review> rvList = rs.selectProductReview(productNo);
 		List<ReviewPhoto> rvPhotos = new ArrayList<>();	
 		List<ReviewPhoto> rvPhotos2 = new ArrayList<>();
-		ProductPhoto productPhoto = pps.getPhoto(productNo, color);
 		for (Review rv:rvList) {
 			rvPhotos = rps.selectReviewPhoto(rv.getReviewNo());
 			rvPhotos2.addAll(rvPhotos);
