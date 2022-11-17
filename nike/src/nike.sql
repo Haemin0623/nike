@@ -2,22 +2,6 @@
 drop table member cascade constraints;
 select * from member;
 
-select * from NOTICE where notice_subject like '%' || #{search} || '%' and
-content like '%' || #{search} || '%'; 
-
-select * from NOTICE where notice_subject like '%' || '환불' || '%' or
-content like '%' || '환불' || '%'; 
-
-		select 	* 
-		from 	PRODUCT p, 
-				CATEGORY c, 
-				PRODUCT_PHOTO pp
-		where 	p.category_no = c.category_no 
-			and p.product_no = pp.product_no
-			and c.large='신발' 
-			and pp.batch=1;
-
-
 create table member (
 	email			varchar2(50)		not null	primary key,
 	name			varchar2(30)		not null,
@@ -90,8 +74,7 @@ create table product_detail (
 	product_no			number(4)		not null,
 	product_size		varchar2(20)	not null,
 	color				varchar2(20)	not null,
-	stock	
-			number(4)		not null,
+	stock				number(4)		not null,
 
 	constraint fk_product_detail_product_no foreign key(product_no) references product(product_no),
 	constraint fk_product_detail_color foreign key(color) references color(color)

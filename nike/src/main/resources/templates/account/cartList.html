@@ -182,7 +182,7 @@ function changeQuantity(cartNo) {
 							<div class="u-expanded-width u-list u-list-2">
 								<div class="u-repeater u-repeater-2">
 								
-								<th:block th:each="wishLists:${wishList}">
+								<th:block th:each="wishLists:${wishList}" th:if="${wishListsStat.index} < 2">
 									<div
 										class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item">
 										<div 
@@ -194,9 +194,8 @@ function changeQuantity(cartNo) {
 											</a>
 												<div class="u-container-style u-group u-group-6">
 													<div class="u-container-layout u-container-layout-13">
-														<p class="u-text u-text-default u-text-25">[[${wishLists.productName}]]</p>
-														<p class="u-align-right u-text u-text-default u-text-26">[[${wishLists.price}]]
-															원</p>
+														<p class="u-text u-text-default u-text-25">[[${wishLists.productName}]]</p><p>
+														<p class="u-align-right u-text u-text-default u-text-26">[[${wishLists.price}]] 원</p>
 														<p class="u-text u-text-default u-text-grey-50 u-text-27">
 															[[${wishLists.color}]]</p>
 													</div>

@@ -59,14 +59,16 @@
               <label for="text-0f69" class="u-label">Input</label>
               <input type="text" placeholder="5678" id="text-0f69" name="tel3" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
             </div>
-            <img th:onclick="sample4_execDaumPostcode()" class="u-form-group u-form-image u-form-partition-factor-2 u-image u-image-contain u-label-none u-image-1" src="images/nilke-removebg-preview.png" data-image-width="480" data-image-height="317">
+            
+            <img th:onclick="sample4_execDaumPostcode()" class="u-form-group u-form-image u-form-partition-factor-2 u-image u-image-contain u-label-none u-image-1" src="/nice/images/nilke-removebg-preview.png" data-image-width="480" data-image-height="317">
+            
             <div class="u-form-email u-form-group u-form-partition-factor-2 u-label-none">
               <label for="zonecode" class="u-label">Email</label>
-              <input type="number" placeholder="우편번호" id="zonecode" name="zonecode" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+              <input type="number" readonly="readonly" placeholder="우편번호" id="zonecode" name="zonecode" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
             </div>
             <div class="u-form-group u-label-none u-form-group-7">
               <label for="roadaddress" class="u-label">Input</label>
-              <input type="text" placeholder="도로명주소" id="roadaddress" name="roadaddress" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+              <input type="text" readonly="readonly" placeholder="도로명주소" id="roadaddress" name="roadaddress" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
             </div>
             <div class="u-form-group u-label-none u-form-group-8">
               <label for="detailaddress" class="u-label">Input</label>
