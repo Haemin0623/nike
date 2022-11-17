@@ -10,7 +10,16 @@
     
     <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    
+
+	<script type="text/javascript">
+		//필터 전체 해제
+		$(function() {
+			$('#unChk').click(function() {
+				$("input:checkbox").prop("checked", false);
+			});
+		});
+		
+	</script>
     
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
@@ -32,12 +41,12 @@
     <script class="u-script" type="text/javascript" src="/nice/nicepage.js" defer=""></script>
   
     <section class="u-clearfix u-section-1" id="sec-9ce6">
-    
-    
+      
+      
       <div class="u-list u-list-1">
         <div class="u-repeater u-repeater-1">
-          
-			<div class="u-container-style u-list-item u-repeater-item" th:each="product:${productList}" th:if="${#lists.size(productList)} > 0 and ${result} == 2">
+        
+          <div class="u-container-style u-list-item u-repeater-item" th:each="product:${productList}" th:if="${#lists.size(productList)} > 0 and ${result} == 2">
             <div class="u-container-layout u-similar-container u-container-layout-1">
             <a th:href="@{productDetail.do(productNo=${product.productNo},color=${product.color})}">
               <img class="u-image u-image-default u-preserve-proportions u-image-1" th:src="@{/images/product_photo/}+${product.productPhoto}" alt="" data-image-width="600" data-image-height="600">
@@ -74,25 +83,70 @@
               <p class="u-small-text u-text u-text-default u-text-variant u-text-4">[[${product.price}]]원</p>
             </div>            
           </div>
-          
-<!--           <div class="u-container-style u-list-item u-repeater-item"> -->
-<!--             <div class="u-container-layout u-similar-container u-container-layout-9"> -->
-<!--               <img class="u-image u-image-default u-preserve-proportions u-image-9" src="images/1.webp" alt="" data-image-width="600" data-image-height="600"><span class="u-black u-custom-item u-icon u-icon-circle u-text-white u-icon-9"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 51.997 51.997" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-8feb"></use></svg><svg class="u-svg-content" viewBox="0 0 51.997 51.997" x="0px" y="0px" id="svg-8feb" style="enable-background:new 0 0 51.997 51.997;"><path d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905 -->
-<!-- 	c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478 -->
-<!-- 	c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014 -->
-<!-- 	C52.216,18.553,51.97,16.611,51.911,16.242z"></path></svg></span> -->
-<!--               <p class="u-large-text u-text u-text-default u-text-variant u-text-33"> 나이키 ACG 로우케이트</p> -->
-<!--               <p class="u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-34">남성 로드 런닝화</p> -->
-<!--               <p class="u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-35">3개 색상</p> -->
-<!--               <p class="u-small-text u-text u-text-default u-text-variant u-text-36">58,000 원</p> -->
-<!--             </div> -->
-<!--           </div> -->
-          
-          
-        </div>
+        </div>  
+        
       </div>
       
+      <span th:if="${total} != 0">
       
+		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
+		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
+			<li>
+				<a th:href="@{newReleases.do(pageNum=1)}">
+					<span class="glyphicon glyphicon-fast-backward"></span>
+				</a>
+			</li>
+			<li>
+				<a th:href="@{newReleases.do(pageNum=${pb.startPage-1 })}">
+					<span class="glyphicon glyphicon-triangle-left"></span>
+				</a>
+			</li>
+		</th:block>
+		
+		<th:block th:each="i:${#numbers.sequence(pb.startPage, pb.endPage) }">
+			<th:block th:if="${pb.currentPage == i }">
+				<li class="active">
+					<a th:href="@{newReleases.do(pageNum=${i})}">[[${i}]]</a>
+				</li>
+			</th:block>
+			<th:block th:if="${pb.currentPage != i }">
+				<li>
+					<a th:href="@{newReleases.do(pageNum=${i})}">[[${i}]]</a>
+				</li>
+			</th:block>		
+		</th:block>
+		
+		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
+		<th:block th:if="${pb.endPage < pb.totalPage}">
+			<li>
+				<a th:href="@{newReleases.do(pageNum=${pb.endPage+1})}">
+					<span class="glyphicon glyphicon-triangle-right"></span>
+				</a>
+			</li>
+			<li>
+				<a th:href="@{newReleases.do(pageNum=${pb.totalPage})}">
+					<span class="glyphicon glyphicon-fast-forward"></span>
+				</a>
+			</li>
+		</th:block>
+	</span>
+      
+      
+      <div class="u-list u-list-2">
+        <div class="u-repeater u-repeater-2">
+          <div class="u-border-1 u-border-grey-15 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item u-list-item-10">
+            <div class="u-container-layout u-similar-container u-container-layout-10">
+              <p class="u-small-text u-text u-text-default u-text-variant u-text-37"></p>
+              <p class="u-small-text u-text u-text-default u-text-variant u-text-38"></p>
+              <p class="u-small-text u-text u-text-default u-text-variant u-text-39"></p>
+              <p class="u-small-text u-text u-text-default u-text-variant u-text-40"></p>
+              <p class="u-small-text u-text u-text-default u-text-variant u-text-41"></p>
+              <p class="u-small-text u-text u-text-default u-text-variant u-text-42"></p>
+              
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="u-form u-form-1">
         <form class="u-clearfix u-form-spacing-25 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
           <div class="u-form-checkbox-group u-form-group u-form-input-layout-vertical u-label-top u-form-group-1">
@@ -343,29 +397,6 @@
           
         </form>
       </div>
-      
-	      <div class="u-container-style u-group u-shape-rectangle u-group-1">
-	        <div class="u-container-layout u-container-layout-10">
-	        
-	        	<a th:href="@{newReleases.do(pageNum=${pb.currentPage}+1)}"  th:if="${pb.currentPage} != ${pb.totalPage}">
-		        <span class="u-file-icon u-grey-10 u-icon u-icon-circle u-icon-10">
-		        	<img src="/nice/images/2722985-b4d9d248.png" alt="">
-		        </span>
-		        </a>
-		        
-	          <div class="u-rotation-parent u-rotation-parent-1">
-	          
-	          	<a th:href="@{newReleases.do(pageNum=${pb.currentPage}-1)}" th:if="${pb.currentPage} != 1">
-		          <span class="u-file-icon u-grey-10 u-icon u-icon-circle u-rotate-180 u-icon-11">
-		          	<img src="/nice/images/2722985-b4d9d248.png" alt="">
-		          </span>
-		         </a>
-		          
-	          </div>
-	        </div>
-	      </div>
-	      
     </section>
-    
   
 </body></html>

@@ -58,7 +58,9 @@ public class ProductController {
 		int result = 0;
 		// 페이징
 		int rowPerPage = 9; // 한 화면에 보여주는 갯수
-		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		if (pageNum == null || pageNum.equals("")) {
+			pageNum = "1";
+		}
 		int currentPage = Integer.parseInt(pageNum);
 		
 		int total = 0;
