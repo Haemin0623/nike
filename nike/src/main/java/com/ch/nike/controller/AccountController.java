@@ -171,6 +171,7 @@ public class AccountController {
 			int productNo = 0;
 			List<ProductDetail> detailListForSize = new ArrayList<>();
 			List<ProductDetail> sizeList = new ArrayList<>();
+			List<Wish> wishList = ws.wishList(email);
 			ProductDetail detail = new ProductDetail();
 			for (Cart cart : cartList) {
 				totalPrice += (cart.getPrice() * cart.getCartQuantity());
@@ -191,11 +192,13 @@ public class AccountController {
 				detailListForSize.addAll(sizeList);
 //			}
 			}
+			model.addAttribute("wishList",wishList);
 			model.addAttribute("sizeList", detailListForSize);
-			model.addAttribute("cartList", cartList);
+			model.addAttribute("cartList",cartList);
 			model.addAttribute("totalPrice", totalPrice);
 			return "account/cartList";
 		}
+		
 	}
 	
 	@RequestMapping("/account/addCart.do") //장바구니 추가 by 수인

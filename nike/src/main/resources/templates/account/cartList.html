@@ -181,24 +181,26 @@ function changeQuantity(cartNo) {
 							<h2 class="u-text u-text-default u-text-24">위시 리스트</h2>
 							<div class="u-expanded-width u-list u-list-2">
 								<div class="u-repeater u-repeater-2">
+								
+								<th:block th:each="wishLists:${wishList}">
 									<div
 										class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item">
-										<div
+										<div 
 											class="u-container-layout u-similar-container u-container-layout-12">
-											<img class="u-image u-image-default u-image-4"
-												src="images/c1.webp" alt="" data-image-width="864"
+											<a th:href="@{/product/productDetail.do?(productNo=${wishLists.productNo},color=${wishLists.color})}">
+												<img class="u-image u-image-default u-image-4"
+												th:src="@{/images/product_photo/}+${wishLists.productPhoto}" alt="" data-image-width="864"
 												data-image-height="1080">
-											<div class="u-container-style u-group u-group-6">
-												<div class="u-container-layout u-container-layout-13">
-													<p class="u-text u-text-default u-text-25">조던 23 엔지니어드</p>
-													<p class="u-align-right u-text u-text-default u-text-26">105,000
-														원</p>
-													<p class="u-text u-text-default u-text-grey-50 u-text-27">
-														남성 플리스 풀오버 후디</p>
-													<p class="u-text u-text-default u-text-grey-50 u-text-28">사이즈
-														L</p>
+											</a>
+												<div class="u-container-style u-group u-group-6">
+													<div class="u-container-layout u-container-layout-13">
+														<p class="u-text u-text-default u-text-25">[[${wishLists.productName}]]</p>
+														<p class="u-align-right u-text u-text-default u-text-26">[[${wishLists.price}]]
+															원</p>
+														<p class="u-text u-text-default u-text-grey-50 u-text-27">
+															[[${wishLists.color}]]</p>
+													</div>
 												</div>
-											</div>
 											<a href="https://nicepage.com/one-page-template"
 												class="u-border-1 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-hover-white u-radius-25 u-white u-btn-2"
 												data-animation-name="" data-animation-duration="0"
@@ -206,31 +208,33 @@ function changeQuantity(cartNo) {
 												추가</a>
 										</div>
 									</div>
-									<div
-										class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item">
-										<div
-											class="u-container-layout u-similar-container u-container-layout-14">
-											<img class="u-image u-image-default u-image-5"
-												src="images/c1.webp" alt="" data-image-width="864"
-												data-image-height="1080">
-											<div class="u-container-style u-group u-group-7">
-												<div class="u-container-layout u-container-layout-15">
-													<p class="u-text u-text-default u-text-29">조던 23 엔지니어드</p>
-													<p class="u-align-right u-text u-text-default u-text-30">
-														109,000 원</p>
-													<p class="u-text u-text-default u-text-grey-50 u-text-31">
-														남성 플리스 풀오버 후디</p>
-													<p class="u-text u-text-default u-text-grey-50 u-text-32">사이즈
-														선택</p>
-												</div>
-											</div>
-											<a href="https://nicepage.com/one-page-template"
-												class="u-border-1 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-hover-white u-radius-25 u-white u-btn-3"
-												data-animation-name="" data-animation-duration="0"
-												data-animation-delay="0" data-animation-direction="">
-												장바구니에 추가</a>
-										</div>
-									</div>
+									</th:block>
+									
+<!-- 									<div -->
+<!-- 										class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item"> -->
+<!-- 										<div -->
+<!-- 											class="u-container-layout u-similar-container u-container-layout-14"> -->
+<!-- 											<img class="u-image u-image-default u-image-5" -->
+<!-- 												src="images/c1.webp" alt="" data-image-width="864" -->
+<!-- 												data-image-height="1080"> -->
+<!-- 											<div class="u-container-style u-group u-group-7"> -->
+<!-- 												<div class="u-container-layout u-container-layout-15"> -->
+<!-- 													<p class="u-text u-text-default u-text-29">조던 23 엔지니어드</p> -->
+<!-- 													<p class="u-align-right u-text u-text-default u-text-30"> -->
+<!-- 														109,000 원</p> -->
+<!-- 													<p class="u-text u-text-default u-text-grey-50 u-text-31"> -->
+<!-- 														남성 플리스 풀오버 후디</p> -->
+<!-- 													<p class="u-text u-text-default u-text-grey-50 u-text-32">사이즈 -->
+<!-- 														선택</p> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 											<a href="https://nicepage.com/one-page-template" -->
+<!-- 												class="u-border-1 u-border-grey-10 u-border-hover-grey-10 u-btn u-btn-round u-button-style u-hover-white u-radius-25 u-white u-btn-3" -->
+<!-- 												data-animation-name="" data-animation-duration="0" -->
+<!-- 												data-animation-delay="0" data-animation-direction=""> -->
+<!-- 												장바구니에 추가</a> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
 								</div>
 							</div>
 							<a href="https://nicepage.review"
