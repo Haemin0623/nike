@@ -47,11 +47,17 @@
 		delete 	from notice
 		where 	notice_no = #{noticeNo}
 	</delete>
-<!-- 		List<Notice> selectNotice(); -->
 	
 	<select id="selectNoticeForHelp" resultType="Notice">
 		select 	* 
 		from 	notice
+	</select>
+<!-- 	#{search} 가 들어간 모든 단어 검색 -->
+	<select id="searchNotice" resultType="Notice" parameterType="String">
+		select 	* 
+		from 	NOTICE 
+		where 	notice_subject like '%' || #{search} || '%' 
+			or	content like '%' || #{search} || '%'
 	</select>
 	
 </mapper>

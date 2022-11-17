@@ -44,6 +44,10 @@ public class NoticeServiceImpl implements NoticeService{
 	public List<Notice> selectNoticeForHelp() {
 		return nm.selectNoticeForHelp();
 	}
+	@Override
+	public List<Notice> searchNotice(String search) {
+		return nm.searchNotice(search);
+	}
 	
 
 

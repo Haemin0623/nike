@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<th:block th:each="notice:${searchedNotice}">
+	<a th:href="@{/admin/helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a><p>
+</th:block>
+
+</body>
+</html>

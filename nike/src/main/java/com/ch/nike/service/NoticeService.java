@@ -28,6 +28,9 @@ public interface NoticeService {
 	
 	// 고객센터 - 모든공지 by 수인
 	List<Notice> selectNoticeForHelp();
+	
+	// 고객센터 - 검색 by수인
+	List<Notice> searchNotice(String search);
 
 
 	

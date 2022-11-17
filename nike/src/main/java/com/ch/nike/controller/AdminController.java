@@ -430,6 +430,13 @@ public class AdminController {
 		return "admin/helpDetail";
 	}
 	
+	@RequestMapping("/admin/helpSearch.do") //고객센터- 검색결과 by수인
+	public String helpSearch(String search, Model model) {
+		List<Notice> searchedNotice = ns.searchNotice(search);
+		model.addAttribute("searchedNotice", searchedNotice);
+		return "admin/helpSearch";
+	}
+	
 	@RequestMapping("/adminReviewDelete.do")
 	public String adminReviewDelete(int reviewNo, Model model) {
 		int result = 0;

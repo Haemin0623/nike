@@ -20,6 +20,7 @@ public interface NoticeMapper {
 	int updateNotice(Notice notice);
 	int deleteNotice(int noticeNo);
 	List<Notice> selectNoticeForHelp();
+	List<Notice> searchNotice(String search);
 
 	
 

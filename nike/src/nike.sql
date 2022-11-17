@@ -2,6 +2,12 @@
 drop table member cascade constraints;
 select * from member;
 
+select * from NOTICE where notice_subject like '%' || #{search} || '%' and
+content like '%' || #{search} || '%'; 
+
+select * from NOTICE where notice_subject like '%' || '환불' || '%' or
+content like '%' || '환불' || '%'; 
+
 
 create table member (
 	email			varchar2(50)		not null	primary key,
