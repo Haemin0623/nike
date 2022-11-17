@@ -89,23 +89,23 @@ function changeQuantity(cartNo) {
 												
 												수량<select th:id="'q'+${cartDetail.cartNo}" th:onchange="changeQuantity([[${cartDetail.cartNo}]])">
 													<option th:if="${cartDetail.cartQuantity} == 1" selected="selected">1</option>
-													<option>1</option>
+													<option th:if="${cartDetail.cartQuantity} != 1">1</option>
 													<option th:if="${cartDetail.cartQuantity} == 2" selected="selected">2</option>
-													<option>2</option>
+													<option th:if="${cartDetail.cartQuantity} != 2">2</option>
 													<option th:if="${cartDetail.cartQuantity} == 3" selected="selected">3</option>
-													<option>3</option>
+													<option th:if="${cartDetail.cartQuantity} != 3">3</option>
 													<option th:if="${cartDetail.cartQuantity} == 4" selected="selected">4</option>
-													<option>4</option>
+													<option th:if="${cartDetail.cartQuantity} != 4">4</option>
 													<option th:if="${cartDetail.cartQuantity} == 5" selected="selected">5</option>
-													<option>5</option>
+													<option th:if="${cartDetail.cartQuantity} != 5">5</option>
 													<option th:if="${cartDetail.cartQuantity} == 6" selected="selected">6</option>
-													<option>6</option>
+													<option th:if="${cartDetail.cartQuantity} != 6">6</option>
 													<option th:if="${cartDetail.cartQuantity} == 7" selected="selected">7</option>
-													<option>7</option>
+													<option th:if="${cartDetail.cartQuantity} != 7">7</option>
 													<option th:if="${cartDetail.cartQuantity} == 8" selected="selected">8</option>
-													<option>8</option>
+													<option th:if="${cartDetail.cartQuantity} != 8">8</option>
 													<option th:if="${cartDetail.cartQuantity} == 9" selected="selected">9</option>
-													<option>9</option>
+													<option th:if="${cartDetail.cartQuantity} != 9">9</option>
 												</select>
 											</div>
 											<span class="u-file-icon u-icon u-icon-3">

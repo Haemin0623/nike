@@ -113,6 +113,9 @@
 								and p.product_no = pd.product_no
 								and ph.batch = 1
 								and p.category_no = c.category_no
+								<if test="search != null">
+									and p.product_name like '%' || #{search} || '%'
+								</if>								
 								<if test="gender != null">
 									and gender in
 									<foreach collection="gender" item="g" open="(" close=")" separator=",">

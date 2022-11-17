@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<h2>"[[${pagingbean.helpSearch}]]"의 검색결과</h2>
+<th:block th:each="notice:${searchedNotice}">
+	<a th:href="@{/admin/helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a><p>
+</th:block>
+
+<span id="paging">
+		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
+		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
+				<a th:href="@{helpSearch.do(pageNum=1,helpSearch=${pagingbean.helpSearch})}">
+					<span class="glyphicon glyphicon-fast-backward"></span>
+				</a>
+				<a th:href="@{helpSearch.do(pageNum=${pb.startPage-1 },helpSearch=${pagingbean.helpSearch})}">
+					<span class="glyphicon glyphicon-triangle-left"></span>
+				</a>
+		</th:block>
+		<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
+			
+					<a th:href="@{helpSearch.do(pageNum=${i},helpSearch=${pagingbean.helpSearch})}">[[${i}]]</a>	
+		</th:block>
+		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
+		<th:block th:if="${pb.endPage < pb.totalPage}">
+				<a th:href="@{helpSearch.do(pageNum=${pb.endPage+1},helpSearch=${pagingbean.helpSearch})}">
+					<span class="glyphicon glyphicon-triangle-right"></span>
+				</a>
+				<a th:href="@{helpSearch.do(pageNum=${pb.totalPage},helpSearch=${pagingbean.helpSearch})}">
+					<span class="glyphicon glyphicon-fast-forward"></span>
+				</a>
+		</th:block>
+	</span>
+
+
+</body>
+</html>

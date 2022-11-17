@@ -1,42 +1,88 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-
-<h2>"[[${pagingbean.helpSearch}]]"의 검색결과</h2>
-<th:block th:each="notice:${searchedNotice}">
-	<a th:href="@{/admin/helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a><p>
-</th:block>
-
-<span id="paging">
-		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
-		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
-				<a th:href="@{helpSearch.do(pageNum=1,helpSearch=${pagingbean.helpSearch})}">
-					<span class="glyphicon glyphicon-fast-backward"></span>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layouts/layout}" style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="고객센터, 다음에 관한 검색 결과 &amp;quot;탈퇴&amp;quot;&nbsp; 결과 1~1 (총 1개)">
+    <meta name="description" content="">
+    <title>helpSearch</title>
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "Site1",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="helpSearch">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  </head>
+  <body layout:fragment="content" class="u-body u-xl-mode" data-lang="en">
+  
+  <link rel="stylesheet" href="/nice/nicepage.css" media="screen">
+<link rel="stylesheet" href="/nice/helpSearch.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/nice/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/nice/nicepage.js" defer=""></script>
+    
+   
+    <section class="u-clearfix u-section-1" id="sec-ff42">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-text u-text-default u-title u-text-1">고객센터</h1>
+        
+        <div class="u-form u-form-1">
+          <form action="/admin/helpSearch.do" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+            <div class="u-form-group u-label-none">
+              <label for="name-1261" class="u-label">Name</label>
+              <input type="text" th:value="${pagingbean.helpSearch}" placeholder="무엇을 도와드릴까요?" id="name-1261" name="helpSearch" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-10 u-white u-input-1" required="required">
+            </div>
+            <div class="u-align-center u-form-group u-form-submit u-label-none">
+              <input type="submit" value="submit"
+					class="u-form-control-hidden"> <a href="#"
+					class="u-black u-border-none u-btn u-btn-round u-btn-submit u-button-style u-btn-1">검색<br>
 				</a>
-				<a th:href="@{helpSearch.do(pageNum=${pb.startPage-1 },helpSearch=${pagingbean.helpSearch})}">
-					<span class="glyphicon glyphicon-triangle-left"></span>
-				</a>
-		</th:block>
-		<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
+            </div>
+            <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+            <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+            
+          </form>
+        </div>
+        
+        <h1 class="u-text u-text-default u-title u-text-2">다음에 관한 검색 결과 "[[${pagingbean.helpSearch}]]"&nbsp; 결과 [[${pb.startPage}]]~[[${pb.endPage}]] (총 [[${pb.total}]]개)</h1>
+        
+        <div class="u-border-1 u-border-grey-10 u-line u-line-horizontal u-line-1"></div>
+        
+        <div class="u-expanded-width u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            <th:block th:each="notice:${searchedNotice}">
+            <div class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-container-layout-1">
+                <h4 class="u-text u-text-default u-text-3"><a th:href="@{/admin/helpDetail.do(noticeNo=${notice.noticeNo})}">[[${notice.noticeSubject}]]</a></h4>
+                <p class="u-text u-text-default u-text-4"> 반품의 검수가 완료되면 반품 확정 여부가 휴대폰 문자메시지로 안내됩니다. 반품 확정 처리 후, 나이키에서 결제 승인이 취소되고 바로 환불 절차가 진행됩니다. 신용카드/ 체크카드 환불 결제 승인 취소 후, 약 3영업일 이내에 카드사에서 취소내역을 확인하실 수 있습니다. 단, 결제일이 이전 달인 경우에는 결제일의 다음 달 대금 청구 시에 ...</p>
+              </div>
+            </div>
+            </th:block>
+          </div>
+        </div>
+        <div class="u-align-center u-container-style u-expanded-width u-group u-shape-rectangle u-group-1">
+          <div class="u-container-layout u-valign-middle u-container-layout-4">
+            <p class="u-text u-text-default u-text-9">
+				<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
 			
 					<a th:href="@{helpSearch.do(pageNum=${i},helpSearch=${pagingbean.helpSearch})}">[[${i}]]</a>	
-		</th:block>
-		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
-		<th:block th:if="${pb.endPage < pb.totalPage}">
-				<a th:href="@{helpSearch.do(pageNum=${pb.endPage+1},helpSearch=${pagingbean.helpSearch})}">
-					<span class="glyphicon glyphicon-triangle-right"></span>
-				</a>
-				<a th:href="@{helpSearch.do(pageNum=${pb.totalPage},helpSearch=${pagingbean.helpSearch})}">
-					<span class="glyphicon glyphicon-fast-forward"></span>
-				</a>
-		</th:block>
-	</span>
-
-
-</body>
-</html>
+				</th:block>
+			</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+  
+</body></html>
