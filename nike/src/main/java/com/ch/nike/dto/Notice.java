@@ -17,4 +17,7 @@ public class Notice {
 	private Date regDate;
 	private int readCount;
 	private String del;
+	
+	//검색
+	private String search;
 }
