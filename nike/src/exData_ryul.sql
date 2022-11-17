@@ -10,9 +10,68 @@ insert into product values (202, '자이언 2 PF', 12, 103300,
 insert into product values (203, '나이키 버로우 SE', 10, 79000, 
 	'모닥불처럼 포근한 것도 없기에, 나이키는 놀랍도록 편안한 슬리퍼를 만들었습니다. 안팎의 플리스 소재가 따뜻하고 부드러운 착용감을 선사하며, 마시멜로 느낌의 폼 중창과 밑창이 달콤함을 더해줍니다. 슬리퍼를 신고 휴식을 취하거나 텐트에서 나와 신선한 공기를 즐겨보세요.'
 	,'F');
-insert into product values (204, '나이키 에어맥스 97', 1, 109400, 
+insert into product values (204, '나이키 에어맥스 97', 10, 109400, 
 	'일본의 고속 열차에서 영감을 받은 오리지널의 물결 디자인이 돋보이는 나이키 에어맥스 97을 신고 초스피드로 앞서가는 스타일을 연출해 보세요. 러닝계의 판도를 바꿔놓은 혁명적인 전체 길이 나이키 에어 유닛과 신선한 디테일이 적용된 신발로 퍼스트 클래스의 편안함을 선사합니다.'
 	,'F');
+insert into product values (205, '나이키 줌X 제가마', 11, 179000, 
+	'나이키 줌X 제가마와 함께 험난한 지면의 오르막길과 내리막길을 누비세요. 훌륭한 그립력과 안정성을 더한 디자인이 커버력을 선사하여 험난한 길에서도 끊임없이 높은 목표를 향해 올라갈 수 있습니다. 험난한 지형의 오르막길이나 위태위태한 트레일의 가파른 내리막길에서도 비포장도로로 향하는 발걸음에 자신감을 선사합니다.'
+	,'F');
+insert into product values (206, '나이키 페가수스 플라이이즈', 11, 139000, 
+	'모든 러닝에 균형적이고 활기찬 에너지를 선사하는 나이키 페가수스 플라이이즈는 여러분이 새로운 차원으로 도약할 수 있게 도와줍니다. 지지력 있는 착화감으로 발을 고정해주며, 발 아래의 에어 덕분에 뒤꿈치에서 발가락으로 발을 디딜 때 탄성감을 느낄 수 있습니다. 나이키 플라이이즈 기술이 스트랩 역할을 하여 안정적인 핏을 제공합니다. 걸음에 날개를 달아주는 든든한 지원군이 돌아왔습니다. 이제 달려볼 시간입니다.'
+	,'M');
+insert into product values (207, '나이키 리액트 이스케이프 런 2', 11, 119000, 
+	'러닝은 바쁜 하루에서 벗어나 마음의 평화를 찾을 수 있는 탈출구입니다. 나이키 리액트 이스케이프 런 2는 통기성 좋은 디자인과 중족부 지지력으로 평온한 마음을 찾도록 돕습니다. 도심 속 거리를 달릴 때 꼭 필요한 접지력과 발 아래의 부드러운 착화감을 제공합니다. 데일리 러닝에는 물론 다양하게 활용할 수 있고 푹신한 착화감을 선사해 운동할 때나 외출할 때나 언제나 편안합니다.'
+	,'F');
+insert into product values (208, '나이키 마노아 레더', 10, 109000, 
+	'나이키 마노아는 겨울용 옷차림에 매칭하기 좋은 아이템입니다. 갑피의 산뜻한 가죽, 두꺼운 패딩 카라, 견고한 트레드로 계절에 어울리는 스타일링이 가능합니다. 웨빙 풀 탭과 둥근 신발 끈 등 아웃도어에 적합한 디테일을 더했습니다.'
+	,'M');
+insert into product values (209, '나이키 블레이저 x 사카이 x KAWS', 10, 169000, 
+	'유명 디자이너 아베 치토세의 통합 비전과 아티스트 KAWS의 컬러풀한 병치에 이르기까지, 생동감 넘치는 나이키 블레이저 로우 x 사카이 x KAWS는 기능적인 예술입니다. 웨어러블 컬러와 풍부한 갑피 소재, 설포 오버레이, 공동 브랜딩이 만나 계속되는 파트너십을 기념합니다. 텍스처가 돋보이는 머드가드는 KAWS 'XX'를 대담하게 새겨 마감하였습니다.'
+	,'M');
+insert into product values (210, '에어 조던 7 레트로 SE', 10, 249000, 
+	'1992년 출시된 이후, 에어 조던 7은 지금까지 큰 인기를 유지해왔습니다. 풍성한 보석 톤과 고급스럽고 부드러운 누벅 가죽은 왕실의 연주 같은 느낌을 선사합니다. 어스 톤 오버레이와 반점 패턴의 미드솔은 탐낼 만한 미적 감각을 더해줍니다. 신발 끈을 묶고 그 위대함을 직접 경험해 보세요.'
+	,'M');
+insert into product values (211, '나이키 덩크 로우 SE', 10, 139000, 
+	'하드우드 코트를 위해 탄생하여 스트리트로 무대를 옮겨온 80년대의 아이콘이 다시 돌아와 클래식한 디테일과 레트로 농구 스타일을 선사합니다. 스트리트 룩에 빈티지 스타일을 더하는 패딩 카라가 어디에서나 편안하게 경기를 즐길 수 있게 해주며, 빛을 반사하는 스우시 디자인과 백탭이 걸음마다 스타일을 더해 줍니다.'
+	,'M');
+insert into product values (212, '조던 소피아', 10, 99000, 
+	'하드우드 코트를 위해 탄생하여 스트리트로 무대를 옮겨온 80년대의 아이콘이 다시 돌아와 클래식한 디테일과 레트로 농구 스타일을 선사합니다. 스트리트 룩에 빈티지 스타일을 더하는 패딩 카라가 어디에서나 편안하게 경기를 즐길 수 있게 해주며, 빛을 반사하는 스우시 디자인과 백탭이 걸음마다 스타일을 더해 줍니다.'
+	,'F');
+insert into product values (213, '나이키 에어 포스 1 쉐도우', 10, 14900, 
+	'나이키 에어 포스 1 쉐도우는 클래식 농구화 디자인에 장난스러운 변형을 준 제품입니다. 레이어드 방식으로 브랜딩을 이중 처리하고 과장된 중창으로 AF 1 DNA를 강조하여 대담하고 새로운 룩을 연출합니다.'
+	,'F');
+insert into product values (214, '나이키 에어맥스 던', 10, 12900, 
+	'복고풍 디자인을 통해 스포티한 트랙 DNA를 느껴보세요. 에어맥스 던은 에어 쿠셔닝과 시대를 반영하는 소재(합성 스웨이드, 인조 가죽 등)로 세심하게 제작되어 클래식한 감성을 전달합니다. 중창과 뒤꿈치의 모던한 디자인 라인이 신선한 룩을 연출합니다. 러닝화 끈을 조여 매고 힘차게 하루를 시작하세요.'
+	,'F');
+insert into product values (215, '나이키 블레이저 로우 플랫폼', 10, 109000, 
+	'클래식한 단순함과 편안함으로 찬사를 받는 나이키 블레이저 로우 플랫폼은 농구 아이콘을 한 차원 더 높이 끌어올립니다. 높게 처리한 중창/밑창이 발걸음에 자신감을 더해주며, 갑피는 많은 사랑을 받아온 오리지널의 비율을 고스란히 재현합니다.'
+	,'F');
+insert into product values (216, '나이키 아쿠아 리프트 프리미엄', 10, 159000, 
+	'90년대 클래식의 특징을 결합해 레트로와 미래적인 감성이 동시에 느껴지는 신발로 여름을 맞이하세요. 나이키 에어 리프트의 아이코닉한 스플릿 토가 유연한 편안함(그리고 다른 스트리트 제품과 차별화되는 룩)을 선사하며, 나이키 아쿠아 라인의 볼드한 형태가 강렬하고 모던한 느낌을 줍니다. 간편하게 신고 벗을 수 있어 어떤 모험이든 자유롭게 즐길 수 있습니다.'
+	,'F');
+insert into product values (217, '나이키 오프코트', 10, 39000, 
+	'휴식과 재충전을 돕는 아주 부드러운 리바이브 폼을 적용한 나이키 오프코트 슬라이드의 사그라들지 않는 편안함을 느껴보세요. 혁신적인 이중 레이어 폼과 부드러운 저지 안감을 댄 스트랩이 발 전체에 궁극의 착화감을 선사합니다. 상징적인 에어 포스 1 피벗 서클 밑창과 스트랩의 블록 레터링이 농구 헤리티지를 자연스럽게 표현합니다.'
+	,'F');
+insert into product values (218, '에어 조던 1 레트로 하이 OG', 10, 129000, 
+	'블루진과 반짝이로 J를 업그레이드하세요. 워시드 데님과 골드 후프 듀브레가 어우러진 이 하이 탑은 캐주얼하면서도 걸음마다 독보적인 존재감을 표현합니다.'
+	,'F');
+insert into product values (219, '나이키 빅토리 원', 10, 39000, 
+	'나이키 빅토리 원은 해변에서 경기장 관람석까지 장소를 불문한 머스트해브 클래식 아이템입니다. 가볍고 착용하기 쉬운 편안함을 선사하는 이 제품은 착화감이 편안한 더 부드럽고 새로운 폼이 특징입니다. 발의 윤곽을 살린 풋베드에 그립 패턴을 더해 발을 안정적으로 감싸고 고정해 줍니다. 패딩 처리된 넓은 스트랩은 멋진 룩과 착화감을 선사합니다.'
+	,'F');
+insert into product values (220, '나이키 에어맥스 PRE-DAY', 10, 169000, 
+	'헤리티지 나이키 러닝 한 방울, DIY 감성 한 스푼, 그리고 넘칠 만큼의 편안함. 바로 완벽한 조합을 만드는 레시피입니다. 갑피는 친숙한 트랙 룩을 고스란히 담아냈으며, 모던한 에어 윈도우가 디자인에 활기를 더해줍니다.'
+	,'F');
+insert into product values (221, '나이키 에어맥스 PRE-DAY', 10, 111300, 
+	'헤리티지 나이키 러닝의 클래식한 룩을 새롭게 해석한 나이키 에어맥스 프리 데이는 오늘날을 위해 준비된 속도감 있는 룩을 연출합니다. 무게 기준 20% 이상 재생 소재를 사용해 제작한 갑피는 익숙한 레트로 트랙 감성을 유지하며 새로운 에어 윈도우가 룩에 활기를 불어넣고 매우 부드러운 쿠셔닝의 결합으로 눈길을 사로잡는 스타일을 완성합니다.'
+	,'M');
+insert into product values (222, '에어 조던 5 레트로 (그린 빈)', 10, 239000, 
+	'시선을 사로잡는 스타일입니다. 에어 조던 5 레트로는 2006년에 출시되어 많은 사랑을 받은 제품을 그레이 반사 디자인과 브라이트 그린 액센트로 재현합니다. 인조 가죽, 내구성이 우수한 직물 소재, 플라스틱 신발 끈 고리가 클래식한 오프코트 룩에 구조감을 더합니다.'
+	,'M');
+insert into product values (223, '나이키 에어 포스 1 (07)', 10, 129000, 
+	'나이키 에어 포스 1 (07)은 스티치 처리된 오버레이, 과감한 컬러, 시선을 사로잡는 완벽한 농도의 농구 스타일 등 익숙한 OG 농구화의 룩에 신선함을 더해 여전히 빛나는 존재감을 발휘합니다.'
+	,'M');
+
+
 
 
 insert into product_detail values (200, 200, '270', '화이트', 6);
@@ -20,6 +79,26 @@ insert into product_detail values (201, 201, '250', '블랙', 10);
 insert into product_detail values (202, 202, '260', '브라운', 5);
 insert into product_detail values (203, 203, '230', '브라운', 8);
 insert into product_detail values (204, 204, '240', '화이트', 9);
+insert into product_detail values (205, 205, '250', '블루', 4);
+insert into product_detail values (206, 206, '280', '블루', 6);
+insert into product_detail values (207, 207, '240', '핑크', 1);
+insert into product_detail values (208, 208, '260', '브라운', 6);
+insert into product_detail values (209, 209, '270', '레드', 2);
+insert into product_detail values (210, 210, '270', '바이올렛', 2);
+insert into product_detail values (211, 211, '250', '그레이', 5);
+insert into product_detail values (212, 212, '230', '레드', 3);
+insert into product_detail values (213, 213, '230', '핑크', 4);
+insert into product_detail values (214, 214, '240', '브라운', 8);
+insert into product_detail values (215, 215, '250', '옐로우', 11);
+insert into product_detail values (216, 216, '240', '화이트', 11);
+insert into product_detail values (217, 217, '230', '블랙', 5);
+insert into product_detail values (218, 218, '240', '블루', 5);
+insert into product_detail values (219, 219, '230', '레드', 7);
+insert into product_detail values (220, 220, '240', '그린', 3);
+insert into product_detail values (221, 221, '270', '그린', 6);
+insert into product_detail values (222, 222, '260', '그레이', 4);
+insert into product_detail values (223, 223, '260', '화이트', 9);
+
 
 
 insert into product_photo values (200, 200, '200.webp', 1, '화이트');
@@ -27,3 +106,29 @@ insert into product_photo values (201, 201, '201.webp', 1, '블랙');
 insert into product_photo values (202, 202, '202.webp', 1, '브라운');
 insert into product_photo values (203, 203, '203.webp', 1, '브라운');
 insert into product_photo values (204, 204, '204.webp', 1, '화이트');
+insert into product_photo values (205, 205, '205.webp', 1, '블루');
+insert into product_photo values (206, 206, '206.webp', 1, '블루');
+insert into product_photo values (207, 207, '207.webp', 1, '핑크');
+insert into product_photo values (208, 208, '208.webp', 1, '브라운');
+insert into product_photo values (209, 209, '209.webp', 1, '레드');
+insert into product_photo values (210, 210, '210.webp', 1, '바이올렛');
+insert into product_photo values (211, 211, '211.webp', 1, '그레이');
+insert into product_photo values (212, 212, '212.webp', 1, '레드');
+insert into product_photo values (213, 213, '213.webp', 1, '핑크');
+insert into product_photo values (214, 214, '214.webp', 1, '브라운');
+insert into product_photo values (215, 215, '215.webp', 1, '옐로우');
+insert into product_photo values (216, 216, '216.webp', 1, '화이트');
+insert into product_photo values (217, 217, '217.webp', 1, '블랙');
+insert into product_photo values (218, 218, '218.jpg', 1, '블루');
+insert into product_photo values (219, 219, '219.webp', 1, '레드');
+insert into product_photo values (220, 220, '220.webp', 1, '그린');
+insert into product_photo values (221, 221, '221.webp', 1, '그린');
+insert into product_photo values (222, 222, '222.webp', 1, '그레이');
+insert into product_photo values (223, 223, '223.webp', 1, '화이트');
+
+
+
+
+
+
+
