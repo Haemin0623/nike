@@ -109,7 +109,7 @@
 			        	
 			        	<div th:each="size:${sizeList}" th:if="${wish.color} == ${size.color}">
 			        		<input type="radio" name="productDetailNo" th:value="${size.productDetailNo}"
-			        			th:id="${size.productDetailNo}">
+			        			th:id="${size.productDetailNo}" required="required">
 			        		<label th:for="${size.productDetailNo}">[[${size.productSize}]]</label>
 			        	</div>
 			        	
