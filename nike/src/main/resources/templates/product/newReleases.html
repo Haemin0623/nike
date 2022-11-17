@@ -10,29 +10,8 @@
     
     <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-	<script th:inline="javascript">
-	window.onload = function(){
-	 /*[# th:each="f : ${filter}"]*/
-		let color =  '블랙';
-		let gender = /*[[${f.gender}]]*/;
-		let price = /*[[${f.price}]]*/;
-		let productSize = /*[[${f.productSize}]]*/;
-		$("input[type=checkbox][value="+color+"]").prop("checked",true);
-		$("input[type=checkbox][value='/*[[${f.gender}]]*/']").prop("checked",true);
-		$("input[type=checkbox][value='price']").prop("checked",true);
-		$("input[type=checkbox][value='productSize']").prop("checked",true);
-		 /*[/]*/
-	}
- 		
 
-
-	</script>
 	<script type="text/javascript">
-	window.onload = function(){
-		$("input[type=checkbox][value='color']").prop("checked",true);
-		$("input[type=checkbox][value='/*[[${filter.gender}]]*/']").prop("checked",true);
-		$("input[type=checkbox][value='/*[[${filter.price}]]*/']").prop("checked",true);
-		}
 		//필터 전체 해제
 		$(function() {
 			$('#unChk').click(function() {
