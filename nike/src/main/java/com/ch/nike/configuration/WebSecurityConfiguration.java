@@ -19,7 +19,7 @@ public class WebSecurityConfiguration {
 		registory.addInterceptor(new SessionChk())
 			.excludePathPatterns("/**/email.do","/**/emailLoginForm.do","/**/join.do",
 				"/**/loginForm.do","/**/joinForm.do")
-			.addPathPatterns("/**/*.do");
+			.addPathPatterns("/**/*.do","/account/cartList.do");
 	}
 
 }

@@ -135,42 +135,50 @@ public class AccountController {
 		return "account/deleteMember";
 	}
 
-	@RequestMapping("/account/wishList.do") //마이페이지-위시리스트 by 수인
+	@RequestMapping("/account/wishList.do") // 마이페이지-위시리스트 by 수인
 	public String wishList(HttpSession session, Model model, ProductDetail productdetail) {
 		String email = (String) session.getAttribute("email");
-		List<Wish> wishList = ws.wishList(email);
-		
-		ProductDetail detail = new ProductDetail();
-		List<ProductDetail> detailListForSize = new ArrayList<>();
-		List<ProductDetail> sizeList = new ArrayList<>();
-		for (Wish wish : wishList) {
-			detail.setProductNo(wish.getProductNo());
-			detail.setColor(wish.getColor());
-			sizeList = pds.distinctSizeList(detail);			
-			
-			detailListForSize.addAll(sizeList);
+		if (email == null) {
+			return "redirect:/member/emailLoginForm.do";
+		} else {
+			List<Wish> wishList = ws.wishList(email);
+
+			ProductDetail detail = new ProductDetail();
+			List<ProductDetail> detailListForSize = new ArrayList<>();
+			List<ProductDetail> sizeList = new ArrayList<>();
+			for (Wish wish : wishList) {
+				detail.setProductNo(wish.getProductNo());
+				detail.setColor(wish.getColor());
+				sizeList = pds.distinctSizeList(detail);
+
+				detailListForSize.addAll(sizeList);
+			}
+			model.addAttribute("sizeList", detailListForSize);
+			model.addAttribute("wishList", wishList);
+			return "account/wishList";
 		}
-		model.addAttribute("sizeList", detailListForSize);
-		model.addAttribute("wishList",wishList);
-		return "account/wishList";
 	}
-	@RequestMapping("/account/cartList.do") //마이페이지 - 장바구니리스트 by 수인
+
+	@RequestMapping("/account/cartList.do") // 마이페이지 - 장바구니리스트 by 수인
 	public String cartList(HttpSession session, Model model) {
 		String email = (String) session.getAttribute("email");
-		List <Cart> cartList = cs.cartList(email); 
-		int totalPrice = 0;
-		int detailNo = 0;
-		int productNo = 0;
-		List<ProductDetail> detailListForSize = new ArrayList<>();
-		List<ProductDetail> sizeList = new ArrayList<>();
-		ProductDetail detail = new ProductDetail();
-		for (Cart cart:cartList) {
-			totalPrice += (cart.getPrice()*cart.getCartQuantity());
-			detailNo = cart.getProductDetailNo();
-			productNo = pds.getProductNoByDetailNo(detailNo);
-			detail.setProductNo(productNo);
-			detail.setColor(cart.getColor());
-			sizeList = pds.distinctSizeList(detail);
+		if (email == null) {
+			return "redirect:/member/emailLoginForm.do";
+		} else {
+			List<Cart> cartList = cs.cartList(email);
+			int totalPrice = 0;
+			int detailNo = 0;
+			int productNo = 0;
+			List<ProductDetail> detailListForSize = new ArrayList<>();
+			List<ProductDetail> sizeList = new ArrayList<>();
+			ProductDetail detail = new ProductDetail();
+			for (Cart cart : cartList) {
+				totalPrice += (cart.getPrice() * cart.getCartQuantity());
+				detailNo = cart.getProductDetailNo();
+				productNo = pds.getProductNoByDetailNo(detailNo);
+				detail.setProductNo(productNo);
+				detail.setColor(cart.getColor());
+				sizeList = pds.distinctSizeList(detail);
 //			int check = 0;
 //			for (ProductDetail size : sizeList) {
 //				for (ProductDetail ds : detailListForSize) {
@@ -182,11 +190,12 @@ public class AccountController {
 //			if (check == 0) {
 				detailListForSize.addAll(sizeList);
 //			}
+			}
+			model.addAttribute("sizeList", detailListForSize);
+			model.addAttribute("cartList", cartList);
+			model.addAttribute("totalPrice", totalPrice);
+			return "account/cartList";
 		}
-		model.addAttribute("sizeList", detailListForSize);
-		model.addAttribute("cartList",cartList);
-		model.addAttribute("totalPrice", totalPrice);
-		return "account/cartList";
 	}
 	
 	@RequestMapping("/account/addCart.do") //장바구니 추가 by 수인

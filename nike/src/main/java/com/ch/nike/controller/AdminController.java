@@ -440,9 +440,9 @@ public class AdminController {
 		int total = ns.getTotal2(pagingbean);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
+		
 		pagingbean.setStartRow(startRow);
 		pagingbean.setEndRow(endRow);
-		System.out.println(pagingbean.getHelpSearch());
 		List<Notice> searchedNotice = ns.searchNotice(pagingbean);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		
