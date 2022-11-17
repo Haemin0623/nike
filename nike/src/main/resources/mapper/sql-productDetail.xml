@@ -49,9 +49,9 @@
 	</select>
 	
 	<select id="selectsize" parameterType="productdetail" resultType="productdetail">
-	select 	* 
-	from 	product_detail 
-	where 	product_no=#{productNo}
+		select 	* 
+		from 	product_detail 
+		where 	product_no=#{productNo}
 	</select>
 	
 	<select id="getProductNoByDetailNo" parameterType="integer" resultType="integer">
