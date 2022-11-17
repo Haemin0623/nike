@@ -72,6 +72,15 @@
                 opacity: unset;
             }
         }
+        
+        /* 가운데 정렬 */
+        #out {
+		 	width: 100%;
+			 text-align: center;
+		 }
+		.rating-wrap {
+		 	display: inline-block;
+		 }
     </style>
      <script>
         let starSize = 25, maxStar = 5, gutter = 2;//별 크기, 별 개수
@@ -118,15 +127,18 @@
             <p class="u-large-text u-text u-text-body-color u-text-default u-text-variant u-text-2">[[${product.price}]]</p><span class="u-file-icon u-icon u-icon-1"><img src="images/2997911.png" alt=""></span>
           </div>
         </div>
-        <h1 class="u-text u-text-default u-title u-text-3"><label>
-											<input type="number" name="ratevalue" th:value="${starAverage}" step="0.1" min="0" max="5" required="required"/>
-										</label>
-										<div class="rating-wrap">
-											<div class="rating">
-												<div class="overlay"></div>
-											</div>
-										</div></h1><p>
-        <p class="u-large-text u-text u-text-default u-text-variant u-text-4">[[${#lists.size(rvList)}]]개의 리뷰<br>
+        <div class="u-text u-text-default u-text-10" id="out">
+			<label>
+				<input type="number" name="ratevalue" th:value="${starAverage}" step="0.1" min="0" max="5" required="required"/>
+			</label>
+			<div class="rating-wrap">
+				<div class="rating">
+					<div class="overlay"></div>
+				</div>
+				 <p class="u-large-text u-text u-text-default u-text-variant u-text-4">[[${#lists.size(rvList)}]]개의 리뷰<br>
+			</div>
+		</div>
+       
         </p>
         <div class="u-list u-list-1">
           <div class="u-repeater u-repeater-1">
