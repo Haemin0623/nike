@@ -186,7 +186,7 @@ public class MemberController {
 	}
 
 
-    @GetMapping("/NaverLoginCallback")
+    @GetMapping("/NaverLoginCallback")	// 네이버로그인 by 선희
     public String NaverLoginCallback(@RequestParam Map<String, String> resValue, HttpSession session){
         // code 를 받아오면 code 를 사용하여 access_token를 발급받는다.
         final NaverLoginVo naverLoginVo = service.requestNaverLoginAcceccToken(resValue, "authorization_code");
