@@ -95,7 +95,7 @@ insert into product_detail values (324, 324, 'L', '그린', 5);
 insert into product_detail values (325, 325, 'S', '화이트', 6);
 
 insert into product_detail values (326, 326, '2XL', '옐로우', 7);
-insert into product_detail values (327, 327, 'XL', '퍼플', 23);
+insert into product_detail values (327, 327, 'XL', '바이올렛', 23);
 insert into product_detail values (328, 328, 'M', '레드', 21);
 insert into product_detail values (329, 329, 'XL', '그린', 23);
 insert into product_detail values (330, 330, 'L', '레드', 16);
