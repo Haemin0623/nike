@@ -34,20 +34,30 @@ public class UserOrderController {
 	@Autowired
 	UserOrderDetailService uods;
 	
-	@RequestMapping("/product/paymentForm.do")
+	@RequestMapping("/product/checkout.do")
 	public String paymentForm(Model model, HttpSession session) {
+		
 		String email = (String) session.getAttribute("email");
 		Member member = ms.select(email);
+		
+		Address defaultAddress = as.getDefaulAddress(email);
+		
+		
+		List <Cart> cartList = cs.cartList(email);
 		int totalPrice = 0;
-		List<Address> addrList = as.addrListByEmail(email);
-		List<Cart> cartList = cs.cartList(email);
-		for(Cart cart:cartList) {
+		for (Cart cart:cartList) {
 			totalPrice += (cart.getPrice()*cart.getCartQuantity());
+			cart.setTotalPrice(cart.getPrice() * cart.getCartQuantity());
 		}
-		model.addAttribute("member", member);
+		
+		
+		
+		model.addAttribute("defaultAddress", defaultAddress);
+		model.addAttribute("email",email);
 		model.addAttribute("totalPrice", totalPrice);
-		model.addAttribute("addrList", addrList);
-		return "product/paymentForm";
+		model.addAttribute("cartList", cartList);
+		model.addAttribute("member",member);
+		return "product/checkOut";
 	}
 	
 	   @RequestMapping("/product/paymentAPI.do")

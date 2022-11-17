@@ -33,7 +33,12 @@
 					#{jibunaddress},
 					#{zonecode},
 					#{detailaddress},
+					<if test="defAddr != null">
+					'Y',
+					</if>
+					<if test="defAddr == null">
 					'N',
+					</if>
 					'N'
 					)
 	</insert>
@@ -51,4 +56,17 @@
 		from	address 
 		where	email = #{email}
 	</select>
+	
+	<select id="getDefaulAddress" parameterType="String" resultType="Address">
+		select	* 
+		from	address 
+		where	email = #{email}
+			and def_addr = 'Y'
+	</select>
+	
+	<update id="changeAllDefToN" parameterType="String">
+		update 	address 
+		set 	def_addr='N' 
+		where 	email=#{email}
+	</update>
 </mapper>

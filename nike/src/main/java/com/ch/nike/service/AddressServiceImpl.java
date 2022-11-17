@@ -34,5 +34,14 @@ public class AddressServiceImpl implements AddressService {
 	public List<Address> addrListByEmail(String email) {
 		return am.addrListByEmail(email);
 	}
+	@Override
+	public Address getDefaulAddress(String string) {
+		return am.getDefaulAddress(string);
+	}
+	@Override
+	public void changeAllDefToN(String email) {
+		am.changeAllDefToN(email);
+		
+	}
 	
 }

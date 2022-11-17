@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>checkOut</title>
+   
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Page 1">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode" data-lang="en">
+  
+   <link rel="stylesheet" href="/nice/nicepage.css" media="screen">
+	<link rel="stylesheet" href="/nice/checkOut.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/nice/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/nice/nicepage.js" defer=""></script>
+    
+    <section class="u-clearfix u-section-1" id="sec-e201">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h3 class="u-text u-text-default u-text-1">결제하기</h3>
+        <div class="u-container-style u-expanded-width u-group u-shape-rectangle u-group-1">
+          <div class="u-container-layout u-container-layout-1">
+            <div class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-group u-shape-rectangle u-group-2">
+              <div class="u-container-layout u-container-layout-2">
+                <h4 class="u-text u-text-default u-text-2">배송 옵션</h4>
+                <div class="u-container-style u-group u-shape-rectangle u-group-3">
+                  <div class="u-container-layout u-container-layout-3">
+                    <p class="u-text u-text-default u-text-3">편집</p>
+                  </div>
+                </div>
+                <th:block th:if="${defaultAddress} != null">
+	                <p class="u-text u-text-default u-text-4">
+	                  <span style="font-weight: 700; font-size: 1.125rem;">배송 주소</span>
+	                  <br>[[${defaultAddress.addrName}]]<br>[[${defaultAddress.roadaddress}]]<br>[[${defaultAddress.detailaddress}]]<br>[[${defaultAddress.zonecode}]]<br>[[${email}]]<br>[[${defaultAddress.tel}]]
+	                </p>
+                </th:block>
+                <th:block th:if="${defaultAddress} == null">
+	                <p class="u-text u-text-default u-text-4">
+	                  <span style="font-weight: 700; font-size: 1.125rem;">기본배송지 설정이 되어있지 않습니다</span>
+	                  <br>기본 배송지를 설정해 주세요
+	                </p>
+                </th:block>
+                
+              </div>
+            </div>
+            <div class="u-container-style u-group u-shape-rectangle u-group-4">
+              <div class="u-container-layout u-container-layout-4">
+                <h4 class="u-text u-text-default u-text-5">장바구니</h4>
+                <div class="u-container-style u-group u-shape-rectangle u-group-5">
+                  <div class="u-container-layout u-container-layout-5">
+                    <p class="u-text u-text-default u-text-6"><a href="/account/cartList.do">편집</a></p>
+                  </div>
+                </div>
+                <p class="u-text u-text-7">상품 금액<br>배송비<br>
+                  <span style="font-weight: 700;">총 결제 금액</span>
+                </p>
+                <p class="u-align-right u-text u-text-8">[[${totalPrice}]] 원<br>0 원<br>
+                  <span style="font-weight: 700;">[[${totalPrice}]] 원</span>
+                </p>
+              </div>
+            </div>
+            <div class="u-container-style u-group u-shape-rectangle u-group-6">
+              <div class="u-container-layout u-container-layout-6">
+                <h4 class="u-text u-text-default u-text-9">결제</h4>
+                <div class="u-container-style u-group u-shape-rectangle u-group-7">
+                  <div class="u-container-layout u-container-layout-7">
+                    <p class="u-text u-text-10">
+                      <span style="font-weight: 700; font-size: 1.125rem;">결제 수단 선택</span>
+                      <br>
+                    </p>
+                    <img class="u-image u-image-round u-preserve-proportions u-radius-10 u-image-1" src="/nice/images/3f0c6bf1-2da9-2aed-3bf0-077f76d7adcc.png" alt="" data-image-width="225" data-image-height="225">
+                    
+                    <p class="u-text u-text-11">카카오페이</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="u-list u-list-1">
+              <div class="u-repeater u-repeater-1">
+                
+                <th:block th:each="cart:${cartList}">
+	                <div class="u-container-style u-list-item u-repeater-item">
+	                  <div class="u-container-layout u-similar-container u-container-layout-8">
+	                    <img class="u-image u-image-default u-image-2" th:src="@{/images/product_photo/}+${cart.productPhoto}" alt="" data-image-width="864" data-image-height="1080">
+	                    <p class="u-text u-text-12"> [[${cart.productName}]]<br>
+	                      <br>사이즈: [[${cart.productSize}]]<br>컬러: [[${cart.color}]]<br>수량: [[${cart.cartQuantity}]] / [[${cart.price}]] 원<br> [[${cart.totalPrice}]] 원
+	                    </p>
+	                  </div>
+	                </div>
+                </th:block>
+                
+<!--                 <div class="u-container-style u-list-item u-repeater-item"> -->
+<!--                   <div class="u-container-layout u-similar-container u-container-layout-9"> -->
+<!--                     <img class="u-image u-image-default u-image-3" src="images/a1.webp" alt="" data-image-width="864" data-image-height="1080"> -->
+<!--                     <p class="u-text u-text-13"> 나이키 스포츠웨어 솔로 스우시 남성 트랙 재킷<br> -->
+<!--                       <br>사이즈: M<br>컬러: 블랙/화이트<br>수량: 1 / 179,000 원<br>179,000 원 -->
+<!--                     </p> -->
+<!--                   </div> -->
+<!--                 </div> -->
+<!--                 <div class="u-container-style u-list-item u-repeater-item"> -->
+<!--                   <div class="u-container-layout u-similar-container u-container-layout-10"> -->
+<!--                     <img class="u-image u-image-default u-image-4" src="images/a1.webp" alt="" data-image-width="864" data-image-height="1080"> -->
+<!--                     <p class="u-text u-text-14"> 나이키 스포츠웨어 솔로 스우시 남성 트랙 재킷<br> -->
+<!--                       <br>사이즈: M<br>컬러: 블랙/화이트<br>수량: 1 / 179,000 원<br>179,000 원 -->
+<!--                     </p> -->
+<!--                   </div> -->
+<!--                 </div> -->
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+	</section>
+  
+</body></html>

@@ -17,5 +17,7 @@ public interface AddressService {
 	// UserOrderCon
 	// 배송지 주소 리스트
 	List<Address> addrListByEmail(String email);
+	Address getDefaulAddress(String string);
+	void changeAllDefToN(String email);
 
 }

@@ -26,4 +26,6 @@ public class Cart {
 	private String large;
 	private String small;
 	
+	private int totalPrice;
+	
 }

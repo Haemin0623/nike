@@ -324,6 +324,11 @@ public class AccountController {
 	@RequestMapping("/account/addAddr.do")	//  by창률 배송지 추가
 	public String addAddr(Model model,Address address, HttpSession session) {
 		int result = 0;
+		String email = (String) session.getAttribute("email");
+		if (address.getDefAddr() != null) {
+			as.changeAllDefToN(email);
+		}
+		
 		result = as.insertaddress(address);
 		List<Address> addrList = as.selectAddr(address.getEmail());
 		model.addAttribute("addrList", addrList);

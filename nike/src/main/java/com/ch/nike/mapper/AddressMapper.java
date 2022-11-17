@@ -23,5 +23,9 @@ public interface AddressMapper {
 
 	int Deleteaddr(int addrNo);
 
+	Address getDefaulAddress(String string);
+
+	void changeAllDefToN(String email);
+
 
 }

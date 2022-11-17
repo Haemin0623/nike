@@ -16,6 +16,8 @@
 		<input type="text" name="detailaddress" id="detailaddress" placeholder="상세주소" required="required">
 		<input type="tel" name="tel" placeholder="연락처" required="required">
 		<input type="text" name="addrName" placeholder="수령인" required="required">
+		<input type="checkbox" name="defAddr" id="def" value="Y">
+		<label for="id">기본배송지 설정</label>
 		<input type="hidden" name="email" th:value="${email}">
 		<input type="submit" value="완료">
 	</form>
