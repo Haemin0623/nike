@@ -68,6 +68,47 @@
                 opacity: unset;
             }
         }
+        /* 모달팝업 */
+        #modal{
+		  position: fixed;
+		  top: 50%;
+		  left: 50%;
+		  transform: translate(-50%, -50%);
+		}
+        .modall {
+          display: none;
+          position:relative;
+          width:100%;
+          height:100%;
+          z-index:1;
+        }
+        
+        .modall h2 {
+          margin:0;
+        }
+        .modall button {
+          display:inline-block;
+          width:100px;
+          margin-left:calc(100% - 100px - 10px);
+        }
+        
+        .modall .modal_content {
+          width:300px;
+          margin:100px auto;
+          padding:20px 10px;
+          background:#fff;
+          border:2px solid #666;
+        }
+        
+        .modall .modal_layer {
+          position:fixed;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          background:rgba(0, 0, 0, 0.5);
+          z-index:-1;
+        }
     </style>
     <script>
         let starSize = 25, maxStar = 5, gutter = 2;//별 크기, 별 개수
@@ -92,7 +133,14 @@
                 document.querySelector('.overlay').style.width = parseInt(maskMax - val * starSize - Math.floor(val) * gutter) + 'px';//마스크 크기 변경해서 별점 마킹
             }
         })
-    </script>
+	function modalUp() {
+		document.getElementById("modal").style.display="block";
+		}
+	function modalDown() {
+	      document.getElementById("modal").style.display="none";
+	    }   
+	
+	</script>
 
 <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
 <link id="u-theme-google-font" rel="stylesheet"
@@ -305,10 +353,21 @@
 						<li>현재 컬러: [[${color}]]</li>
 						<li>스타일: DQ7882-010</li>
 					</ul>
-					<a href="https://nicepage.com/c/testimonials-html-templates"
+					<a id="modal_opne_btn" onclick="modalUp()"
 						class="u-active-none u-border-1 u-border-active-black u-border-black u-border-hover-grey-30 u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-hover-none u-none u-text-active-black u-text-black u-text-hover-grey-40 u-btn-12">상품
 						상세 정보 보기</a>
+						
+						<div id="modal" class="modall">
+							<div class="modal_content" >
+								 상세정보표기!!!!!!!!!!!!!!!
+							<button type="button" id="modal_close_btn"  onclick="modalDown()">취소</button>
+							</div>
+						<div class="modal_layer"></div>
+						</div>
 				</div>
+				
+				
+
 			</div>
 			<div class="u-accordion u-accordion-1">
 				<div class="u-accordion-item">
