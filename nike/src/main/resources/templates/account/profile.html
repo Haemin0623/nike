@@ -59,15 +59,15 @@
             </p>
             <div class="u-form-group u-form-partition-factor-3 u-form-phone u-label-top">
               <label for="email-8cbc" class="u-label u-label-2">전화번호</label>
-              <input type="tel" value="010" id="email-8cbc" name="tel1" class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-2" required="required" placeholder="10">
+              <input type="tel" value="010" id="email-8cbc" name="tel1" class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-2" required="required" placeholder="10" minlength = "3" maxlength = "3">
             </div>
             <div class="u-form-group u-form-partition-factor-3 u-form-phone u-label-top u-form-group-5">
               <label for="phone-c5c4" class="u-form-control-hidden u-label u-label-3"></label>
-              <input type="tel" th:value="${member.memberTel.substring(4,8)}" id="phone-c5c4" name="tel2" class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-3" required="" placeholder="1234">
+              <input type="tel" th:value="${member.memberTel.substring(4,8)}" id="phone-c5c4" name="tel2" class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-3" required="" placeholder="1234" minlength = "4" maxlength = "4">
             </div>
             <div class="u-form-group u-form-partition-factor-3 u-form-phone u-label-top u-form-group-6">
               <label for="phone-238b" class="u-form-control-hidden u-label u-label-4"></label>
-              <input type="tel" th:value="${member.memberTel.substring(9,13)}" id="phone-238b" name="tel3" class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-4" required="" placeholder="5678">
+              <input type="tel" th:value="${member.memberTel.substring(9,13)}" id="phone-238b" name="tel3" class="u-border-1 u-border-grey-70 u-input u-input-rectangle u-radius-10 u-white u-input-4" required="" placeholder="5678" minlength = "4" maxlength = "4">
             </div>
             <div class="u-form-date u-form-group u-label-top">
               <label for="message-8cbc" class="u-label u-label-5">생년월일</label>

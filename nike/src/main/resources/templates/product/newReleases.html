@@ -10,8 +10,28 @@
     
     <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    
-    
+
+	<script type="text/javascript">
+		//필터 전체 해제
+		$(function() {
+			$('#unChk').click(function() {
+				$("input:checkbox").prop("checked", false);
+			});
+		});
+		
+	</script>
+    <script type="text/javascript">
+    	// 위시리스트 추가
+    	function pickChange(productNo,color) {
+    		$.post("/product/pickChange.do", "productNo="+productNo+"&color="+color,
+    				function (data) {
+    					alert(data);
+    					location.reload();
+    		})
+    	}
+    	
+    </script>
+
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
 		"@type": "Organization",
@@ -42,10 +62,10 @@
             <a th:href="@{productDetail.do(productNo=${product.productNo},color=${product.color})}">
               <img class="u-image u-image-default u-preserve-proportions u-image-1" th:src="@{/images/product_photo/}+${product.productPhoto}" alt="" data-image-width="600" data-image-height="600">
             </a>  
-              <span class="u-icon u-icon-circle u-white u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 51.997 51.997" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-45b6"></use></svg><svg class="u-svg-content" viewBox="0 0 51.997 51.997" x="0px" y="0px" id="svg-45b6" style="enable-background:new 0 0 51.997 51.997;"><path d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
+              <span class="u-icon u-icon-circle u-white u-icon-1"><a th:onclick="pickChange([[${product.productNo}]],[[${product.color}]])"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 51.997 51.997" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-45b6"></use></svg><svg class="u-svg-content" viewBox="0 0 51.997 51.997" x="0px" y="0px" id="svg-45b6" style="enable-background:new 0 0 51.997 51.997;"><path d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
 	c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478
 	c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014
-	C52.216,18.553,51.97,16.611,51.911,16.242z"></path></svg></span>
+	C52.216,18.553,51.97,16.611,51.911,16.242z"></path></svg></a></span>
               <p class="u-large-text u-text u-text-default u-text-variant u-text-1">[[${product.productName}]]</p>
               <p class="u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-2" th:if="${product.gender} =='M'"> 남성 [[${product.large}]] </p>
               <p class="u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-2" th:if="${product.gender} =='F'"> 여성 [[${product.large}]] </p>

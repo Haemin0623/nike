@@ -251,14 +251,14 @@
 				<div class="u-container-layout u-container-layout-11">
 					<p
 						class="u-small-text u-text u-text-default u-text-variant u-text-4">사이즈
-						선택<!--  1개만 체크되게, 모두 클릭시 첫번째 체크되는문제 해결해야함 --></p>
+						선택</p>
 					<p
 						class="u-align-right u-small-text u-text u-text-default u-text-grey-50 u-text-variant u-text-5">사이즈
 						가이​드</p>
 						
 						<th:block th:each="size:${productSizeList}">
 						<div class="form-check form-check-inline">
-	  						<input class="form-check-input" name="productDetailNo" type="radio" th:id="${sizeStat.index}" th:value="${size.productDetailNo}">
+	  						<input class="form-check-input" name="productDetailNo" type="radio" th:id="${sizeStat.index}" th:value="${size.productDetailNo}" required="required">
 							<label class="form-check-label" th:for="${sizeStat.index}">[[${size.productSize}]]</label>
 						</div>
 						</th:block>
