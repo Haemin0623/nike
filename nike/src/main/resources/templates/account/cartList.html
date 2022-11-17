@@ -80,9 +80,10 @@ function changeQuantity(cartNo) {
 												
 												<select th:id="'s'+${cartDetail.cartNo}" th:onchange="changeSize([[${cartDetail.cartNo}]],[[${cartDetail.color}]],[[${cartDetail.productNo}]])">
 													<th:block th:each="size:${sizeList}" th:if="${size.productNo} == ${cartDetail.productNo}"> 
-													
-														<option th:if="${cartDetail.productDetailNo} == ${size.productDetailNo}" selected="selected" th:value="${size.productSize}">[[${size.productSize}]]</option>
-														<option th:if="${cartDetail.productDetailNo} != ${size.productDetailNo}" th:value="${size.productSize}">[[${size.productSize}]]</option>
+														<th:block th:if="${size.color} == ${cartDetail.color}">
+															<option th:if="${cartDetail.productDetailNo} == ${size.productDetailNo}" selected="selected" th:value="${size.productSize}">[[${size.productSize}]]</option>
+															<option th:if="${cartDetail.productDetailNo} != ${size.productDetailNo}" th:value="${size.productSize}">[[${size.productSize}]]</option>
+														</th:block>
 													</th:block>
 												</select>
 												
@@ -237,89 +238,7 @@ function changeQuantity(cartNo) {
 								상품 더 보기</a>
 						</div>
 					</div>
-					<div class="u-expanded-width u-layout-horizontal u-list u-list-3">
-						<div class="u-repeater u-repeater-3">
-							<div class="u-container-style u-list-item u-repeater-item">
-								<div
-									class="u-container-layout u-similar-container u-container-layout-16">
-									<img class="u-expanded-width u-image u-image-default u-image-6"
-										alt="" data-image-width="600" data-image-height="600"
-										src="images/1.webp">
-									<h4 class="u-align-left u-text u-text-33">나이키 ACG 로우케이트</h4>
-									<h4 class="u-align-right u-text u-text-34">129,000 원</h4>
-									<p class="u-align-left u-text u-text-grey-40 u-text-35">남성
-										신발</p>
-								</div>
-							</div>
-							<div class="u-container-style u-list-item u-repeater-item">
-								<div
-									class="u-container-layout u-similar-container u-container-layout-17">
-									<img class="u-expanded-width u-image u-image-default u-image-7"
-										alt="" data-image-width="600" data-image-height="600"
-										src="images/2.webp">
-									<h4 class="u-align-left u-text u-text-36">나이키 에어맥스 97</h4>
-									<h4 class="u-align-right u-text u-text-37">219,000 원</h4>
-									<p class="u-align-left u-text u-text-grey-40 u-text-38">남성
-										신발</p>
-								</div>
-							</div>
-							<div class="u-container-style u-list-item u-repeater-item">
-								<div
-									class="u-container-layout u-similar-container u-container-layout-18">
-									<img class="u-expanded-width u-image u-image-default u-image-8"
-										alt="" data-image-width="600" data-image-height="600"
-										src="images/3.webp">
-									<h4 class="u-align-left u-text u-text-39">에어 조던 1 줌 Cmft</h4>
-									<h4 class="u-align-right u-text u-text-40">169,000 원</h4>
-									<p class="u-align-left u-text u-text-grey-40 u-text-41">신발</p>
-								</div>
-							</div>
-							<div class="u-container-style u-list-item u-repeater-item">
-								<div
-									class="u-container-layout u-similar-container u-container-layout-19">
-									<img class="u-expanded-width u-image u-image-default u-image-9"
-										alt="" data-image-width="600" data-image-height="600"
-										src="images/4.webp">
-									<h4 class="u-align-left u-text u-text-42">조던 .5 'Why Not?'</h4>
-									<h4 class="u-align-right u-text u-text-43">159,000 원</h4>
-									<p class="u-align-left u-text u-text-grey-40 u-text-44">남성
-										농구화</p>
-								</div>
-							</div>
-						</div>
-						<a
-							class="u-absolute-vcenter u-gallery-nav u-gallery-nav-prev u-grey-30 u-hover-grey-50 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-black u-text-hover-black u-gallery-nav-1"
-							href="#" role="button"> <span aria-hidden="true"> <svg
-									viewBox="0 0 451.847 451.847">
-									<path
-										d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
-c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
-c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
-						</span> <span class="sr-only"> <svg viewBox="0 0 451.847 451.847">
-									<path
-										d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
-c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
-c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
-						</span>
-						</a> <a
-							class="u-absolute-vcenter u-gallery-nav u-gallery-nav-next u-grey-30 u-hover-grey-50 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-black u-text-hover-black u-gallery-nav-2"
-							href="#" role="button"> <span aria-hidden="true"> <svg
-									viewBox="0 0 451.846 451.847">
-									<path
-										d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
-L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
-c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
-						</span> <span class="sr-only"> <svg viewBox="0 0 451.846 451.847">
-									<path
-										d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
-L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
-c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
-						</span>
-						</a>
-					</div>
-				</div>
-			</div>
-			<h2 class="u-text u-text-default u-text-45">추천 상품</h2>
+					
 		</div>
 
 

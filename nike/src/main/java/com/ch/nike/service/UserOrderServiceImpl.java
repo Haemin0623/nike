@@ -16,8 +16,8 @@ public class UserOrderServiceImpl implements UserOrderService{
 
 	
 	// AccountCon
-	public List<UserOrder> selectUserOrder(String email) {
-		return uom.selectUserOrder(email);
+	public UserOrder selectUserOrder(int orderNo) {
+		return uom.selectUserOrder(orderNo);
 	}
 	public List<UserOrder> selectOrderDetail(int orderNo) {
 		return uom.selectOrderDetail(orderNo);
@@ -57,6 +57,10 @@ public class UserOrderServiceImpl implements UserOrderService{
 	public void insert(UserOrder userOrder) {
 		uom.insert(userOrder);
 		
+	}
+	@Override
+	public List<UserOrder> orderList(String email) {
+		return uom.orderList(email);
 	}
 	
 

@@ -4,12 +4,25 @@
 <mapper namespace="com.ch.nike.mapper.UserOrderMapper">
 
 	<!-- AccountCon -->
-	<select id="selectUserOrder" parameterType="string" resultType="UserOrder"> <!-- mypage - orders -->
-		select	* 
+	<select id="selectUserOrder" parameterType="integer" resultType="UserOrder"> <!-- mypage - orders -->
+		select	uo.*,
+                p.product_no,
+                p.product_name,
+                pd.color,
+                pd.product_size,
+                ph.product_photo
 		from	user_order uo, 
-				user_order_Detail uod 
-		where	uo.order_no=uod.order_no 
-			and email=#{email}
+				user_order_detail uod,
+				product_detail pd,
+                product p,
+                product_photo ph
+		where	uo.order_no=uod.order_no
+			and uod.product_detail_no = pd.product_detail_no
+            and pd.product_no = p.product_no
+            and p.product_no = ph.product_no
+            and batch = 1
+			and rownum = 1
+			and uod.order_no = #{orderNo}
 	</select>
 	<select id="selectOrderDetail" parameterType="integer" resultType="UserOrder">
       select	p.*,
@@ -121,5 +134,11 @@
 					#{addrNo},
 					'N')
 	</insert>
+	
+	<select id="orderList" parameterType="String" resultType="userOrder">
+		select	*
+		from	user_order
+		where	email = #{email}
+	</select>
 	
 </mapper>

@@ -68,24 +68,30 @@
           <div class="u-repeater u-repeater-1">
             
             
-            <th:block th:each="detail:${orderInfo}" >
-            <div class="u-border-2 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item">
-              <div class="u-container-layout u-similar-container u-container-layout-1">
-              	
-              	<a th:href="@{/product/productDetail.do(productNo=${detail.productNo},color=${detail.color})}">
-                <img class="u-image u-image-default u-image-1" th:src="@{/images/product_photo/}+${detail.productPhoto}" alt="" data-image-width="864" data-image-height="1080">
-                </a>
-                <div class="u-container-style u-group u-group-1">
-                  <div class="u-container-layout u-container-layout-2">
-                    <p class="u-text u-text-default u-text-1"> [[${detail.productName}]]</p>
-                    <p class="u-text u-text-default u-text-grey-50 u-text-2">[[${detail.color}]]</p>
-                    <p class="u-text u-text-default u-text-grey-50 u-text-3">[[${detail.productSize}]] 사이즈</p>
-                  </div>
-                </div>
-                <a href="https://nicepage.com/joomla-templates" class="u-border-1 u-border-grey-15 u-border-hover-black u-btn u-btn-round u-button-style u-none u-radius-50 u-text-black u-text-hover-black u-btn-1">주문 상세 보기</a>
-              </div>
-            </div>
-            </th:block>
+	            <th:block th:each="detail:${orderList}" >
+		            <div class="u-border-2 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item">
+		              <div class="u-container-layout u-similar-container u-container-layout-1">
+		              	
+		              	<a th:href="@{/product/productDetail.do(productNo=${detail.productNo},color=${detail.color})}">
+		                <img class="u-image u-image-default u-image-1" th:src="@{/images/product_photo/}+${detail.productPhoto}" alt="" data-image-width="864" data-image-height="1080">
+		                </a>
+		                <div class="u-container-style u-group u-group-1">
+		                  <div class="u-container-layout u-container-layout-2">
+		                    <h3 th:if="${detail.count} > 1">		                    	
+		                   		[[${detail.productName}]] 외 [[${detail.count}]]개
+		                    </h3>
+		                    <h3 th:if="${detail.count} == 1">		                    	
+		                   		[[${detail.productName}]]
+		                    </h3>
+		                    <p class="u-text u-text-default u-text-grey-50 u-text-2">[[${detail.orderDate}]]</p>
+		                    <p class="u-text u-text-default u-text-grey-50 u-text-3">[[${detail.productSize}]] 사이즈</p>
+		                  </div>
+		                </div>
+		                <a th:href="@{/account/orderDetail.do(orderNo=${detail.orderNo})}" class="u-border-1 u-border-grey-15 u-border-hover-black u-btn u-btn-round u-button-style u-none u-radius-50 u-text-black u-text-hover-black u-btn-1">주문 상세 보기</a>
+		              </div>
+		            </div>
+	            </th:block>
+	        
             
             
 <!--             <div class="u-border-2 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item"> -->

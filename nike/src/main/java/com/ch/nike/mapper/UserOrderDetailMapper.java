@@ -21,6 +21,7 @@ public interface UserOrderDetailMapper{
 	// UserOrderCon
 	int currentCount();
 	void insert(UserOrderDetail userOrderDetail);
+	int orderCountInOneOrder(int orderNo);
 	
 
 

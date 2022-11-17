@@ -12,7 +12,7 @@ import com.ch.nike.dto.UserOrder;
 public interface UserOrderMapper {
 
 	// AccountCon
-	List<UserOrder> selectUserOrder(String email);
+	UserOrder selectUserOrder(int orderNo);
 	List<UserOrder> selectOrderDetail(int orderNo);
 	UserOrder orderInfoAll(int orderDetailNo);
 	List<UserOrder> selectDate(String email);
@@ -30,6 +30,7 @@ public interface UserOrderMapper {
 	// UserOrderCon
 	int currentCount();
 	void insert(UserOrder userOrder);
+	List<UserOrder> orderList(String email);
 	
 	
 	

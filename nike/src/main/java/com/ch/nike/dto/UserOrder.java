@@ -46,6 +46,8 @@ public class UserOrder {
 	
 	//productDetail
 	private int stock;
+	
+	private int count;
 
 	
 	

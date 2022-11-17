@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ch.nike.dto.Address;
 import com.ch.nike.dto.Cart;
 import com.ch.nike.dto.Member;
-import com.ch.nike.dto.Product;
 import com.ch.nike.dto.ProductDetail;
 import com.ch.nike.dto.ProductPhoto;
 import com.ch.nike.dto.QnA;
@@ -35,6 +34,7 @@ import com.ch.nike.service.QnAService;
 import com.ch.nike.service.RefundService;
 import com.ch.nike.service.ReviewPhotoService;
 import com.ch.nike.service.ReviewService;
+import com.ch.nike.service.UserOrderDetailService;
 import com.ch.nike.service.UserOrderService;
 import com.ch.nike.service.WishService;
 
@@ -50,6 +50,8 @@ public class AccountController {
 	private ProductService ps;
 	@Autowired
 	private UserOrderService uos;
+	@Autowired
+	private UserOrderDetailService uods;
 	@Autowired
 	private RefundService rs;
 	@Autowired
@@ -169,17 +171,17 @@ public class AccountController {
 			detail.setProductNo(productNo);
 			detail.setColor(cart.getColor());
 			sizeList = pds.distinctSizeList(detail);
-			int check = 0;
-			for (ProductDetail size : sizeList) {
-				for (ProductDetail ds : detailListForSize) {
-					if (size.getProductNo() == ds.getProductNo()) {
-						check++;
-					}					
-				}
-			}
-			if (check == 0) {
+//			int check = 0;
+//			for (ProductDetail size : sizeList) {
+//				for (ProductDetail ds : detailListForSize) {
+//					if (size.getProductNo() == ds.getProductNo()) {
+//						check++;
+//					}					
+//				}
+//			}
+//			if (check == 0) {
 				detailListForSize.addAll(sizeList);
-			}
+//			}
 		}
 		model.addAttribute("sizeList", detailListForSize);
 		model.addAttribute("cartList",cartList);
@@ -227,19 +229,16 @@ public class AccountController {
 	@RequestMapping("/account/orderList.do")		// 로그인한 회원의 주문내역 불러오기 by선희
 	public String orders(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
-		List<UserOrder> userOrders = uos.selectUserOrder(email);
-		UserOrder userOrderDetails = null;
-		List<UserOrder> orderInfo = new ArrayList<>();
-		List<UserOrder> orderDate = new ArrayList<>();
-		for (UserOrder userOrder:userOrders) {
-			orderDate = uos.selectDate(email);
-			if (userOrder != null) {
-				userOrderDetails = uos.orderInfoAll(userOrder.getOrderDetailNo());
-				orderInfo.add(userOrderDetails);
-			}
+		List<UserOrder> orderList = uos.orderList(email);
+		for (UserOrder order : orderList) {
+			
+			int orderCountInOneOrder = uods.orderCountInOneOrder(order.getOrderNo());
+			UserOrder uo= uos.selectUserOrder(order.getOrderNo());
+			uo.setCount(orderCountInOneOrder - 1);			
+			orderList.set(orderList.indexOf(order), uo);
 		}
-		model.addAttribute("orderInfo", orderInfo);
-		model.addAttribute("orderDate", orderDate);
+		model.addAttribute("orderList",orderList);
+		
 		return "account/orderList";
 	}
 	@RequestMapping("/account/orderDetail.do") 	// 로그인한 회원의 주문내역 상세 불러오기 by선희

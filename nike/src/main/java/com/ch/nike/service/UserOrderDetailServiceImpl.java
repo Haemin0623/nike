@@ -36,5 +36,9 @@ public class UserOrderDetailServiceImpl implements UserOrderDetailService {
 	public void insert(UserOrderDetail userOrderDetail) {
 		uodm.insert(userOrderDetail);
 	}
+	@Override
+	public int orderCountInOneOrder(int orderNo) {
+		return uodm.orderCountInOneOrder(orderNo);
+	}
 
 }
