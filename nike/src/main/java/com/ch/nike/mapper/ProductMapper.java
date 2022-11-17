@@ -22,6 +22,7 @@ public interface ProductMapper {
 	int getTotal2(Filter filter);
 	List<Product> recommendList();
 	List<Product> mainrecommendList();
+	Product selectProductAndPhoto(Product product);
 	
 	
 	

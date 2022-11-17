@@ -113,7 +113,7 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-container-style u-expanded-width u-group u-shape-rectangle u-group-1">
           <div class="u-container-layout u-container-layout-1">
-            <img class="u-image u-image-default u-image-1" th:src="@{/images/product_photo/}+${productPhoto.productPhoto}" alt="" data-image-width="864" data-image-height="1080">
+            <img class="u-image u-image-default u-image-1" th:src="@{/images/product_photo/}+${product.productPhoto}" alt="" data-image-width="864" data-image-height="1080">
             <p class="u-large-text u-text u-text-body-color u-text-default u-text-variant u-text-1">[[${product.productName}]]</p>
             <p class="u-large-text u-text u-text-body-color u-text-default u-text-variant u-text-2">[[${product.price}]]</p><span class="u-file-icon u-icon u-icon-1"><img src="images/2997911.png" alt=""></span>
           </div>
@@ -149,7 +149,7 @@
                 </div>
                 <div class="u-container-style u-group u-shape-rectangle u-group-4">
                   <div class="u-container-layout u-container-layout-5">
-                  <th:block th:each="photo:${rvPhotos}">
+                  <th:block th:each="photo:${rvPhotos}" th:if="${review.reviewNo}==${photo.reviewNo}">
                     <img class="u-expanded-height u-image u-image-default u-image-2" th:src="@{/images/review_photo/}+${photo.reviewPhoto}" alt="" data-image-width="864" data-image-height="1080">
                    </th:block>
               	  </div>

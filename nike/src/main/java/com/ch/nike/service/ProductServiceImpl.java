@@ -50,6 +50,10 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> mainrecommendList() {
 		return pm.mainrecommendList();
 	}
+	@Override
+	public Product selectProductAndPhoto(Product product) {
+		return pm.selectProductAndPhoto(product);
+	}
 	
 	
 	// AdminCon

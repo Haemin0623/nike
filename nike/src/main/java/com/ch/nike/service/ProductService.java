@@ -27,7 +27,8 @@ public interface ProductService {
 	List<Product> recommendList();
 	//메인페이지 - 하단 추천상품
 	List<Product> mainrecommendList();
-	
+	// 리뷰리스트 상품 정보
+	Product selectProductAndPhoto(Product product);
 	
 	
 	// AdminCon

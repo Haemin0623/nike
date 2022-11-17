@@ -151,26 +151,20 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/product/reviewList.do")	// 리뷰 by 선희
-	public String allReviewList(int productNo, Model model, String color) {
-		Product product = ps.selectProduct(productNo);
-		ProductPhoto productPhoto = pps.getPhoto(productNo, color);
-		float starTotal = 0;
-		List<Review> rvList = rs.selectProductReview(productNo);
+	public String allReviewList(Product product, Model model) {
+		Product productAndPhoto = ps.selectProductAndPhoto(product);
+		
+		List<Review> rvList = rs.selectProductReview(product.getProductNo());
 		List<ReviewPhoto> rvPhotos = new ArrayList<>();	
 		List<ReviewPhoto> rvPhotos2 = new ArrayList<>();
 		for (Review rv:rvList) {
 			rvPhotos = rps.selectReviewPhoto(rv.getReviewNo());
 			rvPhotos2.addAll(rvPhotos);
 			
-			starTotal += rv.getStar(); 
 		}
-		float starAverage = starTotal/rvList.size();
-		model.addAttribute("starAverage", starAverage);
 		model.addAttribute("rvPhotos", rvPhotos2);
 		model.addAttribute("rvList", rvList);
-		model.addAttribute("productNo", productNo);
-		model.addAttribute("productPhoto",productPhoto);
-		model.addAttribute("product", product);
+		model.addAttribute("product", productAndPhoto);
 		return "product/reviewList";
 	}
 }
