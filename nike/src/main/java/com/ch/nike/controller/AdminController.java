@@ -426,6 +426,7 @@ public class AdminController {
 	@RequestMapping("/admin/helpDetail.do") // 고객센터 - Type별 공지상세 by 수인
 	public String helpDetail(int noticeNo, Model model) {
 		Notice notice = ns.selectNotice(noticeNo);
+		
 		model.addAttribute("notice", notice);
 		return "admin/helpDetail";
 	}

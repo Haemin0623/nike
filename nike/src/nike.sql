@@ -8,6 +8,15 @@ content like '%' || #{search} || '%';
 select * from NOTICE where notice_subject like '%' || '환불' || '%' or
 content like '%' || '환불' || '%'; 
 
+		select 	* 
+		from 	PRODUCT p, 
+				CATEGORY c, 
+				PRODUCT_PHOTO pp
+		where 	p.category_no = c.category_no 
+			and p.product_no = pp.product_no
+			and c.large='신발' 
+			and pp.batch=1;
+
 
 create table member (
 	email			varchar2(50)		not null	primary key,

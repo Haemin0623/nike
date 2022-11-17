@@ -37,6 +37,7 @@
         <div class="u-layout">
           <div class="u-layout-row">
             <div class="u-container-style u-layout-cell u-size-18 u-layout-cell-1">
+            
               <div class="u-container-layout u-valign-top u-container-layout-1">
                 <p class="u-text u-text-default u-text-1">나이키 매장 찾기</p>
                 <div class="u-form u-form-1">
@@ -47,7 +48,7 @@
                       <input type="text" placeholder="위치 검색" id="name-339f" name="search" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" >
                     </div>
                     <div class="u-align-center u-form-group u-form-submit u-label-none">
-                      <a href="#" class="u-black u-border-none u-btn u-btn-submit u-button-style u-btn-1">검색<br>
+                      <a href="#" class="u-black u-border-none u-btn u-btn-submit u-button-style u-btn-1 cursor_test">검색<br>
                       </a>
                       <input type="submit" value="submit" class="u-form-control-hidden">
                     </div>
@@ -63,7 +64,7 @@
                   <th:block  th:each="item:${list}">
                     <div class="u-border-1 u-border-grey-10 u-border-no-left u-border-no-right u-container-style u-list-item u-repeater-item">
                       <div class="u-container-layout u-similar-container u-container-layout-2">
-                        <p class="u-text u-text-default u-text-2"><a th:lat="${item.latitude}" th:lon="${item.longitude}" 
+                        <p class="u-text u-text-default u-text-2 cursor_test"><a th:lat="${item.latitude}" th:lon="${item.longitude}" 
 																		th:onclick="setMarker(this.getAttribute('lat'),this.getAttribute('lon'))">
 																		[[${item.storeName}]]
 																  </a>
