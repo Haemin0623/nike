@@ -1,13 +1,17 @@
---insert into product values (상품번호, '대한민국 스우시', 카테고리번호, 39000, 
---	'대한민국 스우시 티셔츠를 입고 국가대표팀을 응원하세요. 부드러운 니트 소재에 자랑스러운 그래픽을 더해 편안한 착용감을 선사하는 이 티셔츠와 함께라면 경기장에서 응원할 때도, 길거리에서 동료 팬들과 소통할 때도 응원하는 팀에 대한 자부심을 표현할 수 있습니다.'
---	,'M');
+update product set category_no=9 where product_no=112;
+update product set gender='U' where product_no=112;
+update product set category_no=9 where product_no=113;
+update product set gender='U' where product_no=113;
+update product_detail set color='옐로우' where product_no=113;
+update product_detail set product_size='원사이즈' where product_no=108;
+update product_detail set product_size='원사이즈' where product_no=109;
+update product_detail set product_size='원사이즈' where product_no=110;
+update product_detail set product_size='원사이즈' where product_no=111;
+update product_detail set product_size='원사이즈' where product_no=118;
+update product_detail set product_size='원사이즈' where product_no=119;
 
---insert into product_detail values (1, 상품번호, '사이즈', '블랙', 재고);
---insert into product_photo values (100, 상품번호, '100.webp', 1, '블랙');
 
---select * from product;
---select * from product_detail;
---select * from product_photo;
+
 
 -- 시작 1
 insert into product values (100, '여성 크롭 풀오버', 2, 99000, 
