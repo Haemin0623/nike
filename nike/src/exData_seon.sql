@@ -193,3 +193,18 @@ insert into product values (129, '나이키 드라이 핏 런 디비전 라이�
 	'티','M');
 insert into product_detail values (140, 129, 'XL', '블루', 10);
 insert into product_photo values (129, 129, '129.webp', 1, '블루');
+
+insert into product values (130, '나이키 스포츠웨어 풀집 리버서블 재킷', 1, 139000, 
+	'티','M');
+insert into product_detail values (141, 130, 'XL', '블루', 10);
+insert into product_photo values (130, 130, '130.webp', 1, '블루');
+
+insert into product values (131, '나이키 코트 레거시', 10, 139000, 
+	'티','M');
+insert into product_detail values (142, 131, 'XL', '그린', 10);
+insert into product_photo values (131, 131, '131.webp', 1, '그린');
+
+insert into product values (132, '나이키 에어 써마 핏 코듀로이', 10, 229000, 
+	'티','F');
+insert into product_detail values (143, 132, 'XL', '브라운', 10);
+insert into product_photo values (132, 132, '132.webp', 1, '브라운');
