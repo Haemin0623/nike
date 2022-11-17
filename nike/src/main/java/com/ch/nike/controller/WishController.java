@@ -37,5 +37,43 @@ public class WishController {
 		model.addAttribute("result", result);
 		return "product/addWish";
 	}
+	
+	@RequestMapping("/product/pickChange.do")
+	public String addWish(HttpSession session, Wish wish, Model model) {
+		int result = 0;
+		if (session.getAttribute("email") == null) { // 로그인x- 이메일로그인창
+			result = -2;
+		} else { //로그인o - 위시리스트 추가/삭제
+			String email = (String) session.getAttribute("email");
+			wish.setEmail(email);
+			Wish wish2 = ws.selectByEmail(wish); // productNo, email, color
 
+			if (wish2 == null) { // 없으면 추가(1)
+				result = ws.insert(wish);
+			} else { // 있을때- 다시누르면 위시리스트에서 삭제
+				ws.delete(wish2.getWishNo());
+				result = -1;
+			}
+		}
+
+		model.addAttribute("result", result);
+		return "product/pickChange";
+	}
+	@RequestMapping("/product/pickCheck.do")
+	public String pickCheck(HttpSession session, Wish wish, Model model) {
+		System.out.println("??????????????????????????????????");
+		int result = 0;
+		if (session.getAttribute("email") != null) {
+			String email = (String) session.getAttribute("email");
+			wish.setEmail(email);
+			Wish wish2 = ws.selectByEmail(wish);
+			if (wish2 != null) {
+				result = 1;
+			} else {
+				result = 0;
+			}
+		}
+		model.addAttribute("result", result);
+		return "product/pickCheck";
+	}
 }

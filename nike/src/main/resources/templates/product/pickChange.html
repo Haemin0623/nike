@@ -1,0 +1,12 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	 <th:block th:if="${result} > 0">
+		위시리스트 추가! 
+	</th:block>
+	
+	 <th:block th:if="${result} == -1">
+		위시리스트 삭제!
+	</th:block>
+	
+	 <th:block th:if="${result} == -2">
+		로그인시 가능합니다.
+	</th:block>
