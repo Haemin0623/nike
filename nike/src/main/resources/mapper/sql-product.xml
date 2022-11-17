@@ -246,14 +246,14 @@
 			and c.category_no = p.category_no
 			and pp.batch='1'
 	</select>
-	<select id="mainrecommendList" resultType="Product"> <!-- 메인페이지-하단 추천상품 -->
+	<select id="mainrecommendList" resultType="Product"> <!-- 메인페이지-하단 추천신발 -->
 		select 	* 
 		from 	PRODUCT p, 
 				CATEGORY c, 
 				PRODUCT_PHOTO pp
 		where 	p.category_no = c.category_no 
 			and p.product_no = pp.product_no
-			and c.small='티셔츠' 
+			and c.large='신발' 
 			and pp.batch=1
 	</select>
 	<select id="selectProductAndPhoto" parameterType="Product" resultType="Product">
