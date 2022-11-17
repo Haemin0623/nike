@@ -1,28 +1,96 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<div layout:fragment="content">
-	<form action="addAddr.do">
-		<input type="text" name="zonecode" id="zonecode" placeholder="우편번호" required="required">
-		<input type="text" name="roadaddress" id="roadaddress" placeholder="도로명주소" required="required">
-		<input type="text" name="jibunaddress" id="jibunaddress" placeholder="지번주소" required="required"> 
-		<span id="guide" style="color:#999;display:none"></span>
-		<input type="text" name="detailaddress" id="detailaddress" placeholder="상세주소" required="required">
-		<input type="tel" name="tel" placeholder="연락처" required="required">
-		<input type="text" name="addrName" placeholder="수령인" required="required">
-		<input type="checkbox" name="defAddr" id="def" value="Y">
-		<label for="id">기본배송지 설정</label>
-		<input type="hidden" name="email" th:value="${email}">
-		<input type="submit" value="완료">
-	</form>
-	<button onclick="sample4_execDaumPostcode()" >우편번호 찾기</button><br>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+      layout:decorate="~{layouts/layout}" style="font-size: 16px;" lang="en"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>addAddrForm</title>
+    <link rel="stylesheet" href="nicepage.css" media="screen">
+<link rel="stylesheet" href="addAddrForm.css" media="screen">
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "Site1",
+		"sameAs": [
+				"https://nicepage.site"
+		]
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="addAddrForm">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  </head>
+  <body layout:fragment="content" class="u-body u-xl-mode" data-lang="en">
+  
+  <link rel="stylesheet" href="/nice/nicepage.css" media="screen">
+<link rel="stylesheet" href="/nice/addAddrForm.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/nice/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/nice/nicepage.js" defer=""></script>
+    
+  
+    <section class="u-clearfix u-section-1" id="sec-dde9">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h4 class="u-text u-text-default u-text-1">배송지 추가</h4>
+        <div class="u-form u-form-1">
+          <form action="addAddr.do" class="u-clearfix u-form-spacing-17 u-form-vertical u-inner-form" source="email" name="form-1" style="padding: 10px;">
+            <input type="hidden" name="jibunaddress" id="jibunaddress" >
+			<input type="hidden" name="email" th:value="${email}">
+            <div class="u-form-group u-form-name u-label-none">
+              <label for="name-68ae" class="u-label">Name</label>
+              <input type="text" placeholder="수령인" id="name-68ae" name="addrName" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+            </div>
+            <div class="u-form-group u-form-partition-factor-3 u-label-none u-form-group-2">
+              <label for="text-27cd" class="u-label">tel1</label>
+              <input type="text" placeholder="'010'" id="text-27cd" name="tel1" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+            </div>
+            <div class="u-form-group u-form-partition-factor-3 u-label-none u-form-group-3">
+              <label for="text-dd74" class="u-label">Input</label>
+              <input type="text" placeholder="1234" id="text-dd74" name="tel2" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+            </div>
+            <div class="u-form-group u-form-partition-factor-3 u-label-none u-form-group-4">
+              <label for="text-0f69" class="u-label">Input</label>
+              <input type="text" placeholder="5678" id="text-0f69" name="tel3" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+            </div>
+            <img th:onclick="sample4_execDaumPostcode()" class="u-form-group u-form-image u-form-partition-factor-2 u-image u-image-contain u-label-none u-image-1" src="images/nilke-removebg-preview.png" data-image-width="480" data-image-height="317">
+            <div class="u-form-email u-form-group u-form-partition-factor-2 u-label-none">
+              <label for="zonecode" class="u-label">Email</label>
+              <input type="number" placeholder="우편번호" id="zonecode" name="zonecode" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+            </div>
+            <div class="u-form-group u-label-none u-form-group-7">
+              <label for="roadaddress" class="u-label">Input</label>
+              <input type="text" placeholder="도로명주소" id="roadaddress" name="roadaddress" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+            </div>
+            <div class="u-form-group u-label-none u-form-group-8">
+              <label for="detailaddress" class="u-label">Input</label>
+              <input type="text" placeholder="상세주소" id="detailaddress" name="detailaddress" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+            </div>
+            <div class="u-form-checkbox u-form-group u-label-none u-form-group-9">
+              <input type="checkbox" id="checkbox-81dd" name="defAddr" value="Y">
+              <label for="checkbox-81dd" class="u-label">기본 배송지로 설정</label>
+            </div>
+            <div class="u-align-left u-form-group u-form-submit u-label-none">
+              <a href="#" class="u-black u-border-none u-btn u-btn-submit u-button-style u-hover-grey-60 u-btn-1">등록<br>
+              </a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
+            </div>
+            <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+            <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+
+          </form>
+          <span id="guide" style="color:#999;display:none"></span>	
+        </div>
+      </div>
+    </section>
+   
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 	    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 	    function sample4_execDaumPostcode() {
@@ -74,6 +142,5 @@
 	        }).open();
 	    }
 	</script>
-</div>
-</body>
-</html>
+  
+</body></html>

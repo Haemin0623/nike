@@ -334,7 +334,9 @@ public class AccountController {
 		return "account/addAddrForm";
 	}
 	@RequestMapping("/account/addAddr.do")	//  by창률 배송지 추가
-	public String addAddr(Model model,Address address, HttpSession session) {
+	public String addAddr(Model model,Address address, HttpSession session, String tel1, String tel2, String tel3) {
+		String tel = tel1 + "-" + tel2 + "-" + tel3;
+		address.setTel(tel);
 		int result = 0;
 		String email = (String) session.getAttribute("email");
 		if (address.getDefAddr() != null) {

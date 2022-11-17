@@ -97,7 +97,11 @@
 	
 	
  <!-- Naver Login Image & Button -->
-    <a onclick="naverLogin();"><img width="200" height="50" th:src="@{/images/btnG_완성형.png}"></a>
+ 	<div align="center">
+	    <a onclick="naverLogin();"><img width="200" height="50" th:src="@{/images/btnG_완성형.png}"></a>
+	    <a id="kakao-login-btn"></a>
+		<div id="result"></div>
+	</div>
 <script>
     // 네이버 로그인을 위한 팝업창 생성
     function naverLogin(){
@@ -116,8 +120,7 @@
 <!-- 	kakao Login Api -->
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<a id="kakao-login-btn"></a>
-	<div id="result"></div>
+
 <script type="text/javascript">
   function unlinkApp() {
     Kakao.API.request({
@@ -163,45 +166,4 @@ console.log(Kakao.isInitialized());
   })
 </script>
 
-<!-- 구글 api 사용을 위한 스크립트 -->
-<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
-
-<script> /* 구글로그인 */
-
-//처음 실행하는 함수
-function init() {
-	gapi.load('auth2', function() {
-		gapi.auth2.init();
-		options = new gapi.auth2.SigninOptionsBuilder();
-		options.setPrompt('select_account');
-        // 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
-		options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
-        // 인스턴스의 함수 호출 - element에 로그인 기능 추가
-        // GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
-		gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
-	})
-}
-
-function onSignIn(googleUser) {
-	  var profile = googleUser.getBasicProfile();
-	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	  console.log('Name: ' + profile.getName());
-	  console.log('Image URL: ' + profile.getImageUrl());
-	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-	}
-function onSignInFailure(t){		
-	console.log(t);
-}
-</script>
-	
-</head>
-<body>
-
-	<!-- 구글 로그인 -->
-	<div id="GgCustomLogin" class="g-signin2" data-onsuccess="onSignIn">
-		<a href="javascript:void(0)"><span>Login with Google</span></a>
-	</div>
-
-
-</body>
 </html>
