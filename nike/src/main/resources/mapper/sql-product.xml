@@ -25,10 +25,12 @@
 				ph.color
 		from	product p,
 				product_photo ph,
-				product_detail pd
+				product_detail pd,
+				category c
 		where	p.product_no = ph.product_no
 			and p.product_no = pd.product_no
 			and ph.batch = 1
+			and p.category_no = c.category_no
 			<if test="gender != null">
 				and gender in
 				<foreach collection="gender" item="g" open="(" close=")" separator=",">
@@ -67,6 +69,18 @@
 					</if>
 				</foreach>
 			</if>
+			<if test="large != null">
+			and	large in
+				<foreach collection="large" item="l" open="(" close=")" separator=",">
+					#{l}
+				</foreach>
+			</if>
+			<if test="small != null">
+			and	small in
+				<foreach collection="small" item="s" open="(" close=")" separator=",">
+					#{s}
+				</foreach>
+			</if>
 	order by	p.product_no desc
 	</select>
 	<select id = "listPaging" parameterType="filter" resultType="Product" >
@@ -93,10 +107,12 @@
 									ph.color
 							from	product p,
 									product_photo ph,
-									product_detail pd
+									product_detail pd,
+									category c
 							where	p.product_no = ph.product_no
 								and p.product_no = pd.product_no
 								and ph.batch = 1
+								and p.category_no = c.category_no
 								<if test="gender != null">
 									and gender in
 									<foreach collection="gender" item="g" open="(" close=")" separator=",">
@@ -135,6 +151,18 @@
 										</if>
 									</foreach>
 								</if>
+								<if test="large != null">
+								and	large in
+									<foreach collection="large" item="l" open="(" close=")" separator=",">
+										#{l}
+									</foreach>
+								</if>
+								<if test="small != null">
+								and	small in
+									<foreach collection="small" item="s" open="(" close=")" separator=",">
+										#{s}
+									</foreach>
+								</if>
 						order by	p.product_no desc) a
 					) 
 		where	rn between #{startRow} and #{endRow}
@@ -151,10 +179,12 @@
 		select	count(*)
 		from	product p,
 				product_photo ph,
-				product_detail pd
+				product_detail pd,
+				category c
 		where	p.product_no = ph.product_no
 			and p.product_no = pd.product_no
 			and ph.batch = 1
+			and p.category_no = c.category_no
 			<if test="gender != null">
 				and gender in
 				<foreach collection="gender" item="g" open="(" close=")" separator=",">
@@ -191,6 +221,18 @@
 					<if test="p == 200001">
 						price >= 200000
 					</if>
+				</foreach>
+			</if>
+			<if test="large != null">
+			and	large in
+				<foreach collection="large" item="l" open="(" close=")" separator=",">
+					#{l}
+				</foreach>
+			</if>
+			<if test="small != null">
+			and	small in
+				<foreach collection="small" item="s" open="(" close=")" separator=",">
+					#{s}
 				</foreach>
 			</if>
 	order by	p.product_no desc

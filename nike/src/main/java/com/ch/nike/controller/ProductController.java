@@ -71,7 +71,7 @@ public class ProductController {
 		
 		
 		
-		if (filter.getGender() != null || filter.getColor() != null || filter.getPrice() != null || filter.getProductSize() != null) {
+		if (filter.getGender() != null || filter.getColor() != null || filter.getPrice() != null || filter.getProductSize() != null || filter.getLarge() != null | filter.getSmall() != null) {
 			total = ps.getTotal2(filter);	// 예스필터
 			PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 			// List<Product> filterList = ps.filterList(filter);

@@ -10,6 +10,8 @@ public class Filter {
 	private String[] color;
 	private Integer[] price;
 	private String[] productSize;
+	private String[] large;
+	private String[] small;
 	
 	// 페이징
 	private int currentPage;
