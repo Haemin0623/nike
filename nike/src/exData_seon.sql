@@ -1,6 +1,6 @@
 --insert into product values (1, '대한민국 스우시', 카테고리번호, 39000, 
-	'대한민국 스우시 티셔츠를 입고 국가대표팀을 응원하세요. 부드러운 니트 소재에 자랑스러운 그래픽을 더해 편안한 착용감을 선사하는 이 티셔츠와 함께라면 경기장에서 응원할 때도, 길거리에서 동료 팬들과 소통할 때도 응원하는 팀에 대한 자부심을 표현할 수 있습니다.'
-	,'M');
+--	'대한민국 스우시 티셔츠를 입고 국가대표팀을 응원하세요. 부드러운 니트 소재에 자랑스러운 그래픽을 더해 편안한 착용감을 선사하는 이 티셔츠와 함께라면 경기장에서 응원할 때도, 길거리에서 동료 팬들과 소통할 때도 응원하는 팀에 대한 자부심을 표현할 수 있습니다.'
+--	,'M');
 
 --insert into product_detail values (1, 상품번호, '사이즈', '블랙', 재고);
 --insert into product_photo values (100, 상품번호, '100.webp', 1, '블랙');
@@ -8,7 +8,8 @@
 --select * from product;
 --select * from product_detail;
 --select * from product_photo;
--- 시작
+
+-- 시작 1
 insert into product values (100, '여성 크롭 풀오버', 2, 99000, 
 	'포근함 혹은 시원함? 부드러운 후디가 크롭 기장과 박시한 핏을 선사하기 때문에 한 가지만 선택할 필요가 없습니다. 아이코닉한 윙스 재킷을 상징하는 디자인 라인이 마이클 조던의 헤리티지를 담아내고, 땀 발산 소재가 짐에서나 도시에서나 한결같은 쾌적함을 선사합니다.'
 	,'F');
@@ -72,3 +73,123 @@ insert into product values (107, '플러시 인조 퍼 재킷', 3, 219000,
 	,'F');
 insert into product_detail values (119, 107, 'S', '브라운', 7);
 insert into product_photo values (107, 107, '107.webp', 1, '브라운');
+
+insert into product_photo values (17, 3, 'd1.webp', 1, '화이트');
+insert into product_photo values (18, 3, 'd2.webp', 2, '화이트');
+insert into product_photo values (19, 3, 'd3.webp', 2, '화이트');
+insert into product_photo values (20, 3, 'd4.jfif', 2, '화이트');
+insert into product_photo values (21, 3, 'd5.jfif', 2, '화이트');
+insert into product_photo values (22, 3, 'd6.jfif', 2, '화이트');
+
+-- 2
+insert into product values (108, '나이키 스포츠웨어 비니', 8, 33000, 
+	'여유롭고 푹신한 재킷을 입고 한결 편안한 따뜻함을 느껴보세요. 외부의 인조 털과 매끄러운 우븐 안감으로 레이어링에 좋으며, 신축성 있는 커프스가 추위를 막아줍니다.'
+	,'U');
+insert into product_detail values (120, 108, 'M', '핑크', 8);
+insert into product_photo values (108, 108, '108.webp', 1, '핑크');
+
+insert into product values (109, '나이키 스포츠웨어 비니', 8, 33000, 
+	'모자'	,'U');
+insert into product_detail values (121, 109, 'M', '브라운', 8);
+insert into product_photo values (109, 109, '109.webp', 1, '브라운');
+
+insert into product values (110, '오사카 나오미 플리스 버킷 햇', 8, 39000, 
+	'모자' ,'U');
+insert into product_detail values (121, 110, 'M', '화이트', 8);
+insert into product_photo values (110, 110, '110.webp', 1, '화이트');
+
+insert into product values (111, '오사카 나오미 플리스 버킷 햇', 8, 39000, 
+	'모자'	,'U');
+insert into product_detail values (122, 111, 'M', '블랙', 8);
+insert into product_photo values (111, 111, '111.webp', 1, '블랙');
+
+insert into product values (112, '오사카 나오미 플리스 버킷 햇', 8, 45000, 
+	'모자'	,'U');
+insert into product_detail values (123, 112, 'M', '블랙', 9);
+insert into product_photo values (112, 112, '112.webp', 1, '블랙');
+
+insert into product values (113, '오사카 나오미 플리스 버킷 햇', 8, 45000, 
+	'모자'	,'U');
+insert into product_detail values (124, 113, 'M', '블랙', 9);
+insert into product_photo values (113, 113, '113.webp', 1, '블랙');
+
+insert into product values (114, '남성 프렌치 테리 크루', 1, 69000, 
+	'맨투맨'	,'M');
+insert into product_detail values (125, 114, 'M', '그린', 1);
+insert into product_photo values (114, 114, '114.webp', 1, '그린');
+
+insert into product values (115, 'ACG 써마 핏 플리스 풀오버 후디', 2, 135000, 
+	'후디'	,'M');
+insert into product_detail values (126, 115, 'M', '그린', 1);
+insert into product_photo values (115, 115, '115.webp', 1, '그린');
+
+insert into product values (116, '나이키 써마 핏 리펠', 3, 159000, 
+	'재킷'	,'M');
+insert into product_detail values (127, 116, 'M', '그린', 7);
+insert into product_photo values (116, 116, '116.webp', 1, '그린');
+
+insert into product values (117, '패딩 처리된 플란넬 스케이트보딩 재킷', 3, 209000, 
+	'재킷'	,'M');
+insert into product_detail values (128, 117, 'M', '블루', 7);
+insert into product_photo values (117, 117, '117.webp', 1, '블루');
+
+insert into product values (118, '나이키 스포츠웨어 헤리티지86 퓨추라 워시드', 8, 29000, 
+	'모자'	,'U');
+insert into product_detail values (129, 118, 'M', '그린', 6);
+insert into product_photo values (118, 118, '118.webp', 1, '그린');
+
+insert into product values (119, '나이키 스포츠웨어 헤리티지86 퓨추라 워시드', 8, 29000, 
+	'모자'	,'U');
+insert into product_detail values (130, 119, 'M', '브라운', 6);
+insert into product_photo values (119, 119, '119.webp', 1, '브라운');
+
+
+insert into product values (120, '나이키 스포츠웨어 에센셜', 1, 59000, 
+	'티','F');
+insert into product_detail values (131, 120, 'S', '블랙', 10);
+insert into product_photo values (120, 120, '120.webp', 1, '블랙');
+
+insert into product values (121, '나이키 스포츠웨어 에센셜', 1, 59000, 
+	'티','F');
+insert into product_detail values (132, 121, 'S', '그레이', 10);
+insert into product_photo values (121, 121, '121.webp', 1, '그레이');
+
+insert into product values (122, '드라이 핏 남성 풀오버 트레이닝 후디', 2, 75000, 
+	'티','M');
+insert into product_detail values (133, 122, 'S', '그레이', 10);
+insert into product_photo values (122, 122, '122.webp', 1, '그레이');
+
+insert into product values (123, '조던 x Off-White™ 숏슬리브 탑', 1, 149000, 
+	'티','M');
+insert into product_detail values (134, 123, 'S', '그린', 10);
+insert into product_photo values (123, 123, '123.webp', 1, '그린');
+
+insert into product values (124, '르브론 풀오버 후디', 2, 75000, 
+	'티','M');
+insert into product_detail values (135, 124, 'XL', '블루', 10);
+insert into product_photo values (124, 124, '124.webp', 1, '블루');
+
+insert into product values (125, 'FFF 리펠 아카데미 AWF', 2, 89000, 
+	'재킷','M');
+insert into product_detail values (136, 125, 'XL', '블루', 10);
+insert into product_photo values (125, 125, '125.webp', 1, '블루');
+
+insert into product values (126, 'FC 바르셀로나 프렌치 테리 후디', 2, 79000, 
+	'티','M');
+insert into product_detail values (137, 126, 'XL', '블루', 10);
+insert into product_photo values (126, 126, '126.webp', 1, '블루');
+
+insert into product values (127, '잉글랜드 플리스 축구 팬츠', 4, 69000, 
+	'바지','M');
+insert into product_detail values (138, 127, 'XL', '블루', 10);
+insert into product_photo values (127, 127, '127.webp', 1, '블루');
+
+insert into product values (128, '나이키 스포츠웨어 서카 하프집 탑', 2, 119000, 
+	'티','M');
+insert into product_detail values (139, 128, 'XL', '블루', 10);
+insert into product_photo values (128, 128, '128.webp', 1, '블루');
+
+insert into product values (129, '나이키 드라이 핏 런 디비전 라이즈 365', 1, 75000, 
+	'티','M');
+insert into product_detail values (140, 129, 'XL', '블루', 10);
+insert into product_photo values (129, 129, '129.webp', 1, '블루');
