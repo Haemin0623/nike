@@ -32,7 +32,7 @@ public class UserOrder {
 	
 	//address
 	private String addrName;
-	private int tel;
+	private String tel;
 	private String roadaddress;
 	private String jibunaddress;
 	private int zonecode;

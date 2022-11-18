@@ -26,6 +26,9 @@ public class Cart {
 	private String large;
 	private String small;
 	
+	// 상품 단가 및 총 결제 금액 천 단위, 표시
+	private String unitedPrice;
 	private int totalPrice;
+	
 	
 }

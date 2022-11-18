@@ -3,6 +3,7 @@ package com.ch.nike.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -143,14 +144,18 @@ public class AccountController {
 			List<Wish> wishList = ws.wishList(email);
 
 			ProductDetail detail = new ProductDetail();
+			DecimalFormat dc = new DecimalFormat("###,###,###,###");	// price 천단위 ,
+			
 			List<ProductDetail> detailListForSize = new ArrayList<>();
 			List<ProductDetail> sizeList = new ArrayList<>();
 			for (Wish wish : wishList) {
 				detail.setProductNo(wish.getProductNo());
 				detail.setColor(wish.getColor());
 				sizeList = pds.distinctSizeList(detail);
-
+				
 				detailListForSize.addAll(sizeList);
+				
+				wish.setUnitedPrice(dc.format(wish.getPrice()));
 			}
 			model.addAttribute("sizeList", detailListForSize);
 			model.addAttribute("wishList", wishList);
@@ -168,10 +173,13 @@ public class AccountController {
 			int totalPrice = 0;
 			int detailNo = 0;
 			int productNo = 0;
+			
 			List<ProductDetail> detailListForSize = new ArrayList<>();
 			List<ProductDetail> sizeList = new ArrayList<>();
 			List<Wish> wishList = ws.wishList(email);
 			ProductDetail detail = new ProductDetail();
+			
+			DecimalFormat dc = new DecimalFormat("###,###,###,###");	// price 천단위 ,
 			for (Cart cart : cartList) {
 				totalPrice += (cart.getPrice() * cart.getCartQuantity());
 				detailNo = cart.getProductDetailNo();
@@ -179,6 +187,7 @@ public class AccountController {
 				detail.setProductNo(productNo);
 				detail.setColor(cart.getColor());
 				sizeList = pds.distinctSizeList(detail);
+				cart.setUnitedPrice(dc.format(cart.getPrice()));
 //			int check = 0;
 //			for (ProductDetail size : sizeList) {
 //				for (ProductDetail ds : detailListForSize) {
@@ -191,10 +200,12 @@ public class AccountController {
 				detailListForSize.addAll(sizeList);
 //			}
 			}
+			
+			String unitedTotalPrice = dc.format(totalPrice);
 			model.addAttribute("wishList",wishList);
 			model.addAttribute("sizeList", detailListForSize);
 			model.addAttribute("cartList",cartList);
-			model.addAttribute("totalPrice", totalPrice);
+			model.addAttribute("totalPrice", unitedTotalPrice);
 			return "account/cartList";
 		}
 		

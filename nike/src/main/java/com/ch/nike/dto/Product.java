@@ -15,8 +15,6 @@ public class Product {
 	private String gender;
 	
 	// 조인용
-	// 이렇게 해도 되는데 ProductPhoto 클래스 자체를 넣어도 될듯?? //맞네? 그랬네?? ㅋㅋ
-	// private ProductPhoto productPhoto	by 해민
 	private int batch;
 	private String productPhoto;
 	private String color;
@@ -35,4 +33,8 @@ public class Product {
 	private String feature;
 	
 	private int productPhotoNo;
+	
+	// 상품 단가 및 총 결제 금액 천 단위, 표시
+	private String unitedPrice;
+	private int totalPrice;
 }

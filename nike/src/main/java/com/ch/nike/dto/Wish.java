@@ -16,4 +16,8 @@ public class Wish {
 	private String productName;
 	private String productPhoto;
 	private int price;
+	
+	// 상품 단가 및 총 결제 금액 천 단위, 표시
+	private String unitedPrice;
+	private int totalPrice;
 }

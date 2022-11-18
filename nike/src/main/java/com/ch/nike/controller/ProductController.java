@@ -1,6 +1,7 @@
 package com.ch.nike.controller;
 
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,6 +119,10 @@ public class ProductController {
 		
 		model.addAttribute("productSizeList", productSizeList);
 		model.addAttribute("productFeatureList",productFeatureList);
+		
+		
+		DecimalFormat dc = new DecimalFormat("###,###,###,###");	// price 천단위 , by선희
+		product.setUnitedPrice(dc.format(product.getPrice()));
 		
 		//리뷰 by 선희
 		float starTotal = 0;
