@@ -44,9 +44,7 @@
     		$.get("/product/pickCheck.do", "productNo="+productNo+"&color="+color,
     				function (data) {
     					if(data == 1){
-//     						document.getElementById('pick'+productNo).style.color="red";
     						$('#pickChk'+productNo).css("color", "red");
-//     						 $("p").css("color", "red");
 
     					}					
                })

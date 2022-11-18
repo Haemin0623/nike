@@ -1,19 +1,6 @@
-update product set category_no=9 where product_no=112;
-update product set gender='U' where product_no=112;
-update product set category_no=9 where product_no=113;
-update product set gender='U' where product_no=113;
-update product_detail set color='옐로우' where product_no=113;
-update product_detail set product_size='원사이즈' where product_no=108;
-update product_detail set product_size='원사이즈' where product_no=109;
-update product_detail set product_size='원사이즈' where product_no=110;
-update product_detail set product_size='원사이즈' where product_no=111;
-update product_detail set product_size='원사이즈' where product_no=118;
-update product_detail set product_size='원사이즈' where product_no=119;
+update product set category_no=3 where product_no=132;
 
 
-
-
--- 시작 1
 insert into product values (100, '여성 크롭 풀오버', 2, 99000, 
 	'포근함 혹은 시원함? 부드러운 후디가 크롭 기장과 박시한 핏을 선사하기 때문에 한 가지만 선택할 필요가 없습니다. 아이코닉한 윙스 재킷을 상징하는 디자인 라인이 마이클 조던의 헤리티지를 담아내고, 땀 발산 소재가 짐에서나 도시에서나 한결같은 쾌적함을 선사합니다.'
 	,'F');
@@ -70,7 +57,7 @@ insert into product_photo values (20, 3, 'd4.jfif', 2, '화이트');
 insert into product_photo values (21, 3, 'd5.jfif', 2, '화이트');
 insert into product_photo values (22, 3, 'd6.jfif', 2, '화이트');
 
--- 2
+
 insert into product values (108, '나이키 스포츠웨어 비니', 8, 33000, 
 	'여유롭고 푹신한 재킷을 입고 한결 편안한 따뜻함을 느껴보세요. 외부의 인조 털과 매끄러운 우븐 안감으로 레이어링에 좋으며, 신축성 있는 커프스가 추위를 막아줍니다.'
 	,'U');

@@ -97,11 +97,13 @@
         }
         
         .modall .modal_content {
-          width:300px;
-          margin:100px auto;
-          padding:20px 10px;
-          background:#fff;
-          border:2px solid #666;
+        	width: 50%;
+ 			height: 80%;
+ 			padding: 20px;
+          	margin:100px auto;
+         	background:#fff;
+			border:2px solid #666;
+         	border-radius: 1em;
         }
         
         .modall .modal_layer {
@@ -363,8 +365,33 @@
 						
 						<div id="modal" class="modall">
 							<div class="modal_content" >
-								 상세정보표기!!!!!!!!!!!!!!!
-							<button type="button" id="modal_close_btn"  onclick="modalDown()">취소</button>
+<th:block th:if="${#lists.size(thumPhoto)} > 0 and ${thumPhoto.batch}==1 and ${thumPhoto.color} == ${color}" th:each="thumPhoto:${thumPhotoList}">
+<div class="u-container-layout u-container-layout-1">
+	<img th:src="@{/images/product_photo/}+${thumPhoto.productPhoto}" alt="" style="width: 80px; height:auto; float: left; margin: 7px;">
+	<p align="right"><span class="u-file-icon u-icon u-icon-1"><a type="button" id="modal_close_btn"  onclick="modalDown()"><img src="/nice/images/2997911.png" alt="닫기"></a></span></p>
+	<p class="u-small-text u-text u-text-body-color u-text-default u-text-variant u-text-3">[[${product.productName}]]</p>
+	<p class="u-small-text u-text u-text-body-color u-text-default u-text-variant u-text-3">[[${product.price}]]</p>
+</div>
+<br>
+훌륭하게 제작된 편안한 레이어링. 여유 있는 사이즈로 제작된 23 엔지니어드 후디는 매우 무게감 있는 플리스로 제작되었으며, 앞면 지퍼 포켓이 있어 소지품을 보관할 수 있습니다.
+<br><br>
+<span style="font-weight: bold;">상품 특징</span>
+	<li>후드를 동일하게 폭신한 소재로 안감 처리하여 도톰하고 포근한 커버력 선사</li>
+	<li>더욱 긴 조임끈이 있어 노출의 정도 조절 가능</li>
+	<li>측면의 지퍼 포켓에 소지품을 안전하게 보관 가능</li>
+<br>
+<span style="font-weight: bold;">상품 상세 정보</span>
+	<li>신축성 있는 골지 커프스와 밑단</li>
+	<li>그래픽 프린트</li>
+	<li>몸체: 82% 면/18% 폴리에스터. 골지: 97% 면/3% 스판덱스. 후드 안감: 100% 면.</li>
+	<li>세탁기 사용 가능</li>
+	<li>수입</li>
+	<li>개인 보호 장비(PPE) 용도로 사용하지 말 것</li>
+	<li>현재 컬러: 블랙/스모크 그레이/화이트</li>
+	<li>스타일: DQ7882-010</li>
+	<li>제조 국가/지역: 중국</li>
+
+</th:block>							
 							</div>
 						<div class="modal_layer"></div>
 						</div>

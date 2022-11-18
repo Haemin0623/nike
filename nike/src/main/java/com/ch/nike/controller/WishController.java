@@ -62,7 +62,6 @@ public class WishController {
 	}
 	@RequestMapping("/product/pickCheck.do")
 	public String pickCheck(HttpSession session, Wish wish, Model model) {
-		System.out.println("??????????????????????????????????");
 		int result = 0;
 		if (session.getAttribute("email") != null) {
 			String email = (String) session.getAttribute("email");
