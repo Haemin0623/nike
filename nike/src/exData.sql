@@ -371,6 +371,9 @@ insert into review values(3,2,'sun@ny.com','너무 이뻐요',5,sysdate,'N','블
 insert into review values(4,2,'chang@ryul.com','선물해주니 좋아해요',4,sysdate,'Y','화이트');
 insert into review values(5,3,'sun@ny.com','가격대비 무난해요',2,sysdate,'N','화이트');
 
+insert into review values(5,3,'sun@ny.com','가격대비 무난해요',2,sysdate,'N','화이트');
+
+insert into review values(7,3,'soo@in.com','가격대비 무난해요',3,sysdate,'N','화이트');
 -- 리뷰 사진
 -- 이거는 기능 만들어서 구현 해야지 의미 있을듯
 
