@@ -21,6 +21,20 @@ insert into product_detail values (804, 203, '260', '브라운', 15);
 insert into product_detail values (805, 203, '270', '브라운', 1);
 insert into product_detail values (806, 203, '280', '브라운', 3);
 
+-- 슬리퍼 검정색 데이터
+insert into product_photo values (901, 203, '903_1.webp', 1, '블랙');
+insert into product_photo values (902, 203, '903_2.webp', 2, '블랙');
+insert into product_photo values (903, 203, '903_3.webp', 3, '블랙');
+insert into product_photo values (904, 203, '903_4.webp', 4, '블랙');
+insert into product_photo values (905, 203, '903_5.webp', 5, '블랙');
+insert into product_photo values (906, 203, '903_6.webp', 6, '블랙');
+
+insert into product_detail values (901, 203, '230', '블랙', 5);
+insert into product_detail values (902, 203, '240', '블랙', 5);
+insert into product_detail values (903, 203, '250', '블랙', 7);
+insert into product_detail values (904, 203, '260', '블랙', 15);
+insert into product_detail values (905, 203, '270', '블랙', 1);
+insert into product_detail values (906, 203, '280', '블랙', 3);
 
 
 
