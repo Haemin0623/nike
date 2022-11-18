@@ -100,8 +100,8 @@
           
         <div class="u-container-style u-list-item u-repeater-item"  th:each="product:${filterList}" th:if="${#lists.size(filterList)} > 0 and ${result} == 1">
           	<script type="text/javascript">
-					pickCheck('[[${product.productNo}]]','[[${product.color}]]')
-				</script>          
+				pickCheck('[[${product.productNo}]]','[[${product.color}]]')
+			</script>          
           <div class="u-container-layout u-similar-container u-container-layout-1">
             <a th:href="@{productDetail.do(productNo=${product.productNo},color=${product.color})}">
               <img class="u-image u-image-default u-preserve-proportions u-image-1" th:src="@{/images/product_photo/}+${product.productPhoto}" alt="" data-image-width="600" data-image-height="600">

@@ -23,6 +23,26 @@ function changeQuantity(cartNo) {
 	
 
 </script>
+    <script type="text/javascript">
+    	// 위시리스트 추가
+    	function pickChange(productNo,color) {
+    		$.post("/product/pickChange.do", "productNo="+productNo+"&color="+color,
+    				function (data) {
+    					alert(data);
+    					location.reload();
+    		})
+    	}
+    	function pickCheck(productNo,color) {
+    		$.get("/product/pickCheck.do", "productNo="+productNo+"&color="+color,
+    				function (data) {
+    					if(data == 1){
+    						$('#pickChk'+productNo).css("color", "red");
+
+    					}					
+               })
+    	}
+    	
+    </script>
 <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
 <link id="u-theme-google-font" rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
@@ -61,6 +81,9 @@ function changeQuantity(cartNo) {
 													
 							<div th:each="cartDetail:${cartList}"
 								class="u-border-2 u-border-grey-10 u-border-no-left u-border-no-right u-border-no-top u-container-style u-list-item u-repeater-item">
+									<script type="text/javascript">
+										pickCheck('[[${cartDetail.productNo}]]','[[${cartDetail.color}]]')
+									</script>
 								<div
 									class="u-container-layout u-similar-container u-container-layout-4">
 									<a th:href="@{/product/productDetail.do(productNo=${cartDetail.productNo},color=${cartDetail.color})}">
@@ -112,11 +135,14 @@ function changeQuantity(cartNo) {
 											<a th:href="@{/account/deleteCart.do(cartNo=${cartDetail.cartNo})}">
 											<img
 												src="/nice/images/8369973.png" alt=""></a></span><span
-												class="u-hover-feature u-icon u-icon-circle u-icon-4"><svg
+												class="u-hover-feature u-icon u-icon-circle u-icon-4">
+											<a th:onclick="pickChange([[${cartDetail.productNo}]],[[${cartDetail.color}]])" >
+												<svg th:id="'pickChk'+${cartDetail.productNo}"
 													class="u-svg-link" preserveAspectRatio="xMidYMin slice"
 													viewBox="0 0 51.997 51.997" style="">
 													<use xmlns:xlink="http://www.w3.org/1999/xlink"
-														xlink:href="#svg-233e"></use></svg> <svg class="u-svg-content"
+														xlink:href="#svg-233e"></use></svg>
+											</a> <svg class="u-svg-content"
 													viewBox="0 0 51.997 51.997" x="0px" y="0px" id="svg-233e"
 													style="enable-background: new 0 0 51.997 51.997;">
 													<g>
