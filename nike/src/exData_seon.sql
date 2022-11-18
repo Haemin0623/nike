@@ -1,5 +1,30 @@
 update product set category_no=3 where product_no=132;
 
+select * from product;
+select * from product where product_no=203;
+update product set gender='M'  where product_no=203;
+
+select * from product_photo where product_no=203;
+delete from product_photo where product_no=203;
+--update product_photo set product_photo='203_1.webp' where product_no=203;
+insert into product_photo values (203, 203, '203_1.webp', 1, '브라운');
+insert into product_photo values (802, 203, '203_2.webp', 2, '브라운');
+insert into product_photo values (803, 203, '203_3.webp', 3, '브라운');
+insert into product_photo values (804, 203, '203_4.webp', 4, '브라운');
+insert into product_photo values (805, 203, '203_5.webp', 5, '브라운');
+insert into product_photo values (806, 203, '203_6.webp', 6, '브라운');
+
+select * from product_detail where product_no=203;
+insert into product_detail values (802, 203, '240', '브라운', 5);
+insert into product_detail values (803, 203, '250', '브라운', 7);
+insert into product_detail values (804, 203, '260', '브라운', 15);
+insert into product_detail values (805, 203, '270', '브라운', 1);
+insert into product_detail values (806, 203, '280', '브라운', 3);
+
+
+
+
+
 
 insert into product values (100, '여성 크롭 풀오버', 2, 99000, 
 	'포근함 혹은 시원함? 부드러운 후디가 크롭 기장과 박시한 핏을 선사하기 때문에 한 가지만 선택할 필요가 없습니다. 아이코닉한 윙스 재킷을 상징하는 디자인 라인이 마이클 조던의 헤리티지를 담아내고, 땀 발산 소재가 짐에서나 도시에서나 한결같은 쾌적함을 선사합니다.'
