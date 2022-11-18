@@ -82,7 +82,7 @@ public class MemberController {
 				result = -2;
 			} else {
 				int vCode = (int) session.getAttribute("vCode");
-				if (true) { // 사용자가 입력한 verifiCode, 메일발송한 vCode
+				if (verifiCode == vCode) { // 사용자가 입력한 verifiCode, 메일발송한 vCode
 					String encPass = bpe.encode(member.getPassword()); // 비밀번호 암호화
 					member.setPassword(encPass);
 					result = ms.insert(member);

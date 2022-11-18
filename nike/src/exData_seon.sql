@@ -1,40 +1,3 @@
-update product set category_no=3 where product_no=132;
-
-select * from product;
-select * from product where product_no=203;
-update product set gender='M'  where product_no=203;
-
-select * from product_photo where product_no=203;
-delete from product_photo where product_no=203;
---update product_photo set product_photo='203_1.webp' where product_no=203;
-insert into product_photo values (203, 203, '203_1.webp', 1, '브라운');
-insert into product_photo values (802, 203, '203_2.webp', 2, '브라운');
-insert into product_photo values (803, 203, '203_3.webp', 3, '브라운');
-insert into product_photo values (804, 203, '203_4.webp', 4, '브라운');
-insert into product_photo values (805, 203, '203_5.webp', 5, '브라운');
-insert into product_photo values (806, 203, '203_6.webp', 6, '브라운');
-
-select * from product_detail where product_no=203;
-insert into product_detail values (802, 203, '240', '브라운', 5);
-insert into product_detail values (803, 203, '250', '브라운', 7);
-insert into product_detail values (804, 203, '260', '브라운', 15);
-insert into product_detail values (805, 203, '270', '브라운', 1);
-insert into product_detail values (806, 203, '280', '브라운', 3);
-
--- 슬리퍼 검정색 데이터
-insert into product_photo values (901, 203, '903_1.webp', 1, '블랙');
-insert into product_photo values (902, 203, '903_2.webp', 2, '블랙');
-insert into product_photo values (903, 203, '903_3.webp', 3, '블랙');
-insert into product_photo values (904, 203, '903_4.webp', 4, '블랙');
-insert into product_photo values (905, 203, '903_5.webp', 5, '블랙');
-insert into product_photo values (906, 203, '903_6.webp', 6, '블랙');
-
-insert into product_detail values (901, 203, '230', '블랙', 5);
-insert into product_detail values (902, 203, '240', '블랙', 5);
-insert into product_detail values (903, 203, '250', '블랙', 7);
-insert into product_detail values (904, 203, '260', '블랙', 15);
-insert into product_detail values (905, 203, '270', '블랙', 1);
-insert into product_detail values (906, 203, '280', '블랙', 3);
 
 
 
@@ -236,3 +199,40 @@ update product_detail set product_size='원사이즈' where product_no=110;
 update product_detail set product_size='원사이즈' where product_no=111;
 update product_detail set product_size='원사이즈' where product_no=118;
 update product_detail set product_size='원사이즈' where product_no=119;
+update product set category_no=3 where product_no=132;
+
+select * from product;
+select * from product where product_no=203;
+update product set gender='M'  where product_no=203;
+
+select * from product_photo where product_no=203;
+delete from product_photo where product_no=203;
+--update product_photo set product_photo='203_1.webp' where product_no=203;
+insert into product_photo values (203, 203, '203_1.webp', 1, '브라운');
+insert into product_photo values (802, 203, '203_2.webp', 2, '브라운');
+insert into product_photo values (803, 203, '203_3.webp', 3, '브라운');
+insert into product_photo values (804, 203, '203_4.webp', 4, '브라운');
+insert into product_photo values (805, 203, '203_5.webp', 5, '브라운');
+insert into product_photo values (806, 203, '203_6.webp', 6, '브라운');
+
+select * from product_detail where product_no=203;
+insert into product_detail values (802, 203, '240', '브라운', 5);
+insert into product_detail values (803, 203, '250', '브라운', 7);
+insert into product_detail values (804, 203, '260', '브라운', 15);
+insert into product_detail values (805, 203, '270', '브라운', 1);
+insert into product_detail values (806, 203, '280', '브라운', 3);
+
+-- 슬리퍼 검정색 데이터
+insert into product_photo values (901, 203, '903_1.webp', 1, '블랙');
+insert into product_photo values (902, 203, '903_2.webp', 2, '블랙');
+insert into product_photo values (903, 203, '903_3.webp', 3, '블랙');
+insert into product_photo values (904, 203, '903_4.webp', 4, '블랙');
+insert into product_photo values (905, 203, '903_5.webp', 5, '블랙');
+insert into product_photo values (906, 203, '903_6.webp', 6, '블랙');
+
+insert into product_detail values (901, 203, '230', '블랙', 5);
+insert into product_detail values (902, 203, '240', '블랙', 5);
+insert into product_detail values (903, 203, '250', '블랙', 7);
+insert into product_detail values (904, 203, '260', '블랙', 15);
+insert into product_detail values (905, 203, '270', '블랙', 1);
+insert into product_detail values (906, 203, '280', '블랙', 3);
