@@ -30,7 +30,7 @@ public class WishController {
 			} else { // 있을때- 다시누르면 위시리스트에서 삭제
 				ws.delete(wish2.getWishNo());
 				result = -1;
-			}
+			} 
 		}
 		if(page != null) {
 			result = page;
@@ -67,7 +67,6 @@ public class WishController {
 			String email = (String) session.getAttribute("email");
 			wish.setEmail(email);
 			Wish wish2 = ws.selectByEmail(wish);
-			System.out.println(wish2);
 			if (wish2 != null) {
 				result = 1;
 			} else {

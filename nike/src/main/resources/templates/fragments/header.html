@@ -212,11 +212,13 @@
 							<div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
 						</div>
 					</nav>
-					<span class="u-file-icon u-icon u-icon-1">
-						<a href="/account/profile.do">
-							<img th:src="@{/nice/images/3059416.png}" alt="">
-						</a>
-					</span>
+					<th:block th:if="${session.email} != null"><!-- 세션체크하고 세션 있으면 보여주고 없으면 안보여주기 -->
+						<span class="u-file-icon u-icon u-icon-1">
+							<a href="/account/profile.do">
+								<img th:src="@{/nice/images/3059416.png}" alt="">
+							</a>
+						</span>
+					</th:block>
 					<div
 						class="u-border-1 u-border-black u-line u-line-vertical u-line-1"></div>
 					<div
