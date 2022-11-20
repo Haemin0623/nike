@@ -135,6 +135,8 @@ public class AccountController {
 		return "account/deleteMember";
 	}
 
+	// 표시
+	// 코드 수정이 번거로워서 사이즈 받아오는걸 따로 추가.
 	@RequestMapping("/account/wishList.do") // 마이페이지-위시리스트 by 수인
 	public String wishList(HttpSession session, Model model, ProductDetail productdetail) {
 		String email = (String) session.getAttribute("email");
@@ -248,6 +250,9 @@ public class AccountController {
 		return "account/deleteCart";
 	}
 	
+	
+	// 표시
+	// 하나의 주문에 몇종류의 상품을 구매했는지 count 추가
 	@RequestMapping("/account/orderList.do")		// 로그인한 회원의 주문내역 불러오기 by선희
 	public String orders(Model model, HttpSession session) {
 		String email = (String) session.getAttribute("email");
@@ -343,6 +348,9 @@ public class AccountController {
 		model.addAttribute("email",email);
 		return "account/addAddrForm";
 	}
+	
+	// 표시
+	// 기본배송지 설정값 여부 판단.
 	@RequestMapping("/account/addAddr.do")	//  by창률 배송지 추가
 	public String addAddr(Model model,Address address, HttpSession session, String tel1, String tel2, String tel3) {
 		String tel = tel1 + "-" + tel2 + "-" + tel3;

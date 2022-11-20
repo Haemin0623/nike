@@ -54,6 +54,9 @@ public class ProductController {
 		return "nike_main";
 	}
 	
+	
+	// 표시
+	// 필터 검색
 	@RequestMapping("/product/newReleases.do")
 	public String newReleases(Filter filter, String pageNum, Model model) {
 		int result = 0;
@@ -105,6 +108,9 @@ public class ProductController {
 		return "product/newReleases";
 	}
 	
+	// 표시
+	// 쿼리 유연성을 의해 나눠놓음
+	// 리뷰 갯수 반복문
 	@RequestMapping("/product/productDetail.do") //해당상품의 상세정보 by수인
 	public String productDetail(int productNo, String color, Model model) {
 		Product product = ps.selectProduct(productNo);
@@ -157,6 +163,8 @@ public class ProductController {
 		return "product/productDetail";
 	}
 	
+	
+	// 표시
 	@RequestMapping("/product/reviewList.do")	// 리뷰 by 선희
 	public String allReviewList(Product product, Model model) {
 		Product productAndPhoto = ps.selectProductAndPhoto(product);

@@ -15,6 +15,9 @@ public class WishController {
 	@Autowired
 	private WishService ws;
 	
+	
+	// 표시
+	// 같은 메서드를 사용하는데 페이지를 구분해야해서. 임의로 page값을 받아서 구별함.
 	@RequestMapping("/product/addWish.do")
 	public String addWish(HttpSession session, Wish wish, Model model, Integer page) { //int는 null을 받을수없음
 		int result = 0;
@@ -39,6 +42,8 @@ public class WishController {
 		return "product/addWish";
 	}
 	
+	// 표시
+	// 상품리스트에서 하트 누르면 추가/삭제
 	@RequestMapping("/product/pickChange.do")
 	public String addWish(HttpSession session, Wish wish, Model model) {
 		int result = 0;
@@ -60,6 +65,9 @@ public class WishController {
 		model.addAttribute("result", result);
 		return "product/pickChange";
 	}
+	
+	// 표시
+	// 상품리스트에서 하트 색깔 판별
 	@RequestMapping("/product/pickCheck.do")
 	public String pickCheck(HttpSession session, Wish wish, Model model) {
 		int result = 0;

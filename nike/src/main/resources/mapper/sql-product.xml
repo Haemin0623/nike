@@ -19,6 +19,8 @@
 		 from 	product 
 		 where 	product_no = #{productNo}
 	</select>
+	<!-- 표시 -->
+	<!-- 필터 검색 -->
 	<select id="filterList" parameterType="Filter" resultType="Product">
 		select	distinct p.*, 
 				ph.product_photo,

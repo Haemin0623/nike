@@ -37,6 +37,8 @@ public class MemberController {
 		return "member/emailLoginForm";
 	}
 
+	// 표시
+	// 인증번호 생성시 (DB저장 , 변수만들어서 저장(list/map등), 세션 생성)중에 세션 선택, 그런데 수명에 대한 문제 있음.
 	@RequestMapping("/member/emailLogin.do")
 	public String emailLogin(Member member, Model model, HttpSession session) {
 		Member member2 = ms.select(member.getEmail());
@@ -50,7 +52,7 @@ public class MemberController {
 				return "member/pwLoginForm";
 			}
 		} else { // 가입안되어있을때
-			int vCode = (int) (Math.random() * 100000); /* 인증코드 랜덤으로 보내기 */
+			int vCode = (int) (Math.random() * 99999 - 10000 )+10000; /* 인증코드 랜덤으로 보내기 */
 			session.setAttribute("vCode", vCode);
 			session.setMaxInactiveInterval(60); // 60초 시간지정
 			MimeMessage mm = jms.createMimeMessage();
@@ -70,6 +72,8 @@ public class MemberController {
 		}
 	}
 
+	// 표시
+	// 인증번호, 암호화(좀 알아보기)
 	@RequestMapping("/member/join.do")
 	public String join(Member member, String tel1, String tel2, String tel3, Model model, int verifiCode, HttpSession session) {
 		int result = 0;

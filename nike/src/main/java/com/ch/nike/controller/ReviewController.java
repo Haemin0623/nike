@@ -58,6 +58,9 @@ public class ReviewController {
 		model.addAttribute("productNo", productNo);
 		return "product/reviewWriteForm";
 	}
+	
+	// 표시
+	// 리뷰 사진 안올리는 경우를 상정안했음
 	@RequestMapping("/product/reviewWrite.do")
 	public String reviewWrite(Review review, String ratevalue, int productNo, String color, Model model, HttpSession session, 
 			MultipartHttpServletRequest mhr) throws IOException {
