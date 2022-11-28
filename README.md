@@ -31,25 +31,25 @@ DB구성을 요약한 ERD 입니다.
 
 
 ## 주요 화면 구성
-메인화면
+##### 메인화면
 ![image](https://user-images.githubusercontent.com/112607474/204299476-ef5d5fa9-5607-4e2a-b3e4-d2e02adc1453.png)
 
-로그인
+##### 로그인
 ![image](https://user-images.githubusercontent.com/112607474/204300159-51b0a83c-0e71-4775-a3a9-055b4b65da6f.png)
 네이버와 카카오에서 제공하는 oAuth api를 이용한 소셜로그인/가입 이 가능하며,
 이메일 입력시 입력한 메일로 인증번호를 보내서 검증하는 단계를 거치며,
 입력한 비밀번호는 BCryptPasswordEncoder를 이용해 해시화 하여 DB에 저장합니다.
 
-상품리스트
+##### 상품리스트
 ![image](https://user-images.githubusercontent.com/112607474/204301303-700ad8d6-8686-49a1-9949-499ef657321b.png)
 메뉴를 통해 상품 페이지로 이동하면 해당 메뉴에 해당하는 상품리스트를 보여줍니다.
 그리고 필터검색을 통하여 원하는 조건의 상품만 조회할 수 도 있습니다.
 
-지도
+##### 지도
 ![image](https://user-images.githubusercontent.com/112607474/204301797-f9b26c41-45f0-4aed-86bb-935687281ad7.png)
 카카오 맵 api를 이용하여 오프라인 매장 찾기를 구현했습니다.
 
-상품구매
+##### 상품구매
 ![image](https://user-images.githubusercontent.com/112607474/204302097-0d9bdafc-650a-42c7-8f20-b8031a383619.png)
 장바구니에 담은 상품으로 결제를 진행할 수 있으며, 카카오결제 api를 이용하여 결제시스템을 구현했습니다.
 
